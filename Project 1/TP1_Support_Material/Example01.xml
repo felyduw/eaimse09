@@ -1,0 +1,42 @@
+<Brand>
+	<Name>Canon</Name>
+	<Cameras>
+		<Camera>
+			<Name>EOS 7D</Name>
+			<Description></Description>
+			<Date>01/09/2009</Date>
+			<MaxResolutions>
+				<MaxResolution>
+					<Horiz>5184</Horiz>
+					<Vert>3456</Vert>
+				</MaxResolution>
+			</MaxResolutions> 
+			<LowerResolutions>
+				<LowerResolution>
+					<Horiz>5184</Horiz>
+					<Vert>3456</Vert>
+				</LowerResolution>
+				<LowerResolution>
+					<Horiz>3888</Horiz>
+					<Vert>2592</Vert>
+				</LowerResolution>
+				<LowerResolution>
+					<Horiz>3456</Horiz>
+					<Vert>2304</Vert>
+				</LowerResolution>
+				<LowerResolution>
+					<Horiz>2592</Horiz>
+					<Vert>1728</Vert>
+				</LowerResolution>
+			</LowerResolutions>
+			<ImageRatio>3:2</ImageRatio> 
+			<EffectivePixels>18.0 million</EffectivePixels>
+			<SensorSize></SensorSize>
+			<IsoRating></IsoRating>
+			<MinShutterSpeed></MinShutterSpeed>
+			<MaxShutterSpeed></MaxShutterSpeed>
+			<DepthReviewUrl></DepthReviewUrl> 
+			<PictureUrl></PictureUrl>
+		</Camera>
+	</Cameras>
+</Brand>
