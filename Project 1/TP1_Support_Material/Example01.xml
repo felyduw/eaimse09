@@ -2,7 +2,7 @@
 	<Name>Canon</Name>
 	<Cameras>
 		<Camera>
-			<Name>EOS 7D</Name>
+			<Model>EOS 7D</Model>
 			<Description></Description>
 			<Date>01/09/2009</Date>
 			<MaxResolutions>
