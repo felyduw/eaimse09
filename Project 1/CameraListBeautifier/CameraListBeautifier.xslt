@@ -40,7 +40,15 @@
 					#hor-zebra .odd
 					{
 						background: #e8edff; 
-					}					
+					}
+					#hor-zebra .separator
+					{
+						font-size: 14px;
+						font-weight: normal;
+						padding: 10px 8px;
+						color: #039;
+						text-align: center;
+					}				
 					legend
 					{
 						font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
@@ -90,7 +98,7 @@
 						</td>
 					</tr>
 					<tr class="odd">
-						<td colspan="2">Camera Details</td>
+						<td colspan="2" class="separator">Camera Details</td>
 					</tr>
 					<tr>
 						<td>ImageRatio</td>
@@ -143,6 +151,18 @@
 								<xsl:for-each select="LowerResolutions/LowerResolution">
 									<li>
 										<xsl:value-of select="Horiz"/>x<xsl:value-of select="Vert"/>
+									</li>
+								</xsl:for-each>
+							</ul>
+						</td>
+					</tr>
+					<tr class="odd">
+						<td>ISO Ratings</td>
+						<td>
+							<ul>
+								<xsl:for-each select="IsoRatings/IsoRating">
+									<li>
+										<xsl:value-of select="."/>
 									</li>
 								</xsl:for-each>
 							</ul>
