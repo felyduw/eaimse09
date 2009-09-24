@@ -15,7 +15,21 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        if (args.length != 1) {
+					ShowErrorMessage("Wrong number of arguments!");
+					return;
+				}
+				Settings settings = new Settings();
+				System.out.println(settings.getListOfBrandsUrl());
     }
+
+		private static void ShowHelpMessage() {
+			System.out.println("usage: camerasearchxml.exe <brand>");
+		}
+
+		private static void ShowErrorMessage(String errorMessage) {
+			System.out.println(errorMessage);
+			ShowHelpMessage();
+		}
 
 }

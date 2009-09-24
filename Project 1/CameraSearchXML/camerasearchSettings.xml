@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : camerasearchSettings.xml
+    Created on : 24 de Setembro de 2009, 17:17
+    Author     : csimoes
+    Description: file with settings for the CameraSearchXML application.
+-->
+
+<Settings>
+	<ListOfBrandsUrl>http://www.dpreview.com/reviews/specs/#BRAND#/</ListOfBrandsUrl>
+</Settings>
