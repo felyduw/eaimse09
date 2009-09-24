@@ -27,7 +27,7 @@ public class CameraSummary {
 	 */
     public static void main(final String[] args) {
     	// Read arguments from command line
- 		if (args.length != 0) {
+ 		if (args.length == 0) {
 			System.out.println("Arguments: <filename 1> ... <filename n>");
 			return;
 		}
