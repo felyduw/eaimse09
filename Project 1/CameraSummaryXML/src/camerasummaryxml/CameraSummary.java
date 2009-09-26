@@ -26,6 +26,14 @@ public class CameraSummary {
 	 * The name of the input files.
 	 */
 	private static Set<String> fileNames;
+	/**
+	 * Name of the output file.
+	 */
+	private final static String OUTPUT_NAME = "summary.xml"; 
+	/**
+	 * The output XML document content.
+	 */
+	private static Document finalDoc = null;
 	
 	/**
 	 * Creates a new Camera Summary application.
@@ -54,6 +62,13 @@ public class CameraSummary {
 		}
 		
  		execCameraSummary();
+ 		
+ 		try {
+ 			writeCameraSummary(OUTPUT_NAME, finalDoc);
+ 		} catch (Exception ex) {
+ 			System.out.println("Error writing output file - " + ex.toString());
+			return;
+ 		}
     }
 
     /**
@@ -65,9 +80,11 @@ public class CameraSummary {
      * @throws IOException if there is an error when trying 
      * to write the XML output file
      */
-    public void writeCameraSummary(String xmlFileName, Document myDocument) throws IOException {
+    public static void writeCameraSummary(String xmlFileName, Document myDocument) throws IOException {
+    	assert myDocument != null;
+    	
 		XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
-		FileWriter writer = new FileWriter("publications.xml");
+		FileWriter writer = new FileWriter(xmlFileName);
 	    outputter.output(myDocument, writer);
 	    writer.close();
     }
