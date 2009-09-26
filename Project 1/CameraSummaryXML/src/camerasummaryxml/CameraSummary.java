@@ -3,11 +3,17 @@
  */
 package camerasummaryxml;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.jdom.output.Format;
+import org.jdom.output.XMLOutputter;
+import org.jdom.*;
+import org.jdom.output.*;
 /**
  * Class that starts the Camera Summary application.
  */
@@ -51,6 +57,22 @@ public class CameraSummary {
     }
 
     /**
+     * Write camera summary to XML output file
+     * 
+     * @param xmlFileName the name of the XML file to write
+     * @param myDocument the content of the XML file
+     * 
+     * @throws IOException if there is an error when trying 
+     * to write the XML output file
+     */
+    public void writeCameraSummary(String xmlFileName, Document myDocument) throws IOException {
+		XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
+		FileWriter writer = new FileWriter("publications.xml");
+	    outputter.output(myDocument, writer);
+	    writer.close();
+    }
+    
+    /**
      * Executes the XML file processing.
      */
 	public static void execCameraSummary() {
@@ -59,8 +81,6 @@ public class CameraSummary {
 
     	// TODO write output to XML file
 	}
-	
-
 	
     // TODO Number of cameras that are present in the input files
 
