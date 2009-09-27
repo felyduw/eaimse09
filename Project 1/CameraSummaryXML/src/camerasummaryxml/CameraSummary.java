@@ -3,16 +3,10 @@
  */
 package camerasummaryxml;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
-import org.jdom.output.Format;
-import org.jdom.output.XMLOutputter;
-import org.jdom.*;
 /**
  * Class that starts the Camera Summary application.
  */
@@ -68,7 +62,8 @@ public class CameraSummary {
 			summaryDoc = new CameraProcessor(OUTPUT_FILE_SCHEMA);
 			
 	 		execCameraSummary();
- 		 		
+	 		
+	    	// Write output XML file
  			summaryDoc.writeCameraSummary(OUTPUT_NAME);
  		} catch (Exception ex) {
  			System.out.println("Error writing output file - " + ex.toString());
@@ -76,27 +71,62 @@ public class CameraSummary {
  		}
     }
 
-    
     /**
      * Executes the XML file processing.
      */
 	public static void execCameraSummary() {
+		// TODO Number of cameras that are present in the input files
+		
+	    // TODO Date of announcement of the most recent camera and corresponding model
 
-    	// TODO answer all questions
+	    // TODO Date of announcement of the oldest camera and corresponding model
 
-    	// TODO write output to XML file
+	    // TODO Maximum resolution of a camera and corresponding model
+
+		// TODO Minimum resolution of a camera and corresponding model
+
+	    // TODO A list containing all model names of that manufacturer
 	}
 	
-    // TODO Number of cameras that are present in the input files
-
-    // TODO Date of announcement of the most recent camera
-    // and corresponding model
-
-    // TODO Date of announcement of the oldest camera and corresponding model
-
-    // TODO Maximum resolution of a camera and corresponding model
-
-	// TODO Minimum resolution of a camera and corresponding model
-
-    // TODO A list containing all model names of that manufacturer
+	/**
+	 *  Number of cameras that are present in the input files.
+	 */
+	public static void obtainCameras() {
+		
+	}
+	
+    /**
+     * Date of announcement of the most recent camera and corresponding model.
+     */
+	public static void recentCameras() {
+		
+	}
+	
+    /**
+     * Date of announcement of the oldest camera and corresponding model.
+     */
+	public static void oldestCameras() {
+		
+	}
+	
+    /**
+     *  Maximum resolution of a camera and corresponding model.
+     */
+	public static void maxResolutionCameras() {
+		
+	}
+	
+	/**
+	 * Minimum resolution of a camera and corresponding model.
+	 */
+	public static void minResolutionCameras() {
+		
+	}
+	
+    /**
+     * A list containing all model names of that manufacturer.
+     */
+	public static void obtainAllModels() {
+		
+	}
 }
