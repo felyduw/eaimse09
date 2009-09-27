@@ -13,7 +13,6 @@ import java.util.Set;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 import org.jdom.*;
-import org.jdom.output.*;
 /**
  * Class that starts the Camera Summary application.
  */
@@ -29,11 +28,15 @@ public class CameraSummary {
 	/**
 	 * Name of the output file.
 	 */
-	private final static String OUTPUT_NAME = "summary.xml"; 
+	private final static String OUTPUT_NAME = "summary.xml";
 	/**
-	 * The output XML document content.
+	 * Content of the output file.
 	 */
-	private static Document finalDoc = null;
+	private final static String OUTPUT_FILE_SCHEMA = "camera_summary.xml";	
+	/**
+	 * Output XML output file with the summary details.
+	 */
+	private static CameraProcessor summaryDoc;
 	
 	/**
 	 * Creates a new Camera Summary application.
@@ -60,34 +63,19 @@ public class CameraSummary {
 			System.out.println(ex.toString());
 			return;
 		}
-		
- 		execCameraSummary();
- 		
- 		try {
- 			writeCameraSummary(OUTPUT_NAME, finalDoc);
+		try {
+			// Initialize output file
+			summaryDoc = new CameraProcessor(OUTPUT_FILE_SCHEMA);
+			
+	 		execCameraSummary();
+ 		 		
+ 			summaryDoc.writeCameraSummary(OUTPUT_NAME);
  		} catch (Exception ex) {
  			System.out.println("Error writing output file - " + ex.toString());
 			return;
  		}
     }
 
-    /**
-     * Write camera summary to XML output file
-     * 
-     * @param xmlFileName the name of the XML file to write
-     * @param myDocument the content of the XML file
-     * 
-     * @throws IOException if there is an error when trying 
-     * to write the XML output file
-     */
-    public static void writeCameraSummary(String xmlFileName, Document myDocument) throws IOException {
-    	assert myDocument != null;
-    	
-		XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
-		FileWriter writer = new FileWriter(xmlFileName);
-	    outputter.output(myDocument, writer);
-	    writer.close();
-    }
     
     /**
      * Executes the XML file processing.

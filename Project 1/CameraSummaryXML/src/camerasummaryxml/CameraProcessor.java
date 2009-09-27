@@ -1,10 +1,13 @@
 package camerasummaryxml;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import org.jdom.Document;
 import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
+import org.jdom.output.Format;
+import org.jdom.output.XMLOutputter;
 
 /*
  * Class that is responsible for dealing with the XML processing
@@ -14,7 +17,7 @@ public class CameraProcessor {
 	/**
 	 * The XML document.
 	 */
-	private Document doc = null;
+	private Document document = null;
 	
 	/**
 	 * Starts the camera processor.
@@ -36,7 +39,7 @@ public class CameraProcessor {
         SAXBuilder sb = new SAXBuilder();
 
         try {
-            doc = sb.build(new File(name));
+            document = sb.build(new File(name));
         }
         catch (JDOMException e) {
             throw new Exception("Error opening file - " + name + ").");
@@ -44,5 +47,23 @@ public class CameraProcessor {
         catch (IOException e) {
         	throw new Exception("Error opening file - " + name + ").");
         }
+    }
+	
+	/**
+     * Write camera summary to XML output file
+     * 
+     * @param xmlFileName the name of the XML file to write
+     * @param myDocument the content of the XML file
+     * 
+     * @throws IOException if there is an error when trying 
+     * to write the XML output file
+     */
+    public void writeCameraSummary(String xmlFileName) throws IOException {
+    	assert document != null;
+    	
+		XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
+		FileWriter writer = new FileWriter(xmlFileName);
+	    outputter.output(document, writer);
+	    writer.close();
     }
 }
