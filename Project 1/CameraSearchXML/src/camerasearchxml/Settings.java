@@ -26,7 +26,7 @@ public class Settings {
 	 */
 	public String getListOfBrandsUrl() {
 		if (listOfBrandsUrl == null || listOfBrandsUrl.isEmpty()) {
-			ReadSettingsFile();
+			readSettingsFile();
 		}
 		return listOfBrandsUrl;
 	}
@@ -43,7 +43,7 @@ public class Settings {
 
 	}
 
-	private void ReadSettingsFile() {
+	private void readSettingsFile() {
 		try {
 			DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
