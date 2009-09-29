@@ -13,7 +13,7 @@ import org.jdom.*;
  */
 public class Camera {
 
-	public Document getDomDoc() {
+	public Element getDomDoc() {
     Element  pubElement = new Element("publications");
     Document myDocument = new Document(pubElement);
 
@@ -21,9 +21,9 @@ public class Camera {
     autor.addContent("Henrique Madeira");
     pubElement.addContent(autor);
 
-		return myDocument;
+		return pubElement;
 	}
-	String name;
+	
 
 
 }
