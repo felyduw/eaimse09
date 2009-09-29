@@ -24,7 +24,7 @@ public class WebSucker {
 	}
 
 	public static String getPage(String url) throws IOException {
-		String pageString = null;
+		String pageString = new String();
 		try {
 			URL pageUrl = new URL(url);
 			URLConnection connection = pageUrl.openConnection();
@@ -34,7 +34,7 @@ public class WebSucker {
 			do {
 				line = br.readLine();
 				if (line != null) {
-					pageString.concat(line);
+					pageString = pageString.concat(line);
 				}
 			} while (line != null);
 			br.close();
