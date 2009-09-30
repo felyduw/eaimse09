@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Brand  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>Canon</Name>
+	<Cameras>
+		<Camera>
+			<Model/>
+			<Description/>
+			<Date/>
+			<MaxResolutions>
+				<MaxResolution>
+					<Horiz/>
+					<Vert/>
+				</MaxResolution>
+			</MaxResolutions>
+			<LowerResolutions>
+				<LowerResolution>
+					<Horiz/>
+					<Vert/>
+				</LowerResolution>
+			</LowerResolutions>
+			<ImageRatio/>
+			<EffectivePixels/>
+			<SensorSize/>
+			<IsoRating/>
+			<MinShutterSpeed/>
+			<MaxShutterSpeed/>
+			<DepthReviewUrl/>
+			<PictureUrl/>
+		</Camera>
+	</Cameras>
+</Brand>
