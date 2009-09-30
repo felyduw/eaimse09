@@ -5,13 +5,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
-import org.jdom.Document;
-import org.jdom.JDOMException;
-import org.jdom.input.SAXBuilder;
-import org.jdom.output.Format;
-import org.jdom.output.XMLOutputter;
-import org.jdom.xpath.XPath;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
+
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.w3c.dom.xpath.XPathExpression;
 
 /*
  * Class that is responsible for dealing with the XML processing
@@ -21,7 +25,7 @@ public class CameraProcessor {
 	/**
 	 * The XML document.
 	 */
-	public Document document = null;
+	public org.w3c.dom.Document document = null;
 	public String brandName = null;
 	
 	/**
@@ -39,18 +43,24 @@ public class CameraProcessor {
 	 * 
 	 * @param name the name of the input file
 	 */
-	public void openXMLFile (String name) throws Exception
+	public void openXMLFile (String xmlFileName) throws Exception
     {
-        SAXBuilder sb = new SAXBuilder();
-
+        DocumentBuilder docBuilder;
+        DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
+        docBuilderFactory.setIgnoringElementContentWhitespace(true);
         try {
-            document = sb.build(new File(name));
-        }
-        catch (JDOMException e) {
-            throw new Exception("Error opening file - " + name + ").");
+            docBuilder = docBuilderFactory.newDocumentBuilder();
+        } catch (ParserConfigurationException e) {
+        	throw new Exception("Wrong parser configuration: " + e.getMessage());
+        }		
+		
+		File sourceFile = new File(xmlFileName);
+		 try {
+			// Build document
+			document = docBuilder.parse(sourceFile);
         }
         catch (IOException e) {
-        	throw new Exception("Error opening file - " + name + ").");
+        	throw new Exception("Error opening file - " + xmlFileName + ").");
         }
     }
 
@@ -59,12 +69,20 @@ public class CameraProcessor {
 	 * 
 	 * @param xPath the query to obtain the nodes
 	 * @return the list of the query results
-	 * @throws JDOMException  if an error
+	 * @throws XPathExpressionException 
 	 */
 	@SuppressWarnings("unchecked")
-	public List getNodesFromXPath(String xpath) throws JDOMException {
-		List nodeList = XPath.selectNodes(this.document,xpath);
-		return nodeList;
+	public NodeList getNodesFromXPath(String sXpath) throws XPathExpressionException {
+		/*List nodeList = XPath.selectNodes(this.document, sXpath);
+		return nodeList;*/
+		
+	    XPathFactory factory = XPathFactory.newInstance();
+	    XPath xpath = factory.newXPath();
+	    javax.xml.xpath.XPathExpression expr = xpath.compile(sXpath);
+
+	    Object result = expr.evaluate(document, XPathConstants.NODESET);
+	    NodeList nodes = (NodeList) result;		
+		return nodes;
 	}
 	
 	/**
@@ -72,10 +90,17 @@ public class CameraProcessor {
 	 * 
 	 * @param xPath the query to obtain the nodes
 	 * @return the list of the query results
+	 * @throws XPathExpressionException 
 	 * @throws JDOMException  if an error
+	 * @throws Exception 
 	 */
-	public Object getSingleNodeFromXPath(String xpath) throws JDOMException {
-		Object node = XPath.selectSingleNode(this.document,xpath);
+	public Node getSingleNodeFromXPath(String sXpath) throws XPathExpressionException  {
+	    XPathFactory factory = XPathFactory.newInstance();
+	    XPath xpath = factory.newXPath();
+	    javax.xml.xpath.XPathExpression expr = xpath.compile(sXpath);
+
+	    Object result = expr.evaluate(document, XPathConstants.NODE);
+	    Node node = (Node) result;		
 		return node;
 	}	
 	
@@ -91,9 +116,11 @@ public class CameraProcessor {
     public void writeCameraSummary(String xmlFileName) throws IOException {
     	assert document != null;
     	
-		XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
+		/*XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
 		FileWriter writer = new FileWriter(xmlFileName);
 	    outputter.output(document, writer);
-	    writer.close();
+	    writer.close();*/
     }
+    
+    
 }

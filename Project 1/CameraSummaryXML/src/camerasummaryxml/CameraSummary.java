@@ -3,14 +3,16 @@
  */
 package camerasummaryxml;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.jdom.JDOMException;
+import javax.xml.xpath.XPathExpressionException;
+
+import org.w3c.dom.NodeList;
 
 import project1.Brand;
 import project1.Camera;
@@ -51,7 +53,7 @@ public class CameraSummary {
 	/**
 	 * XPATH for the necessary XML queries.
 	 */
-	private final static String XPATH_BRAND_NAME = "/Brand/Name";
+	private final static String XPATH_BRAND_NAME = "Brand/Name";
 	private final static String XPATH_CAMERA_PER_BRAND = "/Brand/Cameras/Camera"; 
 	private final static String XPATH_CAMERA_RECENT_CAMERAS = "/Brand/Cameras/Camera"; 
 	
@@ -92,7 +94,7 @@ public class CameraSummary {
 			
 			for (String filename : fileNames) {
 				// Obtains the brand name from the file to process
-				brandName = (String) inputFiles.get(filename).getSingleNodeFromXPath(XPATH_BRAND_NAME);
+				brandName = inputFiles.get(filename).getSingleNodeFromXPath(XPATH_BRAND_NAME).getNodeValue();
 				inputFiles.get(filename).brandName = brandName;
 				
 				// Unique brand names (ensure that we don't have 2 brands with the same name)
@@ -114,9 +116,10 @@ public class CameraSummary {
 
     /**
      * Executes the XML file processing.
+     * @throws XPathExpressionException 
      * @throws JDOMException 
      */
-	public static void execCameraSummary() throws JDOMException {
+	public static void execCameraSummary() throws XPathExpressionException  {
 		// Number of cameras that are present in the input files
 		obtainAllBrandCameras();
 		
@@ -133,12 +136,12 @@ public class CameraSummary {
 	
 	/**
 	 * Number of cameras that are present in the input files.
-	 * @throws JDOMException 
+	 * @throws XPathExpressionException 
 	 */
 	@SuppressWarnings("unchecked")
-	public static void obtainAllBrandCameras() throws JDOMException {
+	public static void obtainAllBrandCameras() throws XPathExpressionException  {
 		CameraProcessor cameraAux = null;
-		List cameras = new ArrayList();
+		NodeList cameras;
 		String brandName;
 		
 		for (String filename : fileNames) {
@@ -149,115 +152,52 @@ public class CameraSummary {
 			
 			// Obtains the number of cameras of a specific brand
 			listBrands.get(brandName).name = brandName;
-			listBrands.get(brandName).numberCameras = cameras.size();
+			listBrands.get(brandName).numberCameras = cameras.getLength();
 		}
 	}
 	
     /**
      * Date of announcement of the most recent camera and corresponding model.
-     * @throws JDOMException 
+     * @throws XPathExpressionException 
      */
 	@SuppressWarnings("unchecked")
-	public static void recentCameras() throws JDOMException {
-		CameraProcessor cameraAux = null;
-		List cameras = new ArrayList();
-		String brandName;
-		
-		for (String filename : fileNames) {
-			// Obtains the camera file name to process
-			cameraAux = inputFiles.get(filename);
-			cameras = cameraAux.getNodesFromXPath(XPATH_CAMERA_RECENT_CAMERAS);
-			brandName = cameraAux.brandName;
-			
-			// Obtains the most recent cameras for that brand
-		}
+	public static void recentCameras()  {
+	
 	}
 	
     /**
      * Date of announcement of the oldest camera and corresponding model.
-     * @throws JDOMException 
+     * @throws XPathExpressionException 
      */
 	@SuppressWarnings("unchecked")
-	public static void oldestCameras() throws JDOMException {
-		CameraProcessor cameraAux = null;
-		List cameras = new ArrayList();
-		String brandName;
-		
-		for (String filename : fileNames) {
-			// Obtains the camera file name to process
-			cameraAux = inputFiles.get(filename);
-			cameras = cameraAux.getNodesFromXPath(XPATH_CAMERA_PER_BRAND);
-			brandName = cameraAux.brandName;
-			
-			// Obtains the number of cameras of a specific brand
-			listBrands.get(brandName).name = brandName;
-			listBrands.get(brandName).numberCameras = cameras.size();
-		}
+	public static void oldestCameras()  {
+	
 	}
 	
     /**
      *  Maximum resolution of a camera and corresponding model.
-     * @throws JDOMException 
+     * @throws XPathExpressionException 
      */
 	@SuppressWarnings("unchecked")
-	public static void maxResolutionCameras() throws JDOMException {
-		CameraProcessor cameraAux = null;
-		List cameras = new ArrayList();
-		String brandName;
+	public static void maxResolutionCameras()  {
 		
-		for (String filename : fileNames) {
-			// Obtains the camera file name to process
-			cameraAux = inputFiles.get(filename);
-			cameras = cameraAux.getNodesFromXPath(XPATH_CAMERA_PER_BRAND);
-			brandName = cameraAux.brandName;
-			
-			// Obtains the number of cameras of a specific brand
-			listBrands.get(brandName).name = brandName;
-			listBrands.get(brandName).numberCameras = cameras.size();
-		}
 	}
 	
 	/**
 	 * Minimum resolution of a camera and corresponding model.
-	 * @throws JDOMException 
+	 * @throws XPathExpressionException 
 	 */
 	@SuppressWarnings("unchecked")
-	public static void minResolutionCameras() throws JDOMException {
-		CameraProcessor cameraAux = null;
-		List cameras = new ArrayList();
-		String brandName;
-		
-		for (String filename : fileNames) {
-			// Obtains the camera file name to process
-			cameraAux = inputFiles.get(filename);
-			cameras = cameraAux.getNodesFromXPath(XPATH_CAMERA_PER_BRAND);
-			brandName = cameraAux.brandName;
-			
-			// Obtains the number of cameras of a specific brand
-			listBrands.get(brandName).name = brandName;
-			listBrands.get(brandName).numberCameras = cameras.size();
-		}
+	public static void minResolutionCameras() {
+	
 	}
 	
     /**
      * A list containing all model names of that manufacturer.
-     * @throws JDOMException 
+     * @throws XPathExpressionException 
      */
 	@SuppressWarnings("unchecked")
-	public static void obtainAllModels() throws JDOMException {
-		CameraProcessor cameraAux = null;
-		List cameras = new ArrayList();
-		String brandName;
+	public static void obtainAllModels()  {
 		
-		for (String filename : fileNames) {
-			// Obtains the camera file name to process
-			cameraAux = inputFiles.get(filename);
-			cameras = cameraAux.getNodesFromXPath(XPATH_CAMERA_PER_BRAND);
-			brandName = cameraAux.brandName;
-			
-			// Obtains the number of cameras of a specific brand
-			listBrands.get(brandName).name = brandName;
-			listBrands.get(brandName).numberCameras = cameras.size();
-		}
 	}
 }
