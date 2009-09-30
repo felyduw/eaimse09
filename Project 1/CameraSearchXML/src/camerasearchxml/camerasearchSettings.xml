@@ -8,5 +8,6 @@
 -->
 
 <Settings>
+	<SiteUrl>http://www.dpreview.com</SiteUrl>
 	<ListOfBrandsUrl>http://www.dpreview.com/reviews/specs/#BRAND#/</ListOfBrandsUrl>
 </Settings>

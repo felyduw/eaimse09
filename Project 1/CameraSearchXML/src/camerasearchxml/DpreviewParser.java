@@ -30,11 +30,11 @@ public class DpreviewParser {
 
 	public static Camera getModelDetails(String htmlPage) {
 		Camera modelDetails = new Camera();
-		Pattern myPattern = Pattern.compile("Max resolution",
+		Pattern myPattern = Pattern.compile("Image ratio w:h",
 						Pattern.CASE_INSENSITIVE |  Pattern.DOTALL | Pattern.MULTILINE);
 		Matcher myMatcher = myPattern.matcher(htmlPage);
 		if (myMatcher.find()) {
-			
+			modelDetails.ImageRatio = myMatcher.group();
 		}
 		return modelDetails;
 	}
