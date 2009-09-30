@@ -1,9 +1,7 @@
 package camerasummaryxml;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -12,10 +10,10 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
+import javax.xml.xpath.XPathExpression;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.w3c.dom.xpath.XPathExpression;
 
 /*
  * Class that is responsible for dealing with the XML processing
@@ -71,14 +69,10 @@ public class CameraProcessor {
 	 * @return the list of the query results
 	 * @throws XPathExpressionException 
 	 */
-	@SuppressWarnings("unchecked")
 	public NodeList getNodesFromXPath(String sXpath) throws XPathExpressionException {
-		/*List nodeList = XPath.selectNodes(this.document, sXpath);
-		return nodeList;*/
-		
 	    XPathFactory factory = XPathFactory.newInstance();
 	    XPath xpath = factory.newXPath();
-	    javax.xml.xpath.XPathExpression expr = xpath.compile(sXpath);
+	    XPathExpression expr = xpath.compile(sXpath);
 
 	    Object result = expr.evaluate(document, XPathConstants.NODESET);
 	    NodeList nodes = (NodeList) result;		
@@ -97,7 +91,7 @@ public class CameraProcessor {
 	public Node getSingleNodeFromXPath(String sXpath) throws XPathExpressionException  {
 	    XPathFactory factory = XPathFactory.newInstance();
 	    XPath xpath = factory.newXPath();
-	    javax.xml.xpath.XPathExpression expr = xpath.compile(sXpath);
+	    XPathExpression expr = xpath.compile(sXpath);
 
 	    Object result = expr.evaluate(document, XPathConstants.NODE);
 	    Node node = (Node) result;		
@@ -121,6 +115,4 @@ public class CameraProcessor {
 	    outputter.output(document, writer);
 	    writer.close();*/
     }
-    
-    
 }

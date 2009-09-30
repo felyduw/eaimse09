@@ -55,8 +55,16 @@ public class CameraSummary {
 	 */
 	private final static String XPATH_BRAND_NAME = "Brand/Name";
 	private final static String XPATH_CAMERA_PER_BRAND = "/Brand/Cameras/Camera"; 
-	private final static String XPATH_CAMERA_RECENT_CAMERAS = "/Brand/Cameras/Camera"; 
-	
+	private final static String XPATH_CAMERA_RECENT_CAMERAS = 
+		"/Brand/Cameras/Camera[Date = max(/Brand/Cameras/Camera/string(Date))]"; 
+	private final static String XPATH_CAMERA_OLDEST_CAMERAS = 
+		"/Brand/Cameras/Camera[Date = min(/Brand/Cameras/Camera/string(Date))]";
+	private final static String XPATH_CAMERA_MAX_RESOLUTION = 
+		"/Brand/Cameras/Camera[MaxResolutions/MaxResolution/NumberPixels = max(//MaxResolutions/MaxResolution/NumberPixels)]";
+	private final static String XPATH_CAMERA_MIN_RESOLUTION = 
+		"/Brand/Cameras/Camera[LowerResolutions/LowerResolution/NumberPixels = min(//LowerResolutions/LowerResolution/NumberPixels)]"; 
+	private final static String XPATH_CAMERA_ALL_MODELS = "//Model";
+
 	/**
 	 * Creates a new Camera Summary application.
 	 * @param args the XML files for obtaining the camera summary
@@ -138,7 +146,6 @@ public class CameraSummary {
 	 * Number of cameras that are present in the input files.
 	 * @throws XPathExpressionException 
 	 */
-	@SuppressWarnings("unchecked")
 	public static void obtainAllBrandCameras() throws XPathExpressionException  {
 		CameraProcessor cameraAux = null;
 		NodeList cameras;
@@ -160,7 +167,6 @@ public class CameraSummary {
      * Date of announcement of the most recent camera and corresponding model.
      * @throws XPathExpressionException 
      */
-	@SuppressWarnings("unchecked")
 	public static void recentCameras()  {
 	
 	}
@@ -169,7 +175,6 @@ public class CameraSummary {
      * Date of announcement of the oldest camera and corresponding model.
      * @throws XPathExpressionException 
      */
-	@SuppressWarnings("unchecked")
 	public static void oldestCameras()  {
 	
 	}
@@ -178,7 +183,6 @@ public class CameraSummary {
      *  Maximum resolution of a camera and corresponding model.
      * @throws XPathExpressionException 
      */
-	@SuppressWarnings("unchecked")
 	public static void maxResolutionCameras()  {
 		
 	}
@@ -187,7 +191,6 @@ public class CameraSummary {
 	 * Minimum resolution of a camera and corresponding model.
 	 * @throws XPathExpressionException 
 	 */
-	@SuppressWarnings("unchecked")
 	public static void minResolutionCameras() {
 	
 	}
@@ -196,7 +199,6 @@ public class CameraSummary {
      * A list containing all model names of that manufacturer.
      * @throws XPathExpressionException 
      */
-	@SuppressWarnings("unchecked")
 	public static void obtainAllModels()  {
 		
 	}
