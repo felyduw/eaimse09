@@ -51,8 +51,9 @@ public class CameraSummary {
 	/**
 	 * XPATH for the necessary XML queries.
 	 */
-	private final static String XPATH_BRAND_NAME = "/Brand/Name/";
-	private final static String XPATH_CAMERA_PER_BRAND = "/Brand/Cameras/Camera/"; 
+	private final static String XPATH_BRAND_NAME = "/Brand/Name";
+	private final static String XPATH_CAMERA_PER_BRAND = "/Brand/Cameras/Camera"; 
+	private final static String XPATH_CAMERA_RECENT_CAMERAS = "/Brand/Cameras/Camera"; 
 	
 	/**
 	 * Creates a new Camera Summary application.
@@ -113,9 +114,11 @@ public class CameraSummary {
 
     /**
      * Executes the XML file processing.
+     * @throws JDOMException 
      */
-	public static void execCameraSummary() {
-		// TODO Number of cameras that are present in the input files
+	public static void execCameraSummary() throws JDOMException {
+		// Number of cameras that are present in the input files
+		obtainAllBrandCameras();
 		
 	    // TODO Date of announcement of the most recent camera and corresponding model
 
@@ -129,7 +132,7 @@ public class CameraSummary {
 	}
 	
 	/**
-	 *  Number of cameras that are present in the input files.
+	 * Number of cameras that are present in the input files.
 	 * @throws JDOMException 
 	 */
 	@SuppressWarnings("unchecked")
@@ -163,12 +166,10 @@ public class CameraSummary {
 		for (String filename : fileNames) {
 			// Obtains the camera file name to process
 			cameraAux = inputFiles.get(filename);
-			cameras = cameraAux.getNodesFromXPath(XPATH_CAMERA_PER_BRAND);
+			cameras = cameraAux.getNodesFromXPath(XPATH_CAMERA_RECENT_CAMERAS);
 			brandName = cameraAux.brandName;
 			
-			// Obtains the number of cameras of a specific brand
-			listBrands.get(brandName).name = brandName;
-			listBrands.get(brandName).numberCameras = cameras.size();
+			// Obtains the most recent cameras for that brand
 		}
 	}
 	
