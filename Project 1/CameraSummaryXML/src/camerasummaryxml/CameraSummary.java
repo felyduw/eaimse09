@@ -3,10 +3,16 @@
  */
 package camerasummaryxml;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import org.jdom.JDOMException;
+
+import project1.Brand;
 /**
  * Class that starts the Camera Summary application.
  */
@@ -31,6 +37,10 @@ public class CameraSummary {
 	 * Output XML output file with the summary details.
 	 */
 	private static CameraProcessor summaryDoc;
+	/**
+	 * Details of camera brands and its cameras.
+	 */
+	private static List<Brand> listBrands;	
 	
 	/**
 	 * Creates a new Camera Summary application.
@@ -58,6 +68,9 @@ public class CameraSummary {
 			return;
 		}
 		try {
+			// Initialize List
+			listBrands = new ArrayList<Brand>();
+			
 			// Initialize output file
 			summaryDoc = new CameraProcessor(OUTPUT_FILE_SCHEMA);
 			
@@ -90,43 +103,118 @@ public class CameraSummary {
 	
 	/**
 	 *  Number of cameras that are present in the input files.
+	 * @throws JDOMException 
 	 */
-	public static void obtainCameras() {
+	public static void obtainAllBrandCameras() throws JDOMException {
+		final String XPATH = "/Brand/Cameras/Camera/"; 
+		CameraProcessor cameraAux = null;
+		List cameras = new ArrayList();
 		
+		for (String filename : fileNames) {
+			// Obtains the camera file name to process
+			cameraAux = inputFiles.get(filename);
+			
+			cameras = cameraAux.getNodesFromXPath(XPATH);
+			
+			// Obtains the number of cameras of a specific brand
+			listBrands.add cameras.size();
+			
+			
+		}
 	}
 	
     /**
      * Date of announcement of the most recent camera and corresponding model.
+     * @throws JDOMException 
      */
-	public static void recentCameras() {
+	public static void recentCameras() throws JDOMException {
+		final String XPATH = "/"; 
+		CameraProcessor cameraAux = null;
+		List cameras = new ArrayList();
 		
+		for (String filename : fileNames) {
+			// Obtains the camera file name to process
+			cameraAux = inputFiles.get(filename);
+			
+			cameras = cameraAux.getNodesFromXPath(XPATH);
+			
+			
+		}
 	}
 	
     /**
      * Date of announcement of the oldest camera and corresponding model.
+     * @throws JDOMException 
      */
-	public static void oldestCameras() {
+	public static void oldestCameras() throws JDOMException {
+		final String XPATH = "/"; 
+		CameraProcessor cameraAux = null;
+		List cameras = new ArrayList();
 		
+		for (String filename : fileNames) {
+			// Obtains the camera file name to process
+			cameraAux = inputFiles.get(filename);
+			
+			cameras = cameraAux.getNodesFromXPath(XPATH);
+			
+			
+		}
 	}
 	
     /**
      *  Maximum resolution of a camera and corresponding model.
+     * @throws JDOMException 
      */
-	public static void maxResolutionCameras() {
+	public static void maxResolutionCameras() throws JDOMException {
+		final String XPATH = "/"; 
+		CameraProcessor cameraAux = null;
+		List cameras = new ArrayList();
 		
+		for (String filename : fileNames) {
+			// Obtains the camera file name to process
+			cameraAux = inputFiles.get(filename);
+			
+			cameras = cameraAux.getNodesFromXPath(XPATH);
+			
+			
+		}
 	}
 	
 	/**
 	 * Minimum resolution of a camera and corresponding model.
+	 * @throws JDOMException 
 	 */
-	public static void minResolutionCameras() {
+	public static void minResolutionCameras() throws JDOMException {
+		final String XPATH = "/"; 
+		CameraProcessor cameraAux = null;
+		List cameras = new ArrayList();
 		
+		for (String filename : fileNames) {
+			// Obtains the camera file name to process
+			cameraAux = inputFiles.get(filename);
+			
+			cameras = cameraAux.getNodesFromXPath(XPATH);
+			
+			
+		}
 	}
 	
     /**
      * A list containing all model names of that manufacturer.
+     * @throws JDOMException 
      */
-	public static void obtainAllModels() {
+	public static void obtainAllModels() throws JDOMException {
+		final String XPATH = "/"; 
+		CameraProcessor cameraAux = null;
+		List cameras = new ArrayList();
 		
+		for (String filename : fileNames) {
+			// Obtains the camera file name to process
+			cameraAux = inputFiles.get(filename);
+			
+			cameras = cameraAux.getNodesFromXPath(XPATH);
+			
+			
+		}
 	}
 }
