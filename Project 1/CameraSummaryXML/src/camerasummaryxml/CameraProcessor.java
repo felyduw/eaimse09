@@ -21,7 +21,8 @@ public class CameraProcessor {
 	/**
 	 * The XML document.
 	 */
-	private Document document = null;
+	public Document document = null;
+	public String brandName = null;
 	
 	/**
 	 * Starts the camera processor.

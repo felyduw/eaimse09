@@ -12,6 +12,7 @@ import java.util.List;
  * @author csimoes
  */
 public class Brand {
-	public String model;
+	public String name;
+	public int numberCameras;
 	public List<Camera> cameras; 
 }
