@@ -29,16 +29,13 @@ public class Camera {
 	public String PictureUrl;
 
 	public Element getDomDoc() {
-    Element  pubElement = new Element("publications");
-    Document myDocument = new Document(pubElement);
-
-    Element autor = new Element("author");
-    autor.addContent("Henrique Madeira");
-    pubElement.addContent(autor);
+	    Element  pubElement = new Element("publications");
+	    Document myDocument = new Document(pubElement);
+	
+	    Element autor = new Element("author");
+	    autor.addContent("Henrique Madeira");
+	    pubElement.addContent(autor);
 
 		return pubElement;
 	}
-	
-
-
 }
