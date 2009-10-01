@@ -45,6 +45,7 @@ public class CameraProcessor {
     {
         DocumentBuilder docBuilder;
         DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
+        docBuilderFactory.setNamespaceAware(true);
         docBuilderFactory.setIgnoringElementContentWhitespace(true);
         try {
             docBuilder = docBuilderFactory.newDocumentBuilder();
@@ -52,10 +53,9 @@ public class CameraProcessor {
         	throw new Exception("Wrong parser configuration: " + e.getMessage());
         }		
 		
-		File sourceFile = new File(xmlFileName);
-		 try {
+        try {
 			// Build document
-			document = docBuilder.parse(sourceFile);
+			document = docBuilder.parse(xmlFileName);
         }
         catch (IOException e) {
         	throw new Exception("Error opening file - " + xmlFileName + ").");
@@ -93,7 +93,8 @@ public class CameraProcessor {
 	    XPath xpath = factory.newXPath();
 	    XPathExpression expr = xpath.compile(sXpath);
 
-	    Object result = expr.evaluate(document, XPathConstants.NODE);
+	    Object result = expr.evaluate(this.document, XPathConstants.NODE);
+  
 	    Node node = (Node) result;		
 		return node;
 	}	

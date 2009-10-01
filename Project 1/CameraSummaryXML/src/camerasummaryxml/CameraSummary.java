@@ -4,18 +4,22 @@
 package camerasummaryxml;
 
 import java.util.List;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import project1.Brand;
-import project1.Camera;
+import project1.BrandSummary;
+import project1.CameraSummaryDetails;
 /**
  * Class that starts the Camera Summary application.
  */
@@ -48,17 +52,17 @@ public class CameraSummary {
 	 * Details of camera brands and its cameras.
 	 * <name, list of camera through brand>
 	 */
-	private static Map<String, Brand> listBrands;
+	private static Map<String, BrandSummary> listBrands;
 	
 	/**
 	 * XPATH for the necessary XML queries.
 	 */
-	private final static String XPATH_BRAND_NAME = "Brand/Name";
+	private final static String XPATH_BRAND_NAME = "//Name";
 	private final static String XPATH_CAMERA_PER_BRAND = "/Brand/Cameras/Camera"; 
 	private final static String XPATH_CAMERA_RECENT_CAMERAS = 
-		"/Brand/Cameras/Camera[Date = max(/Brand/Cameras/Camera/string(Date))]"; 
+		" /Brand/Cameras/Camera[not(preceding-sibling::Date > Date or following-sibling::Date > Date)]"; 
 	private final static String XPATH_CAMERA_OLDEST_CAMERAS = 
-		"/Brand/Cameras/Camera[Date = min(/Brand/Cameras/Camera/string(Date))]";
+		"/Brand/Cameras/Camera[not(preceding-sibling::Date < Date or following-sibling::Date < Date)]";
 	private final static String XPATH_CAMERA_MAX_RESOLUTION = 
 		"/Brand/Cameras/Camera[MaxResolutions/MaxResolution/NumberPixels = max(//MaxResolutions/MaxResolution/NumberPixels)]";
 	private final static String XPATH_CAMERA_MIN_RESOLUTION = 
@@ -97,18 +101,18 @@ public class CameraSummary {
 			summaryDoc = new CameraProcessor(OUTPUT_FILE_SCHEMA);
 			
 			// Initialize List
-			listBrands = new HashMap<String, Brand>();
+			listBrands = new HashMap<String, BrandSummary>();
 			brandNames = new HashSet<String>();
 			
 			for (String filename : fileNames) {
 				// Obtains the brand name from the file to process
-				brandName = inputFiles.get(filename).getSingleNodeFromXPath(XPATH_BRAND_NAME).getNodeValue();
+				brandName = inputFiles.get(filename).getSingleNodeFromXPath(XPATH_BRAND_NAME).getTextContent();
 				inputFiles.get(filename).brandName = brandName;
 				
 				// Unique brand names (ensure that we don't have 2 brands with the same name)
 				if (!brandNames.contains(brandName)) {
 					brandNames.add(brandName);
-					listBrands.put(brandName, new Brand());
+					listBrands.put(brandName, new BrandSummary());
 				}
 			}
 			
@@ -131,10 +135,12 @@ public class CameraSummary {
 		// Number of cameras that are present in the input files
 		obtainAllBrandCameras();
 		
-	    // TODO Date of announcement of the most recent camera and corresponding model
-
-	    // TODO Date of announcement of the oldest camera and corresponding model
-
+	    // Date of announcement of the most recent camera and corresponding model
+		recentCameras();
+		
+	    // Date of announcement of the oldest camera and corresponding model
+		oldestCameras();
+		
 	    // TODO Maximum resolution of a camera and corresponding model
 
 		// TODO Minimum resolution of a camera and corresponding model
@@ -166,24 +172,63 @@ public class CameraSummary {
     /**
      * Date of announcement of the most recent camera and corresponding model.
      * @throws XPathExpressionException 
+     * @throws XPathExpressionException 
      */
-	public static void recentCameras()  {
-	
+	public static void recentCameras() throws XPathExpressionException {
+		CameraProcessor cameraAux = null;
+		NodeList cameras;
+		String brandName;
+		List<CameraSummaryDetails> recentCameras;
+		
+		for (String filename : fileNames) {
+			// Obtains the camera file name to process
+			cameraAux = inputFiles.get(filename);
+			cameras = cameraAux.getNodesFromXPath(XPATH_CAMERA_RECENT_CAMERAS);
+			brandName = cameraAux.brandName;
+			
+			// Obtains the number of cameras of a specific brand
+			recentCameras = listBrands.get(brandName).recentCameras;
+			
+			// For all cameras found for a specific brand
+			for(int i = 0; i < cameras.getLength(); i++){
+			  Node childNode = cameras.item(i);
+			  recentCameras.add(convertNodeToCamera(childNode));
+			}
+		}
 	}
 	
     /**
      * Date of announcement of the oldest camera and corresponding model.
      * @throws XPathExpressionException 
      */
-	public static void oldestCameras()  {
-	
+	public static void oldestCameras() throws XPathExpressionException {
+		CameraProcessor cameraAux = null;
+		NodeList cameras;
+		String brandName;
+		List<CameraSummaryDetails> oldestCameras;
+		
+		for (String filename : fileNames) {
+			// Obtains the camera file name to process
+			cameraAux = inputFiles.get(filename);
+			cameras = cameraAux.getNodesFromXPath(XPATH_CAMERA_OLDEST_CAMERAS);
+			brandName = cameraAux.brandName;
+			
+			// Obtains the number of cameras of a specific brand
+			oldestCameras = listBrands.get(brandName).oldestCameras;
+			
+			// For all cameras found for a specific brand
+			for(int i = 0; i < cameras.getLength(); i++) {
+			  Node childNode = cameras.item(i);
+			  oldestCameras.add(convertNodeToCamera(childNode));
+			}
+		}	
 	}
 	
     /**
      *  Maximum resolution of a camera and corresponding model.
      * @throws XPathExpressionException 
      */
-	public static void maxResolutionCameras()  {
+	public static void maxResolutionCameras() throws XPathExpressionException {
 		
 	}
 	
@@ -191,7 +236,7 @@ public class CameraSummary {
 	 * Minimum resolution of a camera and corresponding model.
 	 * @throws XPathExpressionException 
 	 */
-	public static void minResolutionCameras() {
+	public static void minResolutionCameras() throws XPathExpressionException {
 	
 	}
 	
@@ -199,7 +244,55 @@ public class CameraSummary {
      * A list containing all model names of that manufacturer.
      * @throws XPathExpressionException 
      */
-	public static void obtainAllModels()  {
+	public static void obtainAllModels() throws XPathExpressionException {
 		
 	}
+	
+	/**
+     * A list containing all model names of that manufacturer. 
+	 * @throws XPathExpressionException 
+     */
+	public static CameraSummaryDetails convertNodeToCamera(Node cameraNode) throws XPathExpressionException {
+		final String DATE_NODE_MODEL = "//Model";
+		final String DATE_NODE_DATE = "//Date";
+		final String DATE_NODE_MAX_RESOLUTION = "max(//MaxResolutions/MaxResolution/NumberPixels)]";
+		final String DATE_NODE_MIN_RESOLUTION = "min(//LowerResolutions/LowerResolution/NumberPixels)]";
+		final String DATE_NODE_MAX_HORIZ_RESOLUTION = "max(//MaxResolutions/MaxResolution/NumberPixels)]";
+		final String DATE_NODE_MAX_VERT_RESOLUTION = "max(//MaxResolutions/MaxResolution/NumberPixels)]";
+		final String DATE_NODE_MIN_HORIZ_RESOLUTION = "min(//LowerResolutions/LowerResolution/NumberPixels)]";		
+		final String DATE_NODE_MIN_VERT_RESOLUTION = "min(//LowerResolutions/LowerResolution/NumberPixels)]";
+
+
+		assert cameraNode != null;
+		
+		CameraSummaryDetails newCamera = new CameraSummaryDetails();
+		
+		for(int i = 0; i < cameraNode.getChildNodes().getLength(); i++){
+			Node childNode = cameraNode.getChildNodes().item(i);
+		
+			newCamera.date = getStringFromXPath(childNode, DATE_NODE_DATE);
+			newCamera.model = getStringFromXPath(childNode, DATE_NODE_MODEL);
+			newCamera.minResolution = getStringFromXPath(childNode, DATE_NODE_MIN_RESOLUTION);
+			newCamera.maxResolution = getStringFromXPath(childNode, DATE_NODE_MAX_RESOLUTION);
+		}
+		
+		return newCamera;
+	}	
+	
+	/**
+	 * Obtains a value node from a XML node using a query.
+	 * 
+	 * @param xPath the query to obtain the nodes
+	 * @return the value
+	 * @throws XPathExpressionException 
+	 */
+	public static String getStringFromXPath(Node node, String sXpath) throws XPathExpressionException  {
+	    XPathFactory factory = XPathFactory.newInstance();
+	    XPath xpath = factory.newXPath();
+	    XPathExpression expr = xpath.compile(sXpath);
+
+	    String value = ((Node) expr.evaluate(node, XPathConstants.NODE)).getTextContent();
+		return value;
+	}	
+	
 }
