@@ -75,7 +75,7 @@ public class CameraProcessor {
 	    XPathExpression expr = xpath.compile(sXpath);
 
 	    Object result = expr.evaluate(document, XPathConstants.NODESET);
-	    NodeList nodes = (NodeList) result;		
+	    NodeList nodes = (NodeList) result;
 		return nodes;
 	}
 	

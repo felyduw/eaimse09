@@ -145,7 +145,8 @@ public class CameraSummary {
 
 		// TODO Minimum resolution of a camera and corresponding model
 
-	    // TODO A list containing all model names of that manufacturer
+	    // List containing all model names of that manufacturer
+		obtainAllModels();
 	}
 	
 	/**
@@ -221,7 +222,7 @@ public class CameraSummary {
 			  Node childNode = cameras.item(i);
 			  oldestCameras.add(convertNodeToCamera(childNode));
 			}
-		}	
+		}
 	}
 	
     /**
@@ -245,7 +246,26 @@ public class CameraSummary {
      * @throws XPathExpressionException 
      */
 	public static void obtainAllModels() throws XPathExpressionException {
+		CameraProcessor cameraAux = null;
+		NodeList cameras;
+		String brandName;
+		List<String> allCameras;
 		
+		for (String filename : fileNames) {
+			// Obtains the camera file name to process
+			cameraAux = inputFiles.get(filename);
+			cameras = cameraAux.getNodesFromXPath(XPATH_CAMERA_ALL_MODELS);
+			brandName = cameraAux.brandName;
+			
+			// Obtains the number of cameras of a specific brand
+			allCameras = listBrands.get(brandName).allCameras;
+			
+			// For all cameras found for a specific brand
+			for(int i = 0; i < cameras.getLength(); i++){
+			  Node childNode = cameras.item(i);
+			  allCameras.add(childNode.getTextContent());
+			}
+		}
 	}
 	
 	/**
@@ -273,7 +293,11 @@ public class CameraSummary {
 			newCamera.date = getStringFromXPath(childNode, DATE_NODE_DATE);
 			newCamera.model = getStringFromXPath(childNode, DATE_NODE_MODEL);
 			newCamera.minResolution = getStringFromXPath(childNode, DATE_NODE_MIN_RESOLUTION);
+			newCamera.minResolutionVertical = getStringFromXPath(childNode, DATE_NODE_MIN_VERT_RESOLUTION);
+			newCamera.minResolutionHorizontal = getStringFromXPath(childNode, DATE_NODE_MIN_HORIZ_RESOLUTION);
 			newCamera.maxResolution = getStringFromXPath(childNode, DATE_NODE_MAX_RESOLUTION);
+			newCamera.maxResolutionVertical = getStringFromXPath(childNode, DATE_NODE_MAX_VERT_RESOLUTION);
+			newCamera.maxResolutionHorizontal = getStringFromXPath(childNode, DATE_NODE_MAX_HORIZ_RESOLUTION);
 		}
 		
 		return newCamera;
@@ -293,6 +317,5 @@ public class CameraSummary {
 
 	    String value = ((Node) expr.evaluate(node, XPathConstants.NODE)).getTextContent();
 		return value;
-	}	
-	
+	}
 }
