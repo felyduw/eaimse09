@@ -118,9 +118,13 @@ public class BrandSummary {
 			
 			if(blnMaxRes) {
 				singleResElem.addContent(createSimpleStringElement("Resolution", resolution.maxResolution));
+				singleResElem.addContent(createSimpleStringElement("Vert", resolution.maxResolutionVertical));
+				singleResElem.addContent(createSimpleStringElement("Horiz", resolution.maxResolutionVertical));
 				singleResElem.addContent(createSimpleStringElement("Model", resolution.model));				
 			} else {
 				singleResElem.addContent(createSimpleStringElement("Resolution", resolution.minResolution));
+				singleResElem.addContent(createSimpleStringElement("Vert", resolution.minResolutionVertical));
+				singleResElem.addContent(createSimpleStringElement("Horiz", resolution.minResolutionVertical));				
 				singleResElem.addContent(createSimpleStringElement("Model", resolution.model));	
 			}
 			
