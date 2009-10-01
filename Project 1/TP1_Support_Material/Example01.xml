@@ -1,4 +1,4 @@
-<Brand>
+﻿<Brand>
 	<Name>Canon</Name>
 	<Cameras>
 		<Camera>
@@ -9,7 +9,7 @@
 				<MaxResolution>
 					<Horiz>5184</Horiz>
 					<Vert>3456</Vert>
-					<NumberPixels>17915909</NumberPixels>
+					<NumberPixels>27915909</NumberPixels>
 				</MaxResolution>
 			</MaxResolutions> 
 			<LowerResolutions>
