@@ -60,11 +60,11 @@ public class CameraSummary {
 	private final static String XPATH_BRAND_NAME = "//Name";
 	private final static String XPATH_CAMERA_PER_BRAND = "/Brand/Cameras/Camera"; 
 	private final static String XPATH_CAMERA_RECENT_CAMERAS = 
-		" /Brand/Cameras/Camera[not(preceding-sibling::Date > Date or following-sibling::Date > Date)]"; 
+		"/Brand/Cameras/Camera[not(translate(preceding-sibling::Camera/Date, \"-\", \"\") > translate(Date, \"-\", \"\") or translate(following-sibling::Camera/Date, \"-\", \"\") > translate(Date, \"-\", \"\"))]"; 
 	private final static String XPATH_CAMERA_OLDEST_CAMERAS = 
-		"/Brand/Cameras/Camera[not(preceding-sibling::Date < Date or following-sibling::Date < Date)]";
+		"/Brand/Cameras/Camera[not(translate(preceding-sibling::Camera/Date, \"-\", \"\") < translate(Date, \"-\", \"\") or translate(following-sibling::Camera/Date, \"-\", \"\") < translate(Date, \"-\", \"\"))]";
 	private final static String XPATH_CAMERA_MAX_RESOLUTION = 
-		"/Brand/Cameras/Camera[MaxResolutions/MaxResolution/NumberPixels = max(//MaxResolutions/MaxResolution/NumberPixels)]";
+		"/Brand/Cameras/Camera[not(preceding-sibling::Camera/MaxResolutions/MaxResolution/NumberPixels > MaxResolutions/MaxResolution/NumberPixels or following-sibling::Camera/MaxResolutions/MaxResolution/NumberPixels > MaxResolutions/MaxResolution/NumberPixels)]";
 	private final static String XPATH_CAMERA_MIN_RESOLUTION = 
 		"/Brand/Cameras/Camera[LowerResolutions/LowerResolution/NumberPixels = min(//LowerResolutions/LowerResolution/NumberPixels)]"; 
 	private final static String XPATH_CAMERA_ALL_MODELS = "//Model";
@@ -278,13 +278,13 @@ public class CameraSummary {
 	public static CameraSummaryDetails convertNodeToCamera(Node cameraNode) throws XPathExpressionException {
 		final String DATE_NODE_MODEL = "//Model";
 		final String DATE_NODE_DATE = "//Date";
-		final String DATE_NODE_MAX_RESOLUTION = "max(//MaxResolutions/MaxResolution/NumberPixels)]";
+	/*	final String DATE_NODE_MAX_RESOLUTION = "max(//MaxResolutions/MaxResolution/NumberPixels)]";
 		final String DATE_NODE_MIN_RESOLUTION = "min(//LowerResolutions/LowerResolution/NumberPixels)]";
 		final String DATE_NODE_MAX_HORIZ_RESOLUTION = "max(//MaxResolutions/MaxResolution/NumberPixels)]";
 		final String DATE_NODE_MAX_VERT_RESOLUTION = "max(//MaxResolutions/MaxResolution/NumberPixels)]";
 		final String DATE_NODE_MIN_HORIZ_RESOLUTION = "min(//LowerResolutions/LowerResolution/NumberPixels)]";		
 		final String DATE_NODE_MIN_VERT_RESOLUTION = "min(//LowerResolutions/LowerResolution/NumberPixels)]";
-
+*/
 
 		assert cameraNode != null;
 		
@@ -347,7 +347,7 @@ public class CameraSummary {
 		}	
 		
 		// Create the final document
-		finalDocument.addContent(summaryElem);
+		finalDocument = new Document(summaryElem);
 	}
 	
 	/**
