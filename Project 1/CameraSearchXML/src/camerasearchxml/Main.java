@@ -119,4 +119,19 @@ public class Main {
 		writer.close();
 	}
 
+	/*
+	public static void main(String[] args) {
+		String[] arr = new String[] {
+			"Agfa", "Canon", "Casio", "Contax", "Epson",
+		  "FujiFilm", "HP", "Kodak", "Konica_Minolta", "Kyocera",
+		  "Leica", "Nikon", "Olympus", "Panasonic", "Pentax",
+			"Ricoh", "Samsumg", "Sanyo", "Sigma", "Sony",
+			"Toshiba"};
+		for (int i = 0; i < arr.length; i++) {
+			String[] arg = new String[] { arr[i] };
+			main1(arg);
+		}
+	}
+	*/
+
 }
