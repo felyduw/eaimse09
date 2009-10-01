@@ -9,7 +9,7 @@ import java.util.List;
 public class BrandSummary {
 	public String name;
 	public int numberCameras;
-	public List<CameraSummaryDetails> cameras;
+	public List<String> allCameras;
 	public List<CameraSummaryDetails> recentCameras; 
 	public List<CameraSummaryDetails> oldestCameras; 
 	public List<CameraSummaryDetails> maxResCameras; 
@@ -21,7 +21,7 @@ public class BrandSummary {
 	public BrandSummary() {
 		name = null;
 		numberCameras = 0;
-		cameras = new ArrayList<CameraSummaryDetails>();
+		allCameras = new ArrayList<String>();
 		recentCameras = new ArrayList<CameraSummaryDetails>(); 
 		oldestCameras = new ArrayList<CameraSummaryDetails>(); 
 		maxResCameras = new ArrayList<CameraSummaryDetails>();
