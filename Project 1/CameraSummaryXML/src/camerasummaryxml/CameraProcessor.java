@@ -1,17 +1,30 @@
 package camerasummaryxml;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import javax.xml.xpath.XPathExpression;
 
+import org.jdom.Document;
+import org.jdom.output.Format;
+import org.jdom.output.XMLOutputter;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -97,23 +110,5 @@ public class CameraProcessor {
   
 	    Node node = (Node) result;		
 		return node;
-	}	
-	
-	/**
-     * Write camera summary to XML output file
-     * 
-     * @param xmlFileName the name of the XML file to write
-     * @param myDocument the content of the XML file
-     * 
-     * @throws IOException if there is an error when trying 
-     * to write the XML output file
-     */
-    public void writeCameraSummary(String xmlFileName) throws IOException {
-    	assert document != null;
-    	
-		/*XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
-		FileWriter writer = new FileWriter(xmlFileName);
-	    outputter.output(document, writer);
-	    writer.close();*/
-    }
+	}
 }

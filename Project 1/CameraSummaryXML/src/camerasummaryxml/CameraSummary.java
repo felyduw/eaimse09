@@ -3,6 +3,10 @@
  */
 package camerasummaryxml;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -17,6 +21,11 @@ import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import org.jdom.Document;
+import org.jdom.Element;
+import org.jdom.output.Format;
+import org.jdom.output.XMLOutputter;
 
 import project1.BrandSummary;
 import project1.CameraSummaryDetails;
@@ -33,18 +42,6 @@ public class CameraSummary {
 	 */
 	private static Set<String> fileNames;
 	/**
-	 * Name of the output file.
-	 */
-	private final static String OUTPUT_NAME = "summary.xml";
-	/**
-	 * Content of the output file.
-	 */
-	private final static String OUTPUT_FILE_SCHEMA = "camera_summary.xml";	
-	/**
-	 * Output XML output file with the summary details.
-	 */
-	private static CameraProcessor summaryDoc;
-	/**
 	 * The name of the brands.
 	 */
 	private static Set<String> brandNames;	
@@ -53,7 +50,10 @@ public class CameraSummary {
 	 * <name, list of camera through brand>
 	 */
 	private static Map<String, BrandSummary> listBrands;
-	
+	/**
+	 * Final XML output document.
+	 */
+	private static Document finalDocument = null;
 	/**
 	 * XPATH for the necessary XML queries.
 	 */
@@ -96,10 +96,7 @@ public class CameraSummary {
 			System.out.println(ex.toString());
 			return;
 		}
-		try {
-			// Initialize output file
-			summaryDoc = new CameraProcessor(OUTPUT_FILE_SCHEMA);
-			
+		try {		
 			// Initialize List
 			listBrands = new HashMap<String, BrandSummary>();
 			brandNames = new HashSet<String>();
@@ -116,10 +113,14 @@ public class CameraSummary {
 				}
 			}
 			
+			// Obtain all the correct cameras
 	 		execCameraSummary();
 	 		
+	 		// Constructs the XML content
+	 		prepareOutputFile();
+	 		
 	    	// Write output XML file
- 			summaryDoc.writeCameraSummary(OUTPUT_NAME);
+	 		writeXml();
  		} catch (Exception ex) {
  			System.out.println("Error writing output file - " + ex.toString());
 			return;
@@ -141,10 +142,12 @@ public class CameraSummary {
 	    // Date of announcement of the oldest camera and corresponding model
 		oldestCameras();
 		
-	    // TODO Maximum resolution of a camera and corresponding model
-
-		// TODO Minimum resolution of a camera and corresponding model
-
+	    // Maximum resolution of a camera and corresponding model
+		maxResolutionCameras();
+		
+		// Minimum resolution of a camera and corresponding model
+		minResolutionCameras();
+		
 	    // List containing all model names of that manufacturer
 		obtainAllModels();
 	}
@@ -292,12 +295,16 @@ public class CameraSummary {
 		
 			newCamera.date = getStringFromXPath(childNode, DATE_NODE_DATE);
 			newCamera.model = getStringFromXPath(childNode, DATE_NODE_MODEL);
-			newCamera.minResolution = getStringFromXPath(childNode, DATE_NODE_MIN_RESOLUTION);
-			newCamera.minResolutionVertical = getStringFromXPath(childNode, DATE_NODE_MIN_VERT_RESOLUTION);
-			newCamera.minResolutionHorizontal = getStringFromXPath(childNode, DATE_NODE_MIN_HORIZ_RESOLUTION);
-			newCamera.maxResolution = getStringFromXPath(childNode, DATE_NODE_MAX_RESOLUTION);
-			newCamera.maxResolutionVertical = getStringFromXPath(childNode, DATE_NODE_MAX_VERT_RESOLUTION);
-			newCamera.maxResolutionHorizontal = getStringFromXPath(childNode, DATE_NODE_MAX_HORIZ_RESOLUTION);
+
+		//TODO
+		/*	
+		newCamera.minResolution = getStringFromXPath(childNode, DATE_NODE_MIN_RESOLUTION);
+		newCamera.minResolutionVertical = getStringFromXPath(childNode, DATE_NODE_MIN_VERT_RESOLUTION);
+		newCamera.minResolutionHorizontal = getStringFromXPath(childNode, DATE_NODE_MIN_HORIZ_RESOLUTION);
+		newCamera.maxResolution = getStringFromXPath(childNode, DATE_NODE_MAX_RESOLUTION);
+		newCamera.maxResolutionVertical = getStringFromXPath(childNode, DATE_NODE_MAX_VERT_RESOLUTION);
+		newCamera.maxResolutionHorizontal = getStringFromXPath(childNode, DATE_NODE_MAX_HORIZ_RESOLUTION);
+		*/
 		}
 		
 		return newCamera;
@@ -318,4 +325,43 @@ public class CameraSummary {
 	    String value = ((Node) expr.evaluate(node, XPathConstants.NODE)).getTextContent();
 		return value;
 	}
+	
+	/**
+	 * Constructs the XML content. 
+	 * @throws XPathExpressionException 
+	 */
+	public static void prepareOutputFile() throws XPathExpressionException {
+		// Constructs XML File
+		Element summaryElem = new Element("Summary");
+		Element brandsElem = new Element("Brands");
+		summaryElem.addContent(brandsElem);
+		
+		// Iterate for all brands
+		for (String brandName : brandNames) {
+			// Obtains the brand summary for each brand
+			BrandSummary brandSummary = listBrands.get(brandName);
+	
+			Element brandElem = brandSummary.getDomDoc();
+			
+			brandsElem.addContent(brandElem);
+		}	
+		
+		// Create the final document
+		finalDocument.addContent(summaryElem);
+	}
+	
+	/**
+	 * Writes XML to a file.
+	 * @param xmlDom XML to be written to the file.
+	 * @throws IOException
+	 */
+	private static void writeXml() throws IOException {
+		assert finalDocument != null;
+		
+		XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+		FileWriter writer = new FileWriter("Summary_" + formatter.format(new Date()) + ".xml");
+		outputter.output(finalDocument, writer);
+		writer.close();
+	}	
 }
