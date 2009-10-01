@@ -6,6 +6,8 @@ package camerasearchxml;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -16,7 +18,7 @@ import org.jdom.output.XMLOutputter;
 import project1.Camera;
 
 /**
- *
+ * Main class of the application.
  * @author csimoes
  */
 public class Main {
@@ -30,7 +32,7 @@ public class Main {
 		try {
 			// get parameters
 			if (args.length != 1) {
-				ShowErrorMessage("Wrong number of arguments!");
+				showErrorMessage("Wrong number of arguments!");
 				return;
 			}
 			// get settings
@@ -42,8 +44,9 @@ public class Main {
 			String brandPage = WebSucker.getPage(brandUrl);
 			// get links to each model
 			List<CameraModel> modelsUrls = DpreviewParser.getCameraModels(brandPage, args[0]);
-			Element brandElement = new Element("Brand");
+			Element rootElement = initializeXml(args[0]);
 			// for each model, get page with details
+			Element camerasElem = new Element("Cameras");
 			Iterator<CameraModel> iterator = modelsUrls.iterator();
 			while (iterator.hasNext()) {
 				CameraModel cameraModel = iterator.next();
@@ -52,33 +55,68 @@ public class Main {
 				// parse page to extract details
 				Camera modelDetails = DpreviewParser.getModelDetails(modelPage);
 				modelDetails.Description = cameraModel.getDescription();
-				modelDetails.DepthReviewUrl = settings.getSiteUrl() + "/" + modelDetails.DepthReviewUrl;
+				if (modelDetails.DepthReviewUrl != null && !modelDetails.DepthReviewUrl.isEmpty()) {
+					modelDetails.DepthReviewUrl = settings.getSiteUrl() + modelDetails.DepthReviewUrl;
+				}
 				// create DOM node with model details and add to xml
 				Element xmlNewModel = modelDetails.getDomDoc();
-				brandElement.addContent(xmlNewModel);
+				camerasElem.addContent(xmlNewModel);
 			}
-			Document xmlDom = new Document(brandElement);
+			rootElement.addContent(camerasElem);
+			Document xmlDom = new Document(rootElement);
 			// save DOM node to file
-			XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
-			FileWriter writer = new FileWriter(args[0] + ".xml");
-			outputter.output(xmlDom, writer);
-			writer.close();
+			writeXml(args[0], xmlDom);
 			// return
 		} catch (IOException ex) {
 			Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-			ShowErrorMessage("Communication error: " + ex.getMessage());
+			showErrorMessage("IO error: " + ex.getMessage());
 		} catch (Exception exc) {
 			Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, exc);
-			ShowErrorMessage("Unknown internal error: " + exc.getMessage());
+			showErrorMessage("Unknown internal error: " + exc.getMessage());
 		}
 	}
 
-	private static void ShowHelpMessage() {
+	/**
+	 * Prints the help message.
+	 */
+	private static void showHelpMessage() {
 		System.out.println("usage: camerasearchxml.exe <brand>");
 	}
 
-	private static void ShowErrorMessage(String errorMessage) {
+	/**
+	 * Prints an error message and the help message.
+	 * @param errorMessage	Error message to print.
+	 */
+	private static void showErrorMessage(String errorMessage) {
 		System.out.println(errorMessage);
-		ShowHelpMessage();
+		showHelpMessage();
 	}
+
+	/**
+	 * Initializes the top DOM structures.
+	 * @param brandName
+	 * @return
+	 */
+	private static Element initializeXml(String brandName) {
+		Element brandElement = new Element("Brand");
+		Element nameElement = new Element("Name");
+		nameElement.addContent(brandName);
+		brandElement.addContent(nameElement);
+		return brandElement;
+	}
+
+	/**
+	 * Writes xml to a file.
+	 * @param brand		Prefix of the filename.
+	 * @param xmlDom	Xml to be written to the file.
+	 * @throws java.io.IOException
+	 */
+	private static void writeXml(String brand, Document xmlDom) throws IOException {
+		XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+		FileWriter writer = new FileWriter(brand + "_" + formatter.format(new Date()) + ".xml");
+		outputter.output(xmlDom, writer);
+		writer.close();
+	}
+
 }

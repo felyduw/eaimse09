@@ -67,7 +67,7 @@ public class DpreviewParser {
 		// get DepthReviewUrl
 		modelDetails.DepthReviewUrl = getSpecificDetail(htmlPage, "Image[&nbsp;]+</td><td class=\"tdlabelproduct\"><a href=\"([^\"]+)");
 		// get PictureUrl
-		modelDetails.PictureUrl = getSpecificDetail(htmlPage, "Image[&nbsp;]+</td><td class=\"tdlabelproduct\"><a href=\"/[A-Za-z0-9]+/[A-Za-z0-9]+/\"><img vspace=\"\\d*\" border=\"\\d*\" src=\"([^\"]+)");
+		modelDetails.PictureUrl = getSpecificDetail(htmlPage, "Image[&nbsp;]+</td>[\\s]*<td class=\"tdlabelproduct\">[\\s]*[<a href=\"/[A-Za-z0-9]+/[A-Za-z0-9]+/\">]*[\\s]*<img vspace=\"\\d*\" border=\"\\d*\" src=\"([^\"]+)");
 
 		return modelDetails;
 	}
