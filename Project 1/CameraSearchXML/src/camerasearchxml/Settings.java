@@ -39,6 +39,27 @@ public class Settings {
 		this.listOfBrandsUrl = listOfBrandsUrl;
 	}
 
+	private String siteUrl = null;
+
+	/**
+	 * Get the value of siteUrl
+	 * @return the value of siteUrl
+	 */
+	public String getSiteUrl() {
+		if (siteUrl == null || siteUrl.isEmpty()) {
+			readSettingsFile();
+		}
+		return siteUrl;
+	}
+
+	/**
+	 * Set the value of siteUrl
+	 * @param listOfBrandsUrl new value of siteUrl
+	 */
+	public void setSiteUrl(String siteUrl) {
+		this.siteUrl = siteUrl;
+	}
+
 	public void Settings() {
 
 	}
@@ -50,13 +71,8 @@ public class Settings {
 			Document doc = docBuilder.parse(new File(settingsFilename));
 			// normalize text representation
 			doc.getDocumentElement().normalize();
-			NodeList listOfBrandsUrlNodeList = doc.getElementsByTagName("ListOfBrandsUrl");
-			Node listOfBrandsUrlNode = listOfBrandsUrlNodeList.item(0);
-      if(listOfBrandsUrlNode.getNodeType() == Node.ELEMENT_NODE) {
-				Element listOfBrandsUrlElement = (Element)listOfBrandsUrlNode;
-        NodeList textFNList = listOfBrandsUrlElement.getChildNodes();
-				setListOfBrandsUrl(((Node)textFNList.item(0)).getNodeValue().trim());
-			}
+			setSiteUrl(getNodeTextContent(doc, "SiteUrl"));
+			setListOfBrandsUrl(getNodeTextContent(doc, "ListOfBrandsUrl"));
   	} catch (SAXParseException err) {
 			System.out.println("** Parsing error" + ", line " + err.getLineNumber() + ", uri " + err.getSystemId());
 			System.out.println(" " + err.getMessage());
@@ -66,6 +82,19 @@ public class Settings {
 		} catch (Throwable t) {
 			t.printStackTrace();
 		}
-	//System.exit (0);
 	}
+
+	private String getNodeTextContent(Document doc, String nodeName) {
+			NodeList nodeList = doc.getElementsByTagName(nodeName);
+			if (nodeList != null && nodeList.getLength() > 0) {
+				Node node = nodeList.item(0);
+				if (node.getNodeType() == Node.ELEMENT_NODE) {
+					Element element = (Element)node;
+					NodeList textFNList = element.getChildNodes();
+					return (((Node)textFNList.item(0)).getNodeValue().trim());
+				}
+			}
+			return null;
+	}
+
 }

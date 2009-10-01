@@ -24,7 +24,7 @@ public class WebSucker {
 	}
 
 	public static String getPage(String url) throws IOException {
-		String pageString = new String();
+		String pageString = new String("");
 		try {
 			URL pageUrl = new URL(url);
 			URLConnection connection = pageUrl.openConnection();

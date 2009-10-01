@@ -28,37 +28,39 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		try {
-			String brandName = null;
 			// get parameters
 			if (args.length != 1) {
 				ShowErrorMessage("Wrong number of arguments!");
 				return;
 			}
-			brandName = args[0];
 			// get settings
 			Settings settings = new Settings();
 			String brandsGenericUrl = settings.getListOfBrandsUrl();
 			// get page with links to the brands
 			String brandUrl = brandsGenericUrl.replaceFirst(
-							replaceableBrandGenericString, brandName);
+							replaceableBrandGenericString, args[0]);
 			String brandPage = WebSucker.getPage(brandUrl);
 			// get links to each model
-			List<String> modelsUrls = DpreviewParser.getCameraModels(brandPage, brandName);
-			Document xmlDom = new Document(new Element("Brand"));
+			List<CameraModel> modelsUrls = DpreviewParser.getCameraModels(brandPage, args[0]);
+			Element brandElement = new Element("Brand");
 			// for each model, get page with details
-			Iterator<String> iterator = modelsUrls.iterator();
+			Iterator<CameraModel> iterator = modelsUrls.iterator();
 			while (iterator.hasNext()) {
-				String modelUrl = iterator.next();
-				String modelPage = WebSucker.getPage(modelUrl);
+				CameraModel cameraModel = iterator.next();
+				System.out.println(cameraModel.getUrl());
+				String modelPage = WebSucker.getPage(settings.getSiteUrl() + cameraModel.getUrl());
 				// parse page to extract details
 				Camera modelDetails = DpreviewParser.getModelDetails(modelPage);
+				modelDetails.Description = cameraModel.getDescription();
+				modelDetails.DepthReviewUrl = settings.getSiteUrl() + "/" + modelDetails.DepthReviewUrl;
 				// create DOM node with model details and add to xml
 				Element xmlNewModel = modelDetails.getDomDoc();
-				xmlDom.addContent(xmlNewModel);
+				brandElement.addContent(xmlNewModel);
 			}
+			Document xmlDom = new Document(brandElement);
 			// save DOM node to file
 			XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
-			FileWriter writer = new FileWriter(brandName + ".xml");
+			FileWriter writer = new FileWriter(args[0] + ".xml");
 			outputter.output(xmlDom, writer);
 			writer.close();
 			// return
