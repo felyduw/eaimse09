@@ -68,10 +68,10 @@ public class Main {
 			writeXml(args[0], xmlDom);
 			// return
 		} catch (IOException ex) {
-			Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+			//Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
 			showErrorMessage("IO error: " + ex.getMessage());
 		} catch (Exception exc) {
-			Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, exc);
+			//Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, exc);
 			showErrorMessage("Unknown internal error: " + exc.getMessage());
 		}
 	}
