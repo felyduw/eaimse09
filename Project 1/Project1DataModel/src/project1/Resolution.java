@@ -13,4 +13,5 @@ package project1;
 public class Resolution {
 	public int Horizontal;
 	public int Vertical;
+	public long NumberPixels;
 }
