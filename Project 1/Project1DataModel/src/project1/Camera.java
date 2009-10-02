@@ -40,7 +40,7 @@ public class Camera {
 		// add Model element
 		addNonEmptyContent(cameraElem, "Model", Model);
 		// add Description element
-		addNonEmptyContent(cameraElem, "Description", Description);
+		addNonEmptyCdata(cameraElem, "Description", Description);
 		// add Date element
 		if (Date != null) {
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -87,6 +87,13 @@ public class Camera {
 		return elem;
 	}
 
+	private Element createCdataElement(String name, String content) {
+		Element elem = new Element(name);
+		CDATA cdataElem = new CDATA(content);
+		elem.addContent(cdataElem);
+		return elem;
+	}
+
 	private Element createResolutionsElement(String nameRootElem,
 					String nameEachElem, List<Resolution> resolutionsList) {
 		Iterator<Resolution> iterator = resolutionsList.iterator();
@@ -107,4 +114,11 @@ public class Camera {
 			elem.addContent(createSimpleStringElement(nodeName, text));
 		}
 	}
+
+	private void addNonEmptyCdata(Element elem, String nodeName, String text) {
+		if (text != null && !text.isEmpty()) {
+			elem.addContent(createCdataElement(nodeName, text));
+		}
+	}
+	
 }
