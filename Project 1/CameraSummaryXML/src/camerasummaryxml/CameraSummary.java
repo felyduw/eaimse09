@@ -186,8 +186,10 @@ public class CameraSummary {
 		int iAuxDate = 0;
 		String sMaxDate = null;
 		String xPathMaxDate = "/Brand/Cameras/Camera[Date=\"";
+		String xPathMaxDateExec;
 		
 		for (String filename : fileNames) {
+			xPathMaxDateExec = xPathMaxDate;
 			// Obtains the camera file name to process
 			cameraAux = inputFiles.get(filename);
 			cameras = cameraAux.getNodesFromXPath(XPATH_CAMERA_DATE);
@@ -205,8 +207,8 @@ public class CameraSummary {
 			}
 			
 			// XPATH of the maximum value
-			xPathMaxDate = xPathMaxDate +  sMaxDate + "\"]";
-			cameras = cameraAux.getNodesFromXPath(xPathMaxDate);
+			xPathMaxDateExec = xPathMaxDateExec + sMaxDate + "\"]";
+			cameras = cameraAux.getNodesFromXPath(xPathMaxDateExec);
 
 			// Obtains the cameras
 			recentCameras = listBrands.get(brandName).recentCameras;
@@ -232,8 +234,10 @@ public class CameraSummary {
 		int iAuxDate = 0;
 		String sMinDate = null;
 		String xPathMinDate = "/Brand/Cameras/Camera[Date=\"";
+		String xPathMinDateExec;
 		
 		for (String filename : fileNames) {
+			xPathMinDateExec = xPathMinDate;
 			// Obtains the camera file name to process
 			cameraAux = inputFiles.get(filename);
 			cameras = cameraAux.getNodesFromXPath(XPATH_CAMERA_DATE);
@@ -251,8 +255,8 @@ public class CameraSummary {
 			}
 			
 			// XPATH of the maximum value
-			xPathMinDate = xPathMinDate +  sMinDate + "\"]";
-			cameras = cameraAux.getNodesFromXPath(xPathMinDate);
+			xPathMinDateExec = xPathMinDateExec +  sMinDate + "\"]";
+			cameras = cameraAux.getNodesFromXPath(xPathMinDateExec);
 
 			// Obtains the cameras
 			oldestCameras = listBrands.get(brandName).oldestCameras;
@@ -275,10 +279,12 @@ public class CameraSummary {
 		String brandName;
 		List<CameraSummaryDetails> maxResCameras;
 		String xPathMaxRes = "/Brand/Cameras/Camera[MaxResolutions/MaxResolution/NumberPixels=\"";
+		String xPathMaxResExec;
 		int maxResolution = 0;
 		int auxResolution = 0;
 		
 		for (String filename : fileNames) {
+			xPathMaxResExec = xPathMaxRes;
 			// Obtains the camera file name to process
 			cameraAux = inputFiles.get(filename);
 			cameras = cameraAux.getNodesFromXPath(XPATH_CAMERA_MAX_RESOLUTION);
@@ -295,8 +301,8 @@ public class CameraSummary {
 			}
 
 			// XPATH of the maximum value
-			xPathMaxRes = xPathMaxRes +  maxResolution + "\"]";
-			cameras = cameraAux.getNodesFromXPath(xPathMaxRes);
+			xPathMaxResExec = xPathMaxResExec +  maxResolution + "\"]";
+			cameras = cameraAux.getNodesFromXPath(xPathMaxResExec);
 
 			// Obtains the cameras
 			maxResCameras = listBrands.get(brandName).maxResCameras;
@@ -319,10 +325,13 @@ public class CameraSummary {
 		String brandName;
 		List<CameraSummaryDetails> minResCameras;
 		String xPathMinRes = "/Brand/Cameras/Camera[LowerResolutions/LowerResolution/NumberPixels=\"";
+		String xPathMinResExec;
 		int minResolution = Integer.MAX_VALUE;
 		int auxResolution = 0;
 		
 		for (String filename : fileNames) {
+			xPathMinResExec = xPathMinRes;
+			
 			// Obtains the camera file name to process
 			cameraAux = inputFiles.get(filename);
 			cameras = cameraAux.getNodesFromXPath(XPATH_CAMERA_MIN_RESOLUTION);
@@ -339,8 +348,8 @@ public class CameraSummary {
 			}
 
 			// XPATH of the minimum value
-			xPathMinRes = xPathMinRes +  minResolution + "\"]";
-			cameras = cameraAux.getNodesFromXPath(xPathMinRes);
+			xPathMinResExec = xPathMinResExec +  minResolution + "\"]";
+			cameras = cameraAux.getNodesFromXPath(xPathMinResExec);
 
 			// Obtains the cameras
 			minResCameras = listBrands.get(brandName).minResCameras;
