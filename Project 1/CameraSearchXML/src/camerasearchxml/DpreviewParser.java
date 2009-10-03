@@ -5,7 +5,6 @@
 
 package camerasearchxml;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -61,9 +60,9 @@ public class DpreviewParser {
 		// get IsoRatings
 		modelDetails.IsoRatings = getStringList(htmlPage, "Iso rating[&nbsp;]+</td>\\s*<td class=\"tdcontentsm\">([^<]+)");
 		// get MinShutterSpeed
-		modelDetails.MinShutterSpeed = getSpecificDetail(htmlPage, "Min shutter[&nbsp;]+</td>\\s*<td class=\"tdcontentsm\">([^<]+)");
+		modelDetails.MinShutterSpeed = getSpecificDetail(htmlPage, "Min shutter[&nbsp;]+</td>\\s*<td class=\"tdcontentsm\">[&nbsp;]*([^<]*)");
 		// get MaxShutterSpeed
-		modelDetails.MaxShutterSpeed = getSpecificDetail(htmlPage, "Max shutter[&nbsp;]+</td>\\s*<td class=\"tdcontentsm\">([^<]+)");
+		modelDetails.MaxShutterSpeed = getSpecificDetail(htmlPage, "Max shutter[&nbsp;]+</td>\\s*<td class=\"tdcontentsm\">[&nbsp;]*([^<]*)");
 		// get DepthReviewUrl
 		modelDetails.DepthReviewUrl = getSpecificDetail(htmlPage, "Image[&nbsp;]+</td><td class=\"tdlabelproduct\"><a href=\"([^\"]+)");
 		// get PictureUrl
