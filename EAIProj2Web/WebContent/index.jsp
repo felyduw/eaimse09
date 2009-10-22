@@ -1,16 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+    <title>Low-Price Cameras Online</title>
+    <link href="styles.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<form action="post" action="add.jsp">
-	Value A: <input name="value_a" type="text" /><br/>
-	Value B: <input name="value_b" type="text" /><br/>
-	<input name="Submit" type="submit" value="Add" />
-</form>
+    <table class="table_main">
+        <tr>
+            <td colspan="2" class="company_title"><a href="browse_catalog.jsp">Low-Price Cameras Online</a></td>
+        </tr>
+        <tr>
+           	<jsp:include page="main_menu.html"></jsp:include>
+            <td class="site_body" >
+                &nbsp;
+            </td>
+        </tr>
+    </table>
 </body>
 </html>

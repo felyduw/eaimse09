@@ -12,7 +12,23 @@
         <tr>
            	<jsp:include page="main_menu.html"></jsp:include>
             <td class="site_body" >
-                &nbsp;
+            	<form method="post" action="login.jsp">
+                <span class="body_title">Login</span><br />
+                <table>
+                    <tr>
+                        <td class="form1">User:</td>
+                        <td><input id="User" type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td class="form1">Password:</td>
+                        <td><input id="Password" type="password" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input id="Submit" type="submit" value="Login" /></td>
+                    </tr>
+                </table>
+                <br />
+                </form>
             </td>
         </tr>
     </table>
