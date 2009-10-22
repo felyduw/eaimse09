@@ -1,0 +1,47 @@
+@CHARSET "ISO-8859-1";
+body
+{
+	background-color: #333333;
+}
+.site_body
+{
+	background-color: #A8A8A8;
+}
+.menu_item
+{
+	font-family: Calibri;
+	color: #FFFFFF;
+	font-size: medium;
+	font-weight: bold;
+}
+a
+{
+	text-decoration: none;
+}
+hr
+{
+	background-color: #FFFFFF;
+}
+.company_title
+{
+	color: #87FE1B;
+	font-family: Calibri;
+	font-size: xx-large;
+	font-weight: bolder;
+	font-style: normal;
+	font-variant: small-caps;
+	position: relative;
+	height: 100px;
+}
+.table_main
+{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+.menu_main
+{
+	width: 250px;
+	text-align: left;
+	vertical-align: top;
+}
