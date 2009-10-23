@@ -1,7 +1,11 @@
 package pt.uc.dei.eai.common;
 
-public class Camera {
+import java.io.Serializable;
+
+public class Camera implements Serializable {
 	
+	private static final long serialVersionUID = -6228004627121649521L;
+
 	Integer cameraId;
 	
 	String model;
