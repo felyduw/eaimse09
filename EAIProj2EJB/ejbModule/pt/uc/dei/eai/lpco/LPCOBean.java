@@ -102,9 +102,9 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 	}
 
 	@Override
-	public boolean submitOrder() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean submitOrder(List<Camera> shoppingCart) {
+		// TODO DEBUG - apagar!!!
+		return true;
 	}
 
 }
