@@ -12,27 +12,16 @@ import pt.uc.dei.eai.common.*;
  */
 @Stateful
 public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
-	private List<Camera> shoppingCart;
+
 	private User user;
 	
 	@PostConstruct
 	public void initialize() {
-		shoppingCart = new ArrayList<Camera>();
 		user = null;
-	}
-
-	public List<Camera> getShoppingCart() {
-		return shoppingCart;
 	}
 
 	public User getUser() {
 		return user;
-	}
-
-	@Override
-	public boolean addToCart(Integer cameraId) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override
