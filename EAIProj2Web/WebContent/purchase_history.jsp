@@ -2,18 +2,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Low-Price Cameras Online</title>
-    <link href="styles.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <table class="table_main">
+    <table border="1">
         <tr>
-            <td colspan="2" class="company_title">Low-Price Cameras Online</td>
+            <td colspan="2"><a href="index.jsp">Low-Price Cameras Online</a></td>
         </tr>
         <tr>
-           	<jsp:include page="main_menu.html"></jsp:include>
-            <td class="site_body" >
+        	<td>
+ 	          	<jsp:include page="login.jsp"></jsp:include>
+           	</td>
+            <td rowspan="2">
                 &nbsp;
             </td>
+        </tr>
+        <tr>
+        	<td>
+           		<jsp:include page="main_menu.html"></jsp:include>
+           	</td>
         </tr>
     </table>
 </body>

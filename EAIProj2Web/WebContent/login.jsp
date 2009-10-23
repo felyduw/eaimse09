@@ -1,36 +1,77 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>Low-Price Cameras Online</title>
-    <link href="styles.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-    <table class="table_main">
-        <tr>
-            <td colspan="2" class="company_title">Low-Price Cameras Online</td>
-        </tr>
-        <tr>
-           	<jsp:include page="main_menu.html"></jsp:include>
-            <td class="site_body" >
-            	<form method="post" action="login.jsp">
-                <span class="body_title">Login</span><br />
-                <table>
-                    <tr>
-                        <td class="form1">User:</td>
-                        <td><input id="User" type="text" /></td>
-                    </tr>
-                    <tr>
-                        <td class="form1">Password:</td>
-                        <td><input id="Password" type="password" /></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><input id="Submit" type="submit" value="Login" /></td>
-                    </tr>
-                </table>
-                <br />
-                </form>
-            </td>
-        </tr>
-    </table>
-</body>
-</html>
+<%@ page import="javax.naming.*" %>
+<%@ page import="pt.uc.dei.eai.lpco.LPCOBean"%>
+<%
+String error = null;
+String submit_action = request.getParameter("Submit");
+String myname = (String)session.getAttribute("username");
+InitialContext ctx = new InitialContext();
+LPCOBeanLocal lpco = (LPCOBeanLocal)ctx.lookup("EAIProj2/LPCOBean/local");
+if (submit_action != null && submit_action.equals("Logout")) {
+	if (lpco.doLogout(myname)) {
+		// se deslogou ok no servidor
+		session.removeAttribute("username");
+		myname = null;
+	} else {
+		error = "Login error";
+	}
+} else if (submit_action != null && submit_action.equals("Login")) {
+	String user = request.getParameter("User");
+	String password = request.getParameter("Password");
+	// Logar no servidor
+	if (lpco.doLogin(user, password)) {
+		// se logou ok no servidor
+		session.setAttribute("username", user);
+		myname = user;
+	} else {
+		error = "Login error";
+	}
+}
+if (myname != null) {
+	%>
+	
+<%@page import="pt.uc.dei.eai.lpco.LPCOBeanLocal"%><form method="post">
+	<table>
+		<tr>
+			<td><%=myname%></td>
+		</tr>
+		<tr>
+			<td colspan="2"><input id="Submit" name="Submit" type="submit" value="Logout" /></td>
+		</tr>
+	</table>
+	<br />
+	</form>
+	<%
+} else  {
+	%>
+	<form method="post">
+	<table>
+		<tr>
+			<td colspan="2">Login</td>
+		</tr>
+		<tr>
+			<td>User:</td>
+			<td><input id="User" name="User" type="text" /></td>
+		</tr>
+		<tr>
+			<td>Password:</td>
+			<td><input id="Password" name="Password" type="password" /></td>
+		</tr>
+		<tr>
+			<td colspan="2"><input id="Submit" name="Submit" type="submit" value="Login" /></td>
+		</tr>
+		<%
+		if (error != null) {
+			%>
+			<tr>
+				<td colspan="2"><font color="red"><%=error%></font></td>
+			</tr>
+			<%
+		}
+		%>
+	</table>
+	<br />
+	</form>
+	<% 
+}
+%>
+
