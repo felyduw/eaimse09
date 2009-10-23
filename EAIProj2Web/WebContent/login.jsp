@@ -1,11 +1,12 @@
 <%@ page import="javax.naming.*" %>
 <%@ page import="pt.uc.dei.eai.lpco.LPCOBean"%>
+<%@page import="pt.uc.dei.eai.lpco.LPCOBeanRemote"%>
 <%
 String error = null;
 String submit_action = request.getParameter("Submit");
 String myname = (String)session.getAttribute("username");
 InitialContext ctx = new InitialContext();
-LPCOBeanLocal lpco = (LPCOBeanLocal)ctx.lookup("EAIProj2/LPCOBean/local");
+LPCOBeanRemote lpco = (LPCOBeanRemote)ctx.lookup("EAIProj2/LPCOBean/remote");
 if (submit_action != null && submit_action.equals("Logout")) {
 	if (lpco.doLogout(myname)) {
 		// se deslogou ok no servidor
@@ -29,7 +30,7 @@ if (submit_action != null && submit_action.equals("Logout")) {
 if (myname != null) {
 	%>
 	
-<%@page import="pt.uc.dei.eai.lpco.LPCOBeanLocal"%><form method="post">
+<form method="post">
 	<table>
 		<tr>
 			<td><%=myname%></td>

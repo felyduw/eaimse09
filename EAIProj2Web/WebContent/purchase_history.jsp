@@ -9,6 +9,9 @@
             <td colspan="2"><a href="index.jsp">Low-Price Cameras Online</a></td>
         </tr>
         <tr>
+            <td colspan="2"><jsp:include page="cart.jsp"></jsp:include></td>
+        </tr>
+        <tr>
         	<td>
  	          	<jsp:include page="login.jsp"></jsp:include>
            	</td>
