@@ -71,6 +71,16 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public Camera getCamera(Integer cameraId) {
+		// TODO DEBUG - apagar!!!
+		Camera camera1 = new Camera();
+		camera1.setCameraId(cameraId);
+		camera1.setModel("some model");
+		camera1.setPrice(cameraId.floatValue() * 10);
+		return camera1;
+	}
 
 	@Override
 	public List<Camera> searchCameras(String searchTerms) {
@@ -95,7 +105,7 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 			Camera camera4 = new Camera();
 			camera4.setCameraId(4);
 			camera4.setModel("Leica M8");
-			camera4.setPrice(45f);
+			camera4.setPrice(40f);
 			cameras.add(camera4);
 			return cameras;
 		}
