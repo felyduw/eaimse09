@@ -1,6 +1,7 @@
 package pt.uc.dei.eai.lpco;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -44,14 +45,29 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 
 	@Override
 	public List<Order> listAllOrders() {
-		// TODO Auto-generated method stub
-		return null;
+		// TODO DEBUG - apagar!!!
+		List<Order> orders = new ArrayList<Order>();
+		Order order1 = new Order();
+		order1.setOrderId(1);
+		order1.setPurchaseDate(new Date());
+		order1.setShippingAddress("Rua Teófilo Braga, nº63, R/C Esq. Coimbra");
+		order1.setUsername("carlos");
+		order1.setOrderedCameras(searchCameras(null));
+		orders.add(order1);
+		Order order2 = new Order();
+		order2.setOrderId(2);
+		order2.setPurchaseDate(new Date());
+		order2.setShippingAddress("Rua do Teodoro, n.º77, R/C; 3030-213 Coimbra");
+		order2.setUsername("jaquim");
+		order2.setOrderedCameras(searchCameras(null));
+		orders.add(order2);
+		return orders;
 	}
 
 	@Override
 	public List<Order> listPurchases() {
-		// TODO Auto-generated method stub
-		return null;
+		// TODO DEBUG - apagar!!!
+		return listAllOrders();
 	}
 
 	@Override
@@ -105,6 +121,30 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 	public boolean submitOrder(List<Camera> shoppingCart) {
 		// TODO DEBUG - apagar!!!
 		return true;
+	}
+
+	@Override
+	public Order getOrder(Integer orderId) {
+		// TODO DEBUG - apagar!!!
+		Order order = new Order();
+		order.setOrderId(1);
+		order.setPurchaseDate(new Date());
+		order.setShippingAddress("Rua Teófilo Braga, nº63, R/C Esq. Coimbra");
+		order.setUsername("carlos");
+		order.setOrderedCameras(searchCameras(null));
+		return order;
+	}
+
+	@Override
+	public Order getPurchase(Integer orderId) {
+		// TODO DEBUG - apagar!!!
+		Order order = new Order();
+		order.setOrderId(134);
+		order.setPurchaseDate(new Date());
+		order.setShippingAddress("Rua Teófilo Braga, nº63, R/C Esq. Coimbra");
+		order.setUsername("carlos");
+		order.setOrderedCameras(searchCameras(null));
+		return order;
 	}
 
 }

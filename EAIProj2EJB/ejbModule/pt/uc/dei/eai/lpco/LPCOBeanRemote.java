@@ -15,5 +15,7 @@ public interface LPCOBeanRemote {
 	public List<String> registerUser(String username, String password, String address, String email);
 	public boolean submitOrder(List<Camera> shoppingCart);
 	public List<Order> listAllOrders();
+	public Order getOrder(Integer orderId);
 	public List<Order> listPurchases();
+	public Order getPurchase(Integer orderId);
 }
