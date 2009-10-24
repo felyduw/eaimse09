@@ -5,7 +5,6 @@ package pt.uc.dei.eai.shopwebsite;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import pt.uc.dei.eai.common.Camera;
 
 /**

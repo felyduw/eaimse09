@@ -36,7 +36,7 @@ if (existingCart == null) {
 %>
 	<form method="post">
 	Shopping cart has <%=existingCart.getCameras().size()%> cameras, with a total value of <%=existingCart.getTotalAmount()%> &euro;&nbsp;&nbsp;&nbsp;
-	<a href="submit_order.jsp">Checkout</a>
+	<a href="checkout.jsp">Checkout</a>
 	</form>
 <% 
 }

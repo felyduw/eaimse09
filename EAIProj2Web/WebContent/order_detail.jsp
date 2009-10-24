@@ -36,7 +36,7 @@ try {
  	          	<jsp:include page="login.jsp"></jsp:include>
            	</td>
             <td rowspan="2">
-                &nbsp;
+                NOT IMPLEMENTED YET
             </td>
         </tr>
         <tr>

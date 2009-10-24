@@ -69,6 +69,9 @@ if (myname != null) {
 			<%
 		}
 		%>
+		<tr>
+			<td colspan="2"><a href="create_user.jsp">Register</a></td>
+		</tr>
 	</table>
 	<br />
 	</form>
