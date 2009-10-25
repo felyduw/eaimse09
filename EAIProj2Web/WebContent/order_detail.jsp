@@ -36,7 +36,73 @@ try {
  	          	<jsp:include page="login.jsp"></jsp:include>
            	</td>
             <td rowspan="2">
-                NOT IMPLEMENTED YET
+            	<table>
+            		<%
+        			// Verify login
+        			String myname = (String)session.getAttribute("username");
+        			if (myname != null) {
+	        			if (order != null) {
+	            			%>
+	 	            		<tr>
+		            			<td>Order id</td>
+		            			<td><%=order.getOrderId()%></td>
+		            		</tr>
+	 	            		<tr>
+		            			<td>Purchase Date</td>
+		            			<td><%=order.getPurchaseDate()%></td>
+		            		</tr>
+	 	            		<tr>
+		            			<td>Shipping Address</td>
+		            			<td><%=order.getShippingAddress()%></td>
+		            		</tr>
+	            			<%
+	            			List<Camera> cameras = order.getOrderedCameras();
+	               			if (cameras != null && cameras.size() > 0) {
+    							%>
+		 	            		<tr>
+			            			<td colspan="2">
+						            	<table border="1">
+			    		            		<tr>
+			    		            			<td>Model</td>
+			    		            			<td>Price</td>
+			    		            		</tr>
+			    							<%
+				                			for (int i = 0; i < cameras.size(); i++) {
+				    							%>
+				    		            		<tr>
+				    		            			<td><%=cameras.get(i).getModel()%></td>
+				    		            			<td><%=cameras.get(i).getPrice()%> &euro;</td>
+				    		            		</tr>
+				    							<%
+				                			}
+			    							%>
+						            	</table>
+					            	</td>
+					            </tr>
+    							<%
+	                		} else {
+	                			%>
+	    	            		<tr>
+	    	            			<td colspan="3">There are no cameras in this order.</td>
+	    	            		</tr>
+	                			<%
+	                		}
+	        			} else {
+	            			%>
+		            		<tr>
+		            			<td colspan="2">There is no order with this id.</td>
+		            		</tr>
+	            			<%
+	        			}
+	        		} else {
+            			%>
+	            		<tr>
+	            			<td colspan="2">You must login before you can see your order.</td>
+	            		</tr>
+            			<%
+        			}
+        			%>
+            	</table>
             </td>
         </tr>
         <tr>
