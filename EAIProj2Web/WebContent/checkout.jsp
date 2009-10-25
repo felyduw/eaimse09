@@ -8,22 +8,21 @@ ShoppingCart existingCart = (ShoppingCart)session.getAttribute("cart");
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Low-Price Cameras Online</title>
+	<link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <table border="1">
         <tr>
-            <td colspan="2"><a href="index.jsp">Low-Price Cameras Online</a></td>
+            <th colspan="2"><a href="index.jsp"><font color="#FFFFFF">Low-Price Cameras Online</font></a></th>
         </tr>
         <tr>
             <td colspan="2"><jsp:include page="cart.jsp"></jsp:include></td>
         </tr>
         <tr>
-        	<td>
- 	          	<jsp:include page="login.jsp"></jsp:include>
-           	</td>
-            <td rowspan="2">
+        	<td style="width: 200px"><jsp:include page="login.jsp"></jsp:include></td>
+            <td style="width: 600px" rowspan="2" valign="top">
             	<form method="post">
-            	<table>
+            	<table style="width: 100%">
             		<%
             		if (existingCart != null && existingCart.getCameras().size() > 0) {
             			%>

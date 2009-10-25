@@ -14,21 +14,20 @@ List<Order> orders = lpco.listPurchases();
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Low-Price Cameras Online</title>
+	<link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <table border="1">
         <tr>
-            <td colspan="2"><a href="index.jsp">Low-Price Cameras Online</a></td>
+            <th colspan="2"><a href="index.jsp"><font color="#FFFFFF">Low-Price Cameras Online</font></a></th>
         </tr>
         <tr>
             <td colspan="2"><jsp:include page="cart.jsp"></jsp:include></td>
         </tr>
         <tr>
-        	<td>
- 	          	<jsp:include page="login.jsp"></jsp:include>
-           	</td>
-            <td rowspan="2">
-            	<table>
+        	<td style="width: 200px"><jsp:include page="login.jsp"></jsp:include></td>
+            <td style="width: 600px" rowspan="2" valign="top">
+            	<table style="width: 100%">
             		<%
         			// Verify login
         			String myname = (String)session.getAttribute("username");
@@ -39,9 +38,9 @@ List<Order> orders = lpco.listPurchases();
     	            			<td colspan="3">You have <%=orders.size()%> purchases.</td>
     	            		</tr>
      	            		<tr>
-    	            			<td>Order id</td>
-    	            			<td>Purchase date</td>
-    	            			<td># Cameras</td>
+    	            			<th>Order id</th>
+    	            			<th>Purchase date</th>
+    	            			<th># Cameras</th>
     	            		</tr>
                 			<%
                 			for (int i = 0; i < orders.size(); i++) {
@@ -49,8 +48,8 @@ List<Order> orders = lpco.listPurchases();
     							%>
     		            		<tr>
     		            			<td><a href="order_detail.jsp?order=<%=order.getOrderId()%>"><%=order.getOrderId()%></a></td>
-    		            			<td><%=order.getPurchaseDate()%></td>
-    		            			<td><%=order.getOrderedCameras().size()%></td>
+    		            			<td align="center"><%=order.getPurchaseDate()%></td>
+    		            			<td align="center"><%=order.getOrderedCameras().size()%></td>
     		            		</tr>
     							<%
                 			}
