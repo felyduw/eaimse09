@@ -11,7 +11,12 @@ public class ShippingDepartment {
 	@WebMethod
 	public boolean makeOrder(Order order) {
 		
+		ShipProduct shipProduct = new ShipProduct(order);
 		
+		// New Thread to handle the product shipping
+		shipProduct.start();
+		
+		// Product handled
 		return true;
 	}
 }

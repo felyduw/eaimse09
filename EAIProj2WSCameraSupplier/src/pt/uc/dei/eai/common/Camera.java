@@ -5,32 +5,23 @@ import java.io.Serializable;
 public class Camera implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-
-	Integer cameraId;
 	
 	String model;
+	String date;
 	
-	Float price;
-	
-	public Integer getCameraId() {
-		return cameraId;
-	}
-	public void setCameraId(Integer cameraId) {
-		this.cameraId = cameraId;
-	}
-	public Float getPrice() {
-		return price;
-	}
-	public void setPrice(Float price) {
-		this.price = price;
-	}
 	public String getModel() {
 		return model;
 	}
+	
 	public void setModel(String model) {
 		this.model = model;
 	}
 	
-	//Characteristics
+	public String getDate() {
+		return date;
+	}
 	
+	public void setDate(String date) {
+		this.date = date;
+	}	
 }
