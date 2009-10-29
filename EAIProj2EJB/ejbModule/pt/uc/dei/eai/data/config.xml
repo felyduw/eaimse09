@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Settings>
+	<wsdl>http://127.0.0.1:8080/WSCameraSupplier?wsdl</wsdl>
+	<namespace>http://cs.eai.dei.uc.pt/</namespace>
+	<serviceName>CameraSupplierService</serviceName>
+</Settings>

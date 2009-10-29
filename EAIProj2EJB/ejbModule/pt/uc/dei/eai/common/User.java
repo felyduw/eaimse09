@@ -1,5 +1,6 @@
 package pt.uc.dei.eai.common;
 
+
 public class User {
 	
 	//For Hibernate
@@ -76,4 +77,6 @@ public class User {
 			return false;
 		return true;
 	}
+	
+
 }
