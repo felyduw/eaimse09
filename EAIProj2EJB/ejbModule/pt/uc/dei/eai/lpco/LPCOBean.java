@@ -21,30 +21,26 @@ import pt.uc.dei.eai.data.HibernateUtil;
 public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 
 	private User user;
+	private Session hbSession;
 	
 	
 	@PostConstruct
 	public void initialize() {
 		user = null;
+		hbSession = HibernateUtil.getSession();
 	}
 
 	public User getUser() {
-		return user;
-	}
-	
-	private User getUser(String username) {
-		Session s = HibernateUtil.getSession();
-		
-		Criteria criteria = s.createCriteria(User.class);
-		criteria.add(Restrictions.eq("username", username));
-		User user = (User) criteria.uniqueResult();
 		return user;
 	}
 
 	@Override
 	public boolean doLogin(String username, String password) {
 		
-		User u = getUser(username);
+		Criteria criteria = hbSession.createCriteria(User.class);
+		criteria.add(Restrictions.eq("username", username));
+		User u = (User) criteria.uniqueResult();
+		
 		if(u.getPassword().equals(password)) {
 			user = u;
 			return true;
@@ -55,45 +51,44 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 
 	@Override
 	public boolean doLogout(String username) {
-		// TODO DEBUG - apagar!!!
-		if (username != null && username.equals("carlos")) {
+		if(user.getUsername().equals(username)) {
+			user=null;
 			return true;
 		}
 		return false;
 	}
 
+	
 	@Override
 	public List<Order> listAllOrders() {
-		// TODO DEBUG - apagar!!!
-		List<Order> orders = new ArrayList<Order>();
-		Order order1 = new Order();
-		order1.setId(1);
-		order1.setPurchaseDate(new Date());
-		order1.setShippingAddress("Rua Teófilo Braga, nº63, R/C Esq. Coimbra");
-		order1.setUsername("carlos");
-		order1.setOrderedCameras(searchCameras(null));
-		orders.add(order1);
-		Order order2 = new Order();
-		order2.setId(2);
-		order2.setPurchaseDate(new Date());
-		order2.setShippingAddress("Rua do Teodoro, n.º77, R/C; 3030-213 Coimbra");
-		order2.setUsername("jaquim");
-		order2.setOrderedCameras(searchCameras(null));
-		orders.add(order2);
-		return orders;
+		
+		@SuppressWarnings("unchecked")
+		List<Order> result = hbSession.createCriteria(Order.class).list();
+		return result;
 	}
 
+	
 	@Override
 	public List<Order> listPurchases() {
-		// TODO DEBUG - apagar!!!
-		return listAllOrders();
+		Criteria criteria = hbSession.createCriteria(Order.class);
+		criteria.add(Restrictions.eq("orderStatus", OrderStatus.SHIPPED));
+		
+		@SuppressWarnings("unchecked")
+		List<Order> result = (List<Order>) criteria.list();
+		return result;
 	}
 
 	@Override
-	public List<String> registerUser(String username, String password,
+	public boolean registerUser(String username, String password,
 			String address, String email) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		User newUser = new User();
+		newUser.setUsername(username);
+		newUser.setPassword(password);
+		newUser.setAddress(address);
+		newUser.setEmail(email);
+		
+		return true;
 	}
 	
 	@Override

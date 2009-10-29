@@ -12,7 +12,7 @@ public interface LPCOBeanLocal {
 	public boolean doLogout(String username);
 	public List<Camera> searchCameras(String searchTerms);
 	public Camera getCamera(Integer cameraId);
-	public List<String> registerUser(String username, String password, String address, String email);
+	public boolean registerUser(String username, String password, String address, String email);
 	public boolean submitOrder(List<Camera> shoppingCart);
 	public List<Order> listAllOrders();
 	public Order getOrder(Integer orderId);
