@@ -21,6 +21,8 @@ public class Order implements Serializable {
 	
 	private Date purchaseDate;
 	
+	private OrderStatus orderStatus;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -73,6 +75,12 @@ public class Order implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+	public OrderStatus getOrderStatus() {
+		return orderStatus;
+	}
+	public void setOrderStatus(OrderStatus orderStatus) {
+		this.orderStatus = orderStatus;
 	}
 
 }
