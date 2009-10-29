@@ -4,8 +4,12 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import javax.xml.rpc.Call;
+import javax.xml.rpc.Service;
+import javax.xml.rpc.ServiceFactory;
+import javax.xml.rpc.ParameterMode;
 import javax.xml.namespace.QName;
-import javax.xml.ws.Service;
+
 
 import com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe;
 
@@ -50,6 +54,17 @@ public class ShipProduct extends Thread {
     }
 	
 	public void invokeWSLPCO() {
-       
+		try {
+			String wsdlURL = "http://127.0.0.1:8080/WSLPCO?wsdl";
+			String namespace = "LPCOWebService";
+			String serviceName = "shipped";
+			QName serviceQN = new QName(namespace, serviceName);
+			
+			ServiceFactory serviceFactory = ServiceFactory.newInstance();
+			Service service = serviceFactory.createService(new URL(wsdlURL), serviceQN);
+			
+		} catch(Exception ex) {
+			
+		}
 	}
 }
