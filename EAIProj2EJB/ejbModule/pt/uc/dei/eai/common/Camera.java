@@ -3,11 +3,15 @@ package pt.uc.dei.eai.common;
 import java.io.Serializable;
 
 public class Camera implements Serializable {
+	private static final long serialVersionUID = -6228004627121649521L;
 	
 	//For Hibernate
 	public Camera() {}
 	
-	private static final long serialVersionUID = -6228004627121649521L;
+	// Adapt from the web service to get the cameras
+	public Camera(pt.uc.dei.eai.cs.Camera cameraSupplier) {
+		this.model = cameraSupplier.getModel();
+	}
 
 	Integer id;
 	
