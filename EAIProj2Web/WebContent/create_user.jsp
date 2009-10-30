@@ -25,8 +25,8 @@ if (submit_action != null && submit_action.equals("Register")) {
 		error = "Email not valid.";
 	} else {
 		// Register user in server
-		List<String> camerasList = lpco.registerUser(username, password, address, email);
-		userCreated = true;
+		//List<String> camerasList = lpco.registerUser(username, password, address, email);
+		userCreated = lpco.registerUser(username, password, address, email);;
 	}
 }
 %>
