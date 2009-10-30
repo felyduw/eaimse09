@@ -5,7 +5,6 @@
 	<projects>
 		<project>EAIProj2Web</project>
 		<project>EAIProj2EJB</project>
-		<project>WSLPCO</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

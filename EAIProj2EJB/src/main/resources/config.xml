@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <Settings>
 	<CSwsdl>http://127.0.0.1:8080/WSCameraSupplier?wsdl</CSwsdl>
 	<CSnamespace>http://cs.eai.dei.uc.pt/</CSnamespace>

@@ -34,12 +34,11 @@ import pt.uc.dei.eai.data.Settings;
 public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 
 	private User user;
-	private Session hbSession;
+	//private Session hbSession;
 
 	@PostConstruct
 	public void initialize() {
 		user = null;
-		hbSession = HibernateUtil.getSession();
 	}
 
 	public User getUser() {
@@ -48,10 +47,12 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 
 	@Override
 	public boolean doLogin(String username, String password) {
-		Criteria criteria = hbSession.createCriteria(User.class);
+		Session session = HibernateUtil.beginTransaction();
+		Criteria criteria = session.createCriteria(User.class);
 		criteria.add(Restrictions.eq("username", username));
 		User u = (User) criteria.uniqueResult();
-
+		HibernateUtil.commitTransaction();
+		
 		if (u.getPassword().equals(password)) {
 			user = u;
 			return true;
@@ -70,19 +71,25 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 
 	@Override
 	public List<Order> listAllOrders() {
-
+		Session session = HibernateUtil.beginTransaction();
+		
 		@SuppressWarnings("unchecked")
-		List<Order> result = hbSession.createCriteria(Order.class).list();
+		List<Order> result = session.createCriteria(Order.class).list();
+		
+		HibernateUtil.commitTransaction();
 		return result;
 	}
 
 	@Override
 	public List<Order> listPurchases() {
-		Criteria criteria = hbSession.createCriteria(Order.class);
+		Session session = HibernateUtil.beginTransaction();
+		Criteria criteria = session.createCriteria(Order.class);
 		criteria.add(Restrictions.eq("orderStatus", OrderStatus.SHIPPED));
 
 		@SuppressWarnings("unchecked")
 		List<Order> result = (List<Order>) criteria.list();
+		
+		HibernateUtil.commitTransaction();
 		return result;
 	}
 
@@ -111,31 +118,36 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 
 	@Override
 	public Camera getCamera(Integer cameraId) {
-
-		Criteria criteria = hbSession.createCriteria(Camera.class);
+		Session session = HibernateUtil.beginTransaction();
+		Criteria criteria = session.createCriteria(Camera.class);
 		criteria.add(Restrictions.eq("id", cameraId));
 
 		Camera result = (Camera) criteria.uniqueResult();
-
+		HibernateUtil.commitTransaction();
 		return result;
 	}
 
 	@Override
 	public List<Camera> searchCameras(String searchTerms) {
-		Criteria criteria = hbSession.createCriteria(Camera.class);
+		Session session = HibernateUtil.beginTransaction();
+		Criteria criteria = session.createCriteria(Camera.class);
 		criteria.add(Restrictions
 				.like("model", searchTerms, MatchMode.ANYWHERE));
 
 		@SuppressWarnings("unchecked")
 		List<Camera> result = (List<Camera>) criteria.list();
-
-		if (result.isEmpty()) {
+		HibernateUtil.commitTransaction();
+		
+		if (!result.isEmpty()) { //TODO
 			try {
 				// Calling Webservice
-				Settings setts = new Settings();
-				String wsdlURL = setts.getCSwsdl();
-				String namespace = setts.getCSnamespace();
-				String serviceName = setts.getCSserviceName();
+				//Settings setts = new Settings();
+				//String wsdlURL = setts.getCSwsdl();
+				//String namespace = setts.getCSnamespace();
+				//String serviceName = setts.getCSserviceName();
+				String wsdlURL = "http://127.0.0.1:8080/WSCameraSupplier?wsdl";
+				String namespace = "http://cs.eai.dei.uc.pt/";
+				String serviceName = "CameraSupplierService";
 				QName serviceQN = new QName(namespace, serviceName);
 
 				ServiceFactory serviceFactory = ServiceFactory.newInstance();
@@ -221,11 +233,13 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 
 	@Override
 	public Order getOrder(Integer orderId) {
-		Criteria criteria = hbSession.createCriteria(Order.class);
+		Session session = HibernateUtil.beginTransaction();
+		Criteria criteria = session.createCriteria(Order.class);
 		criteria.add(Restrictions.eq("id", orderId));
 
 		Order result = (Order) criteria.uniqueResult();
-
+		HibernateUtil.commitTransaction();
+		
 		return result;
 	}
 
