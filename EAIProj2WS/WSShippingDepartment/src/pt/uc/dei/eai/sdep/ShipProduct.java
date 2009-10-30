@@ -4,16 +4,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.List;
 
 import javax.xml.namespace.QName;
-import javax.xml.rpc.Service;
 import javax.xml.rpc.ServiceException;
 import javax.xml.rpc.ServiceFactory;
 
-import org.hibernate.Session;
-
-import pt.uc.dei.eai.common.Camera;
 import pt.uc.dei.eai.common.Order;
 import pt.uc.dei.eai.common.Utility;
 import pt.uc.dei.eai.lpco.LPCO;
