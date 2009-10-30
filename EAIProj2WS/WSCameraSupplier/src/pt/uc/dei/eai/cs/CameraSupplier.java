@@ -12,6 +12,7 @@ import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
+import org.jboss.system.server.ServerConfigLocator;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
@@ -29,8 +30,9 @@ public class CameraSupplier {
 	public List<Camera> getCameras(String name) {
 		List<Camera> resultCameras = new ArrayList<Camera>();
 		
-		try {
-			CameraProcessor cameraProc = new CameraProcessor(XML_CATALOG_LOCATION);
+		try {	
+			CameraProcessor cameraProc = new CameraProcessor(ServerConfigLocator.locate().getServerDataDir().getPath() 
+					+ "/" + XML_CATALOG_LOCATION);
 			NodeList cameraNodes = cameraProc.getNodesFromXPath(XPATH_MODEL_START + name + XPATH_MODEL_END);
 			
 			// For all cameras found
