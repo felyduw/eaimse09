@@ -44,7 +44,7 @@ try {
 	            			%>
 	 	            		<tr>
 		            			<td>Order id</td>
-		            			<td><%=order.getOrderId()%></td>
+		            			<td><%=order.getId()%></td>
 		            		</tr>
 	 	            		<tr>
 		            			<td>Purchase Date</td>

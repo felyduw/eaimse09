@@ -45,7 +45,7 @@ List<Camera> camerasList = lpco.searchCameras(free_text_search);
 		            		<tr>
 		            			<td><%=camerasList.get(i).getModel()%></td>
 		            			<td><%=camerasList.get(i).getPrice()%> &euro;</td>
-		            			<td><a href="?add=<%=camerasList.get(i).getCameraId()%>">Add to shopping cart</a></td>
+		            			<td><a href="?add=<%=camerasList.get(i).getId()%>">Add to shopping cart</a></td>
 		            		</tr>
 							<%
             			}

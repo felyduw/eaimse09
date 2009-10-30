@@ -47,7 +47,7 @@ List<Order> orders = lpco.listPurchases();
                 				Order order = orders.get(i);
     							%>
     		            		<tr>
-    		            			<td><a href="order_detail.jsp?order=<%=order.getOrderId()%>"><%=order.getOrderId()%></a></td>
+    		            			<td><a href="order_detail.jsp?order=<%=order.getId()%>"><%=order.getId()%></a></td>
     		            			<td align="center"><%=order.getPurchaseDate()%></td>
     		            			<td align="center"><%=order.getOrderedCameras().size()%></td>
     		            		</tr>
