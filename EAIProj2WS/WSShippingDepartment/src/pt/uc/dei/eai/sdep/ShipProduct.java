@@ -1,15 +1,23 @@
 package pt.uc.dei.eai.sdep;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.xml.namespace.QName;
 import javax.xml.rpc.Service;
+import javax.xml.rpc.ServiceException;
 import javax.xml.rpc.ServiceFactory;
 
+import org.hibernate.Session;
+
+import pt.uc.dei.eai.common.Camera;
 import pt.uc.dei.eai.common.Order;
 import pt.uc.dei.eai.common.Utility;
+import pt.uc.dei.eai.lpco.LPCO;
+import pt.uc.dei.eai.lpco.LPCOService;
 
 public class ShipProduct extends Thread {
 	Order shipOrder;
@@ -37,8 +45,7 @@ public class ShipProduct extends Thread {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String orderShipDate = sdf.format(cal.getTime());  
             
-            // TODO
-        	// Invoke web service in LPCO
+            invokeWSLPCO(shipOrder.getOrderId(), orderShipDate);
         	
             // Shipped new order
             Utility.writeLog("Order ID: " + shipOrder.getOrderId());
@@ -48,18 +55,27 @@ public class ShipProduct extends Thread {
         }
     }
 	
-	public void invokeWSLPCO() {
+	public void invokeWSLPCO(Integer orderId, String shippedDates) {
 		try {
-			String wsdlURL = "http://127.0.0.1:8080/WSLPCO?wsdl";
-			String namespace = "LPCOWebService";
-			String serviceName = "shipped";
+			// Calling Webservice
+			Settings setts = new Settings();
+			String wsdlURL = setts.getSDwsdl();
+			String namespace = setts.getSDnamespace();
+			String serviceName = setts.getSDserviceName();
 			QName serviceQN = new QName(namespace, serviceName);
-			
+
 			ServiceFactory serviceFactory = ServiceFactory.newInstance();
-			Service service = serviceFactory.createService(new URL(wsdlURL), serviceQN);
-			
-		} catch(Exception ex) {
-			
+
+			LPCOService service = (LPCOService) serviceFactory
+					.createService(new URL(wsdlURL), serviceQN);
+
+			LPCO lpco = service.getLPCOPort();
+			lpco.shipped(orderId, shippedDates);
+
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (ServiceException e) {
+			e.printStackTrace();
 		}
 	}
 }
