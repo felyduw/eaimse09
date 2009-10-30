@@ -4,14 +4,9 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import javax.xml.rpc.Call;
+import javax.xml.namespace.QName;
 import javax.xml.rpc.Service;
 import javax.xml.rpc.ServiceFactory;
-import javax.xml.rpc.ParameterMode;
-import javax.xml.namespace.QName;
-
-
-import com.sun.xml.internal.ws.transport.http.client.HttpTransportPipe;
 
 import pt.uc.dei.eai.common.Order;
 import pt.uc.dei.eai.common.Utility;

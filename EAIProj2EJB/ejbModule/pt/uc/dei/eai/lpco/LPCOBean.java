@@ -2,26 +2,30 @@ package pt.uc.dei.eai.lpco;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
 import javax.xml.namespace.QName;
-import javax.xml.rpc.Service;
 import javax.xml.rpc.ServiceException;
 import javax.xml.rpc.ServiceFactory;
 
 import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
-import pt.uc.dei.eai.common.*;
+import pt.uc.dei.eai.common.Camera;
+import pt.uc.dei.eai.common.Order;
+import pt.uc.dei.eai.common.OrderStatus;
+import pt.uc.dei.eai.common.User;
 import pt.uc.dei.eai.cs.CameraSupplier;
 import pt.uc.dei.eai.cs.CameraSupplierService;
 import pt.uc.dei.eai.data.HibernateUtil;
+import pt.uc.dei.eai.data.Settings;
 
 /**
  * Session Bean implementation class LPCOBean
@@ -125,28 +129,34 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 		@SuppressWarnings("unchecked")
 		List<Camera> result = (List<Camera>) criteria.list();
 
-		if (result == null) {
+		if (result.isEmpty()) {
 			try {
 				// Calling Webservice
-				String wsdlURL = "http://127.0.0.1:8080/WSCameraSupplier?wsdl";
-				String namespace = "http://cs.eai.dei.uc.pt/";
-				String serviceName = "CameraSupplierService";
+				Settings setts = new Settings();
+				String wsdlURL = setts.getCSwsdl();
+				String namespace = setts.getCSnamespace();
+				String serviceName = setts.getCSserviceName();
 				QName serviceQN = new QName(namespace, serviceName);
 
 				ServiceFactory serviceFactory = ServiceFactory.newInstance();
-				/* The "new URL(wsdlURL)" parameter is optional */
-				CameraSupplierService service = (CameraSupplierService) 
-					serviceFactory.createService(new URL(wsdlURL),
-						serviceQN);
-				
+
+				CameraSupplierService service = (CameraSupplierService) serviceFactory
+						.createService(new URL(wsdlURL), serviceQN);
+
 				CameraSupplier cs = service.getCameraSupplierPort();
-				cs.getCameras(searchTerms);
-				
+				List<pt.uc.dei.eai.cs.Camera> tmp = cs.getCameras(searchTerms);
+
+				Session tsx = HibernateUtil.beginTransaction();
+				for (pt.uc.dei.eai.cs.Camera cam : tmp) {
+					Camera camToAdd = new Camera(cam);
+					result.add(camToAdd);
+					tsx.saveOrUpdate(camToAdd);
+				}
+				HibernateUtil.commitTransaction();
+
 			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (ServiceException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -156,31 +166,75 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 
 	@Override
 	public boolean submitOrder(List<Camera> shoppingCart) {
-		// TODO DEBUG - apagar!!!
+
+		Order order = new Order();
+		order.setOrderedCameras(shoppingCart);
+		order.setOrderStatus(OrderStatus.WAITING_FOR_SHIPPING);
+		order.setUsername(getUser().getUsername());
+		order.setShippingAddress(getUser().getAddress());
+		order.setPurchaseDate(Calendar.getInstance().getTime());
+
+		try {
+			Session session = HibernateUtil.beginTransaction();
+			session.save(order);
+			HibernateUtil.commitTransaction();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			return false;
+		}
+
+		// Gerar Random aqui
+		Random r = new Random();
+		r.setSeed(Calendar.getInstance().getTimeInMillis());
+		r.nextInt(100);
+
+		if (r.nextInt(100) < 75) {
+			// Se sim
+			// / Invocar WebService
+			
+			
+		} else {
+			order.setOrderStatus(OrderStatus.NOT_PAID);
+			try {
+				Session session = HibernateUtil.beginTransaction();
+				session.update(order);
+				HibernateUtil.commitTransaction();
+			} catch (HibernateException e) {
+				e.printStackTrace();
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public boolean updateOrder(Order order) {
+		try {
+			Session session = HibernateUtil.beginTransaction();
+			session.saveOrUpdate(order);
+			HibernateUtil.commitTransaction();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			return false;
+		}
 		return true;
 	}
 
 	@Override
 	public Order getOrder(Integer orderId) {
-		// TODO DEBUG - apagar!!!
-		Order order = new Order();
-		order.setId(1);
-		order.setPurchaseDate(new Date());
-		order.setShippingAddress("Rua Teófilo Braga, nº63, R/C Esq. Coimbra");
-		order.setUsername("carlos");
-		order.setOrderedCameras(searchCameras(null));
-		return order;
+		Criteria criteria = hbSession.createCriteria(Order.class);
+		criteria.add(Restrictions.eq("id", orderId));
+
+		Order result = (Order) criteria.uniqueResult();
+
+		return result;
 	}
 
 	@Override
 	public Order getPurchase(Integer orderId) {
-		// TODO DEBUG - apagar!!!
-		Order order = new Order();
-		order.setId(134);
-		order.setPurchaseDate(new Date());
-		order.setShippingAddress("Rua Teófilo Braga, nº63, R/C Esq. Coimbra");
-		order.setUsername("carlos");
-		order.setOrderedCameras(searchCameras(null));
+		Order order = getOrder(orderId);
+		if (order.getOrderStatus() != OrderStatus.SHIPPED) {
+			return null;
+		}
 		return order;
 	}
 

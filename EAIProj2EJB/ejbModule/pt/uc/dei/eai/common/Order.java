@@ -23,6 +23,8 @@ public class Order implements Serializable {
 	
 	private OrderStatus orderStatus;
 	
+	private String emailAddress;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -81,6 +83,12 @@ public class Order implements Serializable {
 	}
 	public void setOrderStatus(OrderStatus orderStatus) {
 		this.orderStatus = orderStatus;
+	}
+	public String getEmailAddress() {
+		return emailAddress;
+	}
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
 	}
 
 }

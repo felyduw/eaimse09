@@ -14,6 +14,7 @@
 		</id>
 		<property name="username"/>
 		<property name="shippingAddress"/>
+		<property name="emailAddress"/>
 		<property name="purchaseDate" type="timestamp"/>
 		<property name="orderStatus" />
 		<list name="orderedCameras" table="REF_ORDERED_CAMERAS">

@@ -11,56 +11,80 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-/**
- * Object to read file with settings.
- * @author csimoes
- */
 public class Settings {
 
 	private String settingsFilename = "config.xml";
-	private String listOfBrandsUrl = null;
+	private String CSwsdl = null;
+	private String CSnamespace = null;
+	private String CSserviceName = null;
 
-	/**
-	 * Get the value of listOfBrandsUrl
-	 * @return the value of listOfBrandsUrl
-	 */
-	public String getListOfBrandsUrl() throws ParserConfigurationException, SAXException, IOException {
-		if (listOfBrandsUrl == null || listOfBrandsUrl.isEmpty()) {
-			readSettingsFile();
+	public String getCSwsdl() {
+		if (CSwsdl == null || CSwsdl.isEmpty()) {
+			try {
+				readSettingsFile();
+			} catch (ParserConfigurationException e) {
+				
+				e.printStackTrace();
+			} catch (SAXException e) {
+				
+				e.printStackTrace();
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
 		}
-		return listOfBrandsUrl;
+		return CSwsdl;
 	}
 
-	/**
-	 * Set the value of listOfBrandsUrl
-	 * @param listOfBrandsUrl new value of listOfBrandsUrl
-	 */
-	public void setListOfBrandsUrl(String listOfBrandsUrl) {
-		this.listOfBrandsUrl = listOfBrandsUrl;
+	public void setCSwsdl(String swsdl) {
+		CSwsdl = swsdl;
 	}
-	private String siteUrl = null;
 
-	/**
-	 * Get the value of siteUrl
-	 * @return the value of siteUrl
-	 */
-	public String getSiteUrl() throws ParserConfigurationException, SAXException, IOException {
-		if (siteUrl == null || siteUrl.isEmpty()) {
-			readSettingsFile();
+	public String getCSnamespace() {
+		if (CSnamespace == null || CSnamespace.isEmpty()) {
+			try {
+				readSettingsFile();
+			} catch (ParserConfigurationException e) {
+				
+				e.printStackTrace();
+			} catch (SAXException e) {
+				
+				e.printStackTrace();
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
 		}
-		return siteUrl;
+		return CSnamespace;
 	}
 
-	/**
-	 * Set the value of siteUrl
-	 * @param listOfBrandsUrl new value of siteUrl
-	 */
-	public void setSiteUrl(String siteUrl) {
-		this.siteUrl = siteUrl;
+	public void setCSnamespace(String snamespace) {
+		CSnamespace = snamespace;
 	}
 
-	public void Settings() {
+	public String getCSserviceName() {
+		if (CSserviceName == null || CSserviceName.isEmpty()) {
+			try {
+				readSettingsFile();
+			} catch (ParserConfigurationException e) {
+				
+				e.printStackTrace();
+			} catch (SAXException e) {
+				
+				e.printStackTrace();
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		return CSserviceName;
 	}
+
+	public void setCSserviceName(String sserviceName) {
+		CSserviceName = sserviceName;
+	}
+
+	public Settings() {}
 
 	private void readSettingsFile() throws ParserConfigurationException, SAXException, IOException {
 		DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
@@ -68,8 +92,9 @@ public class Settings {
 		Document doc = docBuilder.parse(new File(settingsFilename));
 		// normalize text representation
 		doc.getDocumentElement().normalize();
-		setSiteUrl(getNodeTextContent(doc, "SiteUrl"));
-		setListOfBrandsUrl(getNodeTextContent(doc, "ListOfBrandsUrl"));
+		setCSnamespace(getNodeTextContent(doc, "CSnamespace"));
+		setCSserviceName(getNodeTextContent(doc, "CSserviceName"));
+		setCSwsdl(getNodeTextContent(doc, "CSwsdl"));
 	}
 
 	private String getNodeTextContent(Document doc, String nodeName) {

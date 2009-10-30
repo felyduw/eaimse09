@@ -2,7 +2,11 @@ package pt.uc.dei.eai.lpco;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 
+import pt.uc.dei.eai.common.Order;
+import pt.uc.dei.eai.common.OrderStatus;
 import pt.uc.dei.eai.common.SendMail;
 import pt.uc.dei.eai.common.Utility;
 
@@ -13,19 +17,30 @@ public class LPCO {
 	public static String MESSAGE = "The order has been shipped.";
 	
 	@WebMethod
-	public boolean shipped(String orderId, String shippedDates) {
+	public boolean shipped(Integer orderId, String shippedDates) {
 		String orderEmail = null;
 		String bodyMessage = null;
 		
-		//TODO
+		LPCOBeanRemote lpco = null;
+		try {
+			InitialContext ctx = new InitialContext();
+			lpco = (LPCOBeanRemote)ctx.lookup("EAIProj2/LPCOBean/remote");
+		} catch (NamingException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		assert lpco != null;
+		
 		// Obtain data from order (check database orders)
+		Order order = lpco.getOrder(orderId);
 		
-		//TODO
-		// Update order status to shipped 
+		// Update order status to shipped
+		order.setOrderStatus(OrderStatus.SHIPPED);
+		lpco.updateOrder(order);
 		
-		//TODO
 		// Obtain and add recipient e-mail address
-		orderEmail = "";
+		orderEmail = order.getEmailAddress();
 		
 		bodyMessage = MESSAGE + "Order ID: " + orderId;
 		
