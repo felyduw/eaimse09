@@ -1,0 +1,109 @@
+<Brand>
+	<Name>Nikon</Name>
+	<Cameras>
+		<Camera>
+			<Model>DEOS 7D</Model>
+			<Description></Description>
+			<Date>2009-09-01</Date>
+			<MaxResolutions>
+				<MaxResolution>
+					<Horiz>5184</Horiz>
+					<Vert>3456</Vert>
+					<NumberPixels>17915909</NumberPixels>
+				</MaxResolution>
+			</MaxResolutions> 
+			<LowerResolutions>
+				<LowerResolution> 
+					<Horiz>5184</Horiz>
+					<Vert>3456</Vert>
+					<NumberPixels>17915909</NumberPixels>
+				</LowerResolution>
+				<LowerResolution>
+					<Horiz>3888</Horiz>
+					<Vert>2592</Vert>
+					<NumberPixels>10077699</NumberPixels>
+				</LowerResolution>
+				<LowerResolution>
+					<Horiz>3456</Horiz>
+					<Vert>2304</Vert>
+					<NumberPixels>7962629</NumberPixels>
+				</LowerResolution>
+				<LowerResolution>
+					<Horiz>2592</Horiz>
+					<Vert>1728</Vert>
+					<NumberPixels>4478979</NumberPixels>
+				</LowerResolution>
+			</LowerResolutions>
+			<ImageRatio>3:2</ImageRatio> 
+			<EffectivePixels>18.0 million</EffectivePixels>
+			<SensorSize>22.3 x 14.9 mm (3.32 cm²)</SensorSize>
+			<IsoRatings>
+					<IsoRating>Auto</IsoRating>
+					<IsoRating>100</IsoRating>
+					<IsoRating>200</IsoRating>
+					<IsoRating>400</IsoRating>
+					<IsoRating>800</IsoRating>
+					<IsoRating>1600</IsoRating>
+					<IsoRating>3200</IsoRating>
+					<IsoRating>6400</IsoRating>
+					<IsoRating>12800(H)</IsoRating>
+			</IsoRatings>
+			<MinShutterSpeed>30 sec</MinShutterSpeed>
+			<MaxShutterSpeed>1/8000 sec</MaxShutterSpeed>
+			<DepthReviewUrl>http://www.dpreview.com/previews/canoneos7d/</DepthReviewUrl> 
+			<PictureUrl>http://a.img-dpreview.com/previews/CanonEOS7D/Images/Front-001.jpg</PictureUrl>
+		</Camera>
+		<Camera>
+			<Model>ROS 7E</Model>
+			<Description></Description>
+			<Date>2009-09-02</Date>
+			<MaxResolutions>
+				<MaxResolution>
+					<Horiz>5184</Horiz>
+					<Vert>3456</Vert>
+					<NumberPixels>17915904</NumberPixels>
+				</MaxResolution>
+			</MaxResolutions> 
+			<LowerResolutions>
+				<LowerResolution>
+					<Horiz>5184</Horiz>
+					<Vert>3456</Vert>
+					<NumberPixels>17915904</NumberPixels>
+				</LowerResolution>
+				<LowerResolution>
+					<Horiz>3888</Horiz>
+					<Vert>2592</Vert>
+					<NumberPixels>10077696</NumberPixels>
+				</LowerResolution>
+				<LowerResolution>
+					<Horiz>3456</Horiz>
+					<Vert>2304</Vert>
+					<NumberPixels>7962624</NumberPixels>
+				</LowerResolution>
+				<LowerResolution>
+					<Horiz>2592</Horiz>
+					<Vert>1728</Vert>
+					<NumberPixels>4478976</NumberPixels>
+				</LowerResolution>
+			</LowerResolutions>
+			<ImageRatio>3:2</ImageRatio> 
+			<EffectivePixels>18.0 million</EffectivePixels>
+			<SensorSize>22.3 x 14.9 mm (3.32 cm²)</SensorSize>
+			<IsoRatings>
+					<IsoRating>Auto</IsoRating>
+					<IsoRating>100</IsoRating>
+					<IsoRating>200</IsoRating>
+					<IsoRating>400</IsoRating>
+					<IsoRating>800</IsoRating>
+					<IsoRating>1600</IsoRating>
+					<IsoRating>3200</IsoRating>
+					<IsoRating>6400</IsoRating>
+					<IsoRating>12800(H)</IsoRating>
+			</IsoRatings>
+			<MinShutterSpeed>30 sec</MinShutterSpeed>
+			<MaxShutterSpeed>1/8000 sec</MaxShutterSpeed>
+			<DepthReviewUrl>http://www.dpreview.com/previews/canoneos7d/</DepthReviewUrl> 
+			<PictureUrl>http://a.img-dpreview.com/previews/CanonEOS7D/Images/Front-001.jpg</PictureUrl>
+		</Camera>
+	</Cameras>
+</Brand>
