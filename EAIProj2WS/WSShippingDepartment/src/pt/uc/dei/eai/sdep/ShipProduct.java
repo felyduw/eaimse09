@@ -52,7 +52,7 @@ public class ShipProduct extends Thread {
 	
 	public void invokeWSLPCO(Integer orderId, String shippedDates) {
 		try {
-			// Calling Webservice
+			// Calling Web Service
 			Settings setts = new Settings();
 			String wsdlURL = setts.getSDwsdl();
 			String namespace = setts.getSDnamespace();

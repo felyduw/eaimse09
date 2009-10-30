@@ -8,6 +8,7 @@ public class Camera implements Serializable {
 	
 	String model;
 	String date;
+	Float price;
 	
 	public String getModel() {
 		return model;
@@ -23,5 +24,14 @@ public class Camera implements Serializable {
 	
 	public void setDate(String date) {
 		this.date = date;
-	}	
+	}
+	
+	public Float getPrice() {
+		return price;
+	}
+	
+	public void setPrice(Float price) {
+		this.price = price;
+	}
+	
 }

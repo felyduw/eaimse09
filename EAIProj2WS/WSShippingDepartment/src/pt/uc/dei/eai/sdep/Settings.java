@@ -5,6 +5,8 @@ import java.io.IOException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
+import org.jboss.system.server.ServerConfigLocator;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -13,7 +15,7 @@ import org.xml.sax.SAXException;
 
 public class Settings {
 
-	private String settingsFilename = "config.xml";
+	private String settingsFilename = "wslpco_config.xml";
 	private String SDwsdl = null;
 	private String SDnamespace = null;
 	private String SDserviceName = null;
@@ -89,7 +91,10 @@ public class Settings {
 	private void readSettingsFile() throws ParserConfigurationException, SAXException, IOException {
 		DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-		Document doc = docBuilder.parse(new File(settingsFilename));
+		
+		Document doc = docBuilder.parse(new File(ServerConfigLocator.locate().getServerConfigURL() + 
+				"/" + settingsFilename));
+		
 		// normalize text representation
 		doc.getDocumentElement().normalize();
 		setSDnamespace(getNodeTextContent(doc, "SDnamespace"));

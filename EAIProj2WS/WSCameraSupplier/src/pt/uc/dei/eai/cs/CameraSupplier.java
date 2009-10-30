@@ -63,6 +63,7 @@ public class CameraSupplier {
 		Camera newCamera = new Camera();
 		newCamera.setModel(getStringFromXPath(cameraNode.getParentNode(), NODE_MODEL));
 		newCamera.setDate(getStringFromXPath(cameraNode.getParentNode(), NODE_DATE));
+		newCamera.setPrice(Utility.randomPrice());
 		
 		return newCamera;
 	}
