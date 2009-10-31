@@ -1,6 +1,7 @@
 <%@ page import="javax.naming.*" %>
 <%@ page import="pt.uc.dei.eai.lpco.LPCOBean"%>
-<%@page import="pt.uc.dei.eai.lpco.LPCOBeanRemote"%>
+<%@ page import="pt.uc.dei.eai.lpco.LPCOBeanRemote"%>
+<%@ page import="pt.uc.dei.eai.common.User"%>
 <%
 String error = null;
 String submit_action = request.getParameter("Submit");
@@ -27,13 +28,19 @@ if (submit_action != null && submit_action.equals("Logout")) {
 		error = "Login error";
 	}
 }
+
+//Debug
+User u = lpco.getUser();
+String debug = "none";
+if (u != null) debug = u.getUsername();
+
 if (myname != null) {
 	%>
 	
 <form method="post">
 	<table>
 		<tr>
-			<td><%=myname%></td>
+			<td><%=myname%> !!! <%= debug %></td>
 		</tr>
 		<tr>
 			<td colspan="2"><input id="Submit" name="Submit" type="submit" value="Logout" /></td>

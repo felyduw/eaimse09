@@ -5,20 +5,25 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
+import org.jboss.system.server.ServerConfigLocator;
 
 public class HibernateUtil {
 
 	private static SessionFactory factory;
-	private static String xmlMappingFile = "eai.hbm.xml";
+	private static String configPath = ServerConfigLocator.locate().getServerConfigURL().getPath();
+	private static String dataPath = ServerConfigLocator.locate().getServerDataDir().getAbsolutePath();
+	private static String xmlMappingFile = configPath + "/eai.hbm.xml";
 
 	public static Configuration getInitializedConfiguration() {
 		Configuration config = new Configuration();
 		 
 		try {
 			config.setProperties(System.getProperties());
-			config.setProperty("hibernate.connection.driver_class", "org.hsqldb.jdbcDriver");
-			config.setProperty("hibernate.connection.url", "jdbc:hsqldb:${jboss.server.data.dir}${/}hypersonic${/}localDB");
-			config.setProperty("hibernate.connection.username", "sa");
+			//config.setProperty("hibernate.connection.driver_class", "org.hsqldb.jdbcDriver");
+			//config.setProperty("hibernate.connection.username", "sa");
+			config.setProperty(
+					"hibernate.connection.url", 
+					"jdbc:hsqldb:" + dataPath + "/hypersonic/localDB");
 			config.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
 			config.setProperty("hibernate.current_session_context_class", "org.hibernate.context.ThreadLocalSessionContext");
 			
@@ -34,6 +39,7 @@ public class HibernateUtil {
 	public static void recreateDatabase() {
 		Configuration config = HibernateUtil.getInitializedConfiguration();
 		new SchemaExport(config).create(true, true);
+		//new SchemaExport(config).
 	}
 
 	public static Session getSession() {

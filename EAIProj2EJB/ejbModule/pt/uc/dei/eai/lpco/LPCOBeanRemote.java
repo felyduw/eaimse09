@@ -5,9 +5,11 @@ import javax.ejb.Remote;
 
 import pt.uc.dei.eai.common.Camera;
 import pt.uc.dei.eai.common.Order;
+import pt.uc.dei.eai.common.User;
 
 @Remote
 public interface LPCOBeanRemote {
+	public User getUser();
 	public boolean doLogin(String username, String password);
 	public boolean doLogout(String username);
 	public List<Camera> searchCameras(String searchTerms);

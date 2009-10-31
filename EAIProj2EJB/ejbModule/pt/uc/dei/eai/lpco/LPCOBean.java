@@ -25,7 +25,6 @@ import pt.uc.dei.eai.common.User;
 import pt.uc.dei.eai.cs.CameraSupplier;
 import pt.uc.dei.eai.cs.CameraSupplierService;
 import pt.uc.dei.eai.data.HibernateUtil;
-import pt.uc.dei.eai.data.Settings;
 
 /**
  * Session Bean implementation class LPCOBean
@@ -39,6 +38,7 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 	@PostConstruct
 	public void initialize() {
 		user = null;
+		//HibernateUtil.recreateDatabase();
 	}
 
 	public User getUser() {
@@ -138,7 +138,7 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 		List<Camera> result = (List<Camera>) criteria.list();
 		HibernateUtil.commitTransaction();
 		
-		if (!result.isEmpty()) { //TODO
+		if (!result.isEmpty()) { //TODO Retirar o ponto de exclamacao
 			try {
 				// Calling Webservice
 				//Settings setts = new Settings();
