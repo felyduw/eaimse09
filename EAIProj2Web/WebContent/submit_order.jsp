@@ -6,8 +6,15 @@
 <%
 String error = null;
 ShoppingCart existingCart = (ShoppingCart)session.getAttribute("cart");
-InitialContext ctx = new InitialContext();
-LPCOBeanRemote lpco = (LPCOBeanRemote)ctx.lookup("EAIProj2/LPCOBean/remote");
+
+HttpSession s = request.getSession();
+LPCOBeanRemote lpco = (LPCOBeanRemote) s.getAttribute("MyBean");
+if (lpco == null) {
+	InitialContext ctx = new InitialContext();
+	lpco = (LPCOBeanRemote)ctx.lookup("EAIProj2/LPCOBean/remote");
+	s.setAttribute("MyBean", lpco);
+}
+
 if (existingCart != null) {
 	if (lpco.submitOrder(existingCart.getCameras())) {
 		// purchase done, clean shopping cart

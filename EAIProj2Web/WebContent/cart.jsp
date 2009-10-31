@@ -11,8 +11,15 @@ try {
 	String cameraIdString = request.getParameter("add");
 	cameraId = Integer.parseInt(cameraIdString);
 } catch (Exception exc) { }
-InitialContext ctx = new InitialContext();
-LPCOBeanRemote lpco = (LPCOBeanRemote)ctx.lookup("EAIProj2/LPCOBean/remote");
+
+HttpSession s = request.getSession();
+LPCOBeanRemote lpco = (LPCOBeanRemote) s.getAttribute("MyBean");
+if (lpco == null) {
+	InitialContext ctx = new InitialContext();
+	lpco = (LPCOBeanRemote)ctx.lookup("EAIProj2/LPCOBean/remote");
+	s.setAttribute("MyBean", lpco);
+}
+
 // Add camera to shopping cart
 if (cameraId != null) {
 	Camera camera = lpco.getCamera(cameraId);

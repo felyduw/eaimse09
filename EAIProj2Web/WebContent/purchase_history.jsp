@@ -6,8 +6,15 @@
 <%@ page import="pt.uc.dei.eai.shopwebsite.ShoppingCart"%>
 <%
 String error = null;
-InitialContext ctx = new InitialContext();
-LPCOBeanRemote lpco = (LPCOBeanRemote)ctx.lookup("EAIProj2/LPCOBean/remote");
+
+HttpSession s = request.getSession();
+LPCOBeanRemote lpco = (LPCOBeanRemote) s.getAttribute("MyBean");
+if (lpco == null) {
+	InitialContext ctx = new InitialContext();
+	lpco = (LPCOBeanRemote)ctx.lookup("EAIProj2/LPCOBean/remote");
+	s.setAttribute("MyBean", lpco);
+}
+
 List<Order> orders = lpco.listPurchases();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

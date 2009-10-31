@@ -6,8 +6,14 @@
 <%
 String error = null;
 String free_text_search = request.getParameter("free_text_search");
-InitialContext ctx = new InitialContext();
-LPCOBeanRemote lpco = (LPCOBeanRemote)ctx.lookup("EAIProj2/LPCOBean/remote");
+
+HttpSession s = request.getSession();
+LPCOBeanRemote lpco = (LPCOBeanRemote) s.getAttribute("MyBean");
+if (lpco == null) {
+	InitialContext ctx = new InitialContext();
+	lpco = (LPCOBeanRemote)ctx.lookup("EAIProj2/LPCOBean/remote");
+	s.setAttribute("MyBean", lpco);
+}
 // Pesquisa das cameras
 List<Camera> camerasList = lpco.searchCameras(free_text_search);
 %>

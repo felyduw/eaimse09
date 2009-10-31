@@ -12,8 +12,15 @@ String password = request.getParameter("Password");
 String address = request.getParameter("Address");
 String email = request.getParameter("Email");
 if (submit_action != null && submit_action.equals("Register")) {
-	InitialContext ctx = new InitialContext();
-	LPCOBeanRemote lpco = (LPCOBeanRemote)ctx.lookup("EAIProj2/LPCOBean/remote");
+	
+	HttpSession s = request.getSession();
+	LPCOBeanRemote lpco = (LPCOBeanRemote) s.getAttribute("MyBean");
+	if (lpco == null) {
+		InitialContext ctx = new InitialContext();
+		lpco = (LPCOBeanRemote)ctx.lookup("EAIProj2/LPCOBean/remote");
+		s.setAttribute("MyBean", lpco);
+	}
+	
 	// validate data
 	if (username == null || username.isEmpty()) {
 		error = "Username not valid.";

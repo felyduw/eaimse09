@@ -6,8 +6,15 @@
 String error = null;
 String submit_action = request.getParameter("Submit");
 String myname = (String)session.getAttribute("username");
-InitialContext ctx = new InitialContext();
-LPCOBeanRemote lpco = (LPCOBeanRemote)ctx.lookup("EAIProj2/LPCOBean/remote");
+
+HttpSession s = request.getSession();
+LPCOBeanRemote lpco = (LPCOBeanRemote) s.getAttribute("MyBean");
+if (lpco == null) {
+	InitialContext ctx = new InitialContext();
+	lpco = (LPCOBeanRemote)ctx.lookup("EAIProj2/LPCOBean/remote");
+	s.setAttribute("MyBean", lpco);
+}
+
 if (submit_action != null && submit_action.equals("Logout")) {
 	if (lpco.doLogout(myname)) {
 		// se deslogou ok no servidor
@@ -30,9 +37,9 @@ if (submit_action != null && submit_action.equals("Logout")) {
 }
 
 //Debug
-User u = lpco.getUser();
-String debug = "none";
-if (u != null) debug = u.getUsername();
+//User u = lpco.getUser();
+//String debug = "none";
+//if (u != null) debug = u.getUsername();
 
 if (myname != null) {
 	%>
@@ -40,7 +47,7 @@ if (myname != null) {
 <form method="post">
 	<table>
 		<tr>
-			<td><%=myname%> !!! <%= debug %></td>
+			<td><%=myname%></td>
 		</tr>
 		<tr>
 			<td colspan="2"><input id="Submit" name="Submit" type="submit" value="Logout" /></td>
