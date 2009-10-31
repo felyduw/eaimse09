@@ -18,7 +18,7 @@ public class HibernateUtil {
 		Configuration config = new Configuration();
 		 
 		try {
-			config.setProperties(System.getProperties());
+			//config.setProperties(System.getProperties());
 			//config.setProperty("hibernate.connection.driver_class", "org.hsqldb.jdbcDriver");
 			//config.setProperty("hibernate.connection.username", "sa");
 			config.setProperty(
@@ -28,6 +28,7 @@ public class HibernateUtil {
 			config.setProperty("hibernate.current_session_context_class", "org.hibernate.context.ThreadLocalSessionContext");
 			
 			config.addFile(xmlMappingFile);
+			
 			config.configure();
 		} catch (MappingNotFoundException e) {
 			//e.printStackTrace();

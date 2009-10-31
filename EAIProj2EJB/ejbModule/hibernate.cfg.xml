@@ -8,5 +8,6 @@
         <!--  property name="hibernate.connection.url">jdbc:hsqldb:${jboss.server.data.dir}/hypersonic/localDB</property>  -->
         <property name="hibernate.connection.username">sa</property>
         <property name="hibernate.dialect">org.hibernate.dialect.HSQLDialect</property>
+
     </session-factory>
 </hibernate-configuration>

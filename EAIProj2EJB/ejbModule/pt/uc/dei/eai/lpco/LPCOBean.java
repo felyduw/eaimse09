@@ -202,7 +202,7 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 
 		if (r.nextInt(100) < 75) {
 			// Se sim
-			// / Invocar WebService
+			// /TODO Invocar WebService
 			
 			
 		} else {
