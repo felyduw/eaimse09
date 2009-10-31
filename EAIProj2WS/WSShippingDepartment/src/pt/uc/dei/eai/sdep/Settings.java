@@ -15,7 +15,7 @@ import org.xml.sax.SAXException;
 
 public class Settings {
 
-	private String settingsFilename = "wslpco_config.xml";
+	private String settingsFilename = "eai-proj2-settings.xml";
 	private String SDwsdl = null;
 	private String SDnamespace = null;
 	private String SDserviceName = null;
