@@ -11,6 +11,7 @@ import javax.ejb.Stateful;
 import javax.xml.namespace.QName;
 import javax.xml.rpc.ServiceException;
 import javax.xml.rpc.ServiceFactory;
+import javax.xml.ws.WebServiceRef;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -31,6 +32,10 @@ import pt.uc.dei.eai.data.HibernateUtil;
  */
 @Stateful
 public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
+	
+	@WebServiceRef(wsdlLocation="http://127.0.0.1:8080/WSCameraSupplier?wsdl")
+    static CameraSupplierService service;
+
 
 	private User user;
 	//private Session hbSession;
@@ -138,39 +143,18 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 		List<Camera> result = (List<Camera>) criteria.list();
 		HibernateUtil.commitTransaction();
 		
-		if (result.isEmpty()) { //TODO Retirar o ponto de exclamacao
-			try {
-				// Calling Webservice
-//				Settings setts = new Settings();
-//				String wsdlURL = setts.getCSwsdl();
-//				String namespace = setts.getCSnamespace();
-//				String serviceName = setts.getCSserviceName();
-				String wsdlURL = "http://127.0.0.1:8080/WSCameraSupplier?wsdl";
-				String namespace = "http://cs.eai.dei.uc.pt/";
-				String serviceName = "CameraSupplierService";
-				QName serviceQN = new QName(namespace, serviceName);
+		if (result.isEmpty()) { //TODO Camera WS
+			CameraSupplier cs = service.getCameraSupplierPort();
 
-				ServiceFactory serviceFactory = ServiceFactory.newInstance();
+			List<pt.uc.dei.eai.cs.Camera> tmp = cs.getCameras(searchTerms);
 
-				CameraSupplierService service = (CameraSupplierService) serviceFactory
-						.createService(new URL(wsdlURL), serviceQN);
-
-				CameraSupplier cs = service.getCameraSupplierPort();
-				List<pt.uc.dei.eai.cs.Camera> tmp = cs.getCameras(searchTerms);
-
-				Session tsx = HibernateUtil.beginTransaction();
-				for (pt.uc.dei.eai.cs.Camera cam : tmp) {
-					Camera camToAdd = new Camera(cam);
-					result.add(camToAdd);
-					tsx.saveOrUpdate(camToAdd);
-				}
-				HibernateUtil.commitTransaction();
-
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			} catch (ServiceException e) {
-				e.printStackTrace();
+			Session tsx = HibernateUtil.beginTransaction();
+			for (pt.uc.dei.eai.cs.Camera cam : tmp) {
+				Camera camToAdd = new Camera(cam);
+				result.add(camToAdd);
+				tsx.saveOrUpdate(camToAdd);
 			}
+			HibernateUtil.commitTransaction();
 		}
 
 		return result;
