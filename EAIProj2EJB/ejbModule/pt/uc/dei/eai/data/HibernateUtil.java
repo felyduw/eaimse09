@@ -1,11 +1,16 @@
 package pt.uc.dei.eai.data;
 
+import java.util.List;
+
+import org.hibernate.Hibernate;
 import org.hibernate.MappingNotFoundException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 import org.jboss.system.server.ServerConfigLocator;
+
+import pt.uc.dei.eai.common.Order;
 
 public class HibernateUtil {
 
@@ -69,5 +74,12 @@ public class HibernateUtil {
 	
 	public static void rollbackTransaction(){
 		HibernateUtil.getSession().getTransaction().rollback();
+	}
+	
+	public static void initializeOrderList(List<Order> orderList) {
+		Hibernate.initialize(orderList);
+		for(Order o : orderList) {
+			Hibernate.initialize(o.getOrderedCameras());
+		}
 	}
 }

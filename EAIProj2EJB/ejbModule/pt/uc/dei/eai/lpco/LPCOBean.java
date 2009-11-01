@@ -11,6 +11,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.ws.WebServiceRef;
 
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
@@ -84,7 +85,7 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 		
 		@SuppressWarnings("unchecked")
 		List<Order> result = session.createCriteria(Order.class).list();
-		
+		HibernateUtil.initializeOrderList(result);
 		HibernateUtil.commitTransaction();
 		return result;
 	}
@@ -97,7 +98,7 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 
 		@SuppressWarnings("unchecked")
 		List<Order> result = (List<Order>) criteria.list();
-		
+		HibernateUtil.initializeOrderList(result);
 		HibernateUtil.commitTransaction();
 		return result;
 	}
@@ -235,6 +236,8 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 		criteria.add(Restrictions.eq("id", orderId));
 
 		Order result = (Order) criteria.uniqueResult();
+		Hibernate.initialize(result);
+		Hibernate.initialize(result.getOrderedCameras());
 		HibernateUtil.commitTransaction();
 		
 		return result;

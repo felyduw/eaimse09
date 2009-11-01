@@ -48,6 +48,7 @@ List<Order> orders = lpco.listAllOrders();
     	            			<th>Order id</th>
     	            			<th>Purchase date</th>
     	            			<th># Cameras</th>
+    	            			<th>Order Status</th>
     	            		</tr>
                 			<%
                 			for (int i = 0; i < orders.size(); i++) {
@@ -57,6 +58,7 @@ List<Order> orders = lpco.listAllOrders();
     		            			<td><a href="order_detail.jsp?order=<%=order.getId()%>"><%=order.getId()%></a></td>
     		            			<td align="center"><%=order.getPurchaseDate()%></td>
     		            			<td align="center"><%=order.getOrderedCameras().size()%></td>
+    		            			<td align="center"><%=order.getOrderStatus().toString() %></td>
     		            		</tr>
     							<%
                 			}
