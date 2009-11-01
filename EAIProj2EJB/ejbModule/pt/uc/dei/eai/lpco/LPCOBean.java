@@ -138,13 +138,13 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 		List<Camera> result = (List<Camera>) criteria.list();
 		HibernateUtil.commitTransaction();
 		
-		if (!result.isEmpty()) { //TODO Retirar o ponto de exclamacao
+		if (result.isEmpty()) { //TODO Retirar o ponto de exclamacao
 			try {
 				// Calling Webservice
-				//Settings setts = new Settings();
-				//String wsdlURL = setts.getCSwsdl();
-				//String namespace = setts.getCSnamespace();
-				//String serviceName = setts.getCSserviceName();
+//				Settings setts = new Settings();
+//				String wsdlURL = setts.getCSwsdl();
+//				String namespace = setts.getCSnamespace();
+//				String serviceName = setts.getCSserviceName();
 				String wsdlURL = "http://127.0.0.1:8080/WSCameraSupplier?wsdl";
 				String namespace = "http://cs.eai.dei.uc.pt/";
 				String serviceName = "CameraSupplierService";
@@ -202,7 +202,27 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 
 		if (r.nextInt(100) < 75) {
 			// Se sim
-			// /TODO Invocar WebService
+			try {
+				// Calling Webservice
+				String wsdlURL = "http://127.0.0.1:8080/WSShippingDepartment?wsdl";
+				String namespace = "http://sdep.eai.dei.uc.pt/";
+				String serviceName = "ShippingDepartmentService";
+				QName serviceQN = new QName(namespace, serviceName);
+
+				ServiceFactory serviceFactory = ServiceFactory.newInstance();
+				// TODO WebService: MUDAR ESTE CODIGO
+				CameraSupplierService service = (CameraSupplierService) serviceFactory
+						.createService(new URL(wsdlURL), serviceQN);
+
+				CameraSupplier cs = service.getCameraSupplierPort();
+				List<pt.uc.dei.eai.cs.Camera> tmp = cs.getCameras("");
+				
+
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			} catch (ServiceException e) {
+				e.printStackTrace();
+			}
 			
 			
 		} else {
