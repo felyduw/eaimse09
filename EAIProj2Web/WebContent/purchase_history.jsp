@@ -3,7 +3,7 @@
 <%@ page import="pt.uc.dei.eai.common.*" %>
 <%@ page import="pt.uc.dei.eai.lpco.LPCOBean"%>
 <%@ page import="pt.uc.dei.eai.lpco.LPCOBeanRemote"%>
-<%@ page import="pt.uc.dei.eai.shopwebsite.ShoppingCart"%>
+
 <%
 String error = null;
 

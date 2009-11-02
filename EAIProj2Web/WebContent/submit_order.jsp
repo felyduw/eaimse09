@@ -2,10 +2,10 @@
 <%@ page import="pt.uc.dei.eai.lpco.LPCOBean"%>
 <%@page import="pt.uc.dei.eai.lpco.LPCOBeanRemote"%>
 <%@ page import="pt.uc.dei.eai.common.*" %>
-<%@page import="pt.uc.dei.eai.shopwebsite.ShoppingCart"%>
+
 <%
 String error = null;
-ShoppingCart existingCart = (ShoppingCart)session.getAttribute("cart");
+
 
 HttpSession s = request.getSession();
 LPCOBeanRemote lpco = (LPCOBeanRemote) s.getAttribute("MyBean");
@@ -15,8 +15,8 @@ if (lpco == null) {
 	s.setAttribute("MyBean", lpco);
 }
 
-if (existingCart != null) {
-	if (lpco.submitOrder(existingCart.getCameras())) {
+if (lpco.getShoppingCart().size() != 0) {
+	if (lpco.submitOrder()) {
 		// purchase done, clean shopping cart
 		session.removeAttribute("cart");
 	} else {

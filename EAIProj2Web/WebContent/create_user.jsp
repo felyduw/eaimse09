@@ -2,7 +2,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="pt.uc.dei.eai.lpco.*"%>
 <%@ page import="pt.uc.dei.eai.common.*"%>
-<%@ page import="pt.uc.dei.eai.shopwebsite.ShoppingCart"%>
+
 <%
 String error = null;
 Boolean userCreated = false;

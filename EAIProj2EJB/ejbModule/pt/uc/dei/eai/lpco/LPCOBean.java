@@ -1,5 +1,6 @@
 package pt.uc.dei.eai.lpco;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -34,21 +35,21 @@ import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl
  */
 @Stateful
 public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
-	
-	@WebServiceRef(wsdlLocation="http://127.0.0.1:8080/WSCameraSupplier?wsdl")
-    static CameraSupplierService CameraService;
-	
-	@WebServiceRef(wsdlLocation="http://127.0.0.1:8080/WSShippingDepartment?wsdl")
-    static ShippingDepartmentService ShippingService;
 
+	@WebServiceRef(wsdlLocation = "http://127.0.0.1:8080/WSCameraSupplier?wsdl")
+	static CameraSupplierService CameraService;
+
+	@WebServiceRef(wsdlLocation = "http://127.0.0.1:8080/WSShippingDepartment?wsdl")
+	static ShippingDepartmentService ShippingService;
 
 	private User user;
-	//private Session hbSession;
-
+	private List<Camera> shoppingCart;
+	
 	@PostConstruct
 	public void initialize() {
 		user = null;
-		//HibernateUtil.recreateDatabase();
+		shoppingCart = new ArrayList<Camera>();
+		// HibernateUtil.recreateDatabase();
 	}
 
 	public User getUser() {
@@ -62,7 +63,7 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 		criteria.add(Restrictions.eq("username", username));
 		User u = (User) criteria.uniqueResult();
 		HibernateUtil.commitTransaction();
-		
+
 		if (u.getPassword().equals(password)) {
 			user = u;
 			return true;
@@ -74,17 +75,20 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 	public boolean doLogout(String username) {
 		if (user.getUsername().equals(username)) {
 			user = null;
+			shoppingCart.clear();
 			return true;
 		}
 		return false;
 	}
 
+	
 	@Override
 	public List<Order> listAllOrders() {
 		Session session = HibernateUtil.beginTransaction();
-		
+		Criteria criteria = session.createCriteria(Order.class);
+		criteria.add(Restrictions.eq("username", user.getUsername()));
 		@SuppressWarnings("unchecked")
-		List<Order> result = session.createCriteria(Order.class).list();
+		List<Order> result = criteria.list();
 		HibernateUtil.initializeOrderList(result);
 		HibernateUtil.commitTransaction();
 		return result;
@@ -95,7 +99,8 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 		Session session = HibernateUtil.beginTransaction();
 		Criteria criteria = session.createCriteria(Order.class);
 		criteria.add(Restrictions.eq("orderStatus", OrderStatus.SHIPPED));
-
+		criteria.add(Restrictions.eq("username", user.getUsername()));
+		
 		@SuppressWarnings("unchecked")
 		List<Order> result = (List<Order>) criteria.list();
 		HibernateUtil.initializeOrderList(result);
@@ -147,8 +152,8 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 		@SuppressWarnings("unchecked")
 		List<Camera> result = (List<Camera>) criteria.list();
 		HibernateUtil.commitTransaction();
-		
-		if (result.isEmpty()) { //TODO Camera WS
+
+		if (result.isEmpty()) { // TODO Camera WS
 			CameraSupplier cs = CameraService.getCameraSupplierPort();
 
 			List<pt.uc.dei.eai.cs.Camera> tmp = cs.getCameras(searchTerms);
@@ -166,10 +171,13 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 	}
 
 	@Override
-	public boolean submitOrder(List<Camera> shoppingCart) {
+	public boolean submitOrder() {
+		
+		if (shoppingCart.size() == 0 || user == null)
+			return false;
 
 		Order order = new Order();
-		order.setOrderedCameras(shoppingCart);
+		order.setOrderedCameras(new ArrayList<Camera>(shoppingCart));
 		order.setOrderStatus(OrderStatus.WAITING_FOR_SHIPPING);
 		order.setUsername(getUser().getUsername());
 		order.setShippingAddress(getUser().getAddress());
@@ -190,19 +198,19 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 		r.nextInt(100);
 
 		if (r.nextInt(100) < 75) {
-			//TODO Shipping WS
+			// TODO Shipping WS
 			ShippingDepartment sd = ShippingService.getShippingDepartmentPort();
-			
+
 			pt.uc.dei.eai.sdep.Order wsOrder = new pt.uc.dei.eai.sdep.Order();
 			wsOrder.setShippingAddress(order.getShippingAddress());
 			wsOrder.setUsername(order.getUsername());
-			XMLGregorianCalendar calendar = 
-				new XMLGregorianCalendarImpl((GregorianCalendar) GregorianCalendar.getInstance());
+			XMLGregorianCalendar calendar = new XMLGregorianCalendarImpl(
+					(GregorianCalendar) GregorianCalendar.getInstance());
 			wsOrder.setPurchaseDate(calendar);
 			wsOrder.setOrderId(identifier);
-			
+
 			sd.makeOrder(wsOrder);
-			
+
 		} else {
 			order.setOrderStatus(OrderStatus.NOT_PAID);
 			try {
@@ -214,9 +222,10 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 				return false;
 			}
 		}
+		shoppingCart.clear();
 		return true;
 	}
-	
+
 	public boolean updateOrder(Order order) {
 		try {
 			Session session = HibernateUtil.beginTransaction();
@@ -234,12 +243,13 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 		Session session = HibernateUtil.beginTransaction();
 		Criteria criteria = session.createCriteria(Order.class);
 		criteria.add(Restrictions.eq("id", orderId));
+		criteria.add(Restrictions.eq("username", user.getUsername()));
 
 		Order result = (Order) criteria.uniqueResult();
 		Hibernate.initialize(result);
 		Hibernate.initialize(result.getOrderedCameras());
 		HibernateUtil.commitTransaction();
-		
+
 		return result;
 	}
 
@@ -250,6 +260,38 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 			return null;
 		}
 		return order;
+	}
+	
+	@Override
+	public float getTotalAmount() {
+		float totalAmount = 0;
+		for (int i = 0; i < shoppingCart.size(); i++) {
+			Camera currentCamera = shoppingCart.get(i);
+			if (currentCamera != null) {
+				totalAmount += shoppingCart.get(i).getPrice();
+			}
+		}
+		return totalAmount;
+	}
+	
+	@Override
+	public List<Camera> getShoppingCart() {
+		return shoppingCart;
+	}
+
+	@Override
+	public void setShoppingCart(List<Camera> shoppingCart) {
+		this.shoppingCart = shoppingCart;
+	}
+
+	@Override
+	public void addCamera(Camera c) {
+		shoppingCart.add(c);
+	}
+
+	@Override
+	public void removeCamera(Camera c) {
+		shoppingCart.remove(c);
 	}
 
 }

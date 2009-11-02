@@ -1,8 +1,20 @@
+<%@ page import="javax.naming.*" %>
+<%@ page import="java.util.*" %>
 <%@ page import="pt.uc.dei.eai.common.*" %>
-<%@page import="pt.uc.dei.eai.shopwebsite.ShoppingCart"%>
+<%@ page import="pt.uc.dei.eai.lpco.LPCOBean"%>
+<%@ page import="pt.uc.dei.eai.lpco.LPCOBeanRemote"%>
+
 <%
 String error = null;
-ShoppingCart existingCart = (ShoppingCart)session.getAttribute("cart");
+
+HttpSession s = request.getSession();
+LPCOBeanRemote lpco = (LPCOBeanRemote) s.getAttribute("MyBean");
+if (lpco == null) {
+	InitialContext ctx = new InitialContext();
+	lpco = (LPCOBeanRemote)ctx.lookup("EAIProj2/LPCOBean/remote");
+	s.setAttribute("MyBean", lpco);
+}
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -24,14 +36,14 @@ ShoppingCart existingCart = (ShoppingCart)session.getAttribute("cart");
             	<form method="post">
             	<table style="width: 100%">
             		<%
-            		if (existingCart != null && existingCart.getCameras().size() > 0) {
+            		int cartSize = lpco.getShoppingCart().size();
+            		if (cartSize != 0) {
             			%>
 	            		<tr>
-	            			<td colspan="2">There are <%=existingCart.getCameras().size()%> cameras in your shopping cart.</td>
+	            			<td colspan="2">There are <%=cartSize%> cameras in your shopping cart.</td>
 	            		</tr>
             			<%
-            			for (int i = 0; i < existingCart.getCameras().size(); i++) {
-            				Camera camera = existingCart.getCameras().get(i);
+            			for (Camera camera : lpco.getShoppingCart()) {
 							%>
 		            		<tr>
 		            			<td><%=camera.getModel()%></td>

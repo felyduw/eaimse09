@@ -2,10 +2,8 @@
 <%@ page import="pt.uc.dei.eai.common.*" %>
 <%@ page import="pt.uc.dei.eai.lpco.LPCOBean"%>
 <%@page import="pt.uc.dei.eai.lpco.LPCOBeanRemote"%>
-<%@page import="pt.uc.dei.eai.shopwebsite.ShoppingCart"%>
 <%
 String error = null;
-ShoppingCart existingCart = (ShoppingCart)session.getAttribute("cart");
 Integer cameraId = null;
 try {
 	String cameraIdString = request.getParameter("add");
@@ -23,26 +21,17 @@ if (lpco == null) {
 // Add camera to shopping cart
 if (cameraId != null) {
 	Camera camera = lpco.getCamera(cameraId);
-	if (existingCart == null) {
-		// Shopping Cart is still empty
-		ShoppingCart newCart = new ShoppingCart();
-		newCart.getCameras().add(camera);
-		existingCart = newCart;
-	} else  {
-		// Shopping Cart is not empty
-		existingCart.getCameras().add(camera);
-	}	
-	session.setAttribute("cart", existingCart);
+	lpco.addCamera(camera);
 }
 // Show shopping cart
-if (existingCart == null) {
+if (lpco.getShoppingCart().size() == 0) {
 %>
 	Shopping cart empty.
 <%
 } else  {
 %>
 	<form method="post">
-	Shopping cart has <%=existingCart.getCameras().size()%> cameras, with a total value of <%=existingCart.getTotalAmount()%> &euro;&nbsp;&nbsp;&nbsp;
+	Shopping cart has <%=lpco.getShoppingCart().size()%> cameras, with a total value of <%=lpco.getTotalAmount()%> &euro;&nbsp;&nbsp;&nbsp;
 	<a href="checkout.jsp">Checkout</a>
 	</form>
 <% 
