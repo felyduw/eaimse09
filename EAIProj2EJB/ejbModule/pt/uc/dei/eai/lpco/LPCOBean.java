@@ -49,7 +49,7 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 	public void initialize() {
 		user = null;
 		shoppingCart = new ArrayList<Camera>();
-		// HibernateUtil.recreateDatabase();
+		//HibernateUtil.recreateDatabase();
 	}
 
 	public User getUser() {
