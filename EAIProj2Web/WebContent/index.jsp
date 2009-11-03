@@ -34,7 +34,7 @@ List<Camera> camerasList = lpco.searchCameras(free_text_search);
         <tr>
         	<td style="width: 200px"><jsp:include page="login.jsp"></jsp:include></td>
             <td style="width: 600px" rowspan="2" valign="top">
-            	<form method="post">
+            	<form method="get">
             	<table style="width: 100%">
             		<tr>
             			<td colspan="3">Free text search:<input id="free_text_search" name="free_text_search" type="text" /><input id="Submit" name="Submit" type="submit" value="Search" /></td>
