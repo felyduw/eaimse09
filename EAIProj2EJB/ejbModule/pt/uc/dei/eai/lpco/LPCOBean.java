@@ -84,6 +84,7 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 	
 	@Override
 	public List<Order> listAllOrders() {
+		if (user == null) return new ArrayList<Order>();
 		Session session = HibernateUtil.beginTransaction();
 		Criteria criteria = session.createCriteria(Order.class);
 		criteria.add(Restrictions.eq("username", user.getUsername()));
@@ -96,6 +97,7 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 
 	@Override
 	public List<Order> listPurchases() {
+		if (user == null) return new ArrayList<Order>();
 		Session session = HibernateUtil.beginTransaction();
 		Criteria criteria = session.createCriteria(Order.class);
 		criteria.add(Restrictions.eq("orderStatus", OrderStatus.SHIPPED));
@@ -245,7 +247,6 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 		Session session = HibernateUtil.beginTransaction();
 		Criteria criteria = session.createCriteria(Order.class);
 		criteria.add(Restrictions.eq("id", orderId));
-		criteria.add(Restrictions.eq("username", user.getUsername()));
 
 		Order result = (Order) criteria.uniqueResult();
 		Hibernate.initialize(result);
