@@ -1,20 +1,21 @@
 package pt.uc.dei.eai.sdep;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import javax.xml.namespace.QName;
-import javax.xml.rpc.ServiceException;
-import javax.xml.rpc.ServiceFactory;
+import javax.xml.ws.WebServiceRef;
 
 import pt.uc.dei.eai.common.Order;
 import pt.uc.dei.eai.common.Utility;
-import pt.uc.dei.eai.lpco.LPCO;
-import pt.uc.dei.eai.lpco.LPCOService;
+import pt.uc.dei.eai.lpco.LPCOProxy;
 
+/**
+ * Ship Product and call LPCO Web Service.
+ */
 public class ShipProduct extends Thread {
+	
+	final static String wsdlLocation = "http://127.0.0.1:8080/WSLPCO?wsdl";
+	
 	Order shipOrder;
 	
 	/** Creates a new instance of ShipProduct */
@@ -51,26 +52,17 @@ public class ShipProduct extends Thread {
     }
 	
 	public void invokeWSLPCO(Integer orderId, String shippedDates) {
+		boolean shipped = false;
+		
 		try {
 			// Calling Web Service
-			Settings setts = new Settings();
-			String wsdlURL = setts.getSDwsdl();
-			String namespace = setts.getSDnamespace();
-			String serviceName = setts.getSDserviceName();
-			QName serviceQN = new QName(namespace, serviceName);
-
-			ServiceFactory serviceFactory = ServiceFactory.newInstance();
-
-			LPCOService service = (LPCOService) serviceFactory
-					.createService(new URL(wsdlURL), serviceQN);
-
-			LPCO lpco = service.getLPCOPort();
-			lpco.shipped(orderId, shippedDates);
-
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (ServiceException e) {
-			e.printStackTrace();
+			LPCOProxy lp = new LPCOProxy();
+			lp.setEndpoint(wsdlLocation);
+			
+			shipped = lp.shipped(orderId, shippedDates);
+			
+		} catch(Exception ex) {
+			 Utility.writeLog(ex.getMessage());
 		}
 	}
 }
