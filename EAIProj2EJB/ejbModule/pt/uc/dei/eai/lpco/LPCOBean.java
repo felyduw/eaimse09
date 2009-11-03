@@ -146,14 +146,17 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 	public List<Camera> searchCameras(String searchTerms) {
 		Session session = HibernateUtil.beginTransaction();
 		Criteria criteria = session.createCriteria(Camera.class);
-		criteria.add(Restrictions
-				.like("model", searchTerms, MatchMode.ANYWHERE));
+
+		if(searchTerms != null && !searchTerms.isEmpty() ) {
+			criteria.add(Restrictions
+					.like("model", searchTerms, MatchMode.ANYWHERE));
+		}
 
 		@SuppressWarnings("unchecked")
 		List<Camera> result = (List<Camera>) criteria.list();
 		HibernateUtil.commitTransaction();
 
-		if (result.isEmpty()) { // TODO Camera WS
+		if (result.isEmpty()) {
 			CameraSupplier cs = CameraService.getCameraSupplierPort();
 
 			List<pt.uc.dei.eai.cs.Camera> tmp = cs.getCameras(searchTerms);
@@ -198,7 +201,6 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 		r.nextInt(100);
 
 		if (r.nextInt(100) < 75) {
-			// TODO Shipping WS
 			ShippingDepartment sd = ShippingService.getShippingDepartmentPort();
 
 			pt.uc.dei.eai.sdep.Order wsOrder = new pt.uc.dei.eai.sdep.Order();
