@@ -92,8 +92,8 @@ public class Settings {
 		DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
 		
-		Document doc = docBuilder.parse(new File(ServerConfigLocator.locate().getServerConfigURL() + 
-				"/" + settingsFilename));
+		File f = new File(ServerConfigLocator.locate().getServerConfigURL().getPath() + "/" + settingsFilename);		
+		Document doc = docBuilder.parse(f);
 		
 		// normalize text representation
 		doc.getDocumentElement().normalize();
