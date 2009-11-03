@@ -51,7 +51,7 @@ public class LPCO {
 			// Order updated and user notified
 			Utility.writeLog("Order ID: " + orderId);
 		} catch(Exception ex) {
-			Utility.writeLog(ex.getMessage());
+			Utility.writeLog("shipped: " + ex.getMessage());
 		}
 		
 		// Everything OK
