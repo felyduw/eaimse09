@@ -25,6 +25,7 @@ public class CameraSupplier {
 	private final static String XML_CATALOG_LOCATION = "camera_catalog.xml";
 	private final static String XPATH_MODEL_START = "//Model[contains(node(), '";
 	private final static String XPATH_MODEL_END =	"')]";
+	private final static String XPATH_ALL = "//Model";
 	
 	@WebMethod
 	public List<Camera> getCameras(String name) {
@@ -33,7 +34,13 @@ public class CameraSupplier {
 		try {	
 			CameraProcessor cameraProc = new CameraProcessor(ServerConfigLocator.locate().getServerDataDir().getPath() 
 					+ "/" + XML_CATALOG_LOCATION);
-			NodeList cameraNodes = cameraProc.getNodesFromXPath(XPATH_MODEL_START + name + XPATH_MODEL_END);
+			NodeList cameraNodes;
+			
+			if(name != null && !name.isEmpty()) {
+				cameraNodes = cameraProc.getNodesFromXPath(XPATH_MODEL_START + name + XPATH_MODEL_END);
+			} else {
+				cameraNodes = cameraProc.getNodesFromXPath(XPATH_ALL);
+			}
 			
 			// For all cameras found
 			for(int i = 0; i < cameraNodes.getLength(); i++){
