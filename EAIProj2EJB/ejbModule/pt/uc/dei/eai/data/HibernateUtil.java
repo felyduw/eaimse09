@@ -45,7 +45,9 @@ public class HibernateUtil {
 	public static void recreateDatabase() {
 		Configuration config = HibernateUtil.getInitializedConfiguration();
 		new SchemaExport(config).create(true, true);
-		//new SchemaExport(config).
+		//SchemaExport se = new SchemaExport(config);
+		//se.setOutputFile("teste.txt");
+		//se.execute(false, true, false, false);
 	}
 
 	public static Session getSession() {
