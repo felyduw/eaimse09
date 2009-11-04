@@ -68,7 +68,7 @@ List<Camera> camerasList = lpco.searchCameras(free_text_search);
             </td>
         </tr>
         <tr>
-        	<td>
+        	<td valign="top">
            		<jsp:include page="main_menu.html"></jsp:include>
            	</td>
         </tr>
