@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. -->
+<project basedir="." default="build" name="WSShippingDepartment">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="D:/Programs/eclipse"/>
+    <property name="JBOSS.location" value="D:/Programs/jboss-5.0.1.GA"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="JBoss v5.0 [JBoss v5.0].libraryclasspath">
+        <pathelement location="${JBOSS.location}/lib/jboss-kernel.jar"/>
+        <pathelement location="${JBOSS.location}/client/FastInfoset.jar"/>
+        <pathelement location="${JBOSS.location}/client/activation.jar"/>
+        <pathelement location="${JBOSS.location}/client/antlr.jar"/>
+        <pathelement location="${JBOSS.location}/client/avalon-framework.jar"/>
+        <pathelement location="${JBOSS.location}/client/commons-logging.jar"/>
+        <pathelement location="${JBOSS.location}/client/concurrent.jar"/>
+        <pathelement location="${JBOSS.location}/client/ejb3-persistence.jar"/>
+        <pathelement location="${JBOSS.location}/client/getopt.jar"/>
+        <pathelement location="${JBOSS.location}/client/hibernate-annotations.jar"/>
+        <pathelement location="${JBOSS.location}/client/jacorb.jar"/>
+        <pathelement location="${JBOSS.location}/client/javassist.jar"/>
+        <pathelement location="${JBOSS.location}/client/jaxb-api.jar"/>
+        <pathelement location="${JBOSS.location}/client/jaxb-impl.jar"/>
+        <pathelement location="${JBOSS.location}/client/jaxb-xjc.jar"/>
+        <pathelement location="${JBOSS.location}/client/jaxws-rt.jar"/>
+        <pathelement location="${JBOSS.location}/client/jaxws-tools.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-aop-client.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-appclient.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-aspect-jdk50-client.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-client.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-common-core.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-deployers-client-spi.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-deployers-client.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-deployers-core-spi.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-deployers-core.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-deployers-vfs-spi.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-deployers-vfs.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-deployment.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-ejb3-common-client.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-ejb3-core-client.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-ejb3-ext-api-impl.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-ejb3-ext-api.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-ejb3-proxy-client.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-ejb3-proxy-clustered-client.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-ejb3-security-client.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-ha-client.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-ha-legacy-client.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-iiop-client.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-integration.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-j2se.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-jaspi-api.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-javaee.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-jsr77-client.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-logging-jdk.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-logging-log4j.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-logging-spi.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-main-client.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-mdr.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-messaging-client.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-metadata.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-remoting.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-security-spi.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-serialization.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-srp-client.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-system-client.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-system-jmx-client.jar"/>
+        <pathelement location="${JBOSS.location}/client/jboss-xml-binding.jar"/>
+        <pathelement location="${JBOSS.location}/client/jbossall-client.jar"/>
+        <pathelement location="${JBOSS.location}/client/jbosscx-client.jar"/>
+        <pathelement location="${JBOSS.location}/client/jbossjmx-ant.jar"/>
+        <pathelement location="${JBOSS.location}/client/jbosssx-as-client.jar"/>
+        <pathelement location="${JBOSS.location}/client/jbosssx-client.jar"/>
+        <pathelement location="${JBOSS.location}/client/jbossws-common.jar"/>
+        <pathelement location="${JBOSS.location}/client/jbossws-framework.jar"/>
+        <pathelement location="${JBOSS.location}/client/jbossws-jboss50.jar"/>
+        <pathelement location="${JBOSS.location}/client/jbossws-native-client.jar"/>
+        <pathelement location="${JBOSS.location}/client/jbossws-native-core.jar"/>
+        <pathelement location="${JBOSS.location}/client/jbossws-native-jaxrpc.jar"/>
+        <pathelement location="${JBOSS.location}/client/jbossws-native-jaxws-ext.jar"/>
+        <pathelement location="${JBOSS.location}/client/jbossws-native-jaxws.jar"/>
+        <pathelement location="${JBOSS.location}/client/jbossws-native-saaj.jar"/>
+        <pathelement location="${JBOSS.location}/client/jbossws-spi.jar"/>
+        <pathelement location="${JBOSS.location}/client/jettison.jar"/>
+        <pathelement location="${JBOSS.location}/client/jmx-client.jar"/>
+        <pathelement location="${JBOSS.location}/client/jmx-invoker-adaptor-client.jar"/>
+        <pathelement location="${JBOSS.location}/client/jnp-client.jar"/>
+        <pathelement location="${JBOSS.location}/client/log4j.jar"/>
+        <pathelement location="${JBOSS.location}/client/logkit.jar"/>
+        <pathelement location="${JBOSS.location}/client/mail.jar"/>
+        <pathelement location="${JBOSS.location}/client/policy.jar"/>
+        <pathelement location="${JBOSS.location}/client/scout.jar"/>
+        <pathelement location="${JBOSS.location}/client/slf4j-api.jar"/>
+        <pathelement location="${JBOSS.location}/client/slf4j-jboss-logging.jar"/>
+        <pathelement location="${JBOSS.location}/client/stax-api.jar"/>
+        <pathelement location="${JBOSS.location}/client/stax-ex.jar"/>
+        <pathelement location="${JBOSS.location}/client/streambuffer.jar"/>
+        <pathelement location="${JBOSS.location}/client/trove.jar"/>
+        <pathelement location="${JBOSS.location}/client/wsdl4j.jar"/>
+        <pathelement location="${JBOSS.location}/client/wstx.jar"/>
+        <pathelement location="${JBOSS.location}/client/xmlsec.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/antlr.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/autonumber-plugin.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/bcel.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/bsf.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/bsh.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/commons-collections.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/commons-httpclient.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/commons-logging.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/dtdparser121.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/ejb3-persistence.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/el-api.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/hibernate-annotations.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/hibernate-commons-annotations.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/hibernate-core.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/hibernate-entitymanager.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/hibernate-jmx.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/hibernate-validator.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/hsqldb-plugin.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/hsqldb.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jaxen.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-bindingservice.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-common-jdbc-wrapper.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-current-invocation-aspects.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-ejb3-cache.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-ejb3-common.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-ejb3-core.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-ejb3-deployers.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-ejb3-ext-api-impl.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-ejb3-ext-api.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-ejb3-interceptors.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-ejb3-mc-int.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-ejb3-metadata.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-ejb3-proxy-clustered.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-ejb3-proxy.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-ejb3-security.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-ejb3-transactions.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-ha-client.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-ha-server-api.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-ha-server-cache-jbc.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-ha-server-cache-spi.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-hibernate.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-iiop.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-integration.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-jaspi-api.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-javaee.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-jca.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-jmx-remoting.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-jpa-deployers.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-jsr77.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-jsr88.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-management.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-messaging-int.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-messaging.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-metadata.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-monitoring.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-profileservice.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-remoting-aspects.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-remoting.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-security-aspects.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-security-spi.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-serialization.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-srp.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-sunxacml.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-transaction-aspects.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss-xacml.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jboss.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jbossas-remoting.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jbossha.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jbossjta-integration.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jbossjta.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jbosssx-server.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jbosssx.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jbossts-common.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jbossws-common.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jbossws-framework.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jbossws-native-jaxrpc.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jbossws-native-jaxws-ext.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jbossws-native-jaxws.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jbossws-native-saaj.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jbossws-spi.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jmx-adaptor-plugin.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jnpserver.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/joesnmp.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/jsp-api.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/log4j-snmp-appender.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/log4j.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/mail-plugin.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/mail.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/properties-plugin.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/quartz.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/scheduler-plugin-example.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/scheduler-plugin.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/servlet-api.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/slf4j-api.jar"/>
+        <pathelement location="${JBOSS.location}/common/lib/slf4j-jboss-logging.jar"/>
+        <pathelement location="${JBOSS.location}/lib/amazon-s3.jar"/>
+        <pathelement location="${JBOSS.location}/lib/c3p0.jar"/>
+        <pathelement location="${JBOSS.location}/lib/commons-codec.jar"/>
+        <pathelement location="${JBOSS.location}/lib/commons-httpclient.jar"/>
+        <pathelement location="${JBOSS.location}/lib/commons-logging.jar"/>
+        <pathelement location="${JBOSS.location}/lib/concurrent.jar"/>
+        <pathelement location="${JBOSS.location}/lib/dom4j.jar"/>
+        <pathelement location="${JBOSS.location}/lib/getopt.jar"/>
+        <pathelement location="${JBOSS.location}/lib/javassist.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jaxb-impl.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jaxb-xjc.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-aop-asintegration-core.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-aop-asintegration-jmx.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-aop-asintegration-mc.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-aop-jboss5.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-aop-mc-int.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-aop.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-bootstrap.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-classloader.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-classloading-spi.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-classloading-vfs.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-classloading.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-common-core.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-dependency.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-deployers-client-spi.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-deployers-client.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-deployers-core-spi.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-deployers-core.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-deployers-impl.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-deployers-spi.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-deployers-structure-spi.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-deployers-vfs-spi.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-deployers-vfs.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-j2se.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-jmx.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-logging-jdk.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-logging-log4j.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-logging-spi.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-main.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-managed.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-mbeans.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-mdr.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-metatype.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-profileservice-spi.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-reflect.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-system-jmx.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-system.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-vfs.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jboss-xml-binding.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jbosscache-core.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jcip-annotations.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jdbm.jar"/>
+        <pathelement location="${JBOSS.location}/lib/je.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jgroups.jar"/>
+        <pathelement location="${JBOSS.location}/lib/jta.jar"/>
+        <pathelement location="${JBOSS.location}/lib/junit.jar"/>
+        <pathelement location="${JBOSS.location}/lib/log4j-boot.jar"/>
+        <pathelement location="${JBOSS.location}/lib/ojdbc14_g.jar"/>
+        <pathelement location="${JBOSS.location}/lib/osgi.core.jar"/>
+        <pathelement location="${JBOSS.location}/lib/trove.jar"/>
+        <pathelement location="${JBOSS.location}/lib/wstx.jar"/>
+        <pathelement location="${JBOSS.location}/server/default/deploy/jbossweb.sar/jasper-jdt.jar"/>
+        <pathelement location="${JBOSS.location}/server/default/deploy/jbossweb.sar/jboss-web-service.jar"/>
+        <pathelement location="${JBOSS.location}/server/default/deploy/jbossweb.sar/jbossweb.jar"/>
+        <pathelement location="${JBOSS.location}/server/default/deploy/jbossweb.sar/jsf-libs/jboss-faces.jar"/>
+        <pathelement location="${JBOSS.location}/server/default/deploy/jbossweb.sar/jsf-libs/jsf-api.jar"/>
+        <pathelement location="${JBOSS.location}/server/default/deploy/jbossweb.sar/jsf-libs/jsf-impl.jar"/>
+        <pathelement location="${JBOSS.location}/server/default/deploy/jbossweb.sar/jstl.jar"/>
+        <pathelement location="${JBOSS.location}/server/default/deployers/jboss-aop-jboss5.deployer/jboss-aop-aspects.jar"/>
+        <pathelement location="${JBOSS.location}/server/default/deployers/jboss-aop-jboss5.deployer/jboss-aspect-library.jar"/>
+        <pathelement location="${JBOSS.location}/server/default/deployers/jboss-aop-jboss5.deployer/jrockit-pluggable-instrumentor.jar"/>
+        <pathelement location="${JBOSS.location}/server/default/deployers/jboss-aop-jboss5.deployer/pluggable-instrumentor.jar"/>
+        <pathelement location="${JBOSS.location}/server/default/deployers/jbossweb.deployer/jboss-web-deployer.jar"/>
+        <pathelement location="${JBOSS.location}/server/default/lib/jbosscache-core.jar"/>
+        <pathelement location="${JBOSS.location}/server/default/lib/ojdbc14_g.jar"/>
+    </path>
+    <path id="Web App Libraries.libraryclasspath">
+        <pathelement location="WebContent/WEB-INF/lib/axis.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-discovery-0.2.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/commons-logging.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jaxrpc.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/saaj.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/wsdl4j.jar"/>
+    </path>
+    <path id="EAR Libraries.libraryclasspath"/>
+    <path id="WSShippingDepartment.classpath">
+        <pathelement location="build/classes"/>
+        <path refid="JBoss v5.0 [JBoss v5.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+    </path>
+    <target name="init">
+        <mkdir dir="build/classes"/>
+        <copy includeemptydirs="false" todir="build/classes">
+            <fileset dir="src" excludes="**/*.launch, **/*.java"/>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="build/classes"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="WSShippingDepartment.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+</project>
