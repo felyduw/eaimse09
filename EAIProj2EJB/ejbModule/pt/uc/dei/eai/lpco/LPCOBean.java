@@ -186,6 +186,7 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 		order.setOrderStatus(OrderStatus.WAITING_FOR_SHIPPING);
 		order.setUsername(getUser().getUsername());
 		order.setShippingAddress(getUser().getAddress());
+		order.setEmailAddress(getUser().getEmail());
 		order.setPurchaseDate(Calendar.getInstance().getTime());
 		Integer identifier;
 		try {
