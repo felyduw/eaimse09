@@ -45,11 +45,11 @@ if (myname != null) {
 	%>
 	
 <form method="post">
-	<table>
-		<tr>
+	<table height="5">
+		<tr valign="top">
 			<td><%=myname%></td>
 		</tr>
-		<tr>
+		<tr valign="top">
 			<td colspan="2"><input id="Submit" name="Submit" type="submit" value="Logout" /></td>
 		</tr>
 	</table>
@@ -59,7 +59,7 @@ if (myname != null) {
 } else  {
 	%>
 	<form method="post">
-	<table>
+	<table height="5">
 		<tr>
 			<td colspan="2">Login</td>
 		</tr>

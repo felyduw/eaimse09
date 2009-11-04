@@ -16,6 +16,9 @@ td, textarea, input, select {
 	color: #464646;
 	font-weight: normal;
 }
+tr {
+	vertical-align: top;
+}
 th {
 	font-family: Tahoma;
 	font-size: 12px;
