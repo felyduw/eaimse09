@@ -1,5 +1,7 @@
 package pt.uc.dei.eai.lpco;
 
+import java.rmi.RemoteException;
+
 public class LPCOProxy implements pt.uc.dei.eai.lpco.LPCO {
   private String _endpoint = null;
   private pt.uc.dei.eai.lpco.LPCO lPCO = null;
@@ -44,10 +46,10 @@ public class LPCOProxy implements pt.uc.dei.eai.lpco.LPCO {
     return lPCO;
   }
   
-  public boolean shipped(java.lang.Integer arg0, java.lang.String arg1) throws java.rmi.RemoteException{
+  public boolean shipped(java.lang.Integer orderId, java.lang.String shippedDates) throws RemoteException{
     if (lPCO == null)
       _initLPCOProxy();
-    return lPCO.shipped(arg0, arg1);
+    return lPCO.shipped(orderId, shippedDates);
   }
   
   
