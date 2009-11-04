@@ -5,7 +5,6 @@ import java.util.Calendar;
 
 import pt.uc.dei.eai.common.Order;
 import pt.uc.dei.eai.common.Utility;
-import pt.uc.dei.eai.lpco.LPCO;
 import pt.uc.dei.eai.lpco.LPCOProxy;
 import pt.uc.dei.eai.lpco.LPCOService;
 
