@@ -13,7 +13,7 @@ import pt.uc.dei.eai.common.Utility;
 @WebService
 public class LPCO {
 	public static String SUBJECT = "Low Price Cameras Online - Order Confirmation";
-	public static String FROM = "lpco@lpco.eai.dei.uc.pt";
+	public static String FROM = "psaraiva@dei.uc.pt";
 	public static String MESSAGE = "The order has been shipped.";
 	
 	@WebMethod
@@ -41,6 +41,9 @@ public class LPCO {
 		
 		// Obtain and add recipient e-mail address
 		orderEmail = order.getEmailAddress();
+
+Utility.writeLog("username: " + order.getUsername());		
+Utility.writeLog("e-mail: " + orderEmail);		
 		
 		bodyMessage = MESSAGE + "Order ID: " + orderId;
 		
