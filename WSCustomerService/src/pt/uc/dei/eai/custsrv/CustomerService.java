@@ -22,8 +22,8 @@ import pt.uc.dei.eai.sdep.ShippingDepartmentService;
 
 public class CustomerService implements ICustomerService {
 
-	@WebServiceRef(wsdlLocation = "http://127.0.0.1:8080/WSShippingDepartment?wsdl")
-	static ShippingDepartmentService ShippingService;
+	//@WebServiceRef(wsdlLocation = "http://127.0.0.1:8080/WSShippingDepartment?wsdl")
+	//static ShippingDepartmentService ShippingService;
 
 	
 	//FIXME REMOVE USER

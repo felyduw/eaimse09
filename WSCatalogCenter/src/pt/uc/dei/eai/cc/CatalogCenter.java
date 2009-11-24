@@ -20,8 +20,8 @@ import pt.uc.dei.eai.data.HibernateUtil;
 @WebService
 public class CatalogCenter implements ICatalogCenter {
 
-	@WebServiceRef(wsdlLocation = "http://127.0.0.1:8080/WSCameraSupplier?wsdl")
-	static CameraSupplierService CameraService;
+	//@WebServiceRef(wsdlLocation = "http://127.0.0.1:8080/WSCameraSupplier?wsdl")
+	//static CameraSupplierService CameraService;
 
 	@Override
 	@WebMethod
@@ -56,8 +56,9 @@ public class CatalogCenter implements ICatalogCenter {
 	@Override
 	@WebMethod
 	public List<Camera> addCamerasToDB(String searchTerms) {
+		//FIXME CALL PROCESS ORCHESTRATOR
 		List<Camera> ls = new ArrayList<Camera>();
-		CameraSupplier cs = CameraService.getCameraSupplierPort();
+		/*CameraSupplier cs = CameraService.getCameraSupplierPort();
 
 		List<pt.uc.dei.eai.cs.Camera> tmp = cs.getCameras(searchTerms);
 
@@ -68,7 +69,7 @@ public class CatalogCenter implements ICatalogCenter {
 			tsx.saveOrUpdate(camToAdd);
 		}
 		HibernateUtil.commitTransaction();
-		
+*/		
 		return ls;
 	}
 

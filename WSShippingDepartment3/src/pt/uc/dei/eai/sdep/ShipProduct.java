@@ -13,6 +13,7 @@ import pt.uc.dei.eai.lpco.LPCOService;
  */
 public class ShipProduct extends Thread {
 	
+	//FIXME CALL PROCESS ORCHESTRATOR
 	final static String wsdlLocation = "http://127.0.0.1:8080/WSLPCO?wsdl";
 	static LPCOService LPCOWebService;
 	
