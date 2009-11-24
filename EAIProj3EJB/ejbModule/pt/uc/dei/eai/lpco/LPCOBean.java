@@ -15,15 +15,12 @@ import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import pt.uc.dei.eai.common.Camera;
 import pt.uc.dei.eai.common.Order;
 import pt.uc.dei.eai.common.OrderStatus;
 import pt.uc.dei.eai.common.User;
-import pt.uc.dei.eai.cs.CameraSupplier;
-import pt.uc.dei.eai.cs.CameraSupplierService;
 import pt.uc.dei.eai.data.HibernateUtil;
 import pt.uc.dei.eai.sdep.ShippingDepartment;
 import pt.uc.dei.eai.sdep.ShippingDepartmentService;
@@ -35,9 +32,6 @@ import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl
  */
 @Stateful
 public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
-
-	@WebServiceRef(wsdlLocation = "http://127.0.0.1:8080/WSCameraSupplier?wsdl")
-	static CameraSupplierService CameraService;
 
 	@WebServiceRef(wsdlLocation = "http://127.0.0.1:8080/WSShippingDepartment?wsdl")
 	static ShippingDepartmentService ShippingService;
@@ -133,47 +127,7 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 		}
 	}
 
-	@Override
-	public Camera getCamera(Integer cameraId) {
-		Session session = HibernateUtil.beginTransaction();
-		Criteria criteria = session.createCriteria(Camera.class);
-		criteria.add(Restrictions.eq("id", cameraId));
 
-		Camera result = (Camera) criteria.uniqueResult();
-		HibernateUtil.commitTransaction();
-		return result;
-	}
-
-	@Override
-	public List<Camera> searchCameras(String searchTerms) {
-		Session session = HibernateUtil.beginTransaction();
-		Criteria criteria = session.createCriteria(Camera.class);
-
-		if(searchTerms != null && !searchTerms.isEmpty() ) {
-			criteria.add(Restrictions
-					.like("model", searchTerms, MatchMode.ANYWHERE));
-		}
-
-		@SuppressWarnings("unchecked")
-		List<Camera> result = (List<Camera>) criteria.list();
-		HibernateUtil.commitTransaction();
-
-		if (result.isEmpty()) {
-			CameraSupplier cs = CameraService.getCameraSupplierPort();
-
-			List<pt.uc.dei.eai.cs.Camera> tmp = cs.getCameras(searchTerms);
-
-			Session tsx = HibernateUtil.beginTransaction();
-			for (pt.uc.dei.eai.cs.Camera cam : tmp) {
-				Camera camToAdd = new Camera(cam);
-				result.add(camToAdd);
-				tsx.saveOrUpdate(camToAdd);
-			}
-			HibernateUtil.commitTransaction();
-		}
-
-		return result;
-	}
 
 	@Override
 	public boolean submitOrder() {

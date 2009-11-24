@@ -5,6 +5,7 @@
 	<projects>
 		<project>EAIProj3EJB</project>
 		<project>EAIProj3Web</project>
+		<project>EAIProj3</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

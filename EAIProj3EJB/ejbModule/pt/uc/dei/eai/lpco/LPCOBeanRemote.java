@@ -12,15 +12,17 @@ public interface LPCOBeanRemote {
 	public User getUser();
 	public boolean doLogin(String username, String password);
 	public boolean doLogout(String username);
-	public List<Camera> searchCameras(String searchTerms);
-	public Camera getCamera(Integer cameraId);
 	public boolean registerUser(String username, String password, String address, String email);
+	
+	
 	public boolean submitOrder();
 	public boolean updateOrder(Order order);
 	public List<Order> listAllOrders();
 	public Order getOrder(Integer orderId);
+	
 	public List<Order> listPurchases();
 	public Order getPurchase(Integer orderId);
+	
 	public List<Camera> getShoppingCart();
 	public void setShoppingCart(List<Camera> shoppingCart);
 	public float getTotalAmount();
