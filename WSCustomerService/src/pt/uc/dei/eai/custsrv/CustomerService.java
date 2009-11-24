@@ -5,7 +5,8 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
-import javax.xml.ws.WebServiceRef;
+import javax.jws.WebMethod;
+import javax.jws.WebService;
 
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
@@ -16,26 +17,25 @@ import org.hibernate.criterion.Restrictions;
 import pt.uc.dei.eai.common.Camera;
 import pt.uc.dei.eai.common.Order;
 import pt.uc.dei.eai.common.OrderStatus;
+import pt.uc.dei.eai.common.SendMail;
 import pt.uc.dei.eai.common.User;
+import pt.uc.dei.eai.common.Utility;
 import pt.uc.dei.eai.data.HibernateUtil;
-import pt.uc.dei.eai.sdep.ShippingDepartmentService;
 
+@WebService
 public class CustomerService implements ICustomerService {
+	
+	private static String SUBJECT = "Low Price Cameras Online - Order Confirmation";
+	private static String FROM = "psaraiva@dei.uc.pt";
+	private static String MESSAGE = "The order has been shipped.";
 
 	//@WebServiceRef(wsdlLocation = "http://127.0.0.1:8080/WSShippingDepartment?wsdl")
 	//static ShippingDepartmentService ShippingService;
 
-	
-	//FIXME REMOVE USER
-	private User user;
-	private List<Camera> shoppingCart;
-
-	public User getUser() {
-		return user;
-	}
-
+	/******************** User Management */
+	@WebMethod
 	@Override
-	public boolean doLogin(String username, String password) {
+	public User doLogin(String username, String password) {
 		Session session = HibernateUtil.beginTransaction();
 		Criteria criteria = session.createCriteria(User.class);
 		criteria.add(Restrictions.eq("username", username));
@@ -43,51 +43,18 @@ public class CustomerService implements ICustomerService {
 		HibernateUtil.commitTransaction();
 
 		if (u.getPassword().equals(password)) {
-			user = u;
-			return true;
+			return u;
 		}
-		return false;
+		return null;
 	}
 
+	@WebMethod
 	@Override
 	public boolean doLogout(String username) {
-		if (user.getUsername().equals(username)) {
-			user = null;
-			shoppingCart.clear();
-			return true;
-		}
-		return false;
+		return true;
 	}
-
 	
-	@Override
-	public List<Order> listAllOrders() {
-		if (user == null) return new ArrayList<Order>();
-		Session session = HibernateUtil.beginTransaction();
-		Criteria criteria = session.createCriteria(Order.class);
-		criteria.add(Restrictions.eq("username", user.getUsername()));
-		@SuppressWarnings("unchecked")
-		List<Order> result = criteria.list();
-		HibernateUtil.initializeOrderList(result);
-		HibernateUtil.commitTransaction();
-		return result;
-	}
-
-	@Override
-	public List<Order> listPurchases() {
-		if (user == null) return new ArrayList<Order>();
-		Session session = HibernateUtil.beginTransaction();
-		Criteria criteria = session.createCriteria(Order.class);
-		criteria.add(Restrictions.eq("orderStatus", OrderStatus.SHIPPED));
-		criteria.add(Restrictions.eq("username", user.getUsername()));
-		
-		@SuppressWarnings("unchecked")
-		List<Order> result = (List<Order>) criteria.list();
-		HibernateUtil.initializeOrderList(result);
-		HibernateUtil.commitTransaction();
-		return result;
-	}
-
+	@WebMethod
 	@Override
 	public boolean registerUser(String username, String password,
 			String address, String email) {
@@ -110,21 +77,35 @@ public class CustomerService implements ICustomerService {
 			return false;
 		}
 	}
-
-
-
+	
+	/******************** Order Management */
+	@WebMethod
 	@Override
-	public boolean submitOrder() {
+	public List<Order> listAllOrders(String username) {
+		if (username == null) return new ArrayList<Order>();
+		Session session = HibernateUtil.beginTransaction();
+		Criteria criteria = session.createCriteria(Order.class);
+		criteria.add(Restrictions.eq("username", username));
+		@SuppressWarnings("unchecked")
+		List<Order> result = criteria.list();
+		HibernateUtil.initializeOrderList(result);
+		HibernateUtil.commitTransaction();
+		return result;
+	}
+
+	@WebMethod
+	@Override
+	public boolean submitOrder(List<Camera> cart, User user) {
 		
-		if (shoppingCart.size() == 0 || user == null)
+		if (cart.size() == 0 || user == null)
 			return false;
 
 		Order order = new Order();
-		order.setOrderedCameras(new ArrayList<Camera>(shoppingCart));
+		order.setOrderedCameras(new ArrayList<Camera>(cart));
 		order.setOrderStatus(OrderStatus.WAITING_FOR_SHIPPING);
-		order.setUsername(getUser().getUsername());
-		order.setShippingAddress(getUser().getAddress());
-		order.setEmailAddress(getUser().getEmail());
+		order.setUsername(user.getUsername());
+		order.setShippingAddress(user.getAddress());
+		order.setEmailAddress(user.getEmail());
 		order.setPurchaseDate(Calendar.getInstance().getTime());
 		Integer identifier;
 		try {
@@ -168,10 +149,11 @@ public class CustomerService implements ICustomerService {
 				return false;
 			}
 		}
-		shoppingCart.clear();
 		return true;
 	}
 
+	@WebMethod
+	@Override
 	public boolean updateOrder(Order order) {
 		try {
 			Session session = HibernateUtil.beginTransaction();
@@ -184,6 +166,7 @@ public class CustomerService implements ICustomerService {
 		return true;
 	}
 
+	@WebMethod
 	@Override
 	public Order getOrder(Integer orderId) {
 		Session session = HibernateUtil.beginTransaction();
@@ -197,7 +180,58 @@ public class CustomerService implements ICustomerService {
 
 		return result;
 	}
+	
+	@WebMethod
+	@Override
+	public boolean shipped(Integer orderId, String shippedDates) {
+		String orderEmail = null;
+		String bodyMessage = null;
 
+		// Obtain data from order (check database orders)
+		Order order = getOrder(orderId);
+		
+		// Update order status to shipped
+		order.setOrderStatus(OrderStatus.SHIPPED);
+		updateOrder(order);
+		
+		// Obtain and add recipient e-mail address
+		orderEmail = order.getEmailAddress();		
+		
+		bodyMessage = MESSAGE + "Order ID: " + orderId;
+		
+		// Send e-mail
+		try {
+			SendMail.postMail(orderEmail, SUBJECT, bodyMessage, FROM);
+			
+			// Order updated and user notified
+			Utility.writeLog("Order ID: " + orderId);
+		} catch(Exception ex) {
+			Utility.writeLog("shipped: " + ex.getMessage());
+		}
+		
+		// Everything OK
+		return true;
+	}
+	
+	
+	/******************** Purchase Management */
+	@WebMethod
+	@Override
+	public List<Order> listPurchases(String username) {
+		if (username == null) return new ArrayList<Order>();
+		Session session = HibernateUtil.beginTransaction();
+		Criteria criteria = session.createCriteria(Order.class);
+		criteria.add(Restrictions.eq("orderStatus", OrderStatus.SHIPPED));
+		criteria.add(Restrictions.eq("username", username));
+		
+		@SuppressWarnings("unchecked")
+		List<Order> result = (List<Order>) criteria.list();
+		HibernateUtil.initializeOrderList(result);
+		HibernateUtil.commitTransaction();
+		return result;
+	}
+
+	@WebMethod
 	@Override
 	public Order getPurchase(Integer orderId) {
 		Order order = getOrder(orderId);
