@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="pt.uc.dei.eai.common">
+	<class name="Camera" table="CAMERA">
+		<id name="id" column="ID_CAMERA">
+			<generator class="native" />
+		</id>
+		<property name="model"/>
+		<property name="price"/>
+	</class>
+	<class name="Order" table="ENCOMENDAS">
+		<id name="id" column="ID_ORDER">
+			<generator class="native" />
+		</id>
+		<property name="username"/>
+		<property name="shippingAddress"/>
+		<property name="emailAddress"/>
+		<property name="purchaseDate" type="timestamp"/>
+		<property name="orderStatus" />
+		<list name="orderedCameras" table="REF_ORDERED_CAMERAS">
+			<key column="orderid" />
+			<index column="idx"/>
+			<many-to-many column="ID_CAMERA" class="Camera"  />
+		</list>
+	</class>
+	<class name="User" table="USER">
+		<id name="id" column="ID_USER">
+			<generator class="native" />
+		</id>
+		<property name="username"/>
+		<property name="password"/>
+		<property name="address"/>
+		<property name="email"/>
+		<property name="name"/>
+	</class>
+</hibernate-mapping>

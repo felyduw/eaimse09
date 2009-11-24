@@ -1,0 +1,56 @@
+@CHARSET "ISO-8859-1";
+body {
+	margin-bottom: 0px;
+	font-family: Verdana;
+	font-size: 12px;
+	font-style: normal;
+	line-height: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	color: #525252;
+}
+td, textarea, input, select {
+	font-family: Tahoma;
+	font-size: 12px;
+	color: #464646;
+	font-weight: normal;
+}
+tr {
+	vertical-align: top;
+}
+th {
+	font-family: Tahoma;
+	font-size: 12px;
+	color: #FFFFFF;
+	font-weight: normal;
+	background-color: #00C000;
+}
+a:link {
+	color: #000000;
+	font-family: tahoma;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: underline;
+
+}
+a:hover
+{
+	color: #00FF00;
+	font-family: tahoma;
+	font-size: 12px;
+	font-weight: bold;
+	font-style: normal;
+	line-height: normal;
+	font-variant: normal;
+	text-transform: none;
+	border: thin none #FFFFFF;
+	text-decoration: underline;
+}
+a:visited {
+	color: #000000;
+	font-family: tahoma;
+	font-size: 12px;
+	font-weight: bold;
+	font-style: normal;
+}

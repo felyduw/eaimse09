@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Settings>
+	
+	<SDwsdl>http://127.0.0.1:8080/WSLPCO?wsdl</SDwsdl>
+	<SDnamespace>http://lpco.eai.dei.uc.pt/</SDnamespace>
+	<SDserviceName>LPCOService</SDserviceName>
+	
+	<CSwsdl>http://127.0.0.1:8080/WSLPCO?wsdl</CSwsdl>
+	<CSnamespace>http://lpco.eai.dei.uc.pt/</CSnamespace>
+	<CSserviceName>LPCOService</CSserviceName>
+	
+</Settings>
