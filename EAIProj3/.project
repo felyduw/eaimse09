@@ -3,9 +3,8 @@
 	<name>EAIProj3</name>
 	<comment></comment>
 	<projects>
-		<project>EAIProj2Web</project>
-		<project>EAIProj2EJB</project>
-		<project>EAIProj2</project>
+		<project>EAIProj3EJB</project>
+		<project>EAIProj3Web</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
