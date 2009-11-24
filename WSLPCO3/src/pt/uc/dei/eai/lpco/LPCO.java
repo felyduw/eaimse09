@@ -2,13 +2,6 @@ package pt.uc.dei.eai.lpco;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-
-import pt.uc.dei.eai.common.Order;
-import pt.uc.dei.eai.common.OrderStatus;
-import pt.uc.dei.eai.common.SendMail;
-import pt.uc.dei.eai.common.Utility;
 
 @WebService
 public class LPCO {
@@ -20,8 +13,9 @@ public class LPCO {
 	public boolean shipped(Integer orderId, String shippedDates) {
 		String orderEmail = null;
 		String bodyMessage = null;
-		
-		LPCOBeanRemote lpco = null;
+
+		//FIXME Remove bean call
+		/*LPCOBeanRemote lpco = null;
 		try {
 			InitialContext ctx = new InitialContext();
 			lpco = (LPCOBeanRemote)ctx.lookup("EAIProj2/LPCOBean/remote");
@@ -56,7 +50,7 @@ Utility.writeLog("e-mail: " + orderEmail);
 		} catch(Exception ex) {
 			Utility.writeLog("shipped: " + ex.getMessage());
 		}
-		
+		*/
 		// Everything OK
 		return true;	
 	}

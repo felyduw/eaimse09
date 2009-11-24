@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://cc.eai.dei.uc.pt" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://cc.eai.dei.uc.pt" xmlns:intf="http://cc.eai.dei.uc.pt" xmlns:tns1="http://common.eai.dei.uc.pt" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://cc.eai.dei.uc.pt" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://common.eai.dei.uc.pt"/>
+   <element name="addCamerasToDB">
+    <complexType>
+     <sequence>
+      <element name="searchTerms" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addCamerasToDBResponse">
+    <complexType>
+     <sequence>
+      <element name="addCamerasToDBReturn" type="impl:ArrayOf_xsd_anyType"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_xsd_anyType">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+   <element name="getCamera">
+    <complexType>
+     <sequence>
+      <element name="cameraId" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getCameraResponse">
+    <complexType>
+     <sequence>
+      <element name="getCameraReturn" type="tns1:Camera"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="searchCameras">
+    <complexType>
+     <sequence>
+      <element name="searchTerms" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="searchCamerasResponse">
+    <complexType>
+     <sequence>
+      <element name="searchCamerasReturn" type="impl:ArrayOf_xsd_anyType"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://common.eai.dei.uc.pt" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://cc.eai.dei.uc.pt"/>
+   <complexType name="Camera">
+    <sequence>
+     <element name="id" nillable="true" type="xsd:int"/>
+     <element name="model" nillable="true" type="xsd:string"/>
+     <element name="price" nillable="true" type="xsd:float"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getCameraRequest">
+
+      <wsdl:part element="impl:getCamera" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getCameraResponse">
+
+      <wsdl:part element="impl:getCameraResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addCamerasToDBResponse">
+
+      <wsdl:part element="impl:addCamerasToDBResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addCamerasToDBRequest">
+
+      <wsdl:part element="impl:addCamerasToDB" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchCamerasRequest">
+
+      <wsdl:part element="impl:searchCameras" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="searchCamerasResponse">
+
+      <wsdl:part element="impl:searchCamerasResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="CatalogCenter">
+
+      <wsdl:operation name="addCamerasToDB">
+
+         <wsdl:input message="impl:addCamerasToDBRequest" name="addCamerasToDBRequest"/>
+
+         <wsdl:output message="impl:addCamerasToDBResponse" name="addCamerasToDBResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCamera">
+
+         <wsdl:input message="impl:getCameraRequest" name="getCameraRequest"/>
+
+         <wsdl:output message="impl:getCameraResponse" name="getCameraResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchCameras">
+
+         <wsdl:input message="impl:searchCamerasRequest" name="searchCamerasRequest"/>
+
+         <wsdl:output message="impl:searchCamerasResponse" name="searchCamerasResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="CatalogCenterSoapBinding" type="impl:CatalogCenter">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="addCamerasToDB">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addCamerasToDBRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addCamerasToDBResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getCamera">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getCameraRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getCameraResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="searchCameras">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="searchCamerasRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="searchCamerasResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="CatalogCenterService">
+
+      <wsdl:port binding="impl:CatalogCenterSoapBinding" name="CatalogCenter">
+
+         <wsdlsoap:address location="http://localhost:8080/WSCatalogCenter/services/CatalogCenter"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
