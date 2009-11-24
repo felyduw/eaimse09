@@ -1,5 +1,6 @@
 package pt.uc.dei.eai.lpco;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -50,21 +51,25 @@ public class CatalogCenterBean implements CatalogCenterBeanRemote,
 		List<Camera> result = (List<Camera>) criteria.list();
 		HibernateUtil.commitTransaction();
 
-		if (result.isEmpty()) {
-			CameraSupplier cs = CameraService.getCameraSupplierPort();
-
-			List<pt.uc.dei.eai.cs.Camera> tmp = cs.getCameras(searchTerms);
-
-			Session tsx = HibernateUtil.beginTransaction();
-			for (pt.uc.dei.eai.cs.Camera cam : tmp) {
-				Camera camToAdd = new Camera(cam);
-				result.add(camToAdd);
-				tsx.saveOrUpdate(camToAdd);
-			}
-			HibernateUtil.commitTransaction();
-		}
-
 		return result;
+	}
+
+	@Override
+	public List<Camera> addCamerasToDB(String searchTerms) {
+		List<Camera> ls = new ArrayList<Camera>();
+		CameraSupplier cs = CameraService.getCameraSupplierPort();
+
+		List<pt.uc.dei.eai.cs.Camera> tmp = cs.getCameras(searchTerms);
+
+		Session tsx = HibernateUtil.beginTransaction();
+		for (pt.uc.dei.eai.cs.Camera cam : tmp) {
+			Camera camToAdd = new Camera(cam);
+			ls.add(camToAdd);
+			tsx.saveOrUpdate(camToAdd);
+		}
+		HibernateUtil.commitTransaction();
+		
+		return ls;
 	}
 
 }

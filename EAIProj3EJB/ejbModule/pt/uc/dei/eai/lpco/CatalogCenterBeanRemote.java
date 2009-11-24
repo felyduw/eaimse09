@@ -9,4 +9,5 @@ import pt.uc.dei.eai.common.Camera;
 public interface CatalogCenterBeanRemote {
 	public List<Camera> searchCameras(String searchTerms);
 	public Camera getCamera(Integer cameraId);
+	public List<Camera> addCamerasToDB(String searchTerms);
 }

@@ -219,37 +219,4 @@ public class LPCOBean implements LPCOBeanRemote, LPCOBeanLocal {
 		}
 		return order;
 	}
-	
-	@Override
-	public float getTotalAmount() {
-		float totalAmount = 0;
-		for (int i = 0; i < shoppingCart.size(); i++) {
-			Camera currentCamera = shoppingCart.get(i);
-			if (currentCamera != null) {
-				totalAmount += shoppingCart.get(i).getPrice();
-			}
-		}
-		return totalAmount;
-	}
-	
-	@Override
-	public List<Camera> getShoppingCart() {
-		return shoppingCart;
-	}
-
-	@Override
-	public void setShoppingCart(List<Camera> shoppingCart) {
-		this.shoppingCart = shoppingCart;
-	}
-
-	@Override
-	public void addCamera(Camera c) {
-		shoppingCart.add(c);
-	}
-
-	@Override
-	public void removeCamera(Camera c) {
-		shoppingCart.remove(c);
-	}
-
 }
