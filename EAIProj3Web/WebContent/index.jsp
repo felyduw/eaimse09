@@ -1,21 +1,13 @@
 <%@ page import="javax.naming.*" %>
 <%@ page import="java.util.*" %>
-<%@ page import="pt.uc.dei.eai.lpco.*"%>
-<%@ page import="pt.uc.dei.eai.common.*"%>
-
+<%@ page import="pt.uc.dei.eai.*" %>
 <%
 String error = null;
 String free_text_search = request.getParameter("free_text_search");
 
-HttpSession s = request.getSession();
-LPCOBeanRemote lpco = (LPCOBeanRemote) s.getAttribute("MyBean");
-if (lpco == null) {
-	InitialContext ctx = new InitialContext();
-	lpco = (LPCOBeanRemote)ctx.lookup("EAIProj2/LPCOBean/remote");
-	s.setAttribute("MyBean", lpco);
-}
 // Pesquisa das cameras
-List<Camera> camerasList = lpco.searchCameras(free_text_search);
+List<Camera> camerasList = null;//lpco.searchCameras(free_text_search);
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

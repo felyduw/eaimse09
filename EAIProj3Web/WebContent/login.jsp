@@ -1,22 +1,11 @@
 <%@ page import="javax.naming.*" %>
-<%@ page import="pt.uc.dei.eai.lpco.LPCOBean"%>
-<%@ page import="pt.uc.dei.eai.lpco.LPCOBeanRemote"%>
-<%@ page import="pt.uc.dei.eai.common.User"%>
+<%@ page import="pt.uc.dei.eai.*" %>
 <%
 String error = null;
 String submit_action = request.getParameter("Submit");
 String myname = (String)session.getAttribute("username");
-
-HttpSession s = request.getSession();
-LPCOBeanRemote lpco = (LPCOBeanRemote) s.getAttribute("MyBean");
-if (lpco == null) {
-	InitialContext ctx = new InitialContext();
-	lpco = (LPCOBeanRemote)ctx.lookup("EAIProj2/LPCOBean/remote");
-	s.setAttribute("MyBean", lpco);
-}
-
 if (submit_action != null && submit_action.equals("Logout")) {
-	if (lpco.doLogout(myname)) {
+	if (false/*lpco.doLogout(myname)*/) {
 		// se deslogou ok no servidor
 		session.removeAttribute("username");
 		myname = null;
@@ -27,7 +16,7 @@ if (submit_action != null && submit_action.equals("Logout")) {
 	String user = request.getParameter("User");
 	String password = request.getParameter("Password");
 	// Logar no servidor
-	if (lpco.doLogin(user, password)) {
+	if (false/*lpco.doLogin(user, password)*/) {
 		// se logou ok no servidor
 		session.setAttribute("username", user);
 		myname = user;

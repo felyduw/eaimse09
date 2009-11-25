@@ -1,8 +1,6 @@
 <%@ page import="javax.naming.*" %>
 <%@ page import="java.util.*" %>
-<%@ page import="pt.uc.dei.eai.lpco.*"%>
-<%@ page import="pt.uc.dei.eai.common.*"%>
-
+<%@ page import="pt.uc.dei.eai.*" %>
 <%
 String error = null;
 Boolean userCreated = false;
@@ -12,14 +10,6 @@ String password = request.getParameter("Password");
 String address = request.getParameter("Address");
 String email = request.getParameter("Email");
 if (submit_action != null && submit_action.equals("Register")) {
-	
-	HttpSession s = request.getSession();
-	LPCOBeanRemote lpco = (LPCOBeanRemote) s.getAttribute("MyBean");
-	if (lpco == null) {
-		InitialContext ctx = new InitialContext();
-		lpco = (LPCOBeanRemote)ctx.lookup("EAIProj2/LPCOBean/remote");
-		s.setAttribute("MyBean", lpco);
-	}
 	
 	// validate data
 	if (username == null || username.isEmpty()) {
@@ -33,7 +23,7 @@ if (submit_action != null && submit_action.equals("Register")) {
 	} else {
 		// Register user in server
 		//List<String> camerasList = lpco.registerUser(username, password, address, email);
-		userCreated = lpco.registerUser(username, password, address, email);;
+		userCreated = null;//lpco.registerUser(username, password, address, email);;
 	}
 }
 %>

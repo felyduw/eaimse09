@@ -1,26 +1,14 @@
 <%@ page import="javax.naming.*" %>
 <%@ page import="java.util.*" %>
-<%@ page import="pt.uc.dei.eai.common.*" %>
-<%@ page import="pt.uc.dei.eai.lpco.LPCOBean"%>
-<%@ page import="pt.uc.dei.eai.lpco.LPCOBeanRemote"%>
-
+<%@ page import="pt.uc.dei.eai.*" %>
 <%
 String error = null;
-
-HttpSession s = request.getSession();
-LPCOBeanRemote lpco = (LPCOBeanRemote) s.getAttribute("MyBean");
-if (lpco == null) {
-	InitialContext ctx = new InitialContext();
-	lpco = (LPCOBeanRemote)ctx.lookup("EAIProj2/LPCOBean/remote");
-	s.setAttribute("MyBean", lpco);
-}
-
 Integer orderId = null;
 Order order = null;
 try {
 	String orderIdString = request.getParameter("order");
 	orderId = Integer.parseInt(orderIdString);
-	order = lpco.getOrder(orderId);
+	order = null;//lpco.getOrder(orderId);
 } catch (Exception exc) {
 	error = "Error obtaining the order detail.";
 }

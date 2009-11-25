@@ -1,22 +1,10 @@
 <%@ page import="javax.naming.*" %>
-<%@ page import="pt.uc.dei.eai.lpco.LPCOBean"%>
-<%@page import="pt.uc.dei.eai.lpco.LPCOBeanRemote"%>
-<%@ page import="pt.uc.dei.eai.common.*" %>
-
+<%@ page import="pt.uc.dei.eai.*" %>
 <%
 String error = null;
-
-
-HttpSession s = request.getSession();
-LPCOBeanRemote lpco = (LPCOBeanRemote) s.getAttribute("MyBean");
-if (lpco == null) {
-	InitialContext ctx = new InitialContext();
-	lpco = (LPCOBeanRemote)ctx.lookup("EAIProj2/LPCOBean/remote");
-	s.setAttribute("MyBean", lpco);
-}
-
-if (lpco.getShoppingCart().size() != 0) {
-	if (lpco.submitOrder()) {
+ShoppingCart existingCart = (ShoppingCart)session.getAttribute("cart");
+if (existingCart.getCameras().size() != 0) {
+	if (false/*lpco.submitOrder()*/) {
 		// purchase done, clean shopping cart
 		session.removeAttribute("cart");
 	} else {
