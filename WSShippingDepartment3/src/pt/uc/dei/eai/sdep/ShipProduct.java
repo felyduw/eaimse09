@@ -5,8 +5,6 @@ import java.util.Calendar;
 
 import pt.uc.dei.eai.common.Order;
 import pt.uc.dei.eai.common.Utility;
-import pt.uc.dei.eai.lpco.LPCOProxy;
-import pt.uc.dei.eai.lpco.LPCOService;
 
 /**
  * Ship Product and call LPCO Web Service.
@@ -14,8 +12,8 @@ import pt.uc.dei.eai.lpco.LPCOService;
 public class ShipProduct extends Thread {
 	
 	//FIXME CALL PROCESS ORCHESTRATOR
-	final static String wsdlLocation = "http://127.0.0.1:8080/WSLPCO?wsdl";
-	static LPCOService LPCOWebService;
+	//final static String wsdlLocation = "http://127.0.0.1:8080/WSLPCO?wsdl";
+	//static LPCOService LPCOWebService;
 	
 	Order shipOrder;
 	
@@ -54,6 +52,8 @@ public class ShipProduct extends Thread {
 	
 	public void invokeWSLPCO(Integer orderId, String shippedDates) {
 	
+		//FIXME CALL PROCESS ORCHESTRATOR
+		/*
 		try {
 			// Calling Web Service
 			LPCOProxy lpProxy = new LPCOProxy();
@@ -61,5 +61,6 @@ public class ShipProduct extends Thread {
 		} catch(Exception ex) {
 			 Utility.writeLog(ex.getMessage());
 		}
+		*/
 	}
 }
