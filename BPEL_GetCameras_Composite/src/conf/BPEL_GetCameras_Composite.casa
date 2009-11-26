@@ -4,10 +4,10 @@
         <endpoint endpoint-name="CameraSupplierPort" interface-name="ns1:CameraSupplier" name="endpoint1" service-name="ns1:CameraSupplierService"/>
         <endpoint endpoint-name="GetCameras" interface-name="ns3:InvokeCamerasProcessWSPortType" name="endpoint2" service-name="ns2:casaService1"/>
         <endpoint display-name="CamerasGetProcess" endpoint-name="InvokeCamerasProcessWSPortTypeRole_myRole" file-path="CamerasProcess.bpel" interface-name="ns3:InvokeCamerasProcessWSPortType" name="endpoint3" process-name="CamerasProcess" service-name="ns4:CamerasGetProcess"/>
-        <endpoint display-name="SearchCamerasPartnerLink" endpoint-name="CameraSupplierRole_partnerRole" file-path="CamerasProcess.bpel" interface-name="ns1:CameraSupplier" name="endpoint4" process-name="CamerasProcess" service-name="ns4:SearchCamerasPartnerLink"/>
+        <endpoint display-name="SearchCamerasPartnerLink" name="endpoint4" file-path="CamerasProcess.bpel" endpoint-name="CameraSupplierRole_partnerRole" interface-name="ns1:CameraSupplier" process-name="CamerasProcess" service-name="ns4:SearchCamerasPartnerLink"/>
     </endpoints>
     <service-units>
-        <service-engine-service-unit artifacts-zip="BPEL_GetCameras.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="BPEL_GetCameras_Composite-BPEL_GetCameras" unit-name="BPEL_GetCameras" unknown="false" x="120" y="100">
+        <service-engine-service-unit artifacts-zip="BPEL_GetCameras.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="BPEL_GetCameras_Composite-BPEL_GetCameras" unit-name="BPEL_GetCameras" unknown="false" x="86" y="205">
             <provides endpoint="endpoint3"/>
             <consumes endpoint="endpoint4"/>
         </service-engine-service-unit>
@@ -28,7 +28,7 @@
     </service-units>
     <connections>
         <connection consumer="endpoint2" provider="endpoint3" state="unchanged"/>
-        <connection consumer="endpoint4" provider="endpoint1" state="unchanged"/>
+        <connection state="unchanged" consumer="endpoint4" provider="endpoint1"/>
     </connections>
     <porttypes>
         <link xlink:href="../jbiasa/BPEL_GetCameras_Composite.wsdl#xpointer(/definitions/portType[@name='dummyCasaPortType'])" xlink:type="simple"/>
