@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
-import javax.xml.ws.WebServiceRef;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -13,8 +12,6 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import pt.uc.dei.eai.common.Camera;
-import pt.uc.dei.eai.cs.CameraSupplier;
-import pt.uc.dei.eai.cs.CameraSupplierService;
 import pt.uc.dei.eai.data.HibernateUtil;
 
 @WebService

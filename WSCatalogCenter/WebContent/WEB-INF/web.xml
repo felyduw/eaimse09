@@ -18,12 +18,6 @@
 		<servlet-name>CatalogCenterWebService</servlet-name>
 		<servlet-class>pt.uc.dei.eai.cc.CatalogCenter</servlet-class>
 	</servlet>
-
-    <servlet>
-        <servlet-name>CatalogCenter</servlet-name>
-        <servlet-class>pt.uc.dei.eai.cc.CatalogCenter</servlet-class>
-        <load-on-startup>1</load-on-startup>
-        </servlet>
     <servlet-mapping>
 		<servlet-name>CatalogCenterWebService</servlet-name>
 		<url-pattern>/*</url-pattern>
