@@ -7,12 +7,6 @@ public class Camera implements Serializable {
 	
 	//For Hibernate
 	public Camera() {}
-	
-	// Adapt from the web service to get the cameras
-	public Camera(pt.uc.dei.eai.cs.Camera cameraSupplier) {
-		this.model = cameraSupplier.getModel();
-		this.price = cameraSupplier.getPrice();
-	}
 
 	Integer id;
 	
