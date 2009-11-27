@@ -3,7 +3,9 @@
     xmlns="http://schemas.xmlsoap.org/wsdl/"
     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_CameraWS/InvokeCamerasProcessWS" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype">
-    <types/>
+    <types>
+        <xsd:schema targetNamespace="http://j2ee.netbeans.org/wsdl/BPEL_CameraWS/InvokeCamerasProcessWS" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_CameraWS/InvokeCamerasProcessWS"/>
+    </types>
     <message name="InvokeCamerasProcessWSOperationRequest">
         <part name="part1" type="xsd:string"/>
     </message>
