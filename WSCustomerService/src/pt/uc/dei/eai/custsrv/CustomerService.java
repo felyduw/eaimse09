@@ -3,6 +3,7 @@ package pt.uc.dei.eai.custsrv;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -200,7 +201,13 @@ public class CustomerService implements ICustomerService {
 	@WebMethod
 	@Override
 	public boolean doesClientHaveMoney() {
-		// TODO Auto-generated method stub
-		return false;
+		Random r = new Random();
+		r.setSeed(Calendar.getInstance().getTimeInMillis());
+		r.nextInt(100);
+		if (r.nextInt(100) < 75) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
