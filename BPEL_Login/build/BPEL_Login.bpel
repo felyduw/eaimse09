@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process
+    name="BPEL_Login"
+    targetNamespace="http://enterprise.netbeans.org/bpel/BPEL_Login/BPEL_Login"
+    xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:sxt="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Trace" 
+    xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
+    xmlns:sxat="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Attachment"
+    xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling"
+    xmlns:tns="http://enterprise.netbeans.org/bpel/BPEL_Login/BPEL_Login" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://xml.netbeans.org/schema/UserSchema">
+   <import namespace="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSLoginWrapper" location="WSLoginWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+   <import namespace="http://enterprise.netbeans.org/bpel/WSCustomerServiceWrapper" location="WSCustomerServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+   <import namespace="http://custsrv.eai.dei.uc.pt/" location="127.0.0.1_8080/WSCustomerService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+   <partnerLinks>
+      <partnerLink name="WSLogin" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSLoginWrapper" partnerLinkType="tns:WSLoginWrapper" myRole="WSLoginWrapperPortTypeRole"/>
+      <partnerLink name="WSCustomerService" xmlns:tns="http://enterprise.netbeans.org/bpel/WSCustomerServiceWrapper" partnerLinkType="tns:CustomerServiceLinkType" partnerRole="CustomerServiceRole"/>
+   </partnerLinks>
+   <variables>
+      <variable name="WSLoginWrapperOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSLoginWrapper" messageType="tns:WSLoginWrapperOperationResponse"/>
+      <variable name="DoLoginOut" xmlns:tns="http://custsrv.eai.dei.uc.pt/" messageType="tns:CustomerService_doLoginResponse"/>
+      <variable name="DoLoginIn" xmlns:tns="http://custsrv.eai.dei.uc.pt/" messageType="tns:CustomerService_doLogin"/>
+      <variable name="WSLoginWrapperOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSLoginWrapper" messageType="tns:WSLoginWrapperOperationRequest"/>
+   </variables>
+   <sequence>
+      <receive name="ReceiveLogin" createInstance="yes" partnerLink="WSLogin" operation="WSLoginWrapperOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSLoginWrapper" portType="tns:WSLoginWrapperPortType" variable="WSLoginWrapperOperationIn"/>
+      <assign name="Assign1">
+         <copy>
+            <from variable="WSLoginWrapperOperationIn" part="username"/>
+            <to>$DoLoginIn.doLogin/arg0</to>
+         </copy>
+         <copy>
+            <from variable="WSLoginWrapperOperationIn" part="password"/>
+            <to>$DoLoginIn.doLogin/arg1</to>
+         </copy>
+      </assign>
+      <invoke name="InvokeLogin" partnerLink="WSCustomerService" operation="doLogin" xmlns:tns="http://custsrv.eai.dei.uc.pt/" portType="tns:CustomerService" inputVariable="DoLoginIn" outputVariable="DoLoginOut"/>
+      <assign name="Assign2">
+         <copy>
+            <from>$DoLoginOut.doLoginResponse/return/address</from>
+            <to>$WSLoginWrapperOperationOut.user/ns0:address</to>
+         </copy>
+         <copy>
+            <from>$DoLoginOut.doLoginResponse/return/email</from>
+            <to>$WSLoginWrapperOperationOut.user/ns0:email</to>
+         </copy>
+         <copy>
+            <from>$DoLoginOut.doLoginResponse/return/id</from>
+            <to>$WSLoginWrapperOperationOut.user/ns0:id</to>
+         </copy>
+         <copy>
+            <from>$DoLoginOut.doLoginResponse/return/name</from>
+            <to>$WSLoginWrapperOperationOut.user/ns0:name</to>
+         </copy>
+         <copy>
+            <from>$DoLoginOut.doLoginResponse/return/password</from>
+            <to>$WSLoginWrapperOperationOut.user/ns0:password</to>
+         </copy>
+         <copy>
+            <from>$DoLoginOut.doLoginResponse/return/username</from>
+            <to>$WSLoginWrapperOperationOut.user/ns0:username</to>
+         </copy>
+      </assign>
+      <reply name="ReplyLogin" partnerLink="WSLogin" operation="WSLoginWrapperOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSLoginWrapper" portType="tns:WSLoginWrapperPortType" variable="WSLoginWrapperOperationOut"/>
+   </sequence>
+</process>
