@@ -109,6 +109,40 @@
         COMPILATION SECTION
     -->
     <target name="deps-jar" depends="init" unless="${no.dependencies}">
+        <ant target="dist_se" inheritall="false" antfile="${project.BPEL_Login}/build.xml"/>
+        <property name="BPEL_Login.su.name" value="BPEL_Login"/>
+        <unzip src="${reference.BPEL_Login.dist_se}" dest="${src.dir}/../jbiServiceUnits/${BPEL_Login.su.name}">
+            <patternset>
+                <include name="**/*.wsdl"/>
+                <include name="**/*.WSDL"/>
+                <include name="**/*.xsd"/>
+                <include name="**/*.XSD"/>
+                <include name="META-INF/jbi.xml"/>
+                <include name="META-INF/catalog.xml"/>
+            </patternset>
+        </unzip>
+        <property name="BPEL_Login.su.dir" value="${src.dir}/../jbiServiceUnits/${BPEL_Login.su.name}"/>
+        <move file="${BPEL_Login.su.dir}/META-INF/jbi.xml" todir="${BPEL_Login.su.dir}"/>
+        <move todir="${src.dir}/../jbiServiceUnits/META-INF/${BPEL_Login.su.name}">
+            <fileset dir="${BPEL_Login.su.dir}/META-INF"/>
+        </move>
+        <ant target="dist_se" inheritall="false" antfile="${project.BPEL_Purchases}/build.xml"/>
+        <property name="BPEL_Purchases.su.name" value="BPEL_Purchases"/>
+        <unzip src="${reference.BPEL_Purchases.dist_se}" dest="${src.dir}/../jbiServiceUnits/${BPEL_Purchases.su.name}">
+            <patternset>
+                <include name="**/*.wsdl"/>
+                <include name="**/*.WSDL"/>
+                <include name="**/*.xsd"/>
+                <include name="**/*.XSD"/>
+                <include name="META-INF/jbi.xml"/>
+                <include name="META-INF/catalog.xml"/>
+            </patternset>
+        </unzip>
+        <property name="BPEL_Purchases.su.dir" value="${src.dir}/../jbiServiceUnits/${BPEL_Purchases.su.name}"/>
+        <move file="${BPEL_Purchases.su.dir}/META-INF/jbi.xml" todir="${BPEL_Purchases.su.dir}"/>
+        <move todir="${src.dir}/../jbiServiceUnits/META-INF/${BPEL_Purchases.su.name}">
+            <fileset dir="${BPEL_Purchases.su.dir}/META-INF"/>
+        </move>
         <ant target="dist_se" inheritall="false" antfile="${project.BPEL_SearchCameras}/build.xml"/>
         <property name="BPEL_SearchCameras.su.name" value="BPEL_SearchCameras"/>
         <unzip src="${reference.BPEL_SearchCameras.dist_se}" dest="${src.dir}/../jbiServiceUnits/${BPEL_SearchCameras.su.name}">
@@ -136,13 +170,19 @@
         <!-- You can override this target in the ../build.xml file. -->
     </target>
     <target name="library-inclusion-in-archive" depends="compile">
+        <unjar dest="${build.classes.dir}" src="${reference.BPEL_Login.dist_se}"/>
+        <unjar dest="${build.classes.dir}" src="${reference.BPEL_Purchases.dist_se}"/>
         <unjar dest="${build.classes.dir}" src="${reference.BPEL_SearchCameras.dist_se}"/>
     </target>
     <target name="library-inclusion-in-manifest" depends="compile">
+        <basename property="included.lib.reference.BPEL_Login.dist_se" file="${reference.BPEL_Login.dist_se}"/>
+        <copy todir="${build.classes.dir}" file="${reference.BPEL_Login.dist_se}"/>
+        <basename property="included.lib.reference.BPEL_Purchases.dist_se" file="${reference.BPEL_Purchases.dist_se}"/>
+        <copy todir="${build.classes.dir}" file="${reference.BPEL_Purchases.dist_se}"/>
         <basename property="included.lib.reference.BPEL_SearchCameras.dist_se" file="${reference.BPEL_SearchCameras.dist_se}"/>
         <copy todir="${build.classes.dir}" file="${reference.BPEL_SearchCameras.dist_se}"/>
         <manifest file="${build.classes.dir}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Class-Path" value="${included.lib.reference.BPEL_SearchCameras.dist_se}"/>
+            <attribute name="Class-Path" value="${included.lib.reference.BPEL_Login.dist_se},${included.lib.reference.BPEL_Purchases.dist_se},${included.lib.reference.BPEL_SearchCameras.dist_se}"/>
         </manifest>
     </target>
     <target name="do-compile" depends="init,deps-jar,pre-pre-compile,pre-compile"/>
@@ -234,6 +274,8 @@
         CLEANUP SECTION
     -->
     <target name="deps-clean" depends="init" unless="${no.dependencies}">
+        <ant target="clean" inheritall="false" antfile="${project.BPEL_Login}/build.xml"/>
+        <ant target="clean" inheritall="false" antfile="${project.BPEL_Purchases}/build.xml"/>
         <ant target="clean" inheritall="false" antfile="${project.BPEL_SearchCameras}/build.xml"/>
     </target>
     <target name="do-clean" depends="init">

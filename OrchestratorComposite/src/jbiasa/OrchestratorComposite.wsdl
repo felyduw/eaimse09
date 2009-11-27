@@ -9,23 +9,17 @@
              xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
              xmlns:xsd="http://www.w3.org/2001/XMLSchema"
              targetNamespace="OrchestratorComposite"
-             xmlns:tns="OrchestratorComposite" xmlns:ns="http://j2ee.netbeans.org/wsdl/BPEL_SearchCameras/WS_BPEL_SearchCameras" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://j2ee.netbeans.org/wsdl/BPEL_SearchCameras/WS_BPEL_GetCameraInfo">
+             xmlns:tns="OrchestratorComposite" xmlns:ns="http://j2ee.netbeans.org/wsdl/BPEL_SearchCameras/WS_BPEL_SearchCameras" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://j2ee.netbeans.org/wsdl/BPEL_SearchCameras/WS_BPEL_GetCameraInfo" xmlns:ns2="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_Checkout" xmlns:ns3="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_GetPurchaseInfo" xmlns:ns4="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_GetPurchases" xmlns:ns5="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSLoginWrapper" xmlns:ns6="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSRegisterUSer" xmlns:ns7="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_Shipped">
     <import namespace="http://j2ee.netbeans.org/wsdl/BPEL_SearchCameras/WS_BPEL_SearchCameras" location="../jbiServiceUnits/BPEL_SearchCameras/WS_BPEL_SearchCameras.wsdl"/>
     <import namespace="http://j2ee.netbeans.org/wsdl/BPEL_SearchCameras/WS_BPEL_GetCameraInfo" location="../jbiServiceUnits/BPEL_SearchCameras/WS_BPEL_GetCameraInfo.wsdl"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_Checkout" location="../jbiServiceUnits/BPEL_Purchases/WS_BPEL_Checkout.wsdl"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_GetPurchaseInfo" location="../jbiServiceUnits/BPEL_Purchases/WS_BPEL_GetPurchaseInfo.wsdl"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_GetPurchases" location="../jbiServiceUnits/BPEL_Purchases/WS_BPEL_GetPurchases.wsdl"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSLoginWrapper" location="../jbiServiceUnits/BPEL_Login/WSLoginWrapper.wsdl"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSRegisterUSer" location="../jbiServiceUnits/BPEL_Login/WSRegisterUser.wsdl"/>
+    <import namespace="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_Shipped" location="../jbiServiceUnits/BPEL_Purchases/WS_BPEL_Shipped.wsdl"/>
     <portType name="dummyCasaPortType"/>
-    <binding name="casaBinding1" type="ns:WS_BPEL_SearchCamerasPortType">
-        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
-        <operation name="WS_BPEL_SearchCamerasOperation">
-            <soap:operation/>
-            <input name="input1">
-                <soap:body use="literal" namespace="OrchestratorComposite"/>
-            </input>
-            <output name="output1">
-                <soap:body use="literal" namespace="OrchestratorComposite"/>
-            </output>
-        </operation>
-    </binding>
-    <binding name="casaBinding2" type="ns1:WS_BPEL_GetCameraInfoPortType">
+    <binding name="casaBinding1" type="ns1:WS_BPEL_GetCameraInfoPortType">
         <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
         <operation name="WS_BPEL_GetCameraInfoOperation">
             <soap:operation/>
@@ -37,14 +31,125 @@
             </output>
         </operation>
     </binding>
-    <service name="casaService1">
-        <port name="searchCameras" binding="tns:casaBinding1">
-            <soap:address location="http://localhost:${HttpDefaultPort}/SearchCameras"/>
+    <binding name="casaBinding2" type="ns:WS_BPEL_SearchCamerasPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="WS_BPEL_SearchCamerasOperation">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal" namespace="OrchestratorComposite"/>
+            </input>
+            <output name="output1">
+                <soap:body use="literal" namespace="OrchestratorComposite"/>
+            </output>
+        </operation>
+    </binding>
+    <binding name="casaBinding3" type="ns2:WS_BPEL_CheckoutPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="WS_BPEL_CheckoutOperation">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal" namespace="OrchestratorComposite"/>
+            </input>
+            <output name="output1">
+                <soap:body use="literal" namespace="OrchestratorComposite"/>
+            </output>
+        </operation>
+    </binding>
+    <binding name="casaBinding4" type="ns3:WS_BPEL_GetPurchaseInfoPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="WS_BPEL_GetPurchaseInfoOperation">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal" namespace="OrchestratorComposite"/>
+            </input>
+            <output name="output1">
+                <soap:body use="literal" namespace="OrchestratorComposite"/>
+            </output>
+        </operation>
+    </binding>
+    <binding name="casaBinding5" type="ns4:WS_BPEL_GetPurchasesPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="WS_BPEL_GetPurchasesOperation">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal" namespace="OrchestratorComposite"/>
+            </input>
+            <output name="output1">
+                <soap:body use="literal" namespace="OrchestratorComposite"/>
+            </output>
+        </operation>
+    </binding>
+    <binding name="casaBinding6" type="ns5:WSLoginWrapperPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="WSLoginWrapperOperation">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal" namespace="OrchestratorComposite"/>
+            </input>
+            <output name="output1">
+                <soap:body use="literal" namespace="OrchestratorComposite"/>
+            </output>
+        </operation>
+    </binding>
+    <binding name="casaBinding7" type="ns6:WSRegisterUSerPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="WSRegisterUSerOperation">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal" namespace="OrchestratorComposite"/>
+            </input>
+            <output name="output1">
+                <soap:body use="literal" namespace="OrchestratorComposite"/>
+            </output>
+        </operation>
+    </binding>
+    <binding name="casaBinding8" type="ns7:WS_BPEL_ShippedPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="WS_BPEL_ShippedOperation">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal" namespace="OrchestratorComposite"/>
+            </input>
+        </operation>
+    </binding>
+    <service name="casaService2">
+        <port name="casaPort2" binding="tns:casaBinding2">
+            <soap:address location="http://localhost:${HttpDefaultPort}/casaService2/casaPort2"/>
         </port>
     </service>
-    <service name="casaService2">
-        <port name="getCameraInfo" binding="tns:casaBinding2">
-            <soap:address location="http://localhost:${HttpDefaultPort}/GetCameraInfo"/>
+    <service name="casaService1">
+        <port name="casaPort1" binding="tns:casaBinding1">
+            <soap:address location="http://localhost:${HttpDefaultPort}/casaService1/casaPort1"/>
+        </port>
+    </service>
+    <service name="casaService3">
+        <port name="casaPort3" binding="tns:casaBinding3">
+            <soap:address location="http://localhost:${HttpDefaultPort}/casaService3/casaPort3"/>
+        </port>
+    </service>
+    <service name="casaService4">
+        <port name="casaPort4" binding="tns:casaBinding4">
+            <soap:address location="http://localhost:${HttpDefaultPort}/casaService4/casaPort4"/>
+        </port>
+    </service>
+    <service name="casaService5">
+        <port name="casaPort5" binding="tns:casaBinding5">
+            <soap:address location="http://localhost:${HttpDefaultPort}/casaService5/casaPort5"/>
+        </port>
+    </service>
+    <service name="casaService6">
+        <port name="casaPort6" binding="tns:casaBinding6">
+            <soap:address location="http://localhost:${HttpDefaultPort}/casaService6/casaPort6"/>
+        </port>
+    </service>
+    <service name="casaService7">
+        <port name="casaPort7" binding="tns:casaBinding7">
+            <soap:address location="http://localhost:${HttpDefaultPort}/casaService7/casaPort7"/>
+        </port>
+    </service>
+    <service name="casaService8">
+        <port name="casaPort8" binding="tns:casaBinding8">
+            <soap:address location="http://localhost:${HttpDefaultPort}/casaService8/casaPort8"/>
         </port>
     </service>
 </definitions>
