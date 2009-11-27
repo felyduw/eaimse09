@@ -3,7 +3,6 @@ package pt.uc.dei.eai.custsrv;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Random;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -29,9 +28,6 @@ public class CustomerService implements ICustomerService {
 	private static String FROM = "psaraiva@dei.uc.pt";
 	private static String MESSAGE = "The order has been shipped.";
 
-	//@WebServiceRef(wsdlLocation = "http://127.0.0.1:8080/WSShippingDepartment?wsdl")
-	//static ShippingDepartmentService ShippingService;
-
 	/******************** User Management */
 	@WebMethod
 	@Override
@@ -42,7 +38,7 @@ public class CustomerService implements ICustomerService {
 		User u = (User) criteria.uniqueResult();
 		HibernateUtil.commitTransaction();
 
-		if (u.getPassword().equals(password)) {
+		if (u != null && u.getPassword().equals(password)) {
 			return u;
 		}
 		return null;
@@ -95,61 +91,21 @@ public class CustomerService implements ICustomerService {
 
 	@WebMethod
 	@Override
-	public boolean submitOrder(List<Camera> cart, User user) {
+	public boolean submitOrder(List<Camera> cart, User user, OrderStatus status) {
 		
 		if (cart.size() == 0 || user == null)
 			return false;
 
 		Order order = new Order();
 		order.setOrderedCameras(new ArrayList<Camera>(cart));
-		order.setOrderStatus(OrderStatus.WAITING_FOR_SHIPPING);
 		order.setUsername(user.getUsername());
 		order.setShippingAddress(user.getAddress());
 		order.setEmailAddress(user.getEmail());
 		order.setPurchaseDate(Calendar.getInstance().getTime());
-		Integer identifier;
-		try {
-			Session session = HibernateUtil.beginTransaction();
-			identifier = (Integer) session.save(order);
-			HibernateUtil.commitTransaction();
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			return false;
-		}
-
-		// Gerar Random aqui
-		Random r = new Random();
-		r.setSeed(Calendar.getInstance().getTimeInMillis());
-		r.nextInt(100);
-
-		if (r.nextInt(100) < 75) {
-			
-			//FIXME CALL PROCESS ORCHESTRATOR
-			/*ShippingDepartment sd = ShippingService.getShippingDepartmentPort();
-
-			pt.uc.dei.eai.sdep.Order wsOrder = new pt.uc.dei.eai.sdep.Order();
-			wsOrder.setShippingAddress(order.getShippingAddress());
-			wsOrder.setUsername(order.getUsername());
-			XMLGregorianCalendar calendar = new XMLGregorianCalendarImpl(
-					(GregorianCalendar) GregorianCalendar.getInstance());
-			wsOrder.setPurchaseDate(calendar);
-			wsOrder.setOrderId(identifier);
-
-			sd.makeOrder(wsOrder);
-			*/
-
-		} else {
-			order.setOrderStatus(OrderStatus.NOT_PAID);
-			try {
-				Session session = HibernateUtil.beginTransaction();
-				session.update(order);
-				HibernateUtil.commitTransaction();
-			} catch (HibernateException e) {
-				e.printStackTrace();
-				return false;
-			}
-		}
-		return true;
+		
+		order.setOrderStatus(status);
+		
+		return updateOrder(order);
 	}
 
 	@WebMethod
