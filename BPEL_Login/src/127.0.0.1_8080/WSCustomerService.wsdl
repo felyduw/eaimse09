@@ -5,6 +5,8 @@
    <xs:element name='doLoginResponse' type='tns:doLoginResponse'/>
    <xs:element name='doLogout' type='tns:doLogout'/>
    <xs:element name='doLogoutResponse' type='tns:doLogoutResponse'/>
+   <xs:element name='doesClientHaveMoney' type='tns:doesClientHaveMoney'/>
+   <xs:element name='doesClientHaveMoneyResponse' type='tns:doesClientHaveMoneyResponse'/>
    <xs:element name='getOrder' type='tns:getOrder'/>
    <xs:element name='getOrderResponse' type='tns:getOrderResponse'/>
    <xs:element name='getPurchase' type='tns:getPurchase'/>
@@ -107,11 +109,12 @@
     <xs:sequence>
      <xs:element maxOccurs='unbounded' minOccurs='0' name='arg0' type='tns:camera'/>
      <xs:element minOccurs='0' name='arg1' type='tns:user'/>
+     <xs:element minOccurs='0' name='arg2' type='tns:orderStatus'/>
     </xs:sequence>
    </xs:complexType>
    <xs:complexType name='submitOrderResponse'>
     <xs:sequence>
-     <xs:element name='return' type='xs:boolean'/>
+     <xs:element minOccurs='0' name='return' type='xs:int'/>
     </xs:sequence>
    </xs:complexType>
    <xs:complexType name='updateOrder'>
@@ -155,6 +158,14 @@
      <xs:element minOccurs='0' name='return' type='tns:order'/>
     </xs:sequence>
    </xs:complexType>
+   <xs:complexType name='doesClientHaveMoney'>
+    <xs:sequence/>
+   </xs:complexType>
+   <xs:complexType name='doesClientHaveMoneyResponse'>
+    <xs:sequence>
+     <xs:element name='return' type='xs:boolean'/>
+    </xs:sequence>
+   </xs:complexType>
    <xs:simpleType name='orderStatus'>
     <xs:restriction base='xs:string'>
      <xs:enumeration value='WAITING_FOR_SHIPPING'/>
@@ -173,6 +184,9 @@
  <message name='CustomerService_updateOrderResponse'>
   <part element='tns:updateOrderResponse' name='updateOrderResponse'></part>
  </message>
+ <message name='CustomerService_doesClientHaveMoneyResponse'>
+  <part element='tns:doesClientHaveMoneyResponse' name='doesClientHaveMoneyResponse'></part>
+ </message>
  <message name='CustomerService_getPurchase'>
   <part element='tns:getPurchase' name='getPurchase'></part>
  </message>
@@ -181,6 +195,9 @@
  </message>
  <message name='CustomerService_listPurchases'>
   <part element='tns:listPurchases' name='listPurchases'></part>
+ </message>
+ <message name='CustomerService_doesClientHaveMoney'>
+  <part element='tns:doesClientHaveMoney' name='doesClientHaveMoney'></part>
  </message>
  <message name='CustomerService_listAllOrders'>
   <part element='tns:listAllOrders' name='listAllOrders'></part>
@@ -233,6 +250,10 @@
    <input message='tns:CustomerService_doLogout'></input>
    <output message='tns:CustomerService_doLogoutResponse'></output>
   </operation>
+  <operation name='doesClientHaveMoney' parameterOrder='doesClientHaveMoney'>
+   <input message='tns:CustomerService_doesClientHaveMoney'></input>
+   <output message='tns:CustomerService_doesClientHaveMoneyResponse'></output>
+  </operation>
   <operation name='getOrder' parameterOrder='getOrder'>
    <input message='tns:CustomerService_getOrder'></input>
    <output message='tns:CustomerService_getOrderResponse'></output>
@@ -278,6 +299,15 @@
    </output>
   </operation>
   <operation name='doLogout'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+  </operation>
+  <operation name='doesClientHaveMoney'>
    <soap:operation soapAction=''/>
    <input>
     <soap:body use='literal'/>
