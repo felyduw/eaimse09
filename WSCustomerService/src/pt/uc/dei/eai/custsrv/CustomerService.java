@@ -108,6 +108,14 @@ public class CustomerService implements ICustomerService {
 		
 		order.setOrderStatus(status);
 		
+		try {
+			Session session = HibernateUtil.beginTransaction();
+			result = (Integer) session.save(order);
+			HibernateUtil.commitTransaction();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}
+		
 		return result;
 	}
 
