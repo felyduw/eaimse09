@@ -113,43 +113,43 @@
         </operation>
     </binding>
     <service name="casaService2">
-        <port name="casaPort2" binding="tns:casaBinding2">
-            <soap:address location="http://localhost:${HttpDefaultPort}/casaService2/casaPort2"/>
+        <port name="searchCameras" binding="tns:casaBinding2">
+            <soap:address location="http://localhost:${HttpDefaultPort}/SearchCameras"/>
         </port>
     </service>
     <service name="casaService1">
-        <port name="casaPort1" binding="tns:casaBinding1">
-            <soap:address location="http://localhost:${HttpDefaultPort}/casaService1/casaPort1"/>
+        <port name="getCamera" binding="tns:casaBinding1">
+            <soap:address location="http://localhost:${HttpDefaultPort}/GetCamera"/>
         </port>
     </service>
     <service name="casaService3">
-        <port name="casaPort3" binding="tns:casaBinding3">
-            <soap:address location="http://localhost:${HttpDefaultPort}/casaService3/casaPort3"/>
+        <port name="checkout" binding="tns:casaBinding3">
+            <soap:address location="http://localhost:${HttpDefaultPort}/Checkout"/>
         </port>
     </service>
     <service name="casaService4">
-        <port name="casaPort4" binding="tns:casaBinding4">
-            <soap:address location="http://localhost:${HttpDefaultPort}/casaService4/casaPort4"/>
+        <port name="getPurchaseInfo" binding="tns:casaBinding4">
+            <soap:address location="http://localhost:${HttpDefaultPort}/GetPurchaseInfo"/>
         </port>
     </service>
     <service name="casaService5">
-        <port name="casaPort5" binding="tns:casaBinding5">
-            <soap:address location="http://localhost:${HttpDefaultPort}/casaService5/casaPort5"/>
+        <port name="getPurchases" binding="tns:casaBinding5">
+            <soap:address location="http://localhost:${HttpDefaultPort}/GetPurchases"/>
         </port>
     </service>
     <service name="casaService6">
-        <port name="casaPort6" binding="tns:casaBinding6">
-            <soap:address location="http://localhost:${HttpDefaultPort}/casaService6/casaPort6"/>
+        <port name="login" binding="tns:casaBinding6">
+            <soap:address location="http://localhost:${HttpDefaultPort}/Login"/>
         </port>
     </service>
     <service name="casaService7">
-        <port name="casaPort7" binding="tns:casaBinding7">
-            <soap:address location="http://localhost:${HttpDefaultPort}/casaService7/casaPort7"/>
+        <port name="register" binding="tns:casaBinding7">
+            <soap:address location="http://localhost:${HttpDefaultPort}/Register"/>
         </port>
     </service>
     <service name="casaService8">
-        <port name="casaPort8" binding="tns:casaBinding8">
-            <soap:address location="http://localhost:${HttpDefaultPort}/casaService8/casaPort8"/>
+        <port name="shipped" binding="tns:casaBinding8">
+            <soap:address location="http://localhost:${HttpDefaultPort}/Shipped"/>
         </port>
     </service>
 </definitions>

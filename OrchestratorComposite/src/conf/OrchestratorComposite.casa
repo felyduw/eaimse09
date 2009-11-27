@@ -8,14 +8,14 @@
         <endpoint endpoint-name="WSRegisterUSerPort" interface-name="ns5:WSRegisterUSerPortType" name="endpoint5" service-name="ns5:WSRegisterUSerService"/>
         <endpoint endpoint-name="WS_BPEL_ShippedPort" interface-name="ns6:WS_BPEL_ShippedPortType" name="endpoint6" service-name="ns6:WS_BPEL_ShippedService"/>
         <endpoint endpoint-name="WSLoginWrapperPort" interface-name="ns7:WSLoginWrapperPortType" name="endpoint7" service-name="ns7:WSLoginWrapperService"/>
-        <endpoint endpoint-name="casaPort2" interface-name="ns9:WS_BPEL_SearchCamerasPortType" name="endpoint8" service-name="ns8:casaService2"/>
-        <endpoint endpoint-name="casaPort1" interface-name="ns10:WS_BPEL_GetCameraInfoPortType" name="endpoint9" service-name="ns8:casaService1"/>
-        <endpoint endpoint-name="casaPort3" interface-name="ns11:WS_BPEL_CheckoutPortType" name="endpoint10" service-name="ns8:casaService3"/>
-        <endpoint endpoint-name="casaPort4" interface-name="ns12:WS_BPEL_GetPurchaseInfoPortType" name="endpoint11" service-name="ns8:casaService4"/>
-        <endpoint endpoint-name="casaPort5" interface-name="ns13:WS_BPEL_GetPurchasesPortType" name="endpoint12" service-name="ns8:casaService5"/>
-        <endpoint endpoint-name="casaPort6" interface-name="ns7:WSLoginWrapperPortType" name="endpoint13" service-name="ns8:casaService6"/>
-        <endpoint endpoint-name="casaPort7" interface-name="ns5:WSRegisterUSerPortType" name="endpoint14" service-name="ns8:casaService7"/>
-        <endpoint endpoint-name="casaPort8" interface-name="ns6:WS_BPEL_ShippedPortType" name="endpoint15" service-name="ns8:casaService8"/>
+        <endpoint endpoint-name="searchCameras" interface-name="ns9:WS_BPEL_SearchCamerasPortType" name="endpoint8" service-name="ns8:casaService2"/>
+        <endpoint endpoint-name="getCamera" interface-name="ns10:WS_BPEL_GetCameraInfoPortType" name="endpoint9" service-name="ns8:casaService1"/>
+        <endpoint endpoint-name="checkout" interface-name="ns11:WS_BPEL_CheckoutPortType" name="endpoint10" service-name="ns8:casaService3"/>
+        <endpoint endpoint-name="getPurchaseInfo" interface-name="ns12:WS_BPEL_GetPurchaseInfoPortType" name="endpoint11" service-name="ns8:casaService4"/>
+        <endpoint endpoint-name="getPurchases" interface-name="ns13:WS_BPEL_GetPurchasesPortType" name="endpoint12" service-name="ns8:casaService5"/>
+        <endpoint endpoint-name="login" interface-name="ns7:WSLoginWrapperPortType" name="endpoint13" service-name="ns8:casaService6"/>
+        <endpoint endpoint-name="register" interface-name="ns5:WSRegisterUSerPortType" name="endpoint14" service-name="ns8:casaService7"/>
+        <endpoint endpoint-name="shipped" interface-name="ns6:WS_BPEL_ShippedPortType" name="endpoint15" service-name="ns8:casaService8"/>
         <endpoint display-name="WSLogin" endpoint-name="WSLoginWrapperPortTypeRole_myRole" file-path="BPEL_Login.bpel" interface-name="ns7:WSLoginWrapperPortType" name="endpoint16" process-name="BPEL_Login" service-name="ns14:WSLogin"/>
         <endpoint display-name="RegisterUserPartnerLink" endpoint-name="WSRegisterUSerPortTypeRole_myRole" file-path="BPEL_Register.bpel" interface-name="ns5:WSRegisterUSerPortType" name="endpoint17" process-name="BPEL_Register" service-name="ns15:RegisterUserPartnerLink"/>
         <endpoint display-name="WSCustomerService" endpoint-name="CustomerServiceRole_partnerRole" file-path="BPEL_Login.bpel" interface-name="ns4:CustomerService" name="endpoint18" process-name="BPEL_Login" service-name="ns14:WSCustomerService"/>
@@ -42,7 +42,7 @@
             <consumes endpoint="endpoint18"/>
             <consumes endpoint="endpoint19"/>
         </service-engine-service-unit>
-        <service-engine-service-unit artifacts-zip="BPEL_Purchases.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="OrchestratorComposite-BPEL_Purchases" unit-name="BPEL_Purchases" unknown="false" x="227" y="406">
+        <service-engine-service-unit artifacts-zip="BPEL_Purchases.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="OrchestratorComposite-BPEL_Purchases" unit-name="BPEL_Purchases" unknown="false" x="227" y="343">
             <provides endpoint="endpoint20"/>
             <provides endpoint="endpoint21"/>
             <provides endpoint="endpoint22"/>
@@ -53,7 +53,7 @@
             <consumes endpoint="endpoint27"/>
             <consumes endpoint="endpoint28"/>
         </service-engine-service-unit>
-        <service-engine-service-unit artifacts-zip="BPEL_SearchCameras.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="OrchestratorComposite-BPEL_SearchCameras" unit-name="BPEL_SearchCameras" unknown="false" x="141" y="788">
+        <service-engine-service-unit artifacts-zip="BPEL_SearchCameras.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="OrchestratorComposite-BPEL_SearchCameras" unit-name="BPEL_SearchCameras" unknown="false" x="227" y="1002">
             <provides endpoint="endpoint29"/>
             <provides endpoint="endpoint30"/>
             <consumes endpoint="endpoint31"/>
@@ -62,47 +62,49 @@
         </service-engine-service-unit>
         <binding-component-service-unit artifacts-zip="sun-http-binding.jar" component-name="sun-http-binding" description="Represents this Service Unit" name="OrchestratorComposite-sun-http-binding" unit-name="sun-http-binding">
             <ports>
-                <port bindingType="soap" x="67" y="1103">
-                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name='casaService2']/port[@name='casaPort2'])" xlink:type="simple"/>
+                <port bindingType="soap" x="67" y="1196">
+                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name=&apos;casaService2&apos;]/port[@name=&apos;searchCameras&apos;])" xlink:type="simple"/>
                     <consumes endpoint="endpoint8"/>
                     <provides endpoint="endpoint8"/>
                 </port>
-                <port bindingType="soap" x="67" y="1024">
-                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name='casaService1']/port[@name='casaPort1'])" xlink:type="simple"/>
+                <port bindingType="soap" x="67" y="1098">
+                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name=&apos;casaService1&apos;]/port[@name=&apos;getCamera&apos;])" xlink:type="simple"/>
                     <consumes endpoint="endpoint9"/>
                     <provides endpoint="endpoint9"/>
                 </port>
-                <port bindingType="soap" x="67" y="465">
-                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name='casaService3']/port[@name='casaPort3'])" xlink:type="simple"/>
+                <port bindingType="soap" x="67" y="422">
+                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name=&apos;casaService3&apos;]/port[@name=&apos;checkout&apos;])" xlink:type="simple"/>
                     <consumes endpoint="endpoint10"/>
                     <provides endpoint="endpoint10"/>
+                    <WsitCallback xmlns="http://www.sun.com/jbi/wsit/callbackproject"/>
                 </port>
-                <port bindingType="soap" x="67" y="629">
-                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name='casaService4']/port[@name='casaPort4'])" xlink:type="simple"/>
+                <port bindingType="soap" x="67" y="603">
+                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name=&apos;casaService4&apos;]/port[@name=&apos;getPurchaseInfo&apos;])" xlink:type="simple"/>
                     <consumes endpoint="endpoint11"/>
                     <provides endpoint="endpoint11"/>
                 </port>
-                <port bindingType="soap" x="67" y="708">
-                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name='casaService5']/port[@name='casaPort5'])" xlink:type="simple"/>
+                <port bindingType="soap" x="67" y="686">
+                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name=&apos;casaService5&apos;]/port[@name=&apos;getPurchases&apos;])" xlink:type="simple"/>
                     <consumes endpoint="endpoint12"/>
                     <provides endpoint="endpoint12"/>
                 </port>
                 <port bindingType="soap" x="67" y="91">
-                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name='casaService6']/port[@name='casaPort6'])" xlink:type="simple"/>
+                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name=&apos;casaService6&apos;]/port[@name=&apos;login&apos;])" xlink:type="simple"/>
                     <consumes endpoint="endpoint13"/>
                     <provides endpoint="endpoint13"/>
                 </port>
                 <port bindingType="soap" x="67" y="184">
-                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name='casaService7']/port[@name='casaPort7'])" xlink:type="simple"/>
+                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name=&apos;casaService7&apos;]/port[@name=&apos;register&apos;])" xlink:type="simple"/>
                     <consumes endpoint="endpoint14"/>
                     <provides endpoint="endpoint14"/>
                 </port>
-                <port bindingType="soap" x="67" y="550">
-                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name='casaService8']/port[@name='casaPort8'])" xlink:type="simple"/>
+                <port bindingType="soap" x="67" y="518">
+                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name=&apos;casaService8&apos;]/port[@name=&apos;shipped&apos;])" xlink:type="simple"/>
                     <consumes endpoint="endpoint15"/>
                     <provides endpoint="endpoint15"/>
+                    <WsitCallback xmlns="http://www.sun.com/jbi/wsit/callbackproject"/>
                 </port>
-                <port x="67" y="378">
+                <port x="67" y="285">
                     <link xlink:href="../jbiServiceUnits/BPEL_Login/127.0.0.1_8080/WSCustomerService.wsdl#xpointer(/definitions/service[@name='CustomerServiceService']/port[@name='CustomerServicePort'])" xlink:type="simple"/>
                     <consumes endpoint="endpoint4"/>
                     <provides endpoint="endpoint4"/>
@@ -117,7 +119,7 @@
                     <consumes endpoint="endpoint5"/>
                     <provides endpoint="endpoint5"/>
                 </port>
-                <port x="67" y="787">
+                <port x="67" y="772">
                     <link xlink:href="../jbiServiceUnits/BPEL_Purchases/127.0.0.1_8080/WSShippingDepartment.wsdl#xpointer(/definitions/service[@name='ShippingDepartmentService']/port[@name='ShippingDepartmentPort'])" xlink:type="simple"/>
                     <consumes endpoint="endpoint3"/>
                     <provides endpoint="endpoint3"/>
@@ -127,12 +129,12 @@
                     <consumes endpoint="endpoint6"/>
                     <provides endpoint="endpoint6"/>
                 </port>
-                <port x="67" y="866">
+                <port x="67" y="870">
                     <link xlink:href="../jbiServiceUnits/BPEL_SearchCameras/127.0.0.1_8080/WSCameraSupplier.wsdl#xpointer(/definitions/service[@name='CameraSupplierService']/port[@name='CameraSupplierPort'])" xlink:type="simple"/>
                     <consumes endpoint="endpoint2"/>
                     <provides endpoint="endpoint2"/>
                 </port>
-                <port x="67" y="945">
+                <port x="67" y="973">
                     <link xlink:href="../jbiServiceUnits/BPEL_SearchCameras/127.0.0.1_8080/WSCatalogCenter.wsdl#xpointer(/definitions/service[@name='CatalogCenterService']/port[@name='CatalogCenterPort'])" xlink:type="simple"/>
                     <consumes endpoint="endpoint1"/>
                     <provides endpoint="endpoint1"/>
