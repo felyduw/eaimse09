@@ -1,0 +1,63 @@
+<definitions name='ShippingDepartmentService' targetNamespace='http://sdep.eai.dei.uc.pt/' xmlns='http://schemas.xmlsoap.org/wsdl/' xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/' xmlns:tns='http://sdep.eai.dei.uc.pt/' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+ <types>
+  <xs:schema targetNamespace='http://sdep.eai.dei.uc.pt/' version='1.0' xmlns:tns='http://sdep.eai.dei.uc.pt/' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+   <xs:element name='makeOrder' type='tns:makeOrder'/>
+   <xs:element name='makeOrderResponse' type='tns:makeOrderResponse'/>
+   <xs:complexType name='makeOrder'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='arg0' type='tns:order'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='order'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='orderId' type='xs:int'/>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='orderedCameras' nillable='true' type='tns:camera'/>
+     <xs:element minOccurs='0' name='purchaseDate' type='xs:dateTime'/>
+     <xs:element minOccurs='0' name='shippingAddress' type='xs:string'/>
+     <xs:element minOccurs='0' name='username' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='camera'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='cameraId' type='xs:int'/>
+     <xs:element minOccurs='0' name='model' type='xs:string'/>
+     <xs:element minOccurs='0' name='price' type='xs:float'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='makeOrderResponse'>
+    <xs:sequence>
+     <xs:element name='return' type='xs:boolean'/>
+    </xs:sequence>
+   </xs:complexType>
+  </xs:schema>
+ </types>
+ <message name='ShippingDepartment_makeOrder'>
+  <part element='tns:makeOrder' name='makeOrder'></part>
+ </message>
+ <message name='ShippingDepartment_makeOrderResponse'>
+  <part element='tns:makeOrderResponse' name='makeOrderResponse'></part>
+ </message>
+ <portType name='ShippingDepartment'>
+  <operation name='makeOrder' parameterOrder='makeOrder'>
+   <input message='tns:ShippingDepartment_makeOrder'></input>
+   <output message='tns:ShippingDepartment_makeOrderResponse'></output>
+  </operation>
+ </portType>
+ <binding name='ShippingDepartmentBinding' type='tns:ShippingDepartment'>
+  <soap:binding style='document' transport='http://schemas.xmlsoap.org/soap/http'/>
+  <operation name='makeOrder'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+  </operation>
+ </binding>
+ <service name='ShippingDepartmentService'>
+  <port binding='tns:ShippingDepartmentBinding' name='ShippingDepartmentPort'>
+   <soap:address location='http://127.0.0.1:8080/WSShippingDepartment'/>
+  </port>
+ </service>
+</definitions>
