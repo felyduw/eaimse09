@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns1="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_Shipped" xmlns:ns2="http://enterprise.netbeans.org/bpel/BPEL_Purchases/BPEL_OrderShipped" xmlns:ns3="http://enterprise.netbeans.org/bpel/BPEL_Purchases/BPEL_Checkout" xmlns:ns4="http://sdep.eai.dei.uc.pt/" xmlns:ns5="http://custsrv.eai.dei.uc.pt/" xmlns:ns6="http://enterprise.netbeans.org/bpel/BPEL_Purchases/BPEL_GetPurchaseInfo" xmlns:ns7="http://enterprise.netbeans.org/bpel/BPEL_Purchases/BPEL_Purchases" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/jbi ./jbi.xsd">
+    <service-assembly>
+        <identification>
+            <name>OrchestratorPurchaseComposite</name>
+            <description>Represents the Service Assembly of OrchestratorPurchaseComposite</description>
+        </identification>
+        <service-unit>
+            <identification>
+                <name>OrchestratorPurchaseComposite-BPEL_Purchases</name>
+                <description>Represents this Service Unit</description>
+            </identification>
+            <target>
+                <artifacts-zip>BPEL_Purchases.jar</artifacts-zip>
+                <component-name>sun-bpel-engine</component-name>
+            </target>
+        </service-unit>
+        <service-unit>
+            <identification>
+                <name>OrchestratorPurchaseComposite-sun-http-binding</name>
+                <description>Represents this Service Unit</description>
+            </identification>
+            <target>
+                <artifacts-zip>sun-http-binding.jar</artifacts-zip>
+                <component-name>sun-http-binding</component-name>
+            </target>
+        </service-unit>
+        <connections>
+            <connection>
+                <consumer endpoint-name="WS_BPEL_ShippedPort" service-name="ns1:WS_BPEL_ShippedService"/>
+                <provider endpoint-name="WS_BPEL_ShippedPortTypeRole_myRole" service-name="ns2:ShippedPartnerLink"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="ShippingDepartmentRole_partnerRole" service-name="ns3:WSShippingDepartment_PartnerLink"/>
+                <provider endpoint-name="ShippingDepartmentPort" service-name="ns4:ShippingDepartmentService"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="CustomerServiceRole_partnerRole" service-name="ns3:WSCustomerService_PartnerLink"/>
+                <provider endpoint-name="CustomerServicePort" service-name="ns5:CustomerServiceService"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="CustomerServiceRole_partnerRole" service-name="ns6:WSCustomerService_PartnerLink"/>
+                <provider endpoint-name="CustomerServicePort" service-name="ns5:CustomerServiceService"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="CustomerServiceRole_partnerRole" service-name="ns2:WSCustomerService_PartnerLink"/>
+                <provider endpoint-name="CustomerServicePort" service-name="ns5:CustomerServiceService"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="CustomerServiceRole_partnerRole" service-name="ns7:WSCustomerService_PartnerLink"/>
+                <provider endpoint-name="CustomerServicePort" service-name="ns5:CustomerServiceService"/>
+            </connection>
+        </connections>
+    </service-assembly>
+</jbi>

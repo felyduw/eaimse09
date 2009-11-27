@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns0="http://enterprise.netbeans.org/bpel/BPEL_Purchases/BPEL_Checkout" xmlns:ns1="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_Checkout" xmlns:ns10="http://www.sun.com/jbi/descriptor/service-unit" xmlns:ns2="http://custsrv.eai.dei.uc.pt/" xmlns:ns3="http://sdep.eai.dei.uc.pt/" xmlns:ns4="http://enterprise.netbeans.org/bpel/BPEL_Purchases/BPEL_GetPurchaseInfo" xmlns:ns5="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_GetPurchaseInfo" xmlns:ns6="http://enterprise.netbeans.org/bpel/BPEL_Purchases/BPEL_OrderShipped" xmlns:ns7="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_Shipped" xmlns:ns8="http://enterprise.netbeans.org/bpel/BPEL_Purchases/BPEL_Purchases" xmlns:ns9="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_GetPurchases" version="1.0">
+    <services binding-component="false">
+        <provides endpoint-name="WS_BPEL_CheckoutPortTypeRole_myRole" interface-name="ns1:WS_BPEL_CheckoutPortType" service-name="ns0:Checkout_PartnerLink">
+            <ns10:display-name>Checkout_PartnerLink</ns10:display-name>
+            <ns10:process-name>BPEL_Checkout</ns10:process-name>
+            <ns10:file-path>BPEL_Checkout.bpel</ns10:file-path>
+        </provides>
+        <provides endpoint-name="WS_BPEL_GetPurchaseInfoPortTypeRole_myRole" interface-name="ns5:WS_BPEL_GetPurchaseInfoPortType" service-name="ns4:WSGetPurchaseInfo_PartnerLink">
+            <ns10:display-name>WSGetPurchaseInfo_PartnerLink</ns10:display-name>
+            <ns10:process-name>BPEL_GetPurchaseInfo</ns10:process-name>
+            <ns10:file-path>BPEL_GetPurchaseInfo.bpel</ns10:file-path>
+        </provides>
+        <provides endpoint-name="WS_BPEL_ShippedPortTypeRole_myRole" interface-name="ns7:WS_BPEL_ShippedPortType" service-name="ns6:ShippedPartnerLink">
+            <ns10:display-name>ShippedPartnerLink</ns10:display-name>
+            <ns10:process-name>BPEL_OrderShipped</ns10:process-name>
+            <ns10:file-path>BPEL_OrderShipped.bpel</ns10:file-path>
+        </provides>
+        <provides endpoint-name="WS_BPEL_GetPurchasesPortTypeRole_myRole" interface-name="ns9:WS_BPEL_GetPurchasesPortType" service-name="ns8:GetPurchases_PartnerLink">
+            <ns10:display-name>GetPurchases_PartnerLink</ns10:display-name>
+            <ns10:process-name>BPEL_Purchases</ns10:process-name>
+            <ns10:file-path>BPEL_Purchases.bpel</ns10:file-path>
+        </provides>
+        <consumes endpoint-name="CustomerServiceRole_partnerRole" interface-name="ns2:CustomerService" service-name="ns0:WSCustomerService_PartnerLink">
+            <ns10:display-name>WSCustomerService_PartnerLink</ns10:display-name>
+            <ns10:process-name>BPEL_Checkout</ns10:process-name>
+            <ns10:file-path>BPEL_Checkout.bpel</ns10:file-path>
+        </consumes>
+        <consumes endpoint-name="ShippingDepartmentRole_partnerRole" interface-name="ns3:ShippingDepartment" service-name="ns0:WSShippingDepartment_PartnerLink">
+            <ns10:display-name>WSShippingDepartment_PartnerLink</ns10:display-name>
+            <ns10:process-name>BPEL_Checkout</ns10:process-name>
+            <ns10:file-path>BPEL_Checkout.bpel</ns10:file-path>
+        </consumes>
+        <consumes endpoint-name="CustomerServiceRole_partnerRole" interface-name="ns2:CustomerService" service-name="ns4:WSCustomerService_PartnerLink">
+            <ns10:display-name>WSCustomerService_PartnerLink</ns10:display-name>
+            <ns10:process-name>BPEL_GetPurchaseInfo</ns10:process-name>
+            <ns10:file-path>BPEL_GetPurchaseInfo.bpel</ns10:file-path>
+        </consumes>
+        <consumes endpoint-name="CustomerServiceRole_partnerRole" interface-name="ns2:CustomerService" service-name="ns6:WSCustomerService_PartnerLink">
+            <ns10:display-name>WSCustomerService_PartnerLink</ns10:display-name>
+            <ns10:process-name>BPEL_OrderShipped</ns10:process-name>
+            <ns10:file-path>BPEL_OrderShipped.bpel</ns10:file-path>
+        </consumes>
+        <consumes endpoint-name="CustomerServiceRole_partnerRole" interface-name="ns2:CustomerService" service-name="ns8:WSCustomerService_PartnerLink">
+            <ns10:display-name>WSCustomerService_PartnerLink</ns10:display-name>
+            <ns10:process-name>BPEL_Purchases</ns10:process-name>
+            <ns10:file-path>BPEL_Purchases.bpel</ns10:file-path>
+        </consumes>
+    </services>
+</jbi>
