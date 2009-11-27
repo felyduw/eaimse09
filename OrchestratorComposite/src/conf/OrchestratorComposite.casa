@@ -6,10 +6,10 @@
         <endpoint endpoint-name="searchCameras" interface-name="ns4:WS_BPEL_SearchCamerasPortType" name="endpoint3" service-name="ns3:casaService1"/>
         <endpoint endpoint-name="getCameraInfo" interface-name="ns5:WS_BPEL_GetCameraInfoPortType" name="endpoint4" service-name="ns3:casaService2"/>
         <endpoint display-name="GetCameraInfo_PartnerLink" endpoint-name="WS_BPEL_GetCameraInfoPortTypeRole_myRole" file-path="BPEL_GetCameraInfo.bpel" interface-name="ns5:WS_BPEL_GetCameraInfoPortType" name="endpoint5" process-name="BPEL_GetCameraInfo" service-name="ns6:GetCameraInfo_PartnerLink"/>
-        <endpoint display-name="SearchCameras_PartnerLink" name="endpoint6" file-path="BPEL_SearchCameras.bpel" endpoint-name="WS_BPEL_SearchCamerasPortTypeRole_myRole" interface-name="ns4:WS_BPEL_SearchCamerasPortType" process-name="BPEL_SearchCameras" service-name="ns7:SearchCameras_PartnerLink"/>
+        <endpoint display-name="SearchCameras_PartnerLink" endpoint-name="WS_BPEL_SearchCamerasPortTypeRole_myRole" file-path="BPEL_SearchCameras.bpel" interface-name="ns4:WS_BPEL_SearchCamerasPortType" name="endpoint6" process-name="BPEL_SearchCameras" service-name="ns7:SearchCameras_PartnerLink"/>
         <endpoint display-name="WSCatalogCenter_PartnerLink" endpoint-name="CatalogCenterRole_partnerRole" file-path="BPEL_GetCameraInfo.bpel" interface-name="ns1:CatalogCenter" name="endpoint7" process-name="BPEL_GetCameraInfo" service-name="ns6:WSCatalogCenter_PartnerLink"/>
         <endpoint display-name="WSCatalogCenter_PartnerLink" endpoint-name="CatalogCenterRole_partnerRole" file-path="BPEL_SearchCameras.bpel" interface-name="ns1:CatalogCenter" name="endpoint8" process-name="BPEL_SearchCameras" service-name="ns7:WSCatalogCenter_PartnerLink"/>
-        <endpoint display-name="WSCameraSupplier_PartnerLink" name="endpoint9" file-path="BPEL_SearchCameras.bpel" endpoint-name="CameraSupplierRole_partnerRole" interface-name="ns2:CameraSupplier" process-name="BPEL_SearchCameras" service-name="ns7:WSCameraSupplier_PartnerLink"/>
+        <endpoint display-name="WSCameraSupplier_PartnerLink" endpoint-name="CameraSupplierRole_partnerRole" file-path="BPEL_SearchCameras.bpel" interface-name="ns2:CameraSupplier" name="endpoint9" process-name="BPEL_SearchCameras" service-name="ns7:WSCameraSupplier_PartnerLink"/>
     </endpoints>
     <service-units>
         <service-engine-service-unit artifacts-zip="BPEL_SearchCameras.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="OrchestratorComposite-BPEL_SearchCameras" unit-name="BPEL_SearchCameras" unknown="false" x="140" y="240">
@@ -47,9 +47,9 @@
     <connections>
         <connection consumer="endpoint3" provider="endpoint6" state="new"/>
         <connection consumer="endpoint7" provider="endpoint1" state="unchanged"/>
-        <connection state="unchanged" consumer="endpoint8" provider="endpoint1"/>
+        <connection consumer="endpoint8" provider="endpoint1" state="unchanged"/>
         <connection consumer="endpoint4" provider="endpoint5" state="new"/>
-        <connection state="unchanged" consumer="endpoint9" provider="endpoint2"/>
+        <connection consumer="endpoint9" provider="endpoint2" state="unchanged"/>
     </connections>
     <porttypes>
         <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/portType[@name='dummyCasaPortType'])" xlink:type="simple"/>
