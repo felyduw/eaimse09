@@ -107,6 +107,7 @@
     <xs:sequence>
      <xs:element maxOccurs='unbounded' minOccurs='0' name='arg0' type='tns:camera'/>
      <xs:element minOccurs='0' name='arg1' type='tns:user'/>
+     <xs:element minOccurs='0' name='arg2' type='tns:orderStatus'/>
     </xs:sequence>
    </xs:complexType>
    <xs:complexType name='submitOrderResponse'>
