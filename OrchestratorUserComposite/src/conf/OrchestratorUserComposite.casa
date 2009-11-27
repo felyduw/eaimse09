@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<casa xmlns="http://java.sun.com/xml/ns/casa" xmlns:ns1="http://custsrv.eai.dei.uc.pt/" xmlns:ns2="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSRegisterUSer" xmlns:ns3="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSLoginWrapper" xmlns:ns4="OrchestratorUserComposite" xmlns:ns5="http://enterprise.netbeans.org/bpel/BPEL_Login/BPEL_Login" xmlns:ns6="http://enterprise.netbeans.org/bpel/BPEL_Login/BPEL_Register" xmlns:xlink="http://www.w3.org/2000/xlink">
+    <endpoints>
+        <endpoint endpoint-name="CustomerServicePort" interface-name="ns1:CustomerService" name="endpoint1" service-name="ns1:CustomerServiceService"/>
+        <endpoint endpoint-name="WSRegisterUSerPort" interface-name="ns2:WSRegisterUSerPortType" name="endpoint2" service-name="ns2:WSRegisterUSerService"/>
+        <endpoint endpoint-name="WSLoginWrapperPort" interface-name="ns3:WSLoginWrapperPortType" name="endpoint3" service-name="ns3:WSLoginWrapperService"/>
+        <endpoint endpoint-name="login" interface-name="ns3:WSLoginWrapperPortType" name="endpoint4" service-name="ns4:casaService1"/>
+        <endpoint endpoint-name="register" interface-name="ns2:WSRegisterUSerPortType" name="endpoint5" service-name="ns4:casaService2"/>
+        <endpoint display-name="WSLogin" endpoint-name="WSLoginWrapperPortTypeRole_myRole" file-path="BPEL_Login.bpel" interface-name="ns3:WSLoginWrapperPortType" name="endpoint6" process-name="BPEL_Login" service-name="ns5:WSLogin"/>
+        <endpoint display-name="RegisterUserPartnerLink" endpoint-name="WSRegisterUSerPortTypeRole_myRole" file-path="BPEL_Register.bpel" interface-name="ns2:WSRegisterUSerPortType" name="endpoint7" process-name="BPEL_Register" service-name="ns6:RegisterUserPartnerLink"/>
+        <endpoint display-name="WSCustomerService" endpoint-name="CustomerServiceRole_partnerRole" file-path="BPEL_Login.bpel" interface-name="ns1:CustomerService" name="endpoint8" process-name="BPEL_Login" service-name="ns5:WSCustomerService"/>
+        <endpoint display-name="CustomerService" endpoint-name="CustomerServiceRole_partnerRole" file-path="BPEL_Register.bpel" interface-name="ns1:CustomerService" name="endpoint9" process-name="BPEL_Register" service-name="ns6:CustomerService"/>
+    </endpoints>
+    <service-units>
+        <service-engine-service-unit artifacts-zip="BPEL_Login.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="OrchestratorUserComposite-BPEL_Login" unit-name="BPEL_Login" unknown="false" x="151" y="99">
+            <provides endpoint="endpoint6"/>
+            <provides endpoint="endpoint7"/>
+            <consumes endpoint="endpoint8"/>
+            <consumes endpoint="endpoint9"/>
+        </service-engine-service-unit>
+        <binding-component-service-unit artifacts-zip="sun-http-binding.jar" component-name="sun-http-binding" description="Represents this Service Unit" name="OrchestratorUserComposite-sun-http-binding" unit-name="sun-http-binding">
+            <ports>
+                <port bindingType="soap" x="67" y="66">
+                    <link xlink:href="../jbiasa/OrchestratorUserComposite.wsdl#xpointer(/definitions/service[@name='casaService1']/port[@name='login'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint4"/>
+                    <provides endpoint="endpoint4"/>
+                </port>
+                <port bindingType="soap" x="67" y="180">
+                    <link xlink:href="../jbiasa/OrchestratorUserComposite.wsdl#xpointer(/definitions/service[@name='casaService2']/port[@name='register'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint5"/>
+                    <provides endpoint="endpoint5"/>
+                </port>
+                <port x="67" y="329">
+                    <link xlink:href="../jbiServiceUnits/BPEL_Login/127.0.0.1_8080/WSCustomerService.wsdl#xpointer(/definitions/service[@name='CustomerServiceService']/port[@name='CustomerServicePort'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint1"/>
+                    <provides endpoint="endpoint1"/>
+                </port>
+                <port state="deleted" x="67" y="152">
+                    <link xlink:href="../jbiServiceUnits/BPEL_Login/WSLoginWrapper.wsdl#xpointer(/definitions/service[@name='WSLoginWrapperService']/port[@name='WSLoginWrapperPort'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint3"/>
+                    <provides endpoint="endpoint3"/>
+                </port>
+                <port state="deleted" x="67" y="39">
+                    <link xlink:href="../jbiServiceUnits/BPEL_Login/WSRegisterUser.wsdl#xpointer(/definitions/service[@name='WSRegisterUSerService']/port[@name='WSRegisterUSerPort'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint2"/>
+                    <provides endpoint="endpoint2"/>
+                </port>
+            </ports>
+        </binding-component-service-unit>
+    </service-units>
+    <connections>
+        <connection consumer="endpoint5" provider="endpoint7" state="new"/>
+        <connection consumer="endpoint4" provider="endpoint6" state="new"/>
+        <connection consumer="endpoint8" provider="endpoint1" state="unchanged"/>
+        <connection consumer="endpoint9" provider="endpoint1" state="unchanged"/>
+        <connection consumer="endpoint3" provider="endpoint6" state="deleted"/>
+        <connection consumer="endpoint2" provider="endpoint7" state="deleted"/>
+    </connections>
+    <porttypes>
+        <link xlink:href="../jbiasa/OrchestratorUserComposite.wsdl#xpointer(/definitions/portType[@name='dummyCasaPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BPEL_Login/127.0.0.1_8080/WSCustomerService.wsdl#xpointer(/definitions/portType[@name='CustomerService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BPEL_Login/WSLoginWrapper.wsdl#xpointer(/definitions/portType[@name='WSLoginWrapperPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BPEL_Login/WSRegisterUser.wsdl#xpointer(/definitions/portType[@name='WSRegisterUSerPortType'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/META-INF/BPEL_Login/src/127.0.0.1_8080/WSCustomerService.wsdl#xpointer(/definitions/portType[@name='CustomerService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrchestratorUserComposite.wsdl#xpointer(/definitions/portType[@name='dummyCasaPortType'])" xlink:type="simple"/>
+    </porttypes>
+    <bindings>
+        <link xlink:href="../jbiasa/OrchestratorUserComposite.wsdl#xpointer(/definitions/binding[@name='casaBinding1'])" xlink:type="simple"/>
+        <link xlink:href="../jbiasa/OrchestratorUserComposite.wsdl#xpointer(/definitions/binding[@name='casaBinding2'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BPEL_Login/127.0.0.1_8080/WSCustomerService.wsdl#xpointer(/definitions/binding[@name='CustomerServiceBinding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BPEL_Login/WSLoginWrapper.wsdl#xpointer(/definitions/binding[@name='WSLoginWrapperBinding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BPEL_Login/WSRegisterUser.wsdl#xpointer(/definitions/binding[@name='WSRegisterUSerBinding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/META-INF/BPEL_Login/src/127.0.0.1_8080/WSCustomerService.wsdl#xpointer(/definitions/binding[@name='CustomerServiceBinding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrchestratorUserComposite.wsdl#xpointer(/definitions/binding[@name='casaBinding1'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrchestratorUserComposite.wsdl#xpointer(/definitions/binding[@name='casaBinding2'])" xlink:type="simple"/>
+    </bindings>
+    <services>
+        <link xlink:href="../jbiasa/OrchestratorUserComposite.wsdl#xpointer(/definitions/service[@name='casaService1'])" xlink:type="simple"/>
+        <link xlink:href="../jbiasa/OrchestratorUserComposite.wsdl#xpointer(/definitions/service[@name='casaService2'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BPEL_Login/127.0.0.1_8080/WSCustomerService.wsdl#xpointer(/definitions/service[@name='CustomerServiceService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BPEL_Login/WSLoginWrapper.wsdl#xpointer(/definitions/service[@name='WSLoginWrapperService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/BPEL_Login/WSRegisterUser.wsdl#xpointer(/definitions/service[@name='WSRegisterUSerService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/META-INF/BPEL_Login/src/127.0.0.1_8080/WSCustomerService.wsdl#xpointer(/definitions/service[@name='CustomerServiceService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrchestratorUserComposite.wsdl#xpointer(/definitions/service[@name='casaService1'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrchestratorUserComposite.wsdl#xpointer(/definitions/service[@name='casaService2'])" xlink:type="simple"/>
+    </services>
+    <regions>
+        <region name="WSDL Endpoints" width="150"/>
+        <region name="JBI Modules" width="500"/>
+        <region name="External Modules" width="200"/>
+    </regions>
+</casa>

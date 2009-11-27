@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://xml.netbeans.org/schema/UserSchema"
+    xmlns:tns="http://xml.netbeans.org/schema/UserSchema"
+    elementFormDefault="qualified">
+    <xsd:complexType name="user">
+        <xsd:sequence maxOccurs="unbounded" minOccurs="0">
+            <xsd:element name="address" type="xsd:string"/>
+            <xsd:element name="email" type="xsd:string"/>
+            <xsd:element name="id" type="xsd:int"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="password" type="xsd:string"/>
+            <xsd:element name="username" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="UserTypeElement"/>
+</xsd:schema>
