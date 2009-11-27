@@ -1,4 +1,4 @@
-package pt.uc.dei.eai;
+package pt.uc.dei.eai.common;
 
 import java.io.Serializable;
 import java.util.Date;

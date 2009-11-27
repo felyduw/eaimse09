@@ -1,4 +1,4 @@
-package pt.uc.dei.eai;
+package pt.uc.dei.eai.common;
 
 public enum OrderStatus {
 	WAITING_FOR_SHIPPING,	//Ordered, not yet shipped

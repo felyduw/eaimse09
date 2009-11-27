@@ -3,6 +3,8 @@ package pt.uc.dei.eai;
 import java.util.ArrayList;
 import java.util.List;
 
+import pt.uc.dei.eai.common.Camera;
+
 /**
  * This object holds the current shopping cart of the customer.
  */

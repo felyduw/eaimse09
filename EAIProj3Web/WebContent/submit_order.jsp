@@ -1,5 +1,6 @@
 <%@ page import="javax.naming.*" %>
 <%@ page import="pt.uc.dei.eai.*" %>
+<%@ page import="pt.uc.dei.eai.common.*" %>
 <%
 String error = null;
 ShoppingCart existingCart = (ShoppingCart)session.getAttribute("cart");
