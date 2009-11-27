@@ -36,7 +36,7 @@
    </xs:complexType>
    <xs:complexType name='addCamerasToDB'>
     <xs:sequence>
-     <xs:element minOccurs='0' name='arg0' type='xs:string'/>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='arg0' type='tns:camera'/>
     </xs:sequence>
    </xs:complexType>
    <xs:complexType name='addCamerasToDBResponse'>
