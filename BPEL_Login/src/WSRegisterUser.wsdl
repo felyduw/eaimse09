@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="WSRegisterUSer" targetNamespace="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSRegisterUSer"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSRegisterUSer" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <types/>
+    <message name="WSRegisterUSerOperationRequest">
+        <part name="username" type="xsd:string"/>
+        <part name="password" type="xsd:string"/>
+        <part name="address" type="xsd:string"/>
+        <part name="email" type="xsd:string"/>
+    </message>
+    <message name="WSRegisterUSerOperationResponse">
+        <part name="result" type="xsd:boolean"/>
+    </message>
+    <portType name="WSRegisterUSerPortType">
+        <operation name="WSRegisterUSerOperation">
+            <input name="input1" message="tns:WSRegisterUSerOperationRequest"/>
+            <output name="output1" message="tns:WSRegisterUSerOperationResponse"/>
+        </operation>
+    </portType>
+    <binding name="WSRegisterUSerBinding" type="tns:WSRegisterUSerPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="WSRegisterUSerOperation">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSRegisterUSer"/>
+            </input>
+            <output name="output1">
+                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSRegisterUSer"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="WSRegisterUSerService">
+        <port name="WSRegisterUSerPort" binding="tns:WSRegisterUSerBinding">
+            <soap:address location="http://localhost:${HttpDefaultPort}/WSRegisterUSerService/WSRegisterUSerPort"/>
+        </port>
+    </service>
+    <plnk:partnerLinkType name="WSRegisterUSer">
+        <!-- A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes. 
+In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
+A partner link type characterizes the conversational relationship between two services. The partner link type can have one or two roles.-->
+        <plnk:role name="WSRegisterUSerPortTypeRole" portType="tns:WSRegisterUSerPortType"/>
+    </plnk:partnerLinkType>
+</definitions>

@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns0="http://enterprise.netbeans.org/bpel/BPEL_Login/BPEL_Login" xmlns:ns1="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSLoginWrapper" xmlns:ns2="http://custsrv.eai.dei.uc.pt/" xmlns:ns3="http://www.sun.com/jbi/descriptor/service-unit" version="1.0">
+<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns0="http://enterprise.netbeans.org/bpel/BPEL_Login/BPEL_Login" xmlns:ns1="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSLoginWrapper" xmlns:ns2="http://custsrv.eai.dei.uc.pt/" xmlns:ns3="http://enterprise.netbeans.org/bpel/BPEL_Login/BPEL_Register" xmlns:ns4="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSRegisterUSer" xmlns:ns5="http://www.sun.com/jbi/descriptor/service-unit" version="1.0">
     <services binding-component="false">
         <provides endpoint-name="WSLoginWrapperPortTypeRole_myRole" interface-name="ns1:WSLoginWrapperPortType" service-name="ns0:WSLogin">
-            <ns3:display-name>WSLogin</ns3:display-name>
-            <ns3:process-name>BPEL_Login</ns3:process-name>
-            <ns3:file-path>BPEL_Login.bpel</ns3:file-path>
+            <ns5:display-name>WSLogin</ns5:display-name>
+            <ns5:process-name>BPEL_Login</ns5:process-name>
+            <ns5:file-path>BPEL_Login.bpel</ns5:file-path>
+        </provides>
+        <provides endpoint-name="WSRegisterUSerPortTypeRole_myRole" interface-name="ns4:WSRegisterUSerPortType" service-name="ns3:RegisterUserPartnerLink">
+            <ns5:display-name>RegisterUserPartnerLink</ns5:display-name>
+            <ns5:process-name>BPEL_Register</ns5:process-name>
+            <ns5:file-path>BPEL_Register.bpel</ns5:file-path>
         </provides>
         <consumes endpoint-name="CustomerServiceRole_partnerRole" interface-name="ns2:CustomerService" service-name="ns0:WSCustomerService">
-            <ns3:display-name>WSCustomerService</ns3:display-name>
-            <ns3:process-name>BPEL_Login</ns3:process-name>
-            <ns3:file-path>BPEL_Login.bpel</ns3:file-path>
+            <ns5:display-name>WSCustomerService</ns5:display-name>
+            <ns5:process-name>BPEL_Login</ns5:process-name>
+            <ns5:file-path>BPEL_Login.bpel</ns5:file-path>
+        </consumes>
+        <consumes endpoint-name="CustomerServiceRole_partnerRole" interface-name="ns2:CustomerService" service-name="ns3:CustomerService">
+            <ns5:display-name>CustomerService</ns5:display-name>
+            <ns5:process-name>BPEL_Register</ns5:process-name>
+            <ns5:file-path>BPEL_Register.bpel</ns5:file-path>
         </consumes>
     </services>
 </jbi>
