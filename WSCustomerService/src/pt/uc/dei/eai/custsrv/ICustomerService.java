@@ -26,4 +26,7 @@ public interface ICustomerService {
 	/* Purchase Management */
 	public List<Order> listPurchases(String username);
 	public Order getPurchase(Integer orderId);
+	
+	/* Auxiliary Functions */
+	public boolean doesClientHaveMoney();
 }

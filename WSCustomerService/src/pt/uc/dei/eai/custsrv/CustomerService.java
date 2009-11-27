@@ -196,4 +196,11 @@ public class CustomerService implements ICustomerService {
 		}
 		return order;
 	}
+
+	@WebMethod
+	@Override
+	public boolean doesClientHaveMoney() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
