@@ -63,43 +63,43 @@
         <binding-component-service-unit artifacts-zip="sun-http-binding.jar" component-name="sun-http-binding" description="Represents this Service Unit" name="OrchestratorComposite-sun-http-binding" unit-name="sun-http-binding">
             <ports>
                 <port bindingType="soap" x="67" y="1196">
-                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name=&apos;casaService2&apos;]/port[@name=&apos;searchCameras&apos;])" xlink:type="simple"/>
+                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name='casaService2']/port[@name='searchCameras'])" xlink:type="simple"/>
                     <consumes endpoint="endpoint8"/>
                     <provides endpoint="endpoint8"/>
                 </port>
                 <port bindingType="soap" x="67" y="1098">
-                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name=&apos;casaService1&apos;]/port[@name=&apos;getCamera&apos;])" xlink:type="simple"/>
+                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name='casaService1']/port[@name='getCamera'])" xlink:type="simple"/>
                     <consumes endpoint="endpoint9"/>
                     <provides endpoint="endpoint9"/>
                 </port>
                 <port bindingType="soap" x="67" y="422">
-                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name=&apos;casaService3&apos;]/port[@name=&apos;checkout&apos;])" xlink:type="simple"/>
+                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name='casaService3']/port[@name='checkout'])" xlink:type="simple"/>
                     <consumes endpoint="endpoint10"/>
                     <provides endpoint="endpoint10"/>
                     <WsitCallback xmlns="http://www.sun.com/jbi/wsit/callbackproject"/>
                 </port>
                 <port bindingType="soap" x="67" y="603">
-                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name=&apos;casaService4&apos;]/port[@name=&apos;getPurchaseInfo&apos;])" xlink:type="simple"/>
+                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name='casaService4']/port[@name='getPurchaseInfo'])" xlink:type="simple"/>
                     <consumes endpoint="endpoint11"/>
                     <provides endpoint="endpoint11"/>
                 </port>
                 <port bindingType="soap" x="67" y="686">
-                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name=&apos;casaService5&apos;]/port[@name=&apos;getPurchases&apos;])" xlink:type="simple"/>
+                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name='casaService5']/port[@name='getPurchases'])" xlink:type="simple"/>
                     <consumes endpoint="endpoint12"/>
                     <provides endpoint="endpoint12"/>
                 </port>
                 <port bindingType="soap" x="67" y="91">
-                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name=&apos;casaService6&apos;]/port[@name=&apos;login&apos;])" xlink:type="simple"/>
+                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name='casaService6']/port[@name='login'])" xlink:type="simple"/>
                     <consumes endpoint="endpoint13"/>
                     <provides endpoint="endpoint13"/>
                 </port>
                 <port bindingType="soap" x="67" y="184">
-                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name=&apos;casaService7&apos;]/port[@name=&apos;register&apos;])" xlink:type="simple"/>
+                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name='casaService7']/port[@name='register'])" xlink:type="simple"/>
                     <consumes endpoint="endpoint14"/>
                     <provides endpoint="endpoint14"/>
                 </port>
                 <port bindingType="soap" x="67" y="518">
-                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name=&apos;casaService8&apos;]/port[@name=&apos;shipped&apos;])" xlink:type="simple"/>
+                    <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name='casaService8']/port[@name='shipped'])" xlink:type="simple"/>
                     <consumes endpoint="endpoint15"/>
                     <provides endpoint="endpoint15"/>
                     <WsitCallback xmlns="http://www.sun.com/jbi/wsit/callbackproject"/>
@@ -161,9 +161,9 @@
         <connection consumer="endpoint27" provider="endpoint4" state="unchanged"/>
         <connection consumer="endpoint28" provider="endpoint4" state="unchanged"/>
         <connection consumer="endpoint11" provider="endpoint21" state="new"/>
-        <connection consumer="endpoint7" provider="endpoint16" state="deleted"/>
-        <connection consumer="endpoint6" provider="endpoint22" state="deleted"/>
         <connection consumer="endpoint5" provider="endpoint17" state="deleted"/>
+        <connection consumer="endpoint6" provider="endpoint22" state="deleted"/>
+        <connection consumer="endpoint7" provider="endpoint16" state="deleted"/>
     </connections>
     <porttypes>
         <link xlink:href="../jbiasa/OrchestratorComposite.wsdl#xpointer(/definitions/portType[@name='dummyCasaPortType'])" xlink:type="simple"/>
@@ -184,7 +184,6 @@
         <link xlink:href="../jbiServiceUnits/META-INF/BPEL_Purchases/src/127.0.0.1_8080/WSCustomerService.wsdl#xpointer(/definitions/portType[@name='CustomerService'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/META-INF/BPEL_Purchases/src/127.0.0.1_8080/WSShippingDepartment.wsdl#xpointer(/definitions/portType[@name='ShippingDepartment'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/META-INF/BPEL_SearchCameras/src/127.0.0.1_8080/WSCameraSupplier.wsdl#xpointer(/definitions/portType[@name='CameraSupplier'])" xlink:type="simple"/>
-        <link xlink:href="../jbiServiceUnits/META-INF/BPEL_SearchCameras/src/_references/_cache/127.0.0.1_8080/WSCatalogCenter.wsdl#xpointer(/definitions/portType[@name='CatalogCenter'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/OrchestratorComposite.wsdl#xpointer(/definitions/portType[@name='dummyCasaPortType'])" xlink:type="simple"/>
     </porttypes>
     <bindings>
@@ -208,7 +207,6 @@
         <link xlink:href="../jbiServiceUnits/META-INF/BPEL_Purchases/src/127.0.0.1_8080/WSCustomerService.wsdl#xpointer(/definitions/binding[@name='CustomerServiceBinding'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/META-INF/BPEL_Purchases/src/127.0.0.1_8080/WSShippingDepartment.wsdl#xpointer(/definitions/binding[@name='ShippingDepartmentBinding'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/META-INF/BPEL_SearchCameras/src/127.0.0.1_8080/WSCameraSupplier.wsdl#xpointer(/definitions/binding[@name='CameraSupplierBinding'])" xlink:type="simple"/>
-        <link xlink:href="../jbiServiceUnits/META-INF/BPEL_SearchCameras/src/_references/_cache/127.0.0.1_8080/WSCatalogCenter.wsdl#xpointer(/definitions/binding[@name='CatalogCenterBinding'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/OrchestratorComposite.wsdl#xpointer(/definitions/binding[@name='casaBinding1'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/OrchestratorComposite.wsdl#xpointer(/definitions/binding[@name='casaBinding2'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/OrchestratorComposite.wsdl#xpointer(/definitions/binding[@name='casaBinding3'])" xlink:type="simple"/>
@@ -239,7 +237,6 @@
         <link xlink:href="../jbiServiceUnits/META-INF/BPEL_Purchases/src/127.0.0.1_8080/WSCustomerService.wsdl#xpointer(/definitions/service[@name='CustomerServiceService'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/META-INF/BPEL_Purchases/src/127.0.0.1_8080/WSShippingDepartment.wsdl#xpointer(/definitions/service[@name='ShippingDepartmentService'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/META-INF/BPEL_SearchCameras/src/127.0.0.1_8080/WSCameraSupplier.wsdl#xpointer(/definitions/service[@name='CameraSupplierService'])" xlink:type="simple"/>
-        <link xlink:href="../jbiServiceUnits/META-INF/BPEL_SearchCameras/src/_references/_cache/127.0.0.1_8080/WSCatalogCenter.wsdl#xpointer(/definitions/service[@name='CatalogCenterService'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name='casaService2'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name='casaService1'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/OrchestratorComposite.wsdl#xpointer(/definitions/service[@name='casaService3'])" xlink:type="simple"/>
