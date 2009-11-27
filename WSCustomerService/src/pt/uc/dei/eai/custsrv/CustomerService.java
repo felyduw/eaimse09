@@ -92,10 +92,12 @@ public class CustomerService implements ICustomerService {
 
 	@WebMethod
 	@Override
-	public boolean submitOrder(List<Camera> cart, User user, OrderStatus status) {
+	public Integer submitOrder(List<Camera> cart, User user, OrderStatus status) {
 		
 		if (cart.size() == 0 || user == null)
-			return false;
+			return null;
+		
+		Integer result = -1;
 
 		Order order = new Order();
 		order.setOrderedCameras(new ArrayList<Camera>(cart));
@@ -106,7 +108,7 @@ public class CustomerService implements ICustomerService {
 		
 		order.setOrderStatus(status);
 		
-		return updateOrder(order);
+		return result;
 	}
 
 	@WebMethod

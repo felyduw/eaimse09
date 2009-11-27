@@ -17,7 +17,7 @@ public interface ICustomerService {
 	public boolean registerUser(String username, String password, String address, String email);
 	
 	/* Order Management */
-	public boolean submitOrder(List<Camera> cart, User user, OrderStatus status);
+	public Integer submitOrder(List<Camera> cart, User user, OrderStatus status);
 	public boolean updateOrder(Order order);
 	public List<Order> listAllOrders(String username);
 	public Order getOrder(Integer orderId);
