@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns1="OrchestratorOrderComposite" xmlns:ns2="http://enterprise.netbeans.org/bpel/BPEL_SearchCameras/BPEL_SearchCameras" xmlns:ns3="http://enterprise.netbeans.org/bpel/BPEL_SearchCameras/BPEL_GetCameraInfo" xmlns:ns4="http://cc.eai.dei.uc.pt/" xmlns:ns5="http://cs.eai.dei.uc.pt/" xmlns:ns6="http://j2ee.netbeans.org/wsdl/BPEL_SearchCameras/WS_BPEL_SearchCameras" xmlns:ns7="http://j2ee.netbeans.org/wsdl/BPEL_SearchCameras/WS_BPEL_GetCameraInfo" version="1.0">
+    <services binding-component="true">
+        <provides endpoint-name="CatalogCenterPort" interface-name="ns4:CatalogCenter" service-name="ns4:CatalogCenterService"/>
+        <provides endpoint-name="CameraSupplierPort" interface-name="ns5:CameraSupplier" service-name="ns5:CameraSupplierService"/>
+        <consumes endpoint-name="searchCameras" interface-name="ns6:WS_BPEL_SearchCamerasPortType" service-name="ns1:casaService2"/>
+        <consumes endpoint-name="getCamera" interface-name="ns7:WS_BPEL_GetCameraInfoPortType" service-name="ns1:casaService1"/>
+    </services>
+</jbi>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns1="OrchestratorOrderComposite" xmlns:ns2="http://enterprise.netbeans.org/bpel/BPEL_SearchCameras/BPEL_SearchCameras" xmlns:ns3="http://enterprise.netbeans.org/bpel/BPEL_SearchCameras/BPEL_GetCameraInfo" xmlns:ns4="http://cc.eai.dei.uc.pt/" xmlns:ns5="http://cs.eai.dei.uc.pt/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/jbi ./jbi.xsd">
+    <service-assembly>
+        <identification>
+            <name>OrchestratorOrderComposite</name>
+            <description>Represents the Service Assembly of OrchestratorOrderComposite</description>
+        </identification>
+        <service-unit>
+            <identification>
+                <name>OrchestratorOrderComposite-BPEL_SearchCameras</name>
+                <description>Represents this Service Unit</description>
+            </identification>
+            <target>
+                <artifacts-zip>BPEL_SearchCameras.jar</artifacts-zip>
+                <component-name>sun-bpel-engine</component-name>
+            </target>
+        </service-unit>
+        <service-unit>
+            <identification>
+                <name>OrchestratorOrderComposite-sun-http-binding</name>
+                <description>Represents this Service Unit</description>
+            </identification>
+            <target>
+                <artifacts-zip>sun-http-binding.jar</artifacts-zip>
+                <component-name>sun-http-binding</component-name>
+            </target>
+        </service-unit>
+        <connections>
+            <connection>
+                <consumer endpoint-name="searchCameras" service-name="ns1:casaService2"/>
+                <provider endpoint-name="WS_BPEL_SearchCamerasPortTypeRole_myRole" service-name="ns2:SearchCameras_PartnerLink"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="CatalogCenterRole_partnerRole" service-name="ns3:WSCatalogCenter_PartnerLink"/>
+                <provider endpoint-name="CatalogCenterPort" service-name="ns4:CatalogCenterService"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="CatalogCenterRole_partnerRole" service-name="ns2:WSCatalogCenter_PartnerLink"/>
+                <provider endpoint-name="CatalogCenterPort" service-name="ns4:CatalogCenterService"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="getCamera" service-name="ns1:casaService1"/>
+                <provider endpoint-name="WS_BPEL_GetCameraInfoPortTypeRole_myRole" service-name="ns3:GetCameraInfo_PartnerLink"/>
+            </connection>
+            <connection>
+                <consumer endpoint-name="CameraSupplierRole_partnerRole" service-name="ns2:WSCameraSupplier_PartnerLink"/>
+                <provider endpoint-name="CameraSupplierPort" service-name="ns5:CameraSupplierService"/>
+            </connection>
+        </connections>
+    </service-assembly>
+</jbi>

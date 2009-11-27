@@ -1,0 +1,116 @@
+<definitions name='CatalogCenterService' targetNamespace='http://cc.eai.dei.uc.pt/' xmlns='http://schemas.xmlsoap.org/wsdl/' xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/' xmlns:tns='http://cc.eai.dei.uc.pt/' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+ <types>
+  <xs:schema targetNamespace='http://cc.eai.dei.uc.pt/' version='1.0' xmlns:tns='http://cc.eai.dei.uc.pt/' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+   <xs:element name='addCamerasToDB' type='tns:addCamerasToDB'/>
+   <xs:element name='addCamerasToDBResponse' type='tns:addCamerasToDBResponse'/>
+   <xs:element name='getCamera' type='tns:getCamera'/>
+   <xs:element name='getCameraResponse' type='tns:getCameraResponse'/>
+   <xs:element name='searchCameras' type='tns:searchCameras'/>
+   <xs:element name='searchCamerasResponse' type='tns:searchCamerasResponse'/>
+   <xs:complexType name='getCamera'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='arg0' type='xs:int'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='getCameraResponse'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='return' type='tns:camera'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='camera'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='id' type='xs:int'/>
+     <xs:element minOccurs='0' name='model' type='xs:string'/>
+     <xs:element minOccurs='0' name='price' type='xs:float'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='searchCameras'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='arg0' type='xs:string'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='searchCamerasResponse'>
+    <xs:sequence>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='return' type='tns:camera'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='addCamerasToDB'>
+    <xs:sequence>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='arg0' type='tns:camera'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='addCamerasToDBResponse'>
+    <xs:sequence>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='return' type='tns:camera'/>
+    </xs:sequence>
+   </xs:complexType>
+  </xs:schema>
+ </types>
+ <message name='CatalogCenter_searchCameras'>
+  <part element='tns:searchCameras' name='searchCameras'></part>
+ </message>
+ <message name='CatalogCenter_getCamera'>
+  <part element='tns:getCamera' name='getCamera'></part>
+ </message>
+ <message name='CatalogCenter_addCamerasToDB'>
+  <part element='tns:addCamerasToDB' name='addCamerasToDB'></part>
+ </message>
+ <message name='CatalogCenter_searchCamerasResponse'>
+  <part element='tns:searchCamerasResponse' name='searchCamerasResponse'></part>
+ </message>
+ <message name='CatalogCenter_addCamerasToDBResponse'>
+  <part element='tns:addCamerasToDBResponse' name='addCamerasToDBResponse'></part>
+ </message>
+ <message name='CatalogCenter_getCameraResponse'>
+  <part element='tns:getCameraResponse' name='getCameraResponse'></part>
+ </message>
+ <portType name='CatalogCenter'>
+  <operation name='addCamerasToDB' parameterOrder='addCamerasToDB'>
+   <input message='tns:CatalogCenter_addCamerasToDB'></input>
+   <output message='tns:CatalogCenter_addCamerasToDBResponse'></output>
+  </operation>
+  <operation name='getCamera' parameterOrder='getCamera'>
+   <input message='tns:CatalogCenter_getCamera'></input>
+   <output message='tns:CatalogCenter_getCameraResponse'></output>
+  </operation>
+  <operation name='searchCameras' parameterOrder='searchCameras'>
+   <input message='tns:CatalogCenter_searchCameras'></input>
+   <output message='tns:CatalogCenter_searchCamerasResponse'></output>
+  </operation>
+ </portType>
+ <binding name='CatalogCenterBinding' type='tns:CatalogCenter'>
+  <soap:binding style='document' transport='http://schemas.xmlsoap.org/soap/http'/>
+  <operation name='addCamerasToDB'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+  </operation>
+  <operation name='getCamera'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+  </operation>
+  <operation name='searchCameras'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+  </operation>
+ </binding>
+ <service name='CatalogCenterService'>
+  <port binding='tns:CatalogCenterBinding' name='CatalogCenterPort'>
+   <soap:address location='http://127.0.0.1:8080/WSCatalogCenter'/>
+  </port>
+ </service>
+</definitions>
