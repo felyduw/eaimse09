@@ -3,6 +3,7 @@ package pt.uc.dei.eai;
 import javax.xml.ws.WebServiceRef;
 
 import org.netbeans.xml.schema.cameraresponse.SearchCamerasResponse;
+import org.netbeans.xml.schema.orderresponse.OrderResponse;
 import org.netbeans.xml.schema.userschema.User;
 
 public class WebServiceAux {
@@ -44,10 +45,28 @@ public class WebServiceAux {
 	}
 	
 	/* ORDERS */
+	//SearchCamerasResponse == List<Camera>
 	
 	public SearchCamerasResponse InvokeSearchCameras(String search) {
 		return SearchCameras.getSearchCameras().wsBPELSearchCamerasOperation(search);
 	}
 	
-	//GetCameraInfo
+	public SearchCamerasResponse InvokeGetCameraInfo(Integer cameraId) {
+		return GetCameraInfo.getGetCamera().wsBPELGetCameraInfoOperation(cameraId.intValue());
+	}
+	
+	/* PURCHASES */
+	//OrderResponse == List<Order>
+	
+	public OrderResponse InvokeListPurchases(String username) {
+		return ListPurchases.getGetPurchases().wsBPELGetPurchasesOperation(username);
+	}
+	
+	public OrderResponse InvokeGetPurchaseInfo(Integer orderId) {
+		return GetPurchaseInfo.getGetPurchaseInfo().wsBPELGetPurchaseInfoOperation(orderId.intValue());
+	}
+	
+	public boolean InvokeCheckout(User user, SearchCamerasResponse listCameras ) {
+		return Checkout.getCheckout().wsBPELCheckoutOperation(user, listCameras);
+	}
 }
