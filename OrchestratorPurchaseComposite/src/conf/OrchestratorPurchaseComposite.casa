@@ -1,88 +1,89 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<casa xmlns="http://java.sun.com/xml/ns/casa" xmlns:ns1="http://enterprise.netbeans.org/bpel/BPEL_Purchases/BPEL_Checkout" xmlns:ns10="http://sdep.eai.dei.uc.pt/" xmlns:ns2="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_Checkout" xmlns:ns3="http://enterprise.netbeans.org/bpel/BPEL_Purchases/BPEL_GetPurchaseInfo" xmlns:ns4="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_GetPurchaseInfo" xmlns:ns5="http://enterprise.netbeans.org/bpel/BPEL_Purchases/BPEL_OrderShipped" xmlns:ns6="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_Shipped" xmlns:ns7="http://enterprise.netbeans.org/bpel/BPEL_Purchases/BPEL_Purchases" xmlns:ns8="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_GetPurchases" xmlns:ns9="http://custsrv.eai.dei.uc.pt/" xmlns:xlink="http://www.w3.org/2000/xlink" xmlns:ns="OrchestratorPurchaseComposite">
+<casa xmlns="http://java.sun.com/xml/ns/casa" xmlns:ns1="http://sdep.eai.dei.uc.pt/" xmlns:ns10="http://enterprise.netbeans.org/bpel/BPEL_Purchases/BPEL_OrderShipped" xmlns:ns11="http://enterprise.netbeans.org/bpel/BPEL_Purchases/BPEL_Purchases" xmlns:ns2="http://custsrv.eai.dei.uc.pt/" xmlns:ns3="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_Shipped" xmlns:ns4="OrchestratorPurchaseComposite" xmlns:ns5="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_Checkout" xmlns:ns6="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_GetPurchaseInfo" xmlns:ns7="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_GetPurchases" xmlns:ns8="http://enterprise.netbeans.org/bpel/BPEL_Purchases/BPEL_Checkout" xmlns:ns9="http://enterprise.netbeans.org/bpel/BPEL_Purchases/BPEL_GetPurchaseInfo" xmlns:xlink="http://www.w3.org/2000/xlink">
     <endpoints>
-        <endpoint display-name="Checkout_PartnerLink" endpoint-name="WS_BPEL_CheckoutPortTypeRole_myRole" file-path="BPEL_Checkout.bpel" interface-name="ns2:WS_BPEL_CheckoutPortType" name="endpoint1" process-name="BPEL_Checkout" service-name="ns1:Checkout_PartnerLink"/>
-        <endpoint display-name="WSGetPurchaseInfo_PartnerLink" endpoint-name="WS_BPEL_GetPurchaseInfoPortTypeRole_myRole" file-path="BPEL_GetPurchaseInfo.bpel" interface-name="ns4:WS_BPEL_GetPurchaseInfoPortType" name="endpoint2" process-name="BPEL_GetPurchaseInfo" service-name="ns3:WSGetPurchaseInfo_PartnerLink"/>
-        <endpoint display-name="ShippedPartnerLink" endpoint-name="WS_BPEL_ShippedPortTypeRole_myRole" file-path="BPEL_OrderShipped.bpel" interface-name="ns6:WS_BPEL_ShippedPortType" name="endpoint3" process-name="BPEL_OrderShipped" service-name="ns5:ShippedPartnerLink"/>
-        <endpoint display-name="GetPurchases_PartnerLink" endpoint-name="WS_BPEL_GetPurchasesPortTypeRole_myRole" file-path="BPEL_Purchases.bpel" interface-name="ns8:WS_BPEL_GetPurchasesPortType" name="endpoint4" process-name="BPEL_Purchases" service-name="ns7:GetPurchases_PartnerLink"/>
-        <endpoint display-name="WSCustomerService_PartnerLink" endpoint-name="CustomerServiceRole_partnerRole" file-path="BPEL_Checkout.bpel" interface-name="ns9:CustomerService" name="endpoint5" process-name="BPEL_Checkout" service-name="ns1:WSCustomerService_PartnerLink"/>
-        <endpoint display-name="WSShippingDepartment_PartnerLink" endpoint-name="ShippingDepartmentRole_partnerRole" file-path="BPEL_Checkout.bpel" interface-name="ns10:ShippingDepartment" name="endpoint6" process-name="BPEL_Checkout" service-name="ns1:WSShippingDepartment_PartnerLink"/>
-        <endpoint display-name="WSCustomerService_PartnerLink" endpoint-name="CustomerServiceRole_partnerRole" file-path="BPEL_GetPurchaseInfo.bpel" interface-name="ns9:CustomerService" name="endpoint7" process-name="BPEL_GetPurchaseInfo" service-name="ns3:WSCustomerService_PartnerLink"/>
-        <endpoint display-name="WSCustomerService_PartnerLink" endpoint-name="CustomerServiceRole_partnerRole" file-path="BPEL_OrderShipped.bpel" interface-name="ns9:CustomerService" name="endpoint8" process-name="BPEL_OrderShipped" service-name="ns5:WSCustomerService_PartnerLink"/>
-        <endpoint display-name="WSCustomerService_PartnerLink" endpoint-name="CustomerServiceRole_partnerRole" file-path="BPEL_Purchases.bpel" interface-name="ns9:CustomerService" name="endpoint9" process-name="BPEL_Purchases" service-name="ns7:WSCustomerService_PartnerLink"/>
-        <endpoint endpoint-name="ShippingDepartmentPort" interface-name="ns10:ShippingDepartment" name="endpoint10" service-name="ns10:ShippingDepartmentService"/>
-        <endpoint endpoint-name="CustomerServicePort" interface-name="ns9:CustomerService" name="endpoint11" service-name="ns9:CustomerServiceService"/>
-        <endpoint endpoint-name="WS_BPEL_ShippedPort" interface-name="ns6:WS_BPEL_ShippedPortType" name="endpoint12" service-name="ns6:WS_BPEL_ShippedService"/>
-        <endpoint name="endpoint13" endpoint-name="checkout" interface-name="ns2:WS_BPEL_CheckoutPortType" service-name="ns:casaService1"/>
-        <endpoint name="endpoint14" endpoint-name="getPurchaseInfo" interface-name="ns4:WS_BPEL_GetPurchaseInfoPortType" service-name="ns:casaService2"/>
-        <endpoint name="endpoint15" endpoint-name="shipped" interface-name="ns6:WS_BPEL_ShippedPortType" service-name="ns:casaService3"/>
-        <endpoint name="endpoint16" endpoint-name="getPurchases" interface-name="ns8:WS_BPEL_GetPurchasesPortType" service-name="ns:casaService4"/>
+        <endpoint endpoint-name="ShippingDepartmentPort" interface-name="ns1:ShippingDepartment" name="endpoint1" service-name="ns1:ShippingDepartmentService"/>
+        <endpoint endpoint-name="CustomerServicePort" interface-name="ns2:CustomerService" name="endpoint2" service-name="ns2:CustomerServiceService"/>
+        <endpoint endpoint-name="WS_BPEL_ShippedPort" interface-name="ns3:WS_BPEL_ShippedPortType" name="endpoint3" service-name="ns3:WS_BPEL_ShippedService"/>
+        <endpoint endpoint-name="checkout" interface-name="ns5:WS_BPEL_CheckoutPortType" name="endpoint4" service-name="ns4:casaService1"/>
+        <endpoint endpoint-name="getPurchaseInfo" interface-name="ns6:WS_BPEL_GetPurchaseInfoPortType" name="endpoint5" service-name="ns4:casaService2"/>
+        <endpoint endpoint-name="shipped" interface-name="ns3:WS_BPEL_ShippedPortType" name="endpoint6" service-name="ns4:casaService3"/>
+        <endpoint endpoint-name="getPurchases" interface-name="ns7:WS_BPEL_GetPurchasesPortType" name="endpoint7" service-name="ns4:casaService4"/>
+        <endpoint display-name="Checkout_PartnerLink" endpoint-name="WS_BPEL_CheckoutPortTypeRole_myRole" file-path="BPEL_Checkout.bpel" interface-name="ns5:WS_BPEL_CheckoutPortType" name="endpoint8" process-name="BPEL_Checkout" service-name="ns8:Checkout_PartnerLink"/>
+        <endpoint display-name="WSGetPurchaseInfo_PartnerLink" endpoint-name="WS_BPEL_GetPurchaseInfoPortTypeRole_myRole" file-path="BPEL_GetPurchaseInfo.bpel" interface-name="ns6:WS_BPEL_GetPurchaseInfoPortType" name="endpoint9" process-name="BPEL_GetPurchaseInfo" service-name="ns9:WSGetPurchaseInfo_PartnerLink"/>
+        <endpoint display-name="ShippedPartnerLink" endpoint-name="WS_BPEL_ShippedPortTypeRole_myRole" file-path="BPEL_OrderShipped.bpel" interface-name="ns3:WS_BPEL_ShippedPortType" name="endpoint10" process-name="BPEL_OrderShipped" service-name="ns10:ShippedPartnerLink"/>
+        <endpoint display-name="GetPurchases_PartnerLink" endpoint-name="WS_BPEL_GetPurchasesPortTypeRole_myRole" file-path="BPEL_Purchases.bpel" interface-name="ns7:WS_BPEL_GetPurchasesPortType" name="endpoint11" process-name="BPEL_Purchases" service-name="ns11:GetPurchases_PartnerLink"/>
+        <endpoint display-name="WSCustomerService_PartnerLink" endpoint-name="CustomerServiceRole_partnerRole" file-path="BPEL_Checkout.bpel" interface-name="ns2:CustomerService" name="endpoint12" process-name="BPEL_Checkout" service-name="ns8:WSCustomerService_PartnerLink"/>
+        <endpoint display-name="WSShippingDepartment_PartnerLink" endpoint-name="ShippingDepartmentRole_partnerRole" file-path="BPEL_Checkout.bpel" interface-name="ns1:ShippingDepartment" name="endpoint13" process-name="BPEL_Checkout" service-name="ns8:WSShippingDepartment_PartnerLink"/>
+        <endpoint display-name="WSCustomerService_PartnerLink" endpoint-name="CustomerServiceRole_partnerRole" file-path="BPEL_GetPurchaseInfo.bpel" interface-name="ns2:CustomerService" name="endpoint14" process-name="BPEL_GetPurchaseInfo" service-name="ns9:WSCustomerService_PartnerLink"/>
+        <endpoint display-name="WSCustomerService_PartnerLink" endpoint-name="CustomerServiceRole_partnerRole" file-path="BPEL_OrderShipped.bpel" interface-name="ns2:CustomerService" name="endpoint15" process-name="BPEL_OrderShipped" service-name="ns10:WSCustomerService_PartnerLink"/>
+        <endpoint display-name="WSCustomerService_PartnerLink" endpoint-name="CustomerServiceRole_partnerRole" file-path="BPEL_Purchases.bpel" interface-name="ns2:CustomerService" name="endpoint16" process-name="BPEL_Purchases" service-name="ns11:WSCustomerService_PartnerLink"/>
     </endpoints>
     <service-units>
         <service-engine-service-unit artifacts-zip="BPEL_Purchases.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="OrchestratorPurchaseComposite-BPEL_Purchases" unit-name="BPEL_Purchases" unknown="false" x="118" y="99">
-            <provides endpoint="endpoint1"/>
-            <provides endpoint="endpoint2"/>
-            <provides endpoint="endpoint3"/>
-            <provides endpoint="endpoint4"/>
-            <consumes endpoint="endpoint5"/>
-            <consumes endpoint="endpoint6"/>
-            <consumes endpoint="endpoint7"/>
-            <consumes endpoint="endpoint8"/>
-            <consumes endpoint="endpoint9"/>
+            <provides endpoint="endpoint8"/>
+            <provides endpoint="endpoint9"/>
+            <provides endpoint="endpoint10"/>
+            <provides endpoint="endpoint11"/>
+            <consumes endpoint="endpoint12"/>
+            <consumes endpoint="endpoint13"/>
+            <consumes endpoint="endpoint14"/>
+            <consumes endpoint="endpoint15"/>
+            <consumes endpoint="endpoint16"/>
         </service-engine-service-unit>
         <binding-component-service-unit artifacts-zip="sun-http-binding.jar" component-name="sun-http-binding" description="Represents this Service Unit" name="OrchestratorPurchaseComposite-sun-http-binding" unit-name="sun-http-binding">
             <ports>
+                <port bindingType="soap" x="67" y="123">
+                    <link xlink:href="../jbiasa/OrchestratorPurchaseComposite.wsdl#xpointer(/definitions/service[@name='casaService1']/port[@name='checkout'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint4"/>
+                    <provides endpoint="endpoint4"/>
+                </port>
+                <port bindingType="soap" x="67" y="210">
+                    <link xlink:href="../jbiasa/OrchestratorPurchaseComposite.wsdl#xpointer(/definitions/service[@name='casaService2']/port[@name='getPurchaseInfo'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint5"/>
+                    <provides endpoint="endpoint5"/>
+                </port>
+                <port bindingType="soap" x="67" y="316">
+                    <link xlink:href="../jbiasa/OrchestratorPurchaseComposite.wsdl#xpointer(/definitions/service[@name='casaService3']/port[@name='shipped'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint6"/>
+                    <provides endpoint="endpoint6"/>
+                </port>
+                <port bindingType="soap" x="67" y="412">
+                    <link xlink:href="../jbiasa/OrchestratorPurchaseComposite.wsdl#xpointer(/definitions/service[@name='casaService4']/port[@name='getPurchases'])" xlink:type="simple"/>
+                    <consumes endpoint="endpoint7"/>
+                    <provides endpoint="endpoint7"/>
+                </port>
                 <port x="67" y="491">
                     <link xlink:href="../jbiServiceUnits/BPEL_Purchases/127.0.0.1_8080/WSCustomerService.wsdl#xpointer(/definitions/service[@name='CustomerServiceService']/port[@name='CustomerServicePort'])" xlink:type="simple"/>
-                    <consumes endpoint="endpoint11"/>
-                    <provides endpoint="endpoint11"/>
+                    <consumes endpoint="endpoint2"/>
+                    <provides endpoint="endpoint2"/>
                 </port>
                 <port x="67" y="39">
                     <link xlink:href="../jbiServiceUnits/BPEL_Purchases/127.0.0.1_8080/WSShippingDepartment.wsdl#xpointer(/definitions/service[@name='ShippingDepartmentService']/port[@name='ShippingDepartmentPort'])" xlink:type="simple"/>
-                    <consumes endpoint="endpoint10"/>
-                    <provides endpoint="endpoint10"/>
+                    <consumes endpoint="endpoint1"/>
+                    <provides endpoint="endpoint1"/>
                 </port>
-                <port x="67" y="39" state="deleted">
+                <port state="deleted" x="67" y="39">
                     <link xlink:href="../jbiServiceUnits/BPEL_Purchases/WS_BPEL_Shipped.wsdl#xpointer(/definitions/service[@name='WS_BPEL_ShippedService']/port[@name='WS_BPEL_ShippedPort'])" xlink:type="simple"/>
-                    <consumes endpoint="endpoint12"/>
-                    <provides endpoint="endpoint12"/>
-                </port>
-                <port x="67" y="123" bindingType="soap">
-                    <link xlink:href="../jbiasa/OrchestratorPurchaseComposite.wsdl#xpointer(/definitions/service[@name=&apos;casaService1&apos;]/port[@name=&apos;checkout&apos;])" xlink:type="simple"/>
-                    <consumes endpoint="endpoint13"/>
-                    <provides endpoint="endpoint13"/>
-                </port>
-                <port x="67" y="210" bindingType="soap">
-                    <link xlink:href="../jbiasa/OrchestratorPurchaseComposite.wsdl#xpointer(/definitions/service[@name=&apos;casaService2&apos;]/port[@name=&apos;getPurchaseInfo&apos;])" xlink:type="simple"/>
-                    <consumes endpoint="endpoint14"/>
-                    <provides endpoint="endpoint14"/>
-                </port>
-                <port x="67" y="316" bindingType="soap">
-                    <link xlink:href="../jbiasa/OrchestratorPurchaseComposite.wsdl#xpointer(/definitions/service[@name=&apos;casaService3&apos;]/port[@name=&apos;shipped&apos;])" xlink:type="simple"/>
-                    <consumes endpoint="endpoint15"/>
-                    <provides endpoint="endpoint15"/>
-                </port>
-                <port x="67" y="412" bindingType="soap">
-                    <link xlink:href="../jbiasa/OrchestratorPurchaseComposite.wsdl#xpointer(/definitions/service[@name=&apos;casaService4&apos;]/port[@name=&apos;getPurchases&apos;])" xlink:type="simple"/>
-                    <consumes endpoint="endpoint16"/>
-                    <provides endpoint="endpoint16"/>
+                    <consumes endpoint="endpoint3"/>
+                    <provides endpoint="endpoint3"/>
                 </port>
             </ports>
         </binding-component-service-unit>
     </service-units>
     <connections>
-        <connection consumer="endpoint12" provider="endpoint3" state="deleted"/>
-        <connection consumer="endpoint6" provider="endpoint10" state="unchanged"/>
-        <connection consumer="endpoint5" provider="endpoint11" state="unchanged"/>
-        <connection consumer="endpoint7" provider="endpoint11" state="unchanged"/>
-        <connection consumer="endpoint8" provider="endpoint11" state="unchanged"/>
-        <connection consumer="endpoint9" provider="endpoint11" state="unchanged"/>
-        <connection state="new" consumer="endpoint16" provider="endpoint4"/>
-        <connection state="new" consumer="endpoint15" provider="endpoint3"/>
-        <connection state="new" consumer="endpoint14" provider="endpoint2"/>
-        <connection state="new" consumer="endpoint13" provider="endpoint1"/>
+        <connection consumer="endpoint7" provider="endpoint11" state="new"/>
+        <connection consumer="endpoint4" provider="endpoint8" state="new"/>
+        <connection consumer="endpoint6" provider="endpoint10" state="new"/>
+        <connection consumer="endpoint5" provider="endpoint9" state="new"/>
+        <connection consumer="endpoint13" provider="endpoint1" state="unchanged"/>
+        <connection consumer="endpoint12" provider="endpoint2" state="unchanged"/>
+        <connection consumer="endpoint14" provider="endpoint2" state="unchanged"/>
+        <connection consumer="endpoint15" provider="endpoint2" state="unchanged"/>
+        <connection consumer="endpoint16" provider="endpoint2" state="unchanged"/>
+        <connection consumer="endpoint3" provider="endpoint10" state="deleted"/>
     </connections>
     <porttypes>
+        <link xlink:href="../jbiasa/OrchestratorPurchaseComposite.wsdl#xpointer(/definitions/portType[@name='dummyCasaPortType'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/BPEL_Purchases/127.0.0.1_8080/WSCustomerService.wsdl#xpointer(/definitions/portType[@name='CustomerService'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/BPEL_Purchases/127.0.0.1_8080/WSShippingDepartment.wsdl#xpointer(/definitions/portType[@name='ShippingDepartment'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/BPEL_Purchases/WS_BPEL_Checkout.wsdl#xpointer(/definitions/portType[@name='WS_BPEL_CheckoutPortType'])" xlink:type="simple"/>
@@ -91,21 +92,37 @@
         <link xlink:href="../jbiServiceUnits/BPEL_Purchases/WS_BPEL_Shipped.wsdl#xpointer(/definitions/portType[@name='WS_BPEL_ShippedPortType'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/META-INF/BPEL_Purchases/src/127.0.0.1_8080/WSCustomerService.wsdl#xpointer(/definitions/portType[@name='CustomerService'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/META-INF/BPEL_Purchases/src/127.0.0.1_8080/WSShippingDepartment.wsdl#xpointer(/definitions/portType[@name='ShippingDepartment'])" xlink:type="simple"/>
-        <link xlink:href="../jbiasa/OrchestratorPurchaseComposite.wsdl#xpointer(/definitions/portType[@name=&apos;dummyCasaPortType&apos;])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrchestratorPurchaseComposite.wsdl#xpointer(/definitions/portType[@name='dummyCasaPortType'])" xlink:type="simple"/>
     </porttypes>
     <bindings>
+        <link xlink:href="../jbiasa/OrchestratorPurchaseComposite.wsdl#xpointer(/definitions/binding[@name='casaBinding4'])" xlink:type="simple"/>
+        <link xlink:href="../jbiasa/OrchestratorPurchaseComposite.wsdl#xpointer(/definitions/binding[@name='casaBinding3'])" xlink:type="simple"/>
+        <link xlink:href="../jbiasa/OrchestratorPurchaseComposite.wsdl#xpointer(/definitions/binding[@name='casaBinding2'])" xlink:type="simple"/>
+        <link xlink:href="../jbiasa/OrchestratorPurchaseComposite.wsdl#xpointer(/definitions/binding[@name='casaBinding1'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/BPEL_Purchases/127.0.0.1_8080/WSCustomerService.wsdl#xpointer(/definitions/binding[@name='CustomerServiceBinding'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/BPEL_Purchases/127.0.0.1_8080/WSShippingDepartment.wsdl#xpointer(/definitions/binding[@name='ShippingDepartmentBinding'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/BPEL_Purchases/WS_BPEL_Shipped.wsdl#xpointer(/definitions/binding[@name='WS_BPEL_ShippedBinding'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/META-INF/BPEL_Purchases/src/127.0.0.1_8080/WSCustomerService.wsdl#xpointer(/definitions/binding[@name='CustomerServiceBinding'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/META-INF/BPEL_Purchases/src/127.0.0.1_8080/WSShippingDepartment.wsdl#xpointer(/definitions/binding[@name='ShippingDepartmentBinding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrchestratorPurchaseComposite.wsdl#xpointer(/definitions/binding[@name='casaBinding4'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrchestratorPurchaseComposite.wsdl#xpointer(/definitions/binding[@name='casaBinding3'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrchestratorPurchaseComposite.wsdl#xpointer(/definitions/binding[@name='casaBinding2'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrchestratorPurchaseComposite.wsdl#xpointer(/definitions/binding[@name='casaBinding1'])" xlink:type="simple"/>
     </bindings>
     <services>
+        <link xlink:href="../jbiasa/OrchestratorPurchaseComposite.wsdl#xpointer(/definitions/service[@name='casaService1'])" xlink:type="simple"/>
+        <link xlink:href="../jbiasa/OrchestratorPurchaseComposite.wsdl#xpointer(/definitions/service[@name='casaService2'])" xlink:type="simple"/>
+        <link xlink:href="../jbiasa/OrchestratorPurchaseComposite.wsdl#xpointer(/definitions/service[@name='casaService3'])" xlink:type="simple"/>
+        <link xlink:href="../jbiasa/OrchestratorPurchaseComposite.wsdl#xpointer(/definitions/service[@name='casaService4'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/BPEL_Purchases/127.0.0.1_8080/WSCustomerService.wsdl#xpointer(/definitions/service[@name='CustomerServiceService'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/BPEL_Purchases/127.0.0.1_8080/WSShippingDepartment.wsdl#xpointer(/definitions/service[@name='ShippingDepartmentService'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/BPEL_Purchases/WS_BPEL_Shipped.wsdl#xpointer(/definitions/service[@name='WS_BPEL_ShippedService'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/META-INF/BPEL_Purchases/src/127.0.0.1_8080/WSCustomerService.wsdl#xpointer(/definitions/service[@name='CustomerServiceService'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/META-INF/BPEL_Purchases/src/127.0.0.1_8080/WSShippingDepartment.wsdl#xpointer(/definitions/service[@name='ShippingDepartmentService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrchestratorPurchaseComposite.wsdl#xpointer(/definitions/service[@name='casaService1'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrchestratorPurchaseComposite.wsdl#xpointer(/definitions/service[@name='casaService2'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrchestratorPurchaseComposite.wsdl#xpointer(/definitions/service[@name='casaService3'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrchestratorPurchaseComposite.wsdl#xpointer(/definitions/service[@name='casaService4'])" xlink:type="simple"/>
     </services>
     <regions>
         <region name="WSDL Endpoints" width="150"/>

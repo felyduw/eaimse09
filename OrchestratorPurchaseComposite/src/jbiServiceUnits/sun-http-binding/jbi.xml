@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns1="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_Shipped" xmlns:ns2="http://enterprise.netbeans.org/bpel/BPEL_Purchases/BPEL_OrderShipped" xmlns:ns3="http://enterprise.netbeans.org/bpel/BPEL_Purchases/BPEL_Checkout" xmlns:ns4="http://sdep.eai.dei.uc.pt/" xmlns:ns5="http://custsrv.eai.dei.uc.pt/" xmlns:ns6="http://enterprise.netbeans.org/bpel/BPEL_Purchases/BPEL_GetPurchaseInfo" xmlns:ns7="http://enterprise.netbeans.org/bpel/BPEL_Purchases/BPEL_Purchases" version="1.0">
+<jbi xmlns="http://java.sun.com/xml/ns/jbi" xmlns:ns1="OrchestratorPurchaseComposite" xmlns:ns10="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_Shipped" xmlns:ns11="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_GetPurchaseInfo" xmlns:ns2="http://enterprise.netbeans.org/bpel/BPEL_Purchases/BPEL_Purchases" xmlns:ns3="http://enterprise.netbeans.org/bpel/BPEL_Purchases/BPEL_Checkout" xmlns:ns4="http://enterprise.netbeans.org/bpel/BPEL_Purchases/BPEL_OrderShipped" xmlns:ns5="http://enterprise.netbeans.org/bpel/BPEL_Purchases/BPEL_GetPurchaseInfo" xmlns:ns6="http://sdep.eai.dei.uc.pt/" xmlns:ns7="http://custsrv.eai.dei.uc.pt/" xmlns:ns8="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_GetPurchases" xmlns:ns9="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_Checkout" version="1.0">
     <services binding-component="true">
-        <provides endpoint-name="ShippingDepartmentPort" interface-name="ns4:ShippingDepartment" service-name="ns4:ShippingDepartmentService"/>
-        <provides endpoint-name="CustomerServicePort" interface-name="ns5:CustomerService" service-name="ns5:CustomerServiceService"/>
-        <consumes endpoint-name="WS_BPEL_ShippedPort" interface-name="ns1:WS_BPEL_ShippedPortType" service-name="ns1:WS_BPEL_ShippedService"/>
+        <provides endpoint-name="ShippingDepartmentPort" interface-name="ns6:ShippingDepartment" service-name="ns6:ShippingDepartmentService"/>
+        <provides endpoint-name="CustomerServicePort" interface-name="ns7:CustomerService" service-name="ns7:CustomerServiceService"/>
+        <consumes endpoint-name="getPurchases" interface-name="ns8:WS_BPEL_GetPurchasesPortType" service-name="ns1:casaService4"/>
+        <consumes endpoint-name="checkout" interface-name="ns9:WS_BPEL_CheckoutPortType" service-name="ns1:casaService1"/>
+        <consumes endpoint-name="shipped" interface-name="ns10:WS_BPEL_ShippedPortType" service-name="ns1:casaService3"/>
+        <consumes endpoint-name="getPurchaseInfo" interface-name="ns11:WS_BPEL_GetPurchaseInfoPortType" service-name="ns1:casaService2"/>
     </services>
 </jbi>
