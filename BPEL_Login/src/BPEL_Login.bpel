@@ -37,28 +37,8 @@
       <invoke name="InvokeLogin" partnerLink="WSCustomerService" operation="doLogin" xmlns:tns="http://custsrv.eai.dei.uc.pt/" portType="tns:CustomerService" inputVariable="DoLoginIn" outputVariable="DoLoginOut"/>
       <assign name="Assign2">
          <copy>
-            <from>$DoLoginOut.doLoginResponse/return/address</from>
-            <to>$WSLoginWrapperOperationOut.user/ns0:address</to>
-         </copy>
-         <copy>
-            <from>$DoLoginOut.doLoginResponse/return/email</from>
-            <to>$WSLoginWrapperOperationOut.user/ns0:email</to>
-         </copy>
-         <copy>
-            <from>$DoLoginOut.doLoginResponse/return/id</from>
-            <to>$WSLoginWrapperOperationOut.user/ns0:id</to>
-         </copy>
-         <copy>
-            <from>$DoLoginOut.doLoginResponse/return/name</from>
-            <to>$WSLoginWrapperOperationOut.user/ns0:name</to>
-         </copy>
-         <copy>
-            <from>$DoLoginOut.doLoginResponse/return/password</from>
-            <to>$WSLoginWrapperOperationOut.user/ns0:password</to>
-         </copy>
-         <copy>
-            <from>$DoLoginOut.doLoginResponse/return/username</from>
-            <to>$WSLoginWrapperOperationOut.user/ns0:username</to>
+            <from variable="DoLoginOut" part="doLoginResponse"/>
+            <to variable="WSLoginWrapperOperationOut" part="user"/>
          </copy>
       </assign>
       <reply name="ReplyLogin" partnerLink="WSLogin" operation="WSLoginWrapperOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSLoginWrapper" portType="tns:WSLoginWrapperPortType" variable="WSLoginWrapperOperationOut"/>
