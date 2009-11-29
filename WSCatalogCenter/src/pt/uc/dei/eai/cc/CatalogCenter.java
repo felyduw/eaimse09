@@ -66,4 +66,8 @@ public class CatalogCenter implements ICatalogCenter {
 		return ls;
 	}
 
+	@WebMethod
+	public void recreateDB() {
+		HibernateUtil.recreateDatabase();
+	}
 }
