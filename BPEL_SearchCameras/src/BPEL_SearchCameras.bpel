@@ -39,8 +39,14 @@
         </assign>
         <invoke name="Invoke_Cameras_Catalog" partnerLink="WSCatalogCenter_PartnerLink" operation="searchCameras" xmlns:tns="http://cc.eai.dei.uc.pt/" portType="tns:CatalogCenter" inputVariable="SearchCamerasIn" outputVariable="SearchCamerasOut"/>
         <if name="CheckCamerasSize">
-            <condition>0 = count($SearchCamerasOut.searchCamerasResponse)</condition>
+            <condition>0 = count($SearchCamerasOut.searchCamerasResponse/return)</condition>
             <sequence name="Sequence1">
+                <assign name="Assign1">
+                    <copy>
+                        <from variable="WS_BPEL_SearchCamerasOperationIn" part="Input_WS_SearchCameras"/>
+                        <to>$GetCamerasIn.getCameras/arg0</to>
+                    </copy>
+                </assign>
                 <invoke name="Invoke_Cameras_Search" partnerLink="WSCameraSupplier_PartnerLink" operation="getCameras" xmlns:tns="http://cs.eai.dei.uc.pt/" portType="tns:CameraSupplier" inputVariable="GetCamerasIn" outputVariable="GetCamerasOut"/>
                 <if name="CheckReturnCameras">
                     <condition>0 &gt; count($GetCamerasOut.getCamerasResponse/return)</condition>
