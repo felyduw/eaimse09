@@ -5,12 +5,21 @@
 String error = null;
 String free_text_search = request.getParameter("free_text_search");
 
-// Pesquisa das cameras
-List<Camera> camerasList = null;//lpco.searchCameras(free_text_search);
+/*
+orchestratorordercomposite.CasaService2 test1 = new CasaService2(
+test1.getSearchCameras().wsBPELSearchCamerasOperation("Canon");
+*/
 
+// Pesquisa das cameras
+WebServiceAux webServiceAux = new WebServiceAux();
+//List<Camera> camerasList = webServiceAux.InvokeSearchCameras(free_text_search);
+Camera camera = webServiceAux.InvokeGetCameraInfo(10);
+List<Camera> camerasList = new ArrayList<Camera>();
+camerasList.add(camera);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+
+<%@page import="orchestratorordercomposite.CasaService2"%><html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Low-Price Cameras Online</title>
 	<link href="style.css" rel="stylesheet" type="text/css" />

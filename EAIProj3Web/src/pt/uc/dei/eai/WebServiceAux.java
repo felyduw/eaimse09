@@ -1,10 +1,14 @@
 package pt.uc.dei.eai;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.ws.WebServiceRef;
-
 import org.netbeans.xml.schema.cameraresponse.SearchCamerasResponse;
 import org.netbeans.xml.schema.orderresponse.OrderResponse;
 import org.netbeans.xml.schema.userschema.User;
+
+import pt.uc.dei.eai.common.Camera;
 
 public class WebServiceAux {
 	
@@ -19,9 +23,8 @@ public class WebServiceAux {
 	@WebServiceRef(wsdlLocation = WSDL.SearchCamerasURL)
 	static orchestratorordercomposite.CasaService2 SearchCameras;
 	
-	@WebServiceRef(wsdlLocation = WSDL.GetCameraInfoURL)
+	@WebServiceRef(wsdlLocation = "http://localhost:9080/GetCamera?WSDL")
 	static orchestratorordercomposite.CasaService1 GetCameraInfo;
-	
 	
 	/* PURCHASES */
 	
@@ -47,14 +50,32 @@ public class WebServiceAux {
 	/* ORDERS */
 	//SearchCamerasResponse == List<Camera>
 	
-	public SearchCamerasResponse InvokeSearchCameras(String search) {
-		return SearchCameras.getSearchCameras().wsBPELSearchCamerasOperation(search);
+	public List<Camera> InvokeSearchCameras(String search) {
+		SearchCamerasResponse searchCamerasResponse = SearchCameras.getSearchCameras().wsBPELSearchCamerasOperation(search);
+		return TranslateSearchCamerasResponse2ListCameras(searchCamerasResponse);
 	}
 	
-	public SearchCamerasResponse InvokeGetCameraInfo(Integer cameraId) {
-		return GetCameraInfo.getGetCamera().wsBPELGetCameraInfoOperation(cameraId.intValue());
+	public Camera InvokeGetCameraInfo(Integer cameraId) {
+		orchestratorordercomposite.WSBPELGetCameraInfoPortType port = GetCameraInfo.getGetCamera();
+		SearchCamerasResponse searchCamerasResponse = port.wsBPELGetCameraInfoOperation(cameraId.intValue());
+		List<Camera> listCameras = TranslateSearchCamerasResponse2ListCameras(searchCamerasResponse);
+		if (listCameras.size() > 0) {
+			return listCameras.get(0);
+		}
+		return null;
 	}
 	
+	private List<Camera> TranslateSearchCamerasResponse2ListCameras(SearchCamerasResponse searchCamerasResponse) {
+		List<Serializable> rawListCameras = searchCamerasResponse.getIdAndModelAndPrice();
+		List<Camera> listCameras = new ArrayList<Camera>();
+		if (rawListCameras != null) {
+			for (int i = 0; i < rawListCameras.size(); i++) {
+				Camera newCamera = (Camera)rawListCameras.get(i);
+				listCameras.add(newCamera);
+			}
+		}
+		return listCameras;
+	}
 	/* PURCHASES */
 	//OrderResponse == List<Order>
 	

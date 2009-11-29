@@ -2,7 +2,7 @@ package pt.uc.dei.eai;
 
 public class WSDL {
 	
-	private static final String port = "9081";
+	private static final String port = "9080";
 	
 	/* User Management */
 	public static final String LoginURL = "http://localhost:" + port + "/Login?wsdl";
