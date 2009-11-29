@@ -12,6 +12,7 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import pt.uc.dei.eai.common.Camera;
+import pt.uc.dei.eai.common.CameraSearch;
 import pt.uc.dei.eai.data.HibernateUtil;
 
 @WebService
@@ -49,12 +50,12 @@ public class CatalogCenter implements ICatalogCenter {
 
 	@Override
 	@WebMethod
-	public List<Camera> addCamerasToDB(List<Camera> cameras) {
+	public List<Camera> addCamerasToDB(List<CameraSearch> cameras) {
 
 		List<Camera> ls = new ArrayList<Camera>();
 		
 		Session tsx = HibernateUtil.beginTransaction();
-		for (Camera cam : cameras) {
+		for (CameraSearch cam : cameras) {
 			Camera camToAdd = new Camera();
 			camToAdd.setModel(cam.getModel());
 			camToAdd.setPrice(cam.getPrice());
