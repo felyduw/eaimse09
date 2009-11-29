@@ -11,4 +11,5 @@
             <xsd:element name="price" type="xsd:float"/>
         </xsd:sequence>
     </xsd:complexType>
+    <xsd:element name="SearchCameraInput" type="tns:searchCamerasResponse"/>
 </xsd:schema>
