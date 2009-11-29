@@ -5,6 +5,8 @@
    <xs:element name='addCamerasToDBResponse' type='tns:addCamerasToDBResponse'/>
    <xs:element name='getCamera' type='tns:getCamera'/>
    <xs:element name='getCameraResponse' type='tns:getCameraResponse'/>
+   <xs:element name='recreateDB' type='tns:recreateDB'/>
+   <xs:element name='recreateDBResponse' type='tns:recreateDBResponse'/>
    <xs:element name='searchCameras' type='tns:searchCameras'/>
    <xs:element name='searchCamerasResponse' type='tns:searchCamerasResponse'/>
    <xs:complexType name='getCamera'>
@@ -36,13 +38,26 @@
    </xs:complexType>
    <xs:complexType name='addCamerasToDB'>
     <xs:sequence>
-     <xs:element maxOccurs='unbounded' minOccurs='0' name='arg0' type='tns:camera'/>
+     <xs:element maxOccurs='unbounded' minOccurs='0' name='arg0' type='tns:cameraSearch'/>
+    </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='cameraSearch'>
+    <xs:sequence>
+     <xs:element minOccurs='0' name='date' type='xs:string'/>
+     <xs:element minOccurs='0' name='model' type='xs:string'/>
+     <xs:element minOccurs='0' name='price' type='xs:float'/>
     </xs:sequence>
    </xs:complexType>
    <xs:complexType name='addCamerasToDBResponse'>
     <xs:sequence>
      <xs:element maxOccurs='unbounded' minOccurs='0' name='return' type='tns:camera'/>
     </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name='recreateDB'>
+    <xs:sequence/>
+   </xs:complexType>
+   <xs:complexType name='recreateDBResponse'>
+    <xs:sequence/>
    </xs:complexType>
   </xs:schema>
  </types>
@@ -61,8 +76,14 @@
  <message name='CatalogCenter_addCamerasToDBResponse'>
   <part element='tns:addCamerasToDBResponse' name='addCamerasToDBResponse'></part>
  </message>
+ <message name='CatalogCenter_recreateDB'>
+  <part element='tns:recreateDB' name='recreateDB'></part>
+ </message>
  <message name='CatalogCenter_getCameraResponse'>
   <part element='tns:getCameraResponse' name='getCameraResponse'></part>
+ </message>
+ <message name='CatalogCenter_recreateDBResponse'>
+  <part element='tns:recreateDBResponse' name='recreateDBResponse'></part>
  </message>
  <portType name='CatalogCenter'>
   <operation name='addCamerasToDB' parameterOrder='addCamerasToDB'>
@@ -72,6 +93,10 @@
   <operation name='getCamera' parameterOrder='getCamera'>
    <input message='tns:CatalogCenter_getCamera'></input>
    <output message='tns:CatalogCenter_getCameraResponse'></output>
+  </operation>
+  <operation name='recreateDB' parameterOrder='recreateDB'>
+   <input message='tns:CatalogCenter_recreateDB'></input>
+   <output message='tns:CatalogCenter_recreateDBResponse'></output>
   </operation>
   <operation name='searchCameras' parameterOrder='searchCameras'>
    <input message='tns:CatalogCenter_searchCameras'></input>
@@ -90,6 +115,15 @@
    </output>
   </operation>
   <operation name='getCamera'>
+   <soap:operation soapAction=''/>
+   <input>
+    <soap:body use='literal'/>
+   </input>
+   <output>
+    <soap:body use='literal'/>
+   </output>
+  </operation>
+  <operation name='recreateDB'>
    <soap:operation soapAction=''/>
    <input>
     <soap:body use='literal'/>

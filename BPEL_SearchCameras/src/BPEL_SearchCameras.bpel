@@ -52,44 +52,19 @@
                     </copy>
                 </assign>
                 <invoke name="Invoke_Cameras_Search" partnerLink="WSCameraSupplier_PartnerLink" operation="getCameras" xmlns:tns="http://cs.eai.dei.uc.pt/" portType="tns:CameraSupplier" inputVariable="GetCamerasIn" outputVariable="GetCamerasOut"/>
-                <if name="CheckReturnCameras">
-                    <condition>1 &gt;= count($GetCamerasOut.getCamerasResponse/return)</condition>
-                    <sequence name="Sequence2">
-                        <assign name="AssignAddCamDBIn">
-                            <copy>
-                                <from>$GetCamerasOut.getCamerasResponse/return/model</from>
-                                <to>$AddCamerasToDBIn.addCamerasToDB/arg0/model</to>
-                            </copy>
-                            <copy>
-                                <from>$GetCamerasOut.getCamerasResponse/return/price</from>
-                                <to>$AddCamerasToDBIn.addCamerasToDB/arg0/price</to>
-                            </copy>
-                        </assign>
-                        <invoke name="Invoke_AddCameras" partnerLink="WSCatalogCenter_PartnerLink" operation="addCamerasToDB" xmlns:tns="http://cc.eai.dei.uc.pt/" portType="tns:CatalogCenter" inputVariable="AddCamerasToDBIn" outputVariable="AddCamerasToDBOut"/>
-                        <assign name="AssingCameras">
-                            <copy>
-                                    <from>$AddCamerasToDBOut.addCamerasToDBResponse/return/id</from>
-                                        <to>$WS_BPEL_SearchCamerasOperationOut.Output_WS_SearchCameras/ns1:id</to>
-                                </copy>
-                                <copy>
-                                    <from>$AddCamerasToDBOut.addCamerasToDBResponse/return/model</from>
-                                        <to>$WS_BPEL_SearchCamerasOperationOut.Output_WS_SearchCameras/ns1:model</to>
-                                </copy>
-                                <copy>
-                                    <from>$AddCamerasToDBOut.addCamerasToDBResponse/return/price</from>
-                                        <to>$WS_BPEL_SearchCamerasOperationOut.Output_WS_SearchCameras/ns1:price</to>
-                                </copy>
-                        </assign>
-                    </sequence>
-                    <else>
-                        <assign name="AssignOutput">
-                            <copy>
-                                <from variable="SearchCamerasOut" part="searchCamerasResponse"/>
-                                <to variable="WS_BPEL_SearchCamerasOperationOut" part="Output_WS_SearchCameras"/>
-                            </copy>
-                        </assign>
-                    </else>
-                </if>
+                <assign name="AssignAddCamDBIn">
+                    <copy>
+                        <from>$GetCamerasOut.getCamerasResponse/return</from>
+                        <to>$AddCamerasToDBIn.addCamerasToDB/arg0</to>
+                    </copy>
+                </assign>
+                <invoke name="Invoke_AddCameras" partnerLink="WSCatalogCenter_PartnerLink" operation="addCamerasToDB" xmlns:tns="http://cc.eai.dei.uc.pt/" portType="tns:CatalogCenter" inputVariable="AddCamerasToDBIn" outputVariable="AddCamerasToDBOut"/>
+                <assign name="AssingCameras">
+                    <copy>
+                        <from variable="AddCamerasToDBOut" part="addCamerasToDBResponse"/>
+                        <to variable="WS_BPEL_SearchCamerasOperationOut" part="Output_WS_SearchCameras"/>
+                    </copy>
+                </assign>
             </sequence>
             <else>
                 <assign name="AssignCatalog">

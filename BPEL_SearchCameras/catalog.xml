@@ -2,4 +2,5 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
     <system systemId="http://127.0.0.1:8080/WSCameraSupplier?wsdl" uri="src/127.0.0.1_8080/WSCameraSupplier.wsdl"/>
     <nextCatalog catalog="nbproject/private/cache/retriever/catalog.xml"/>
+    <system systemId="http://127.0.0.1:8080/WSCatalogCenter?wsdl" uri="src/127.0.0.1_8080/WSCatalogCenter.wsdl"/>
 </catalog>
