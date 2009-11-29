@@ -58,6 +58,7 @@
         <link xlink:href="../jbiServiceUnits/BPEL_SearchCameras/WS_BPEL_GetCameraInfo.wsdl#xpointer(/definitions/portType[@name='WS_BPEL_GetCameraInfoPortType'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/BPEL_SearchCameras/WS_BPEL_SearchCameras.wsdl#xpointer(/definitions/portType[@name='WS_BPEL_SearchCamerasPortType'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/META-INF/BPEL_SearchCameras/src/127.0.0.1_8080/WSCameraSupplier.wsdl#xpointer(/definitions/portType[@name='CameraSupplier'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/META-INF/BPEL_SearchCameras/src/_references/_cache/127.0.0.1_8080/WSCatalogCenter.wsdl#xpointer(/definitions/portType[@name='CatalogCenter'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/OrchestratorOrderComposite.wsdl#xpointer(/definitions/portType[@name='dummyCasaPortType'])" xlink:type="simple"/>
     </porttypes>
     <bindings>
@@ -66,6 +67,7 @@
         <link xlink:href="../jbiServiceUnits/BPEL_SearchCameras/127.0.0.1_8080/WSCameraSupplier.wsdl#xpointer(/definitions/binding[@name='CameraSupplierBinding'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/BPEL_SearchCameras/127.0.0.1_8080/WSCatalogCenter.wsdl#xpointer(/definitions/binding[@name='CatalogCenterBinding'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/META-INF/BPEL_SearchCameras/src/127.0.0.1_8080/WSCameraSupplier.wsdl#xpointer(/definitions/binding[@name='CameraSupplierBinding'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/META-INF/BPEL_SearchCameras/src/_references/_cache/127.0.0.1_8080/WSCatalogCenter.wsdl#xpointer(/definitions/binding[@name='CatalogCenterBinding'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/OrchestratorOrderComposite.wsdl#xpointer(/definitions/binding[@name='casaBinding1'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/OrchestratorOrderComposite.wsdl#xpointer(/definitions/binding[@name='casaBinding2'])" xlink:type="simple"/>
     </bindings>
@@ -75,6 +77,7 @@
         <link xlink:href="../jbiServiceUnits/BPEL_SearchCameras/127.0.0.1_8080/WSCameraSupplier.wsdl#xpointer(/definitions/service[@name='CameraSupplierService'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/BPEL_SearchCameras/127.0.0.1_8080/WSCatalogCenter.wsdl#xpointer(/definitions/service[@name='CatalogCenterService'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/META-INF/BPEL_SearchCameras/src/127.0.0.1_8080/WSCameraSupplier.wsdl#xpointer(/definitions/service[@name='CameraSupplierService'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/META-INF/BPEL_SearchCameras/src/_references/_cache/127.0.0.1_8080/WSCatalogCenter.wsdl#xpointer(/definitions/service[@name='CatalogCenterService'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/OrchestratorOrderComposite.wsdl#xpointer(/definitions/service[@name='casaService1'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/OrchestratorOrderComposite.wsdl#xpointer(/definitions/service[@name='casaService2'])" xlink:type="simple"/>
     </services>
