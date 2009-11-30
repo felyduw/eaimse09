@@ -16,6 +16,26 @@
             <xsd:element name="modelId" type="xsd:int"/>
         </xsd:sequence>
     </xsd:complexType>
+    <xsd:complexType name="CameraModelSearch">
+        <xsd:sequence>
+            <xsd:element name="modelName" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Camera">
+        <xsd:sequence maxOccurs="unbounded" minOccurs="0">
+            <xsd:element name="id" type="xsd:int"/>
+            <xsd:element name="model" type="xsd:string"/>
+            <xsd:element name="price" type="xsd:float"/>
+        </xsd:sequence>
+    </xsd:complexType>
     <xsd:element name="CameraRequest" type="tns:CameraSearch"></xsd:element>
     <xsd:element name="CameraResponse" type="tns:CameraInfo"></xsd:element>
+    <xsd:element name="CameraSearchRequest" type="tns:CameraModelSearch"/>
+    <xsd:element name="CameraSearchResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="Cameras" type="tns:Camera"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
 </xsd:schema>

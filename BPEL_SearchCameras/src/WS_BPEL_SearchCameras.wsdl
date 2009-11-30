@@ -2,17 +2,17 @@
 <definitions name="WS_BPEL_SearchCameras" targetNamespace="http://j2ee.netbeans.org/wsdl/BPEL_SearchCameras/WS_BPEL_SearchCameras"
     xmlns="http://schemas.xmlsoap.org/wsdl/"
     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_SearchCameras/WS_BPEL_SearchCameras" xmlns:ns="http://xml.netbeans.org/schema/cameraResponse" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype">
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_SearchCameras/WS_BPEL_SearchCameras" xmlns:ns="http://xml.netbeans.org/schema/cameraResponse" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
     <types>
         <xsd:schema targetNamespace="http://j2ee.netbeans.org/wsdl/BPEL_SearchCameras/WS_BPEL_SearchCameras">
-            <xsd:import namespace="http://xml.netbeans.org/schema/cameraResponse" schemaLocation="CameraResponse.xsd"/>
+            <xsd:import namespace="http://xml.netbeans.org/schema/cameraResponse" schemaLocation="CameraInfo.xsd"/>
         </xsd:schema>
     </types>
     <message name="WS_BPEL_SearchCamerasOperationRequest">
-        <part name="Input_WS_SearchCameras" type="xsd:string"/>
+        <part name="CameraSearchRequest" element="ns:CameraSearchRequest"/>
     </message>
     <message name="WS_BPEL_SearchCamerasOperationResponse">
-        <part name="Output_WS_SearchCameras" type="ns:searchCamerasResponse"/>
+        <part name="CameraSearchResponse" element="ns:CameraSearchResponse"/>
     </message>
     <portType name="WS_BPEL_SearchCamerasPortType">
         <operation name="WS_BPEL_SearchCamerasOperation">
@@ -20,6 +20,23 @@
             <output name="output1" message="tns:WS_BPEL_SearchCamerasOperationResponse"/>
         </operation>
     </portType>
+    <binding name="WS_BPEL_SearchCamerasBinding" type="tns:WS_BPEL_SearchCamerasPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="WS_BPEL_SearchCamerasOperation">
+            <soap:operation/>
+            <input name="input1">
+                <soap:body use="literal"/>
+            </input>
+            <output name="output1">
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="WS_BPEL_SearchCamerasService">
+        <port name="WS_BPEL_SearchCamerasPort" binding="tns:WS_BPEL_SearchCamerasBinding">
+            <soap:address location="http://localhost:${HttpDefaultPort}/WS_BPEL_SearchCamerasService/WS_BPEL_SearchCamerasPort"/>
+        </port>
+    </service>
     <plnk:partnerLinkType name="WS_BPEL_SearchCameras">
         <!-- A partner link type is automatically generated when a new port type is added. Partner link types are used by BPEL processes. 
 In a BPEL process, a partner link represents the interaction between the BPEL process and a partner service. Each partner link is associated with a partner link type.
