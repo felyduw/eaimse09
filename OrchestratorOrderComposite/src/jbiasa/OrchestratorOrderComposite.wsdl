@@ -9,12 +9,11 @@
              xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
              xmlns:xsd="http://www.w3.org/2001/XMLSchema"
              targetNamespace="OrchestratorOrderComposite"
-             xmlns:tns="OrchestratorOrderComposite" xmlns:ns="http://j2ee.netbeans.org/wsdl/BPEL_SearchCameras/WS_BPEL_GetCameraInfo" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://j2ee.netbeans.org/wsdl/BPEL_SearchCameras/WS_BPEL_SearchCameras" xmlns:ns2="http://j2ee.netbeans.org/wsdl/BPEL_SearchCameras/WS_BPELSearchCameras">
+             xmlns:tns="OrchestratorOrderComposite" xmlns:ns="http://j2ee.netbeans.org/wsdl/BPEL_SearchCameras/WS_BPEL_GetCameraInfo" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://j2ee.netbeans.org/wsdl/BPEL_SearchCameras/WS_BPEL_SearchCameras">
     <import namespace="http://j2ee.netbeans.org/wsdl/BPEL_SearchCameras/WS_BPEL_GetCameraInfo" location="../jbiServiceUnits/BPEL_SearchCameras/WS_BPEL_GetCameraInfo.wsdl"/>
     <import namespace="http://j2ee.netbeans.org/wsdl/BPEL_SearchCameras/WS_BPEL_SearchCameras" location="../jbiServiceUnits/BPEL_SearchCameras/WS_BPEL_SearchCameras.wsdl"/>
-    <import namespace="http://j2ee.netbeans.org/wsdl/BPEL_SearchCameras/WS_BPELSearchCameras" location="../jbiServiceUnits/BPEL_SearchCameras/WS_BPELSearchCameras.wsdl"/>
     <portType name="dummyCasaPortType"/>
-    <binding name="casaBinding2" type="ns:WS_BPEL_GetCameraInfoPortType">
+    <binding name="casaBinding1" type="ns:WS_BPEL_GetCameraInfoPortType">
         <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
         <operation name="WS_BPEL_GetCameraInfoOperation">
             <soap:operation/>
@@ -26,9 +25,9 @@
             </output>
         </operation>
     </binding>
-    <binding name="casaBinding1" type="ns2:WS_BPELSearchCamerasPortType">
+    <binding name="casaBinding2" type="ns1:WS_BPEL_SearchCamerasPortType">
         <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
-        <operation name="WS_BPELSearchCamerasOperation">
+        <operation name="WS_BPEL_SearchCamerasOperation">
             <soap:operation/>
             <input name="input1">
                 <soap:body use="literal" namespace="OrchestratorOrderComposite"/>
@@ -39,13 +38,13 @@
         </operation>
     </binding>
     <service name="casaService1">
-        <port name="searchCameras" binding="tns:casaBinding1">
-            <soap:address location="http://localhost:${HttpDefaultPort}/SearchCameras"/>
+        <port name="getCamera" binding="tns:casaBinding1">
+            <soap:address location="http://localhost:${HttpDefaultPort}/GetCamera"/>
         </port>
     </service>
     <service name="casaService2">
-        <port name="getCamera" binding="tns:casaBinding2">
-            <soap:address location="http://localhost:${HttpDefaultPort}/GetCamera"/>
+        <port name="searchCameras" binding="tns:casaBinding2">
+            <soap:address location="http://localhost:${HttpDefaultPort}/SearchCameras"/>
         </port>
     </service>
 </definitions>

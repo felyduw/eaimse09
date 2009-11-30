@@ -1,96 +1,83 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<casa xmlns="http://java.sun.com/xml/ns/casa" xmlns:ns1="http://cc.eai.dei.uc.pt/" xmlns:ns2="http://cs.eai.dei.uc.pt/" xmlns:ns3="OrchestratorOrderComposite" xmlns:ns4="http://j2ee.netbeans.org/wsdl/BPEL_SearchCameras/WS_BPELSearchCameras" xmlns:ns5="http://j2ee.netbeans.org/wsdl/BPEL_SearchCameras/WS_BPEL_GetCameraInfo" xmlns:ns6="http://enterprise.netbeans.org/bpel/BPEL_SearchCameras/BPEL_GetCameraInfo" xmlns:ns7="http://enterprise.netbeans.org/bpel/BPEL_SearchCameras/BPEL_SearchCameras" xmlns:xlink="http://www.w3.org/2000/xlink">
+<casa xmlns="http://java.sun.com/xml/ns/casa" xmlns:ns1="http://cc.eai.dei.uc.pt/" xmlns:ns2="http://cs.eai.dei.uc.pt/" xmlns:ns3="OrchestratorOrderComposite" xmlns:ns4="http://j2ee.netbeans.org/wsdl/BPEL_SearchCameras/WS_BPEL_GetCameraInfo" xmlns:ns5="http://j2ee.netbeans.org/wsdl/BPEL_SearchCameras/WS_BPEL_SearchCameras" xmlns:ns6="http://enterprise.netbeans.org/bpel/BPEL_SearchCameras/BPEL_GetCameraInfo" xmlns:ns7="http://enterprise.netbeans.org/bpel/BPEL_SearchCameras/BPEL_SearchCameras" xmlns:xlink="http://www.w3.org/2000/xlink">
     <endpoints>
         <endpoint endpoint-name="CatalogCenterPort" interface-name="ns1:CatalogCenter" name="endpoint1" service-name="ns1:CatalogCenterService"/>
         <endpoint endpoint-name="CameraSupplierPort" interface-name="ns2:CameraSupplier" name="endpoint2" service-name="ns2:CameraSupplierService"/>
-        <endpoint endpoint-name="searchCameras" interface-name="ns4:WS_BPELSearchCamerasPortType" name="endpoint3" service-name="ns3:casaService1"/>
-        <endpoint endpoint-name="getCamera" interface-name="ns5:WS_BPEL_GetCameraInfoPortType" name="endpoint4" service-name="ns3:casaService2"/>
-        <endpoint endpoint-name="WS_BPELSearchCamerasPort" interface-name="ns4:WS_BPELSearchCamerasPortType" name="endpoint5" service-name="ns4:WS_BPELSearchCamerasService"/>
-        <endpoint display-name="GetCameraInfo_PartnerLink" endpoint-name="WS_BPEL_GetCameraInfoPortTypeRole_myRole" file-path="BPEL_GetCameraInfo.bpel" interface-name="ns5:WS_BPEL_GetCameraInfoPortType" name="endpoint6" process-name="BPEL_GetCameraInfo" service-name="ns6:GetCameraInfo_PartnerLink"/>
-        <endpoint display-name="SearchCameras_PartnerLink" endpoint-name="WS_BPELSearchCamerasPortTypeRole_myRole" file-path="BPEL_SearchCameras.bpel" interface-name="ns4:WS_BPELSearchCamerasPortType" name="endpoint7" process-name="BPEL_SearchCameras" service-name="ns7:SearchCameras_PartnerLink"/>
-        <endpoint display-name="WSCatalogCenter_PartnerLink" endpoint-name="CatalogCenterRole_partnerRole" file-path="BPEL_GetCameraInfo.bpel" interface-name="ns1:CatalogCenter" name="endpoint8" process-name="BPEL_GetCameraInfo" service-name="ns6:WSCatalogCenter_PartnerLink"/>
-        <endpoint display-name="WSCatalogCenter_PartnerLink" endpoint-name="CatalogCenterRole_partnerRole" file-path="BPEL_SearchCameras.bpel" interface-name="ns1:CatalogCenter" name="endpoint9" process-name="BPEL_SearchCameras" service-name="ns7:WSCatalogCenter_PartnerLink"/>
-        <endpoint display-name="WSCameraSupplier_PartnerLink" endpoint-name="CameraSupplierRole_partnerRole" file-path="BPEL_SearchCameras.bpel" interface-name="ns2:CameraSupplier" name="endpoint10" process-name="BPEL_SearchCameras" service-name="ns7:WSCameraSupplier_PartnerLink"/>
+        <endpoint endpoint-name="getCamera" interface-name="ns4:WS_BPEL_GetCameraInfoPortType" name="endpoint3" service-name="ns3:casaService1"/>
+        <endpoint endpoint-name="searchCameras" interface-name="ns5:WS_BPEL_SearchCamerasPortType" name="endpoint4" service-name="ns3:casaService2"/>
+        <endpoint display-name="GetCameraInfo_PartnerLink" endpoint-name="WS_BPEL_GetCameraInfoPortTypeRole_myRole" file-path="BPEL_GetCameraInfo.bpel" interface-name="ns4:WS_BPEL_GetCameraInfoPortType" name="endpoint5" process-name="BPEL_GetCameraInfo" service-name="ns6:GetCameraInfo_PartnerLink"/>
+        <endpoint display-name="SearchCameras_PartnerLink" endpoint-name="WS_BPEL_SearchCamerasPortTypeRole_myRole" file-path="BPEL_SearchCameras.bpel" interface-name="ns5:WS_BPEL_SearchCamerasPortType" name="endpoint6" process-name="BPEL_SearchCameras" service-name="ns7:SearchCameras_PartnerLink"/>
+        <endpoint display-name="WSCatalogCenter_PartnerLink" endpoint-name="CatalogCenterRole_partnerRole" file-path="BPEL_GetCameraInfo.bpel" interface-name="ns1:CatalogCenter" name="endpoint7" process-name="BPEL_GetCameraInfo" service-name="ns6:WSCatalogCenter_PartnerLink"/>
+        <endpoint display-name="WSCatalogCenter_PartnerLink" endpoint-name="CatalogCenterRole_partnerRole" file-path="BPEL_SearchCameras.bpel" interface-name="ns1:CatalogCenter" name="endpoint8" process-name="BPEL_SearchCameras" service-name="ns7:WSCatalogCenter_PartnerLink"/>
+        <endpoint display-name="WSCameraSupplier_PartnerLink" endpoint-name="CameraSupplierRole_partnerRole" file-path="BPEL_SearchCameras.bpel" interface-name="ns2:CameraSupplier" name="endpoint9" process-name="BPEL_SearchCameras" service-name="ns7:WSCameraSupplier_PartnerLink"/>
     </endpoints>
     <service-units>
         <service-engine-service-unit artifacts-zip="BPEL_SearchCameras.jar" component-name="sun-bpel-engine" defined="true" description="Represents this Service Unit" internal="true" name="OrchestratorOrderComposite-BPEL_SearchCameras" unit-name="BPEL_SearchCameras" unknown="false" x="123" y="99">
+            <provides endpoint="endpoint5"/>
             <provides endpoint="endpoint6"/>
-            <provides endpoint="endpoint7"/>
+            <consumes endpoint="endpoint7"/>
             <consumes endpoint="endpoint8"/>
             <consumes endpoint="endpoint9"/>
-            <consumes endpoint="endpoint10"/>
         </service-engine-service-unit>
         <binding-component-service-unit artifacts-zip="sun-http-binding.jar" component-name="sun-http-binding" description="Represents this Service Unit" name="OrchestratorOrderComposite-sun-http-binding" unit-name="sun-http-binding">
             <ports>
-                <port bindingType="soap" x="67" y="284">
-                    <link xlink:href="../jbiasa/OrchestratorOrderComposite.wsdl#xpointer(/definitions/service[@name='casaService1']/port[@name='searchCameras'])" xlink:type="simple"/>
+                <port bindingType="soap" x="67" y="133">
+                    <link xlink:href="../jbiasa/OrchestratorOrderComposite.wsdl#xpointer(/definitions/service[@name='casaService1']/port[@name='getCamera'])" xlink:type="simple"/>
                     <consumes endpoint="endpoint3"/>
                     <provides endpoint="endpoint3"/>
                 </port>
-                <port bindingType="soap" x="67" y="205">
-                    <link xlink:href="../jbiasa/OrchestratorOrderComposite.wsdl#xpointer(/definitions/service[@name='casaService2']/port[@name='getCamera'])" xlink:type="simple"/>
+                <port bindingType="soap" x="67" y="252">
+                    <link xlink:href="../jbiasa/OrchestratorOrderComposite.wsdl#xpointer(/definitions/service[@name='casaService2']/port[@name='searchCameras'])" xlink:type="simple"/>
                     <consumes endpoint="endpoint4"/>
                     <provides endpoint="endpoint4"/>
                 </port>
-                <port x="67" y="363">
+                <port x="67" y="343">
                     <link xlink:href="../jbiServiceUnits/BPEL_SearchCameras/127.0.0.1_8080/WSCameraSupplier.wsdl#xpointer(/definitions/service[@name='CameraSupplierService']/port[@name='CameraSupplierPort'])" xlink:type="simple"/>
                     <consumes endpoint="endpoint2"/>
                     <provides endpoint="endpoint2"/>
                 </port>
-                <port x="67" y="118">
+                <port x="67" y="39">
                     <link xlink:href="../jbiServiceUnits/BPEL_SearchCameras/127.0.0.1_8080/WSCatalogCenter.wsdl#xpointer(/definitions/service[@name='CatalogCenterService']/port[@name='CatalogCenterPort'])" xlink:type="simple"/>
                     <consumes endpoint="endpoint1"/>
                     <provides endpoint="endpoint1"/>
-                </port>
-                <port state="deleted" x="67" y="39">
-                    <link xlink:href="../jbiServiceUnits/BPEL_SearchCameras/WS_BPELSearchCameras.wsdl#xpointer(/definitions/service[@name='WS_BPELSearchCamerasService']/port[@name='WS_BPELSearchCamerasPort'])" xlink:type="simple"/>
-                    <consumes endpoint="endpoint5"/>
-                    <provides endpoint="endpoint5"/>
                 </port>
             </ports>
         </binding-component-service-unit>
     </service-units>
     <connections>
-        <connection consumer="endpoint8" provider="endpoint1" state="unchanged"/>
-        <connection consumer="endpoint9" provider="endpoint1" state="unchanged"/>
         <connection consumer="endpoint4" provider="endpoint6" state="new"/>
-        <connection consumer="endpoint10" provider="endpoint2" state="unchanged"/>
-        <connection consumer="endpoint3" provider="endpoint7" state="new"/>
-        <connection consumer="endpoint5" provider="endpoint7" state="deleted"/>
+        <connection consumer="endpoint7" provider="endpoint1" state="unchanged"/>
+        <connection consumer="endpoint8" provider="endpoint1" state="unchanged"/>
+        <connection consumer="endpoint3" provider="endpoint5" state="new"/>
+        <connection consumer="endpoint9" provider="endpoint2" state="unchanged"/>
     </connections>
     <porttypes>
         <link xlink:href="../jbiasa/OrchestratorOrderComposite.wsdl#xpointer(/definitions/portType[@name='dummyCasaPortType'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/BPEL_SearchCameras/127.0.0.1_8080/WSCameraSupplier.wsdl#xpointer(/definitions/portType[@name='CameraSupplier'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/BPEL_SearchCameras/127.0.0.1_8080/WSCatalogCenter.wsdl#xpointer(/definitions/portType[@name='CatalogCenter'])" xlink:type="simple"/>
-        <link xlink:href="../jbiServiceUnits/BPEL_SearchCameras/WS_BPELSearchCameras.wsdl#xpointer(/definitions/portType[@name='WS_BPELSearchCamerasPortType'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/BPEL_SearchCameras/WS_BPEL_GetCameraInfo.wsdl#xpointer(/definitions/portType[@name='WS_BPEL_GetCameraInfoPortType'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/BPEL_SearchCameras/WS_BPEL_SearchCameras.wsdl#xpointer(/definitions/portType[@name='WS_BPEL_SearchCamerasPortType'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/META-INF/BPEL_SearchCameras/src/127.0.0.1_8080/WSCameraSupplier.wsdl#xpointer(/definitions/portType[@name='CameraSupplier'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/META-INF/BPEL_SearchCameras/src/127.0.0.1_8080/WSCatalogCenter.wsdl#xpointer(/definitions/portType[@name='CatalogCenter'])" xlink:type="simple"/>
-        <link xlink:href="../jbiServiceUnits/META-INF/BPEL_SearchCameras/src/_references/_cache/127.0.0.1_8080/WSCatalogCenter.wsdl#xpointer(/definitions/portType[@name='CatalogCenter'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/OrchestratorOrderComposite.wsdl#xpointer(/definitions/portType[@name='dummyCasaPortType'])" xlink:type="simple"/>
     </porttypes>
     <bindings>
-        <link xlink:href="../jbiasa/OrchestratorOrderComposite.wsdl#xpointer(/definitions/binding[@name='casaBinding2'])" xlink:type="simple"/>
         <link xlink:href="../jbiasa/OrchestratorOrderComposite.wsdl#xpointer(/definitions/binding[@name='casaBinding1'])" xlink:type="simple"/>
+        <link xlink:href="../jbiasa/OrchestratorOrderComposite.wsdl#xpointer(/definitions/binding[@name='casaBinding2'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/BPEL_SearchCameras/127.0.0.1_8080/WSCameraSupplier.wsdl#xpointer(/definitions/binding[@name='CameraSupplierBinding'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/BPEL_SearchCameras/127.0.0.1_8080/WSCatalogCenter.wsdl#xpointer(/definitions/binding[@name='CatalogCenterBinding'])" xlink:type="simple"/>
-        <link xlink:href="../jbiServiceUnits/BPEL_SearchCameras/WS_BPELSearchCameras.wsdl#xpointer(/definitions/binding[@name='WS_BPELSearchCamerasBinding'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/META-INF/BPEL_SearchCameras/src/127.0.0.1_8080/WSCameraSupplier.wsdl#xpointer(/definitions/binding[@name='CameraSupplierBinding'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/META-INF/BPEL_SearchCameras/src/127.0.0.1_8080/WSCatalogCenter.wsdl#xpointer(/definitions/binding[@name='CatalogCenterBinding'])" xlink:type="simple"/>
-        <link xlink:href="../jbiServiceUnits/META-INF/BPEL_SearchCameras/src/_references/_cache/127.0.0.1_8080/WSCatalogCenter.wsdl#xpointer(/definitions/binding[@name='CatalogCenterBinding'])" xlink:type="simple"/>
-        <link xlink:href="../jbiServiceUnits/OrchestratorOrderComposite.wsdl#xpointer(/definitions/binding[@name='casaBinding2'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/OrchestratorOrderComposite.wsdl#xpointer(/definitions/binding[@name='casaBinding1'])" xlink:type="simple"/>
+        <link xlink:href="../jbiServiceUnits/OrchestratorOrderComposite.wsdl#xpointer(/definitions/binding[@name='casaBinding2'])" xlink:type="simple"/>
     </bindings>
     <services>
         <link xlink:href="../jbiasa/OrchestratorOrderComposite.wsdl#xpointer(/definitions/service[@name='casaService1'])" xlink:type="simple"/>
         <link xlink:href="../jbiasa/OrchestratorOrderComposite.wsdl#xpointer(/definitions/service[@name='casaService2'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/BPEL_SearchCameras/127.0.0.1_8080/WSCameraSupplier.wsdl#xpointer(/definitions/service[@name='CameraSupplierService'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/BPEL_SearchCameras/127.0.0.1_8080/WSCatalogCenter.wsdl#xpointer(/definitions/service[@name='CatalogCenterService'])" xlink:type="simple"/>
-        <link xlink:href="../jbiServiceUnits/BPEL_SearchCameras/WS_BPELSearchCameras.wsdl#xpointer(/definitions/service[@name='WS_BPELSearchCamerasService'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/META-INF/BPEL_SearchCameras/src/127.0.0.1_8080/WSCameraSupplier.wsdl#xpointer(/definitions/service[@name='CameraSupplierService'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/META-INF/BPEL_SearchCameras/src/127.0.0.1_8080/WSCatalogCenter.wsdl#xpointer(/definitions/service[@name='CatalogCenterService'])" xlink:type="simple"/>
-        <link xlink:href="../jbiServiceUnits/META-INF/BPEL_SearchCameras/src/_references/_cache/127.0.0.1_8080/WSCatalogCenter.wsdl#xpointer(/definitions/service[@name='CatalogCenterService'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/OrchestratorOrderComposite.wsdl#xpointer(/definitions/service[@name='casaService1'])" xlink:type="simple"/>
         <link xlink:href="../jbiServiceUnits/OrchestratorOrderComposite.wsdl#xpointer(/definitions/service[@name='casaService2'])" xlink:type="simple"/>
     </services>
