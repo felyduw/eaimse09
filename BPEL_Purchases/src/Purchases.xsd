@@ -46,8 +46,8 @@
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="CameraInfo">
-        <xsd:sequence minOccurs="0" maxOccurs="unbounded">
-            <xsd:element name="id" type="xsd:int" nillable="true"/>
+        <xsd:sequence minOccurs="1" maxOccurs="1">
+            <xsd:element name="id" type="xsd:int"/>
             <xsd:element name="model" type="xsd:string"/>
             <xsd:element name="price" type="xsd:float"/>
         </xsd:sequence>
@@ -87,7 +87,13 @@
         <xsd:complexType>
             <xsd:sequence>
                 <xsd:element name="UserInfo" type="tns:UserInfo"/>
-                <xsd:element name="CameraInfo" type="tns:CameraInfo"/>
+                <xsd:element name="Cameras">
+                    <xsd:complexType>
+                        <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+                            <xsd:element name="CameraInfo" type="tns:CameraInfo"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
             </xsd:sequence>
         </xsd:complexType>
     </xsd:element>

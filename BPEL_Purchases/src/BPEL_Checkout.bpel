@@ -69,15 +69,15 @@
                         <to>$SubmitOrderIn.submitOrder/arg1/username</to>
                     </copy>
                     <copy>
-                        <from>$WS_BPEL_CheckoutOperationIn.CheckoutRequest/ns2:CameraInfo/ns2:id</from>
+                        <from>$WS_BPEL_CheckoutOperationIn.CheckoutRequest/ns2:Cameras/ns2:CameraInfo/ns2:id</from>
                         <to>$SubmitOrderIn.submitOrder/arg0/id</to>
                     </copy>
                     <copy>
-                        <from>$WS_BPEL_CheckoutOperationIn.CheckoutRequest/ns2:CameraInfo/ns2:model</from>
+                        <from>$WS_BPEL_CheckoutOperationIn.CheckoutRequest/ns2:Cameras/ns2:CameraInfo/ns2:model</from>
                         <to>$SubmitOrderIn.submitOrder/arg0/model</to>
                     </copy>
                     <copy>
-                        <from>$WS_BPEL_CheckoutOperationIn.CheckoutRequest/ns2:CameraInfo/ns2:price</from>
+                        <from>$WS_BPEL_CheckoutOperationIn.CheckoutRequest/ns2:Cameras/ns2:CameraInfo/ns2:price</from>
                         <to>$SubmitOrderIn.submitOrder/arg0/price</to>
                     </copy>
                 </assign>
@@ -122,15 +122,15 @@
                             <to>$SubmitOrderNotPaidIn1.submitOrder/arg1/username</to>
                         </copy>
                         <copy>
-                            <from>$WS_BPEL_CheckoutOperationIn.CheckoutRequest/ns2:CameraInfo/ns2:id</from>
+                            <from>$WS_BPEL_CheckoutOperationIn.CheckoutRequest/ns2:Cameras/ns2:CameraInfo/ns2:id</from>
                             <to>$SubmitOrderNotPaidIn1.submitOrder/arg0/id</to>
                         </copy>
                         <copy>
-                            <from>$WS_BPEL_CheckoutOperationIn.CheckoutRequest/ns2:CameraInfo/ns2:model</from>
+                            <from>$WS_BPEL_CheckoutOperationIn.CheckoutRequest/ns2:Cameras/ns2:CameraInfo/ns2:model</from>
                             <to>$SubmitOrderNotPaidIn1.submitOrder/arg0/model</to>
                         </copy>
                         <copy>
-                            <from>$WS_BPEL_CheckoutOperationIn.CheckoutRequest/ns2:CameraInfo/ns2:price</from>
+                            <from>$WS_BPEL_CheckoutOperationIn.CheckoutRequest/ns2:Cameras/ns2:CameraInfo/ns2:price</from>
                             <to>$SubmitOrderNotPaidIn1.submitOrder/arg0/price</to>
                         </copy>
                     </assign>
