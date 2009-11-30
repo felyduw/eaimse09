@@ -8,13 +8,13 @@
     xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
     xmlns:sxat="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Attachment"
     xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling"
-    xmlns:tns="http://enterprise.netbeans.org/bpel/BPEL_Purchases/BPEL_Purchases" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://xml.netbeans.org/schema/OrderResponse">
+    xmlns:tns="http://enterprise.netbeans.org/bpel/BPEL_Purchases/BPEL_Purchases" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://xml.netbeans.org/schema/OrderResponse" xmlns:ns1="http://xml.netbeans.org/schema/Purchases">
     <import namespace="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_GetPurchases" location="WS_BPEL_GetPurchases.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://enterprise.netbeans.org/bpel/WSCustomerServiceWrapper" location="WSCustomerServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <import namespace="http://custsrv.eai.dei.uc.pt/" location="127.0.0.1_8080/WSCustomerService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
     <partnerLinks>
-        <partnerLink name="WSCustomerService_PartnerLink" xmlns:tns="http://enterprise.netbeans.org/bpel/WSCustomerServiceWrapper" partnerLinkType="tns:CustomerServiceLinkType" partnerRole="CustomerServiceRole"/>
         <partnerLink name="GetPurchases_PartnerLink" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_GetPurchases" partnerLinkType="tns:WS_BPEL_GetPurchases" myRole="WS_BPEL_GetPurchasesPortTypeRole"/>
+        <partnerLink name="WSCustomerService_PartnerLink" xmlns:tns="http://enterprise.netbeans.org/bpel/WSCustomerServiceWrapper" partnerLinkType="tns:CustomerServiceLinkType" partnerRole="CustomerServiceRole"/>
     </partnerLinks>
     <variables>
         <variable name="WS_BPEL_GetPurchasesOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_GetPurchases" messageType="tns:WS_BPEL_GetPurchasesOperationResponse"/>
@@ -26,15 +26,35 @@
         <receive name="Receive1" createInstance="yes" partnerLink="GetPurchases_PartnerLink" operation="WS_BPEL_GetPurchasesOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_GetPurchases" portType="tns:WS_BPEL_GetPurchasesPortType" variable="WS_BPEL_GetPurchasesOperationIn"/>
         <assign name="Assign1">
             <copy>
-                <from variable="WS_BPEL_GetPurchasesOperationIn" part="usernameInput"/>
+                <from>$WS_BPEL_GetPurchasesOperationIn.PurchasesRequest/ns1:username</from>
                 <to>$ListPurchasesIn.listPurchases/arg0</to>
             </copy>
         </assign>
         <invoke name="Invoke1" partnerLink="WSCustomerService_PartnerLink" operation="listPurchases" xmlns:tns="http://custsrv.eai.dei.uc.pt/" portType="tns:CustomerService" inputVariable="ListPurchasesIn" outputVariable="ListPurchasesOut"/>
         <assign name="Assign2">
             <copy>
-                <from variable="ListPurchasesOut" part="listPurchasesResponse"/>
-                <to variable="WS_BPEL_GetPurchasesOperationOut" part="purchasesOutput"/>
+                <from>$ListPurchasesOut.listPurchasesResponse/return/emailAddress</from>
+                <to>$WS_BPEL_GetPurchasesOperationOut.PurchasesResponse/ns1:Purchases/ns1:emailAddress</to>
+            </copy>
+            <copy>
+                <from>$ListPurchasesOut.listPurchasesResponse/return/id</from>
+                <to>$WS_BPEL_GetPurchasesOperationOut.PurchasesResponse/ns1:Purchases/ns1:id</to>
+            </copy>
+            <copy>
+                <from>$ListPurchasesOut.listPurchasesResponse/return/orderStatus</from>
+                <to>$WS_BPEL_GetPurchasesOperationOut.PurchasesResponse/ns1:Purchases/ns1:orderStatus</to>
+            </copy>
+            <copy>
+                <from>$ListPurchasesOut.listPurchasesResponse/return/username</from>
+                <to>$WS_BPEL_GetPurchasesOperationOut.PurchasesResponse/ns1:Purchases/ns1:username</to>
+            </copy>
+            <copy>
+                <from>$ListPurchasesOut.listPurchasesResponse/return/shippingAddress</from>
+                <to>$WS_BPEL_GetPurchasesOperationOut.PurchasesResponse/ns1:Purchases/ns1:shippingAddress</to>
+            </copy>
+            <copy>
+                <from>$ListPurchasesOut.listPurchasesResponse/return/purchaseDate</from>
+                <to>$WS_BPEL_GetPurchasesOperationOut.PurchasesResponse/ns1:Purchases/ns1:purchaseDate</to>
             </copy>
         </assign>
         <reply name="Reply1" partnerLink="GetPurchases_PartnerLink" operation="WS_BPEL_GetPurchasesOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_GetPurchases" portType="tns:WS_BPEL_GetPurchasesPortType" variable="WS_BPEL_GetPurchasesOperationOut"/>

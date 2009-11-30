@@ -2,11 +2,14 @@
 <definitions name="WS_BPEL_Shipped" targetNamespace="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_Shipped"
     xmlns="http://schemas.xmlsoap.org/wsdl/"
     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_Shipped" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
-    <types/>
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_Shipped" xmlns:ns="http://xml.netbeans.org/schema/Purchases" xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <types>
+        <xsd:schema targetNamespace="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_Shipped">
+            <xsd:import namespace="http://xml.netbeans.org/schema/Purchases" schemaLocation="Purchases.xsd"/>
+        </xsd:schema>
+    </types>
     <message name="WS_BPEL_ShippedOperationRequest">
-        <part name="orderId" type="xsd:int"/>
-        <part name="shippedDates" type="xsd:string"/>
+        <part name="ShippedRequest" element="ns:OrderShippedRequest"/>
     </message>
     <portType name="WS_BPEL_ShippedPortType">
         <operation name="WS_BPEL_ShippedOperation">
@@ -14,11 +17,11 @@
         </operation>
     </portType>
     <binding name="WS_BPEL_ShippedBinding" type="tns:WS_BPEL_ShippedPortType">
-        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
         <operation name="WS_BPEL_ShippedOperation">
             <soap:operation/>
             <input name="input1">
-                <soap:body use="literal" namespace="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_Shipped"/>
+                <soap:body use="literal"/>
             </input>
         </operation>
     </binding>
