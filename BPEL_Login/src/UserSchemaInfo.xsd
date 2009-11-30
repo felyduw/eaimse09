@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://xml.netbeans.org/schema/UserSchema"
+    xmlns:tns="http://xml.netbeans.org/schema/UserSchema"
+    elementFormDefault="qualified">
+    <xsd:complexType name="user">
+        <xsd:sequence maxOccurs="1" minOccurs="1">
+            <xsd:element name="address" type="xsd:string"/>
+            <xsd:element name="email" type="xsd:string"/>
+            <xsd:element name="id" type="xsd:int"/>
+            <xsd:element name="name" type="xsd:string" nillable="true"/>
+            <xsd:element name="password" type="xsd:string"/>
+            <xsd:element name="username" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="userInfo">
+        <xsd:sequence>
+            <xsd:element name="username" type="xsd:string"/>
+            <xsd:element name="password" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="userRegister">
+        <xsd:sequence>
+            <xsd:element name="username" type="xsd:string"/>
+            <xsd:element name="password" type="xsd:string"/>
+            <xsd:element name="address" type="xsd:string" nillable="true"/>
+            <xsd:element name="email" type="xsd:string" nillable="true"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="userRegisterInfo">
+        <xsd:sequence>
+            <xsd:element name="result" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="LoginRequest" type="tns:userInfo"/>
+    <xsd:element name="LoginResponse" type="tns:user"/>
+    <xsd:element name="RegisterRequest" type="tns:userRegister"/>
+    <xsd:element name="RegisterResponse" type="tns:userRegisterInfo"/>
+</xsd:schema>

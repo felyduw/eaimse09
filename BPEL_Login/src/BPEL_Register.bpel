@@ -8,37 +8,37 @@
     xmlns:sxed="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor"
     xmlns:sxat="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Attachment"
     xmlns:sxeh="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/ErrorHandling"
-    xmlns:tns="http://enterprise.netbeans.org/bpel/BPEL_Login/BPEL_Register" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2">
-   <import namespace="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSRegisterUSer" location="WSRegisterUser.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+    xmlns:tns="http://enterprise.netbeans.org/bpel/BPEL_Login/BPEL_Register" xmlns:sxed2="http://www.sun.com/wsbpel/2.0/process/executable/SUNExtension/Editor2" xmlns:ns0="http://xml.netbeans.org/schema/UserSchema">
    <import namespace="http://enterprise.netbeans.org/bpel/WSCustomerServiceWrapper" location="WSCustomerServiceWrapper.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
    <import namespace="http://custsrv.eai.dei.uc.pt/" location="127.0.0.1_8080/WSCustomerService.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
+   <import namespace="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSRegisterUser" location="WSRegisterUser.wsdl" importType="http://schemas.xmlsoap.org/wsdl/"/>
    <partnerLinks>
+      <partnerLink name="WSRegisterUser" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSRegisterUser" partnerLinkType="tns:WSRegisterUser" myRole="WSRegisterUserPortTypeRole"/>
       <partnerLink name="CustomerService" xmlns:tns="http://enterprise.netbeans.org/bpel/WSCustomerServiceWrapper" partnerLinkType="tns:CustomerServiceLinkType" partnerRole="CustomerServiceRole"/>
-      <partnerLink name="RegisterUserPartnerLink" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSRegisterUSer" partnerLinkType="tns:WSRegisterUSer" myRole="WSRegisterUSerPortTypeRole"/>
    </partnerLinks>
    <variables>
+      <variable name="WSRegisterUserOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSRegisterUser" messageType="tns:WSRegisterUserOperationResponse"/>
+      <variable name="WSRegisterUserOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSRegisterUser" messageType="tns:WSRegisterUserOperationRequest"/>
       <variable name="RegisterUserOut" xmlns:tns="http://custsrv.eai.dei.uc.pt/" messageType="tns:CustomerService_registerUserResponse"/>
       <variable name="RegisterUserIn" xmlns:tns="http://custsrv.eai.dei.uc.pt/" messageType="tns:CustomerService_registerUser"/>
-      <variable name="WSRegisterUSerOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSRegisterUSer" messageType="tns:WSRegisterUSerOperationResponse"/>
-      <variable name="WSRegisterUSerOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSRegisterUSer" messageType="tns:WSRegisterUSerOperationRequest"/>
    </variables>
    <sequence>
-      <receive name="ReceiveRegister" createInstance="yes" partnerLink="RegisterUserPartnerLink" operation="WSRegisterUSerOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSRegisterUSer" portType="tns:WSRegisterUSerPortType" variable="WSRegisterUSerOperationIn"/>
+      <receive name="ReceiveRegister" createInstance="yes" partnerLink="WSRegisterUser" operation="WSRegisterUserOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSRegisterUser" portType="tns:WSRegisterUserPortType" variable="WSRegisterUserOperationIn"/>
       <assign name="Assign1">
          <copy>
-            <from variable="WSRegisterUSerOperationIn" part="username"/>
+            <from>$WSRegisterUserOperationIn.RegisterUserRequest/ns0:username</from>
             <to>$RegisterUserIn.registerUser/arg0</to>
          </copy>
          <copy>
-            <from variable="WSRegisterUSerOperationIn" part="password"/>
+            <from>$WSRegisterUserOperationIn.RegisterUserRequest/ns0:password</from>
             <to>$RegisterUserIn.registerUser/arg1</to>
          </copy>
          <copy>
-            <from variable="WSRegisterUSerOperationIn" part="address"/>
+            <from>$WSRegisterUserOperationIn.RegisterUserRequest/ns0:address</from>
             <to>$RegisterUserIn.registerUser/arg2</to>
          </copy>
          <copy>
-            <from variable="WSRegisterUSerOperationIn" part="email"/>
+            <from>$WSRegisterUserOperationIn.RegisterUserRequest/ns0:email</from>
             <to>$RegisterUserIn.registerUser/arg3</to>
          </copy>
       </assign>
@@ -46,9 +46,9 @@
       <assign name="Assign2">
          <copy>
             <from>$RegisterUserOut.registerUserResponse/return</from>
-            <to variable="WSRegisterUSerOperationOut" part="result"/>
+            <to>$WSRegisterUserOperationOut.RegisterUserResponse/ns0:result</to>
          </copy>
       </assign>
-      <reply name="ReplyRegister" partnerLink="RegisterUserPartnerLink" operation="WSRegisterUSerOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSRegisterUSer" portType="tns:WSRegisterUSerPortType" variable="WSRegisterUSerOperationOut"/>
+      <reply name="ReplyRegister" partnerLink="WSRegisterUser" operation="WSRegisterUserOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_Login/WSRegisterUser" portType="tns:WSRegisterUserPortType" variable="WSRegisterUserOperationOut"/>
    </sequence>
 </process>
