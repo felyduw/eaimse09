@@ -15,7 +15,7 @@ HttpSession s = request.getSession();
 //Add camera to shopping cart
 if (cameraId != null) {
 	WebServiceAux webServiceAux = new WebServiceAux();
-	Camera camera = webServiceAux.InvokeGetCameraInfo(cameraId);
+	Camera camera = null;//webServiceAux.InvokeGetCameraInfo(cameraId);
 	if (existingCart == null) {
 		// Shopping Cart is still empty
 		ShoppingCart newCart = new ShoppingCart();
@@ -35,7 +35,7 @@ if (existingCart == null) {
 } else  {
 %>
 	
-<%@page import="org.netbeans.xml.schema.cameraresponse.SearchCamerasResponse"%><form method="post">
+<form method="post">
 	Shopping cart has <%=existingCart.getCameras().size()%> cameras, with a total value of <%=existingCart.getTotalAmount()%> &euro;&nbsp;&nbsp;&nbsp;
 	<a href="checkout.jsp">Checkout</a>
 	</form>

@@ -1,8 +1,6 @@
 <%@ page import="java.util.*" %>
 <%@ page import="pt.uc.dei.eai.*" %>
 <%@ page import="pt.uc.dei.eai.common.*" %>
-<%@ page import="org.netbeans.xml.schema.cameraresponse.CameraInfo" %>
-<%@ page import="org.netbeans.xml.schema.cameraresponse.CameraSearch" %>
 <%
 String error = null;
 String free_text_search = request.getParameter("free_text_search");
@@ -15,9 +13,11 @@ test1.getSearchCameras().wsBPELSearchCamerasOperation("Canon");
 // Pesquisa das cameras
 WebServiceAux webServiceAux = new WebServiceAux();
 //List<Camera> camerasList = webServiceAux.InvokeSearchCameras(free_text_search);
-CameraInfo camera = webServiceAux.InvokeGetCameraInfo(34);
-List<CameraInfo> camerasList = new ArrayList<CameraInfo>();
+
+Camera camera = null;//webServiceAux.InvokeGetCameraInfo(34);
+List<Camera> camerasList = new ArrayList<Camera>();
 camerasList.add(camera);
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -49,7 +49,7 @@ camerasList.add(camera);
 	            		</tr>
             			<%
             			for (int i = 0; i < camerasList.size(); i++) {
-                            CameraInfo currentCamera = camerasList.get(i);
+                            Camera currentCamera = camerasList.get(i);
                             if (currentCamera != null) {
 							%>
 		            		<tr>

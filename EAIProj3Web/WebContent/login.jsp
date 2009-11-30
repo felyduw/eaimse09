@@ -1,11 +1,10 @@
 <%@ page import="pt.uc.dei.eai.*" %>
-<%@ page import="pt.uc.dei.eai.common.*" %>
+<%@ page import="javax.xml.ws.WebServiceRef" %>
 <%
 String error = null;
 String submit_action = request.getParameter("Submit");
 String myname = (String)session.getAttribute("username");
-/*
-WebServiceAux webServiceAux = new WebServiceAux();
+
 if (submit_action != null && submit_action.equals("Logout")) {
     if (true) {
 		// se deslogou ok no servidor
@@ -18,24 +17,21 @@ if (submit_action != null && submit_action.equals("Logout")) {
 	String user = request.getParameter("User");
 	String password = request.getParameter("Password");
 	// Logar no servidor
-    User userLogged = webServiceAux.InvokeLogin(user, password);
+    usercompositeorchestrator.CasaService1 service = new usercompositeorchestrator.CasaService1();
+    usercompositeorchestrator.WSLoginWrapperPortType port = service.getLogin();
+    org.netbeans.xml.schema.userschema.UserInfo loginRequest = new org.netbeans.xml.schema.userschema.UserInfo();
+    loginRequest.setUsername(user);
+    loginRequest.setPassword(password);
+    org.netbeans.xml.schema.userschema.User userLogged = port.wsLoginWrapperOperation(loginRequest);
+
 	if (userLogged != null) {
 		// se logou ok no servidor
 		session.setAttribute("username", user);
-error = "DEBUG 7 - " + userLogged.getAddress() + ", " + userLogged.getEmail() + ", "
-         + userLogged.getName() + ", " + userLogged.getPassword() + ", "
-          + userLogged.getUsername() + ", " + userLogged.getId();
-		myname = userLogged.getName();
+		myname = userLogged.getUsername();
 	} else {
 		error = "Login error";
 	}
 }
-*/
-//Debug
-//User u = lpco.getUser();
-//String debug = "none";
-//if (u != null) debug = u.getUsername();
-
 if (myname != null) {
 	%>
 	
