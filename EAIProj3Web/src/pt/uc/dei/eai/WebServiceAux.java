@@ -1,15 +1,21 @@
 package pt.uc.dei.eai;
 
-import javax.servlet.http.HttpServlet;
 import javax.xml.ws.WebServiceRef;
-import org.netbeans.xml.schema.cameraresponse.CameraInfo;
-import org.netbeans.xml.schema.cameraresponse.CameraSearch;
-import testordercomposite.CasaService2;
+import usercompositeorchestrator.CasaService1;
 
-public class WebServiceAux extends HttpServlet {
+public class WebServiceAux {
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/client/Login/localhost_9081/Login.wsdl")
+    private CasaService1 service;
 
-    @WebServiceRef(wsdlLocation = "http://localhost:9080/GetCameraInfo?wsdl")
-    private testordercomposite.CasaService2 getCameraInfoService;
+	public org.netbeans.xml.schema.userschema.User InvokeLogin(String username, String password) {
+        service = new CasaService1();
+        usercompositeorchestrator.WSLoginWrapperPortType port = service.getLogin();
+        org.netbeans.xml.schema.userschema.UserInfo loginRequest = new org.netbeans.xml.schema.userschema.UserInfo();
+        loginRequest.setUsername("csimoes");
+        loginRequest.setPassword("sa");
+        org.netbeans.xml.schema.userschema.User result = port.wsLoginWrapperOperation(loginRequest);
+        return result;
+    }
 
     /*
     @WebServiceRef(wsdlLocation = "http://localhost:8081/CalculatorApp/CalculatorWSService?wsdl")
@@ -61,7 +67,7 @@ public class WebServiceAux extends HttpServlet {
 		return TranslateSearchCamerasResponse2ListCameras(searchCamerasResponse);
 	}
 	*/
-
+    /*
 	public CameraInfo InvokeGetCameraInfo(Integer cameraId) {
         getCameraInfoService = new CasaService2();
         testordercomposite.WSBPELGetCameraInfoPortType port = getCameraInfoService.getGetCameraInfo();
@@ -69,7 +75,7 @@ public class WebServiceAux extends HttpServlet {
         request.setModelId(cameraId.intValue());
         return port.wsBPELGetCameraInfoOperation(request);
 	}
-
+    */
     /*
 	private List<Camera> TranslateSearchCamerasResponse2ListCameras(SearchCamerasResponse searchCamerasResponse) {
 		List<Serializable> rawListCameras = searchCamerasResponse.getIdAndModelAndPrice();
