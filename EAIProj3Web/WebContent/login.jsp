@@ -4,8 +4,10 @@
 String error = null;
 String submit_action = request.getParameter("Submit");
 String myname = (String)session.getAttribute("username");
+/*
+WebServiceAux webServiceAux = new WebServiceAux();
 if (submit_action != null && submit_action.equals("Logout")) {
-	if (false/*lpco.doLogout(myname)*/) {
+    if (true) {
 		// se deslogou ok no servidor
 		session.removeAttribute("username");
 		myname = null;
@@ -16,15 +18,19 @@ if (submit_action != null && submit_action.equals("Logout")) {
 	String user = request.getParameter("User");
 	String password = request.getParameter("Password");
 	// Logar no servidor
-	if (false/*lpco.doLogin(user, password)*/) {
+    User userLogged = webServiceAux.InvokeLogin(user, password);
+	if (userLogged != null) {
 		// se logou ok no servidor
 		session.setAttribute("username", user);
-		myname = user;
+error = "DEBUG 7 - " + userLogged.getAddress() + ", " + userLogged.getEmail() + ", "
+         + userLogged.getName() + ", " + userLogged.getPassword() + ", "
+          + userLogged.getUsername() + ", " + userLogged.getId();
+		myname = userLogged.getName();
 	} else {
 		error = "Login error";
 	}
 }
-
+*/
 //Debug
 //User u = lpco.getUser();
 //String debug = "none";

@@ -1,70 +1,76 @@
 package pt.uc.dei.eai;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import javax.servlet.http.HttpServlet;
 import javax.xml.ws.WebServiceRef;
-import org.netbeans.xml.schema.cameraresponse.SearchCamerasResponse;
-import org.netbeans.xml.schema.orderresponse.OrderResponse;
-import org.netbeans.xml.schema.userschema.User;
+import org.netbeans.xml.schema.cameraresponse.CameraInfo;
+import org.netbeans.xml.schema.cameraresponse.CameraSearch;
+import testordercomposite.CasaService2;
 
-import pt.uc.dei.eai.common.Camera;
+public class WebServiceAux extends HttpServlet {
 
-public class WebServiceAux {
-	
-	/* USERS */
-	@WebServiceRef(wsdlLocation = WSDL.LoginURL)
-	static orchestratorusercomposite.CasaService1 Login;
-	
-	@WebServiceRef(wsdlLocation = WSDL.RegisterUserURL)
-	static orchestratorusercomposite.CasaService2 RegisterUser;
-	
-	/* ORDERS */
-	@WebServiceRef(wsdlLocation = WSDL.SearchCamerasURL)
-	static orchestratorordercomposite.CasaService2 SearchCameras;
-	
-	@WebServiceRef(wsdlLocation = "http://localhost:9080/GetCamera?WSDL")
-	static orchestratorordercomposite.CasaService1 GetCameraInfo;
-	
-	/* PURCHASES */
-	
-	@WebServiceRef(wsdlLocation = WSDL.ListPurchasesURL)
-	static orchestratorpurchasecomposite.CasaService4 ListPurchases;
-	
-	@WebServiceRef(wsdlLocation = WSDL.GetPurchaseInfoURL)
-	static orchestratorpurchasecomposite.CasaService2 GetPurchaseInfo;
-	
-	@WebServiceRef(wsdlLocation = WSDL.CheckoutURL)
-	static orchestratorpurchasecomposite.CasaService1 Checkout;
-	
+    @WebServiceRef(wsdlLocation = "http://localhost:9080/GetCameraInfo?wsdl")
+    private testordercomposite.CasaService2 getCameraInfoService;
+
+    /*
+    @WebServiceRef(wsdlLocation = "http://localhost:8081/CalculatorApp/CalculatorWSService?wsdl")
+    public orchestratorusercomposite.CasaService1 loginService;
+     * */
 	// METHODS
 	/* USERS */
-	public User InvokeLogin(String username, String password) {
-		return Login.getLogin().wsLoginWrapperOperation(username, password);
+    /*
+	public pt.uc.dei.eai.common.User InvokeLogin(String username, String password) {
+        loginService = new orchestratorusercomposite.CasaService1();
+        orchestratorusercomposite.WSLoginWrapperPortType port = loginService.getLogin();
+        org.netbeans.xml.schema.userschema.User userOrg = port.wsLoginWrapperOperation(username, password);
+        pt.uc.dei.eai.common.User user = null;
+        if (userOrg != null) {
+            user = new pt.uc.dei.eai.common.User();
+            try {
+                user.setAddress(userOrg.getAddress());
+                user.setName(userOrg.getName());
+                user.setId(userOrg.getId());
+                user.setUsername(userOrg.getUsername());
+                user.setEmail(userOrg.getEmail());
+                user.setPassword(userOrg.getPassword());
+            } catch (Exception exc) {
+                //user = new pt.uc.dei.eai.common.User();
+                user.setName(exc.getMessage());
+            }
+        }
+        try {
+            ((Closeable) port).close();
+        } catch (IOException ex) {
+            Logger.getLogger(WebServiceAux.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return user;
 	}
 	
 	public boolean InvokeRegisterUser(String username, String password, String address, String email) {
-		return RegisterUser.getRegister().wsRegisterUSerOperation(username, password, address, email);
+        orchestratorusercomposite.CasaService2 registerUserService = new orchestratorusercomposite.CasaService2();
+        orchestratorusercomposite.WSRegisterUSerPortType port = registerUserService.getRegister();
+		return port.wsRegisterUSerOperation(username, password, address, email);
 	}
-	
-	/* ORDERS */
+*/
+    /* ORDERS */
 	//SearchCamerasResponse == List<Camera>
-	
+	/*
 	public List<Camera> InvokeSearchCameras(String search) {
-		SearchCamerasResponse searchCamerasResponse = SearchCameras.getSearchCameras().wsBPELSearchCamerasOperation(search);
+        orchestratorordercomposite.CasaService2 casaService2 = new orchestratorordercomposite.CasaService2();
+        orchestratorordercomposite.WSBPELSearchCamerasPortType port = casaService2.getSearchCameras();
+		SearchCamerasResponse searchCamerasResponse = port.wsBPELSearchCamerasOperation(search);
 		return TranslateSearchCamerasResponse2ListCameras(searchCamerasResponse);
 	}
-	
-	public Camera InvokeGetCameraInfo(Integer cameraId) {
-		orchestratorordercomposite.WSBPELGetCameraInfoPortType port = GetCameraInfo.getGetCamera();
-		SearchCamerasResponse searchCamerasResponse = port.wsBPELGetCameraInfoOperation(cameraId.intValue());
-		List<Camera> listCameras = TranslateSearchCamerasResponse2ListCameras(searchCamerasResponse);
-		if (listCameras.size() > 0) {
-			return listCameras.get(0);
-		}
-		return null;
+	*/
+
+	public CameraInfo InvokeGetCameraInfo(Integer cameraId) {
+        getCameraInfoService = new CasaService2();
+        testordercomposite.WSBPELGetCameraInfoPortType port = getCameraInfoService.getGetCameraInfo();
+        CameraSearch request = new CameraSearch();
+        request.setModelId(cameraId.intValue());
+        return port.wsBPELGetCameraInfoOperation(request);
 	}
-	
+
+    /*
 	private List<Camera> TranslateSearchCamerasResponse2ListCameras(SearchCamerasResponse searchCamerasResponse) {
 		List<Serializable> rawListCameras = searchCamerasResponse.getIdAndModelAndPrice();
 		List<Camera> listCameras = new ArrayList<Camera>();
@@ -76,9 +82,10 @@ public class WebServiceAux {
 		}
 		return listCameras;
 	}
+     * */
 	/* PURCHASES */
 	//OrderResponse == List<Order>
-	
+	/*
 	public OrderResponse InvokeListPurchases(String username) {
 		return ListPurchases.getGetPurchases().wsBPELGetPurchasesOperation(username);
 	}
@@ -90,4 +97,5 @@ public class WebServiceAux {
 	public boolean InvokeCheckout(User user, SearchCamerasResponse listCameras ) {
 		return Checkout.getCheckout().wsBPELCheckoutOperation(user, listCameras);
 	}
+    */
 }
