@@ -17,9 +17,11 @@
         <partnerLink name="WSCustomerService_PartnerLink" xmlns:tns="http://enterprise.netbeans.org/bpel/WSCustomerServiceWrapper" partnerLinkType="tns:CustomerServiceLinkType" partnerRole="CustomerServiceRole"/>
     </partnerLinks>
     <variables>
+        <variable name="ListAllOrdersOut" xmlns:tns="http://custsrv.eai.dei.uc.pt/" messageType="tns:CustomerService_listAllOrdersResponse"/>
+        <variable name="ListAllOrdersIn" xmlns:tns="http://custsrv.eai.dei.uc.pt/" messageType="tns:CustomerService_listAllOrders"/>
         <variable name="WS_BPEL_GetPurchasesOperationOut" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_GetPurchases" messageType="tns:WS_BPEL_GetPurchasesOperationResponse"/>
-        <variable name="ListPurchasesOut" xmlns:tns="http://custsrv.eai.dei.uc.pt/" messageType="tns:CustomerService_listPurchasesResponse"/>
-        <variable name="ListPurchasesIn" xmlns:tns="http://custsrv.eai.dei.uc.pt/" messageType="tns:CustomerService_listPurchases"/>
+        <!-- variable name="ListPurchasesOut" xmlns:tns="http://custsrv.eai.dei.uc.pt/" messageType="tns:CustomerService_listPurchasesResponse"/ -->
+        <!-- variable name="ListPurchasesIn" xmlns:tns="http://custsrv.eai.dei.uc.pt/" messageType="tns:CustomerService_listPurchases"/ -->
         <variable name="WS_BPEL_GetPurchasesOperationIn" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_GetPurchases" messageType="tns:WS_BPEL_GetPurchasesOperationRequest"/>
     </variables>
     <sequence>
@@ -27,34 +29,46 @@
         <assign name="Assign1">
             <copy>
                 <from>$WS_BPEL_GetPurchasesOperationIn.PurchasesRequest/ns1:username</from>
-                <to>$ListPurchasesIn.listPurchases/arg0</to>
+                <to>$ListAllOrdersIn.listAllOrders/arg0</to>
             </copy>
         </assign>
-        <invoke name="Invoke1" partnerLink="WSCustomerService_PartnerLink" operation="listPurchases" xmlns:tns="http://custsrv.eai.dei.uc.pt/" portType="tns:CustomerService" inputVariable="ListPurchasesIn" outputVariable="ListPurchasesOut"/>
+        <invoke name="Invoke1" partnerLink="WSCustomerService_PartnerLink" operation="listAllOrders" xmlns:tns="http://custsrv.eai.dei.uc.pt/" portType="tns:CustomerService" inputVariable="ListAllOrdersIn" outputVariable="ListAllOrdersOut"/>
         <assign name="Assign2">
             <copy>
-                <from>$ListPurchasesOut.listPurchasesResponse/return/emailAddress</from>
+                <from>$ListAllOrdersOut.listAllOrdersResponse/return/emailAddress</from>
                 <to>$WS_BPEL_GetPurchasesOperationOut.PurchasesResponse/ns1:Purchases/ns1:emailAddress</to>
             </copy>
             <copy>
-                <from>$ListPurchasesOut.listPurchasesResponse/return/id</from>
+                <from>$ListAllOrdersOut.listAllOrdersResponse/return/id</from>
                 <to>$WS_BPEL_GetPurchasesOperationOut.PurchasesResponse/ns1:Purchases/ns1:id</to>
             </copy>
             <copy>
-                <from>$ListPurchasesOut.listPurchasesResponse/return/orderStatus</from>
-                <to>$WS_BPEL_GetPurchasesOperationOut.PurchasesResponse/ns1:Purchases/ns1:orderStatus</to>
+                <from>$ListAllOrdersOut.listAllOrdersResponse/return/orderedCameras/id</from>
+                <to>$WS_BPEL_GetPurchasesOperationOut.PurchasesResponse/ns1:Purchases/ns1:orderedCameras/ns1:id</to>
             </copy>
             <copy>
-                <from>$ListPurchasesOut.listPurchasesResponse/return/username</from>
-                <to>$WS_BPEL_GetPurchasesOperationOut.PurchasesResponse/ns1:Purchases/ns1:username</to>
+                <from>$ListAllOrdersOut.listAllOrdersResponse/return/orderedCameras/model</from>
+                <to>$WS_BPEL_GetPurchasesOperationOut.PurchasesResponse/ns1:Purchases/ns1:orderedCameras/ns1:model</to>
             </copy>
             <copy>
-                <from>$ListPurchasesOut.listPurchasesResponse/return/shippingAddress</from>
+                <from>$ListAllOrdersOut.listAllOrdersResponse/return/orderedCameras/price</from>
+                <to>$WS_BPEL_GetPurchasesOperationOut.PurchasesResponse/ns1:Purchases/ns1:orderedCameras/ns1:price</to>
+            </copy>
+            <copy>
+                <from>$ListAllOrdersOut.listAllOrdersResponse/return/purchaseDate</from>
+                <to>$WS_BPEL_GetPurchasesOperationOut.PurchasesResponse/ns1:Purchases/ns1:purchaseDate</to>
+            </copy>
+            <copy>
+                <from>$ListAllOrdersOut.listAllOrdersResponse/return/shippingAddress</from>
                 <to>$WS_BPEL_GetPurchasesOperationOut.PurchasesResponse/ns1:Purchases/ns1:shippingAddress</to>
             </copy>
             <copy>
-                <from>$ListPurchasesOut.listPurchasesResponse/return/purchaseDate</from>
-                <to>$WS_BPEL_GetPurchasesOperationOut.PurchasesResponse/ns1:Purchases/ns1:purchaseDate</to>
+                <from>$ListAllOrdersOut.listAllOrdersResponse/return/username</from>
+                <to>$WS_BPEL_GetPurchasesOperationOut.PurchasesResponse/ns1:Purchases/ns1:username</to>
+            </copy>
+            <copy>
+                <from>'SHIPPED'</from>
+                <to>$WS_BPEL_GetPurchasesOperationOut.PurchasesResponse/ns1:Purchases/ns1:orderStatus</to>
             </copy>
         </assign>
         <reply name="Reply1" partnerLink="GetPurchases_PartnerLink" operation="WS_BPEL_GetPurchasesOperation" xmlns:tns="http://j2ee.netbeans.org/wsdl/BPEL_Purchases/WS_BPEL_GetPurchases" portType="tns:WS_BPEL_GetPurchasesPortType" variable="WS_BPEL_GetPurchasesOperationOut"/>

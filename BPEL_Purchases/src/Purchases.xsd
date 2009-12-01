@@ -15,25 +15,6 @@
             <xsd:element name="username" type="xsd:string"/>
         </xsd:sequence>
     </xsd:complexType>
-    <xsd:complexType name="Purchase">
-        <xsd:sequence minOccurs="0" maxOccurs="unbounded">
-            <xsd:element name="emailAddress" type="xsd:string"/>
-            <xsd:element name="id" type="xsd:int"/>
-            <xsd:element name="orderStatus" type="xsd:string"/>
-            <xsd:element name="orderedCameras">
-                <xsd:complexType>
-                    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
-                        <xsd:element name="id" type="xsd:int"/>
-                        <xsd:element name="model" type="xsd:string"/>
-                        <xsd:element name="price" type="xsd:float"/>
-                    </xsd:sequence>
-                </xsd:complexType>
-            </xsd:element>
-            <xsd:element name="purchaseDate" type="xsd:dateTime"/>
-            <xsd:element name="shippingAddress" type="xsd:string"/>
-            <xsd:element name="username" type="xsd:string"/>
-        </xsd:sequence>
-    </xsd:complexType>
     <xsd:complexType name="SinglePurchase">
         <xsd:sequence minOccurs="1" maxOccurs="1">
             <xsd:element name="emailAddress" type="xsd:string"/>
@@ -43,6 +24,11 @@
             <xsd:element name="purchaseDate" type="xsd:dateTime"/>
             <xsd:element name="shippingAddress" type="xsd:string"/>
             <xsd:element name="username" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ManyPurchases">
+        <xsd:sequence>
+            <xsd:element name="Purchases" type="tns:SinglePurchase" nillable="true" minOccurs="0" maxOccurs="unbounded"></xsd:element>
         </xsd:sequence>
     </xsd:complexType>
     <xsd:complexType name="CameraInfo">
@@ -74,15 +60,9 @@
     </xsd:complexType>
     <xsd:element name="OrderShippedRequest" type="tns:OrderInfo"/>
     <xsd:element name="PurchasesRequest" type="tns:PurchaseInfo"/>
-    <xsd:element name="PurchasesResponse">
-        <xsd:complexType>
-            <xsd:sequence>
-                <xsd:element name="Purchases" type="tns:Purchase"/>
-            </xsd:sequence>
-        </xsd:complexType>
-    </xsd:element>
     <xsd:element name="GetPurchaseInfoRequest" type="tns:GetPurchaseInfo"/>
     <xsd:element name="GetPurchaseInfoResponse" type="tns:SinglePurchase"/>
+	<xsd:element name="PurchasesResponse" type="tns:ManyPurchases"/>
     <xsd:element name="CheckoutRequest">
         <xsd:complexType>
             <xsd:sequence>
@@ -98,4 +78,32 @@
         </xsd:complexType>
     </xsd:element>
     <xsd:element name="CheckoutResponse" type="tns:CheckoutConfirmation"/>
+    	<xsd:complexType name="Purchases">
+		<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="Purchase" type="tns:Purchase"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="OrderedCameras">
+		<xsd:sequence minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="Camera" type="tns:Camera"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Camera">
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:int"/>
+			<xsd:element name="model" type="xsd:string"/>
+			<xsd:element name="price" type="xsd:float"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Purchase">
+		<xsd:sequence>
+			<xsd:element name="emailAddress" type="xsd:string"/>
+			<xsd:element name="id" type="xsd:int"/>
+			<xsd:element name="orderStatus" type="xsd:string"/>
+			<xsd:element name="orderedCameras" type="tns:OrderedCameras"/>
+			<xsd:element name="purchaseDate" type="xsd:dateTime"/>
+			<xsd:element name="shippingAddress" type="xsd:string"/>
+			<xsd:element name="username" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
 </xsd:schema>
