@@ -62,8 +62,8 @@
         <connection consumer="endpoint10" provider="endpoint1" state="unchanged"/>
         <connection consumer="endpoint5" provider="endpoint7" state="new"/>
         <connection consumer="endpoint11" provider="endpoint2" state="unchanged"/>
-        <connection consumer="endpoint4" provider="endpoint7" state="deleted"/>
         <connection consumer="endpoint3" provider="endpoint8" state="deleted"/>
+        <connection consumer="endpoint4" provider="endpoint7" state="deleted"/>
     </connections>
     <porttypes>
         <link xlink:href="../jbiasa/OrderCompositeOrchestrator.wsdl#xpointer(/definitions/portType[@name='dummyCasaPortType'])" xlink:type="simple"/>
