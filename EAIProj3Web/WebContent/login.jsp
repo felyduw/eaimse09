@@ -1,32 +1,25 @@
 <%@ page import="pt.uc.dei.eai.*" %>
-<%@ page import="javax.xml.ws.WebServiceRef" %>
 <%
 String error = null;
-String submit_action = request.getParameter("Submit");
+String[] submit_actions = request.getParameterValues("Submit");
 String myname = (String)session.getAttribute("username");
-
-if (submit_action != null && submit_action.equals("Logout")) {
-    if (true) {
-		// se deslogou ok no servidor
-		session.removeAttribute("username");
-		myname = null;
-	} else {
-		error = "Login error";
-	}
-} else if (submit_action != null && submit_action.equals("Login")) {
+boolean logoutAction = Utils.stringArrayContains("Logout", submit_actions);
+boolean loginAction = Utils.stringArrayContains("Login", submit_actions);
+if (logoutAction) {
+    // deslogar do servidor
+    session.removeAttribute("username");
+    session.removeAttribute("password");
+    myname = null;
+} else if (loginAction) {
 	String user = request.getParameter("User");
 	String password = request.getParameter("Password");
 	// Logar no servidor
-    usercompositeorchestrator.CasaService1 service = new usercompositeorchestrator.CasaService1();
-    usercompositeorchestrator.WSLoginWrapperPortType port = service.getLogin();
-    org.netbeans.xml.schema.userschema.UserInfo loginRequest = new org.netbeans.xml.schema.userschema.UserInfo();
-    loginRequest.setUsername(user);
-    loginRequest.setPassword(password);
-    org.netbeans.xml.schema.userschema.User userLogged = port.wsLoginWrapperOperation(loginRequest);
-
+    WsConnector ws = new WsConnector();
+    org.netbeans.xml.schema.userschema.User userLogged = ws.InvokeLogin(user, password);
 	if (userLogged != null) {
 		// se logou ok no servidor
-		session.setAttribute("username", user);
+		session.setAttribute("username", userLogged.getUsername());
+		session.setAttribute("password", userLogged.getPassword());
 		myname = userLogged.getUsername();
 	} else {
 		error = "Login error";

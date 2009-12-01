@@ -22,8 +22,8 @@ if (submit_action != null && submit_action.equals("Register")) {
 		error = "Email not valid.";
 	} else {
 		// Register user in server
-		//List<String> camerasList = lpco.registerUser(username, password, address, email);
-		userCreated = null;//lpco.registerUser(username, password, address, email);;
+        WsConnector ws = new WsConnector();
+		userCreated = ws.InvokeRegisterUser(username, password, address, email);;
 	}
 }
 %>
@@ -50,7 +50,7 @@ if (submit_action != null && submit_action.equals("Register")) {
 					if (userCreated) {
 						%>
 						<tr>
-							<td colspan="2"><font color="green">User successefully created.</font></td>
+							<td colspan="2"><font color="green">User <%=username%> successefully created.</font></td>
 						</tr>
 						<%
 					} else {

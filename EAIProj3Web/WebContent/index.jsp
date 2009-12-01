@@ -3,21 +3,15 @@
 <%@ page import="pt.uc.dei.eai.common.*" %>
 <%
 String error = null;
-String free_text_search = request.getParameter("free_text_search");
-
-/*
-orchestratorordercomposite.CasaService2 test1 = new CasaService2(
-test1.getSearchCameras().wsBPELSearchCamerasOperation("Canon");
-*/
-
-// Pesquisa das cameras
-WebServiceAux webServiceAux = new WebServiceAux();
-//List<Camera> camerasList = webServiceAux.InvokeSearchCameras(free_text_search);
-
-Camera camera = null;//webServiceAux.InvokeGetCameraInfo(34);
-List<Camera> camerasList = new ArrayList<Camera>();
-camerasList.add(camera);
-
+String[] submit_actions = request.getParameterValues("Submit");
+boolean searchAction = Utils.stringArrayContains("Search", submit_actions);
+List<Camera> camerasList = null;
+if (searchAction) {
+    String free_text_search = request.getParameter("free_text_search");
+    // Pesquisa das cameras
+    WsConnector ws = new WsConnector();
+    camerasList = ws.InvokeSearchCameras(free_text_search);
+}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -67,10 +61,16 @@ camerasList.add(camera);
 							<%
                             }
             			}
-            		} else {
+            		} else if (searchAction) {
             			%>
 	            		<tr>
 	            			<td colspan="3">No cameras found.</td>
+	            		</tr>
+            			<%
+            		} else {
+            			%>
+	            		<tr>
+	            			<td colspan="3">Search cameras using the free search textbox...</td>
 	            		</tr>
             			<%
             		}

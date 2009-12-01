@@ -4,11 +4,12 @@
 <%
 String error = null;
 Integer orderId = null;
-Order order = null;
+org.netbeans.xml.schema.purchases.SinglePurchase order = null;
 try {
 	String orderIdString = request.getParameter("order");
 	orderId = Integer.parseInt(orderIdString);
-	order = null;//lpco.getOrder(orderId);
+    WsConnector ws = new WsConnector();
+    order = ws.InvokeGetPurchaseInfo(orderId);
 } catch (Exception exc) {
 	error = "Error obtaining the order detail.";
 }
@@ -50,7 +51,7 @@ try {
 		            			<td><%=order.getShippingAddress()%></td>
 		            		</tr>
 	            			<%
-	            			List<Camera> cameras = order.getOrderedCameras();
+	            			List<org.netbeans.xml.schema.purchases.CameraInfo> cameras = order.getOrderedCameras();
 	               			if (cameras != null && cameras.size() > 0) {
     							%>
 		 	            		<tr>

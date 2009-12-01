@@ -10,22 +10,20 @@ try {
 	cameraId = Integer.parseInt(cameraIdString);
 } catch (Exception exc) { }
 
-HttpSession s = request.getSession();
-
 //Add camera to shopping cart
 if (cameraId != null) {
-	WebServiceAux webServiceAux = new WebServiceAux();
-	Camera camera = null;//webServiceAux.InvokeGetCameraInfo(cameraId);
-	if (existingCart == null) {
-		// Shopping Cart is still empty
-		ShoppingCart newCart = new ShoppingCart();
-		newCart.getCameras().add(camera);
-		existingCart = newCart;
-	} else  {
-		// Shopping Cart is not empty
-		existingCart.getCameras().add(camera);
-	}	
-	session.setAttribute("cart", existingCart);
+    WsConnector ws = new WsConnector();
+    org.netbeans.xml.schema.cameraresponse.CameraInfo camera = ws.InvokeGetCameraInfo(cameraId);
+    if (existingCart == null) {
+        // Shopping Cart is still empty
+        ShoppingCart newCart = new ShoppingCart();
+        newCart.addCamera(camera);
+        existingCart = newCart;
+    } else  {
+        // Shopping Cart is not empty
+        existingCart.addCamera(camera);
+    }
+    session.setAttribute("cart", existingCart);
 }
 // Show shopping cart
 if (existingCart == null) {
@@ -36,7 +34,7 @@ if (existingCart == null) {
 %>
 	
 <form method="post">
-	Shopping cart has <%=existingCart.getCameras().size()%> cameras, with a total value of <%=existingCart.getTotalAmount()%> &euro;&nbsp;&nbsp;&nbsp;
+	Shopping cart has <%=existingCart.getNumberCameras()%> cameras, with a total value of <%=existingCart.getTotalAmount()%> &euro;&nbsp;&nbsp;&nbsp;
 	<a href="checkout.jsp">Checkout</a>
 	</form>
 <% 

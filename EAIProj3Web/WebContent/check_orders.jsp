@@ -1,11 +1,6 @@
 <%@ page import="java.util.*" %>
 <%@ page import="pt.uc.dei.eai.*" %>
 <%@ page import="pt.uc.dei.eai.common.*" %>
-<%
-String error = null;
-
-List<Order> orders = null;//lpco.listAllOrders();
-%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -28,36 +23,46 @@ List<Order> orders = null;//lpco.listAllOrders();
         			// Verify login
         			String myname = (String)session.getAttribute("username");
         			if (myname != null) {
-                		if (orders != null && orders.size() > 0) {
-                			%>
-    	            		<tr>
-    	            			<td colspan="3">You have <%=orders.size()%> pending orders.</td>
-    	            		</tr>
-     	            		<tr>
-    	            			<th>Order id</th>
-    	            			<th>Purchase date</th>
-    	            			<th># Cameras</th>
-    	            			<th>Order Status</th>
-    	            		</tr>
-                			<%
-                			for (int i = 0; i < orders.size(); i++) {
-                				Order order = orders.get(i);
-    							%>
-    		            		<tr>
-    		            			<td><a href="order_detail.jsp?order=<%=order.getId()%>"><%=order.getId()%></a></td>
-    		            			<td align="center"><%=order.getPurchaseDate()%></td>
-    		            			<td align="center"><%=order.getOrderedCameras().size()%></td>
-    		            			<td align="center"><%=order.getOrderStatus().toString() %></td>
-    		            		</tr>
-    							<%
-                			}
-                		} else {
-                			%>
-    	            		<tr>
-    	            			<td colspan="3">You don't have any pending order.</td>
-    	            		</tr>
-                			<%
-                		}
+                        try {
+                            WsConnector ws = new WsConnector();
+                            List<Order> orders = ws.InvokeGetPurchases(myname);
+                            if (orders != null && orders.size() > 0) {
+                                %>
+                                <tr>
+                                    <td colspan="3">You have <%=orders.size()%> pending orders.</td>
+                                </tr>
+                                <tr>
+                                    <th>Order id</th>
+                                    <th>Purchase date</th>
+                                    <th># Cameras</th>
+                                    <th>Order Status</th>
+                                </tr>
+                                <%
+                                for (int i = 0; i < orders.size(); i++) {
+                                    Order order = orders.get(i);
+                                    %>
+                                    <tr>
+                                        <td><a href="order_detail.jsp?order=<%=order.getId()%>"><%=order.getId()%></a></td>
+                                        <td align="center"><%=order.getPurchaseDate()%></td>
+                                        <td align="center"><%=order.getOrderedCameras().size()%></td>
+                                        <td align="center"><%=order.getOrderStatus().toString() %></td>
+                                    </tr>
+                                    <%
+                                }
+                            } else {
+                                %>
+                                <tr>
+                                    <td colspan="3">You don't have any pending order.</td>
+                                </tr>
+                                <%
+                            }
+                        } catch (Exception exc) {
+                            %>
+                            <tr>
+                                <td colspan="2"> <font color="Red">Error obtaining orders.</font></td>
+                            </tr>
+                            <%
+                        }
         			} else {
             			%>
 	            		<tr>

@@ -3,15 +3,27 @@
 <%
 String error = null;
 ShoppingCart existingCart = (ShoppingCart)session.getAttribute("cart");
-if (existingCart.getCameras().size() != 0) {
-	if (false/*lpco.submitOrder()*/) {
-		// purchase done, clean shopping cart
-		session.removeAttribute("cart");
-	} else {
-		error = "Error submiting purchase.";
-	}
+String username = (String)session.getAttribute("username");
+String password = (String)session.getAttribute("password");
+if (username != null && password != null) {
+    if (existingCart.getNumberCameras() != 0) {
+        try {
+            WsConnector ws = new WsConnector();
+            if (ws.InvokeCheckout(username, password, existingCart)) {
+                // purchase done, clean shopping cart
+                session.removeAttribute("cart");
+            } else {
+                error = "Error submiting purchase.";
+            }
+        } catch (Exception exc) {
+            error = "There's a crisis going on, and you shouldn't be spending so much money...<br/>Buy only one camera, it's better for you, for your family and for the world.<br/>You really don't need two cameras, right? :)";
+            session.removeAttribute("cart");
+        }
+    } else {
+        error = "Shopping cart was empty.";
+    }
 } else {
-	error = "Shopping cart was empty.";
+    error = "You must login before you can submit your purchase order.";
 }
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

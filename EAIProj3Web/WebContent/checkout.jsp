@@ -25,18 +25,18 @@ String error = null;
             	<table style="width: 100%">
             		<%
             		ShoppingCart existingCart = (ShoppingCart)session.getAttribute("cart");
-            		int cartSize = existingCart.getCameras().size();
+            		int cartSize = existingCart.getNumberCameras();
             		if (cartSize != 0) {
             			%>
 	            		<tr>
 	            			<td colspan="2">There are <%=cartSize%> cameras in your shopping cart.</td>
 	            		</tr>
             			<%
-            			for (Camera camera : existingCart.getCameras()) {
+            			for (int i = 0; i < existingCart.getNumberCameras(); i++) {
 							%>
 		            		<tr>
-		            			<td><%=camera.getModel()%></td>
-		            			<td><%=camera.getPrice()%> &euro;</td>
+		            			<td><%=existingCart.getModel(i)%></td>
+		            			<td><%=existingCart.getPrice(i)%> &euro;</td>
 		            		</tr>
 							<%
             			}
