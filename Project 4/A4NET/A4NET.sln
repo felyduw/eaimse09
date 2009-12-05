@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserInterface", "A4NET\UserInterface.csproj", "{B1A702F4-C403-4F96-A114-C1D0D672411B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyOrchestrator", "MyOrchestrator\MyOrchestrator.csproj", "{66D73DA8-881B-429E-B123-7102BEB7B446}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{22CCD7FE-6F61-4AB5-8E0A-7E8C7261D49D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1A702F4-C403-4F96-A114-C1D0D672411B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1A702F4-C403-4F96-A114-C1D0D672411B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1A702F4-C403-4F96-A114-C1D0D672411B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1A702F4-C403-4F96-A114-C1D0D672411B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66D73DA8-881B-429E-B123-7102BEB7B446}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66D73DA8-881B-429E-B123-7102BEB7B446}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66D73DA8-881B-429E-B123-7102BEB7B446}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66D73DA8-881B-429E-B123-7102BEB7B446}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22CCD7FE-6F61-4AB5-8E0A-7E8C7261D49D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22CCD7FE-6F61-4AB5-8E0A-7E8C7261D49D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22CCD7FE-6F61-4AB5-8E0A-7E8C7261D49D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22CCD7FE-6F61-4AB5-8E0A-7E8C7261D49D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
