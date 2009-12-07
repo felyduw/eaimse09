@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="IntegrationWrapper_CameraSearchXML.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="JavaCameraSearchXMLArguments" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">-jar "D:\MSE\Enterprise Integration Application\Project 1\CameraSearchXML\dist\CameraSearchXML.jar"</Value>
+    </Setting>
+    <Setting Name="JavaPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">"C:\Program Files\Java\jdk1.6.0_14\bin\java.exe"</Value>
+    </Setting>
+    <Setting Name="JavaCameraSearchXMLPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\MSE\Enterprise Integration Application\Project 1\CameraSearchXML\dist</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
