@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventLog.cs" />
     <Compile Include="MessageQueues.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

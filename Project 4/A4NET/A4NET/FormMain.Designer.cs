@@ -51,12 +51,12 @@
 			// 
 			this.textBoxQuery.Location = new System.Drawing.Point(56, 6);
 			this.textBoxQuery.Name = "textBoxQuery";
-			this.textBoxQuery.Size = new System.Drawing.Size(233, 20);
+			this.textBoxQuery.Size = new System.Drawing.Size(277, 20);
 			this.textBoxQuery.TabIndex = 1;
 			// 
 			// buttonGo
 			// 
-			this.buttonGo.Location = new System.Drawing.Point(295, 4);
+			this.buttonGo.Location = new System.Drawing.Point(339, 4);
 			this.buttonGo.Name = "buttonGo";
 			this.buttonGo.Size = new System.Drawing.Size(43, 23);
 			this.buttonGo.TabIndex = 2;
@@ -71,7 +71,7 @@
             this.toolStripStatusLabelResults});
 			this.statusStripMain.Location = new System.Drawing.Point(0, 35);
 			this.statusStripMain.Name = "statusStripMain";
-			this.statusStripMain.Size = new System.Drawing.Size(356, 22);
+			this.statusStripMain.Size = new System.Drawing.Size(394, 22);
 			this.statusStripMain.SizingGrip = false;
 			this.statusStripMain.TabIndex = 4;
 			// 
@@ -97,13 +97,15 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(356, 57);
+			this.ClientSize = new System.Drawing.Size(394, 57);
 			this.Controls.Add(this.statusStripMain);
 			this.Controls.Add(this.buttonGo);
 			this.Controls.Add(this.textBoxQuery);
 			this.Controls.Add(this.labelQuery);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+			this.Location = new System.Drawing.Point(50, 50);
 			this.Name = "FormMain";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "A4 User Interface";
 			this.statusStripMain.ResumeLayout(false);
 			this.statusStripMain.PerformLayout();

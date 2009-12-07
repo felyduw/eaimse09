@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
+using EAI.A4.Utils;
 
 namespace EAI.A4.MyOrchestrator
 {
@@ -13,9 +12,18 @@ namespace EAI.A4.MyOrchestrator
 		[STAThread]
 		static void Main()
 		{
-			Application.EnableVisualStyles();
-			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new FormMain());
+			try
+			{
+				Application.EnableVisualStyles();
+				Application.SetCompatibleTextRenderingDefault(false);
+				Application.Run(new FormMainMyOrchestrator());
+
+			}
+			catch (Exception exc)
+			{
+				EventLog.Write2EventLog(exc.Message);
+				throw new Exception("EAI A4 - MyOrchestrator", exc);
+			}
 		}
 	}
 }

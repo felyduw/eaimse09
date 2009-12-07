@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MyOrchestrator")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("EAIA4MyOrchestrator")]
+[assembly: AssemblyDescription("EAI A4 - MyOrchestrator")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MyOrchestrator")]
-[assembly: AssemblyCopyright("Copyright ©  2009")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCompany("Carlos Simões & Pedro Saraiva & Miguel Oliveira")]
+[assembly: AssemblyProduct("EAIA4NET - MyOrchestrator")]
+[assembly: AssemblyCopyright("Copyright © Carlos Simões & Pedro Saraiva & Miguel Oliveira 2009")]
+[assembly: AssemblyTrademark("Carlos Simões & Pedro Saraiva & Miguel Oliveira")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

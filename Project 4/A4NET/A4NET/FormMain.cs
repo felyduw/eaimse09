@@ -20,6 +20,7 @@ namespace EAI.A4.UserInterface
 		{
 			inboxQueue = MessageQueues.CreateOrUseQueue(@".\Private$\EAIUserInterfaceInbox");
 			outboxQueue = MessageQueues.CreateOrUseQueue(@".\Private$\EAIUserInterfaceOutbox");
+			outboxQueue.Formatter = new XmlMessageFormatter((new System.Type[] { typeof(string) }));
 		}
 
 		#region Handlers
