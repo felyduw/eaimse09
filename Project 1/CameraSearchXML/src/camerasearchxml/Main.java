@@ -10,8 +10,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.jdom.*;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
@@ -114,9 +112,11 @@ public class Main {
 	private static void writeXml(String brand, Document xmlDom) throws IOException {
 		XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
-		FileWriter writer = new FileWriter(brand + "_" + formatter.format(new Date()) + ".xml");
+		String filename = brand + "_" + formatter.format(new Date()) + ".xml";
+		FileWriter writer = new FileWriter(filename);
 		outputter.output(xmlDom, writer);
 		writer.close();
+		System.out.println("File written: " + filename);
 	}
 
 	/*
