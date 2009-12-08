@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using EAI.A4.Utils;
 using System.Xml;
 using System.Collections.Generic;
+using EAI.Common;
 
 namespace EAI.A4.MyOrchestrator
 {
@@ -36,7 +37,7 @@ namespace EAI.A4.MyOrchestrator
 		{
 			// User Interface
 			userInterfaceInboxQueue = MessageQueues.CreateOrUseQueue(Properties.Settings.Default.EAIUserInterfaceInbox);
-			userInterfaceInboxQueue.Formatter = new XmlMessageFormatter((new System.Type[] { typeof(string) }));
+			userInterfaceInboxQueue.Formatter = new XmlMessageFormatter((new System.Type[] { typeof(A4TupleMessage) }));
 			userInterfaceInboxQueue.MessageReadPropertyFilter.SetAll();
 			//userInterfaceInboxQueue.
 			userInterfaceOutboxQueue = MessageQueues.CreateOrUseQueue(Properties.Settings.Default.EAIUserInterfaceOutbox);
@@ -160,8 +161,12 @@ namespace EAI.A4.MyOrchestrator
 					if (joinMessages.ContainsKey(incomingMsg.CorrelationId))
 					{
 						// join the two messages
+						A4TupleMessage joinedMsgs = new A4TupleMessage((XmlDocument)incomingMsg.Body,
+							joinMessages[incomingMsg.CorrelationId].MsgCameraListBeautifier);
+						/*
 						string joinedMsgs = joinMessages[incomingMsg.CorrelationId].MsgCameraListBeautifier +
 							"<br/><br/><textarea cols=\"80\" rows=\"10\">" + ((XmlDocument)incomingMsg.Body).InnerXml + "</textarea>";
+						*/
 						System.Messaging.Message finalMsg = new System.Messaging.Message(joinedMsgs);
 						finalMsg.CorrelationId = incomingMsg.CorrelationId;
 						userInterfaceInboxQueue.Send(finalMsg);
@@ -202,8 +207,12 @@ namespace EAI.A4.MyOrchestrator
 					if (joinMessages.ContainsKey(incomingMsg.CorrelationId))
 					{
 						// join the two messages
+						A4TupleMessage joinedMsgs = new A4TupleMessage(joinMessages[incomingMsg.CorrelationId].MsgCameraSummaryXml,
+							(string)incomingMsg.Body);
+						/*
 						string joinedMsgs = (string)incomingMsg.Body + "<br/><br/><textarea cols=\"80\" rows=\"10\">" +
 							joinMessages[incomingMsg.CorrelationId].MsgCameraSummaryXml.InnerXml + "</textarea>";
+						*/
 						System.Messaging.Message finalMsg = new System.Messaging.Message(joinedMsgs);
 						finalMsg.CorrelationId = incomingMsg.CorrelationId;
 						userInterfaceInboxQueue.Send(finalMsg);

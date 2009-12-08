@@ -43,21 +43,21 @@
 			this.label11 = new System.Windows.Forms.Label();
 			this.labelNrProcessedMsgs2 = new System.Windows.Forms.Label();
 			this.label12 = new System.Windows.Forms.Label();
-			this.label5 = new System.Windows.Forms.Label();
+			this.labelNrProcessedMsgs4 = new System.Windows.Forms.Label();
 			this.labelCorrelationId3 = new System.Windows.Forms.Label();
 			this.labelLastMsg3 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
 			this.labelNrProcessedMsgs3 = new System.Windows.Forms.Label();
 			this.label14 = new System.Windows.Forms.Label();
+			this.label5 = new System.Windows.Forms.Label();
 			this.label4 = new System.Windows.Forms.Label();
-			this.labelLastMsg4 = new System.Windows.Forms.Label();
 			this.labelCorrelationId4 = new System.Windows.Forms.Label();
+			this.labelLastMsg4 = new System.Windows.Forms.Label();
+			this.label8 = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
-			this.label8 = new System.Windows.Forms.Label();
-			this.labelNrProcessedMsgs4 = new System.Windows.Forms.Label();
 			tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -259,21 +259,21 @@
 			tableLayoutPanel3.Size = new System.Drawing.Size(379, 180);
 			tableLayoutPanel3.TabIndex = 6;
 			// 
-			// label5
+			// labelNrProcessedMsgs4
 			// 
-			this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
-			this.label5.AutoSize = true;
-			this.label5.Location = new System.Drawing.Point(3, 158);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(70, 13);
-			this.label5.TabIndex = 11;
-			this.label5.Text = "correlation id:";
+			this.labelNrProcessedMsgs4.Anchor = System.Windows.Forms.AnchorStyles.Left;
+			this.labelNrProcessedMsgs4.AutoSize = true;
+			this.labelNrProcessedMsgs4.Location = new System.Drawing.Point(135, 95);
+			this.labelNrProcessedMsgs4.Name = "labelNrProcessedMsgs4";
+			this.labelNrProcessedMsgs4.Size = new System.Drawing.Size(13, 13);
+			this.labelNrProcessedMsgs4.TabIndex = 15;
+			this.labelNrProcessedMsgs4.Text = "0";
 			// 
 			// labelCorrelationId3
 			// 
 			this.labelCorrelationId3.Anchor = System.Windows.Forms.AnchorStyles.Left;
 			this.labelCorrelationId3.AutoSize = true;
-			this.labelCorrelationId3.Location = new System.Drawing.Point(135, 68);
+			this.labelCorrelationId3.Location = new System.Drawing.Point(135, 66);
 			this.labelCorrelationId3.Name = "labelCorrelationId3";
 			this.labelCorrelationId3.Size = new System.Drawing.Size(146, 13);
 			this.labelCorrelationId3.TabIndex = 9;
@@ -283,7 +283,7 @@
 			// 
 			this.labelLastMsg3.Anchor = System.Windows.Forms.AnchorStyles.Left;
 			this.labelLastMsg3.AutoSize = true;
-			this.labelLastMsg3.Location = new System.Drawing.Point(135, 38);
+			this.labelLastMsg3.Location = new System.Drawing.Point(135, 37);
 			this.labelLastMsg3.Name = "labelLastMsg3";
 			this.labelLastMsg3.Size = new System.Drawing.Size(146, 13);
 			this.labelLastMsg3.TabIndex = 7;
@@ -293,7 +293,7 @@
 			// 
 			this.label6.Anchor = System.Windows.Forms.AnchorStyles.Left;
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(3, 68);
+			this.label6.Location = new System.Drawing.Point(3, 66);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(70, 13);
 			this.label6.TabIndex = 4;
@@ -323,41 +323,61 @@
 			// 
 			this.label14.Anchor = System.Windows.Forms.AnchorStyles.Left;
 			this.label14.AutoSize = true;
-			this.label14.Location = new System.Drawing.Point(3, 38);
+			this.label14.Location = new System.Drawing.Point(3, 37);
 			this.label14.Name = "label14";
 			this.label14.Size = new System.Drawing.Size(115, 13);
 			this.label14.TabIndex = 2;
 			this.label14.Text = "last message received:";
 			// 
+			// label5
+			// 
+			this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
+			this.label5.AutoSize = true;
+			this.label5.Location = new System.Drawing.Point(3, 156);
+			this.label5.Name = "label5";
+			this.label5.Size = new System.Drawing.Size(70, 13);
+			this.label5.TabIndex = 11;
+			this.label5.Text = "correlation id:";
+			// 
 			// label4
 			// 
 			this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
 			this.label4.AutoSize = true;
-			this.label4.Location = new System.Drawing.Point(3, 128);
+			this.label4.Location = new System.Drawing.Point(3, 124);
 			this.label4.Name = "label4";
 			this.label4.Size = new System.Drawing.Size(115, 13);
 			this.label4.TabIndex = 10;
 			this.label4.Text = "last message received:";
 			// 
+			// labelCorrelationId4
+			// 
+			this.labelCorrelationId4.Anchor = System.Windows.Forms.AnchorStyles.Left;
+			this.labelCorrelationId4.AutoSize = true;
+			this.labelCorrelationId4.Location = new System.Drawing.Point(135, 156);
+			this.labelCorrelationId4.Name = "labelCorrelationId4";
+			this.labelCorrelationId4.Size = new System.Drawing.Size(146, 13);
+			this.labelCorrelationId4.TabIndex = 13;
+			this.labelCorrelationId4.Text = "waiting for the first message...";
+			// 
 			// labelLastMsg4
 			// 
 			this.labelLastMsg4.Anchor = System.Windows.Forms.AnchorStyles.Left;
 			this.labelLastMsg4.AutoSize = true;
-			this.labelLastMsg4.Location = new System.Drawing.Point(135, 128);
+			this.labelLastMsg4.Location = new System.Drawing.Point(135, 124);
 			this.labelLastMsg4.Name = "labelLastMsg4";
 			this.labelLastMsg4.Size = new System.Drawing.Size(146, 13);
 			this.labelLastMsg4.TabIndex = 12;
 			this.labelLastMsg4.Text = "waiting for the first message...";
 			// 
-			// labelCorrelationId4
+			// label8
 			// 
-			this.labelCorrelationId4.Anchor = System.Windows.Forms.AnchorStyles.Left;
-			this.labelCorrelationId4.AutoSize = true;
-			this.labelCorrelationId4.Location = new System.Drawing.Point(135, 158);
-			this.labelCorrelationId4.Name = "labelCorrelationId4";
-			this.labelCorrelationId4.Size = new System.Drawing.Size(146, 13);
-			this.labelCorrelationId4.TabIndex = 13;
-			this.labelCorrelationId4.Text = "waiting for the first message...";
+			this.label8.Anchor = System.Windows.Forms.AnchorStyles.Left;
+			this.label8.AutoSize = true;
+			this.label8.Location = new System.Drawing.Point(3, 95);
+			this.label8.Name = "label8";
+			this.label8.Size = new System.Drawing.Size(111, 13);
+			this.label8.TabIndex = 14;
+			this.label8.Text = "# received messages:";
 			// 
 			// groupBox1
 			// 
@@ -389,26 +409,6 @@
 			this.groupBox3.TabStop = false;
 			this.groupBox3.Text = "CameraSummaryXML + CameraListBeautifier -> UserInterface";
 			// 
-			// label8
-			// 
-			this.label8.Anchor = System.Windows.Forms.AnchorStyles.Left;
-			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(3, 98);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(111, 13);
-			this.label8.TabIndex = 14;
-			this.label8.Text = "# received messages:";
-			// 
-			// labelNrProcessedMsgs4
-			// 
-			this.labelNrProcessedMsgs4.Anchor = System.Windows.Forms.AnchorStyles.Left;
-			this.labelNrProcessedMsgs4.AutoSize = true;
-			this.labelNrProcessedMsgs4.Location = new System.Drawing.Point(135, 98);
-			this.labelNrProcessedMsgs4.Name = "labelNrProcessedMsgs4";
-			this.labelNrProcessedMsgs4.Size = new System.Drawing.Size(13, 13);
-			this.labelNrProcessedMsgs4.TabIndex = 15;
-			this.labelNrProcessedMsgs4.Text = "0";
-			// 
 			// FormMainMyOrchestrator
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -418,7 +418,7 @@
 			this.Controls.Add(this.groupBox2);
 			this.Controls.Add(this.groupBox1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-			this.Location = new System.Drawing.Point(50, 150);
+			this.Location = new System.Drawing.Point(50, 250);
 			this.Name = "FormMainMyOrchestrator";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "My Orchestrator";

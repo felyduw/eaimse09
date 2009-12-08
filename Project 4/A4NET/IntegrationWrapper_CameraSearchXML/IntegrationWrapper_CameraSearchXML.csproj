@@ -126,9 +126,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Utils\Utils.csproj">
+    <ProjectReference Include="..\Utils\Common.csproj">
       <Project>{22CCD7FE-6F61-4AB5-8E0A-7E8C7261D49D}</Project>
-      <Name>Utils</Name>
+      <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

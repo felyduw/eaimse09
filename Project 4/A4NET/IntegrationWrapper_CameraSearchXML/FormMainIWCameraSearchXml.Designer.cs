@@ -126,7 +126,7 @@
 			this.ClientSize = new System.Drawing.Size(402, 111);
 			this.Controls.Add(tableLayoutPanel1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-			this.Location = new System.Drawing.Point(500, 150);
+			this.Location = new System.Drawing.Point(500, 250);
 			this.Name = "FormMainIWCameraSearchXml";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Integration Wrapper - Camera Search XML";

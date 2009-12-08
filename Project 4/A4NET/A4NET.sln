@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserInterface", "A4NET\User
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyOrchestrator", "MyOrchestrator\MyOrchestrator.csproj", "{66D73DA8-881B-429E-B123-7102BEB7B446}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{22CCD7FE-6F61-4AB5-8E0A-7E8C7261D49D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Utils\Common.csproj", "{22CCD7FE-6F61-4AB5-8E0A-7E8C7261D49D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationWrapper_CameraSearchXML", "IntegrationWrapper_CameraSearchXML\IntegrationWrapper_CameraSearchXML.csproj", "{ED27E967-5A5F-4F64-9975-0D2D62CC2DD1}"
 EndProject

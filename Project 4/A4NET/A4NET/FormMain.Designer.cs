@@ -34,6 +34,8 @@
 			this.statusStripMain = new System.Windows.Forms.StatusStrip();
 			this.toolStripStatusLabelResults = new System.Windows.Forms.ToolStripStatusLabel();
 			this.backgroundWorkerInbox = new System.ComponentModel.BackgroundWorker();
+			this.buttonClean = new System.Windows.Forms.Button();
+			this.textBoxOutput = new System.Windows.Forms.TextBox();
 			this.statusStripMain.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -50,12 +52,12 @@
 			// 
 			this.textBoxQuery.Location = new System.Drawing.Point(56, 6);
 			this.textBoxQuery.Name = "textBoxQuery";
-			this.textBoxQuery.Size = new System.Drawing.Size(301, 20);
+			this.textBoxQuery.Size = new System.Drawing.Size(599, 20);
 			this.textBoxQuery.TabIndex = 1;
 			// 
 			// buttonGo
 			// 
-			this.buttonGo.Location = new System.Drawing.Point(363, 4);
+			this.buttonGo.Location = new System.Drawing.Point(661, 4);
 			this.buttonGo.Name = "buttonGo";
 			this.buttonGo.Size = new System.Drawing.Size(43, 23);
 			this.buttonGo.TabIndex = 2;
@@ -67,9 +69,9 @@
 			// 
 			this.statusStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabelResults});
-			this.statusStripMain.Location = new System.Drawing.Point(0, 35);
+			this.statusStripMain.Location = new System.Drawing.Point(0, 124);
 			this.statusStripMain.Name = "statusStripMain";
-			this.statusStripMain.Size = new System.Drawing.Size(418, 22);
+			this.statusStripMain.Size = new System.Drawing.Size(716, 22);
 			this.statusStripMain.SizingGrip = false;
 			this.statusStripMain.TabIndex = 4;
 			// 
@@ -84,17 +86,37 @@
 			// 
 			this.backgroundWorkerInbox.WorkerReportsProgress = true;
 			// 
+			// buttonClean
+			// 
+			this.buttonClean.Location = new System.Drawing.Point(661, 96);
+			this.buttonClean.Name = "buttonClean";
+			this.buttonClean.Size = new System.Drawing.Size(43, 23);
+			this.buttonClean.TabIndex = 0;
+			this.buttonClean.Text = "Clean";
+			this.buttonClean.Click += new System.EventHandler(this.buttonClean_Click);
+			// 
+			// textBoxOutput
+			// 
+			this.textBoxOutput.Location = new System.Drawing.Point(15, 40);
+			this.textBoxOutput.Multiline = true;
+			this.textBoxOutput.Name = "textBoxOutput";
+			this.textBoxOutput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+			this.textBoxOutput.Size = new System.Drawing.Size(640, 79);
+			this.textBoxOutput.TabIndex = 5;
+			// 
 			// FormMain
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(418, 57);
+			this.ClientSize = new System.Drawing.Size(716, 146);
+			this.Controls.Add(this.buttonClean);
+			this.Controls.Add(this.textBoxOutput);
 			this.Controls.Add(this.statusStripMain);
 			this.Controls.Add(this.buttonGo);
 			this.Controls.Add(this.textBoxQuery);
 			this.Controls.Add(this.labelQuery);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-			this.Location = new System.Drawing.Point(50, 50);
+			this.Location = new System.Drawing.Point(50, 40);
 			this.Name = "FormMain";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "A4 User Interface";
@@ -113,6 +135,8 @@
 		private System.Windows.Forms.StatusStrip statusStripMain;
 		private System.ComponentModel.BackgroundWorker backgroundWorkerInbox;
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelResults;
+		private System.Windows.Forms.Button buttonClean;
+		private System.Windows.Forms.TextBox textBoxOutput;
 	}
 }
 
