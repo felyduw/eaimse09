@@ -10,14 +10,14 @@ namespace EAI.A4.Utils
 			if (!MessageQueue.Exists(queueName))
 			{
 				newMessageQueue = MessageQueue.Create(queueName);
+				newMessageQueue.SetPermissions("Everyone",
+					MessageQueueAccessRights.GenericRead | MessageQueueAccessRights.GenericWrite,
+					AccessControlEntryType.Set);
 			}
 			else
 			{
 				newMessageQueue = new MessageQueue(queueName);
 			}
-			newMessageQueue.SetPermissions("Everyone",
-				MessageQueueAccessRights.GenericRead | MessageQueueAccessRights.GenericWrite,
-				AccessControlEntryType.Set);
 			return newMessageQueue;
 		}
 

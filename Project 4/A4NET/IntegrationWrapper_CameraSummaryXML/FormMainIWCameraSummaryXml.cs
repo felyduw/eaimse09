@@ -5,13 +5,13 @@ using System.Threading;
 using System.Xml;
 using System;
 using System.IO;
+using System.Text;
 
 namespace EAI.A4.IntegrationWrapper_CameraSummaryXML
 {
 	public partial class FormMainIWCameraSummaryXml : Form
 	{
 		MessageQueue iwCameraSummaryXmlInboxQueue = null;
-		MessageQueue iwCameraSummaryXmlOutboxQueue = null;
 
 		public FormMainIWCameraSummaryXml()
 		{
@@ -25,43 +25,102 @@ namespace EAI.A4.IntegrationWrapper_CameraSummaryXML
 			iwCameraSummaryXmlInboxQueue = MessageQueues.CreateOrUseQueue(Properties.Settings.Default.iwCameraSummaryXmlInboxQueue);
 			iwCameraSummaryXmlInboxQueue.Formatter = new XmlMessageFormatter((new System.Type[] { typeof(XmlDocument) }));
 			iwCameraSummaryXmlInboxQueue.MessageReadPropertyFilter.SetAll();
-			iwCameraSummaryXmlOutboxQueue = MessageQueues.CreateOrUseQueue(Properties.Settings.Default.iwCameraSummaryXmlOutboxQueue);
 		}
 
 		private void InitializeThreads()
 		{
-			ThreadStart job1 = new ThreadStart(DoWork);
-			Thread thread1 = new Thread(job1);
-			thread1.Start();
+			ThreadStart jobReceiveMessages = new ThreadStart(ReceiveMessages);
+			Thread threadReceiveMessages = new Thread(jobReceiveMessages);
+			threadReceiveMessages.Start();
 		}
 
-		private void DoWork()
+		private void ReceiveMessages()
 		{
 			int nrProcessedMsgs = 0;
 			while (true)
 			{
 				// receives message
 				System.Messaging.Message incomingMsg = iwCameraSummaryXmlInboxQueue.Receive();
-				incomingMsg.CorrelationId = incomingMsg.Id;
+				//incomingMsg.CorrelationId = incomingMsg.Id;
 				XmlDocument msg = (XmlDocument)incomingMsg.Body;
-				// writes the msg to a new XML file
-				string filename = "IWCameraSummary" + incomingMsg.ArrivedTime.ToString("yyyyMMddHHmmssffff") + ".xml";
-				XmlTextWriter writer = new XmlTextWriter(filename, new System.Text.UTF8Encoding());
-				writer.Formatting = Formatting.Indented;
-				msg.WriteTo(writer);
-				writer.Close();
-				// summarizes the information and produces a new XML file by calling the original CameraSummaryXML java application
-				string callJavaCameraSummaryXMLResult = CallJavaCameraSummaryXML(filename);
-				// reads the XML from the newly created file
-
-				// send the result XML to the outbox message queue
-				iwCameraSummaryXmlOutboxQueue.Send(callJavaCameraSummaryXMLResult);
+				PerformAndDispatch(msg, incomingMsg.CorrelationId);
 				// write to the form
 				if (labelNrProcessedMsgs1.InvokeRequired && labelLastMsg1.InvokeRequired)
 				{
 					SetTextCallback d = new SetTextCallback(SetLabels1);
 					this.Invoke(d, new object[] { ++nrProcessedMsgs, msg.InnerXml.Substring(0, 100), incomingMsg.CorrelationId });
 				}
+			}
+		}
+
+		/// <summary>
+		/// Creates a new thread to call the CameraSummaryXML application and to send the result to the outbox message queue
+		/// </summary>
+		/// <param name="msg"></param>
+		private void PerformAndDispatch(XmlDocument msg, string correlationId)
+		{
+			Work w = new Work();
+			w.Msg = msg;
+			w.CorrelationId = correlationId;
+			ThreadStart threadDelegate = new ThreadStart(w.DoWork);
+			Thread newThread = new Thread(threadDelegate);
+			newThread.Start();
+		}
+
+		// This delegate enables asynchronous calls for setting the text property on a TextBox control.
+		delegate void SetTextCallback(int nrProcessedMsgs, string msgText, string correlationId);
+
+		private void SetLabels1(int nrProcessedMsgs, string msgText, string correlationId)
+		{
+			labelNrProcessedMsgs1.Text = nrProcessedMsgs.ToString();
+			labelLastMsg1.Text = msgText;
+			labelCorrelationId1.Text = correlationId;
+		}
+
+	}
+
+
+	class Work
+	{
+		public XmlDocument Msg;
+		public string CorrelationId;
+
+		MessageQueue iwCameraSummaryXmlOutboxQueue = null;
+
+		public Work()
+		{
+			iwCameraSummaryXmlOutboxQueue = MessageQueues.CreateOrUseQueue(Properties.Settings.Default.iwCameraSummaryXmlOutboxQueue);
+			iwCameraSummaryXmlOutboxQueue.Formatter = new XmlMessageFormatter((new System.Type[] { typeof(XmlDocument) }));
+		}
+
+		public void DoWork()
+		{
+			try
+			{
+				// writes the msg to a new XML file
+				string filename = "IWCameraSummary" + DateTime.Now.ToString("yyyyMMddHHmmssffff") + ".xml";
+				XmlTextWriter writer = new XmlTextWriter(filename, new System.Text.UTF8Encoding());
+				writer.Formatting = Formatting.Indented;
+				Msg.WriteTo(writer);
+				writer.Close();
+				// summarizes the information and produces a new XML file by calling the original CameraSummaryXML java application
+				string filepath = CallJavaCameraSummaryXML(filename);
+				if (filepath != null)
+				{
+					// reads the XML from the newly created file
+					XmlDocument xmlDoc = new XmlDocument();
+					string result = File.ReadAllText(filepath, Encoding.Default);
+					xmlDoc.LoadXml(result);
+					// send the result XML to the outbox message queue
+					System.Messaging.Message outcomingMsg = new System.Messaging.Message(xmlDoc);
+					outcomingMsg.CorrelationId = CorrelationId;
+					iwCameraSummaryXmlOutboxQueue.Send(outcomingMsg);
+				}
+
+			}
+			catch (Exception exc)
+			{
+				// log
 			}
 		}
 
@@ -78,19 +137,12 @@ namespace EAI.A4.IntegrationWrapper_CameraSummaryXML
 			System.IO.StreamReader myOutput = listFiles.StandardOutput;
 			listFiles.WaitForExit();
 			// searches for a newly created file
-			string output = Properties.Settings.Default.JavaCameraSummaryXMLPath + "\\" + 
-				Utils.IO.GetLatestCreatedFile(Properties.Settings.Default.JavaCameraSummaryXMLPath);
-			return output;
-		}
-
-		// This delegate enables asynchronous calls for setting the text property on a TextBox control.
-		delegate void SetTextCallback(int nrProcessedMsgs, string msgText, string correlationId);
-
-		private void SetLabels1(int nrProcessedMsgs, string msgText, string correlationId)
-		{
-			labelNrProcessedMsgs1.Text = nrProcessedMsgs.ToString();
-			labelLastMsg1.Text = msgText;
-			labelCorrelationId1.Text = correlationId;
+			string latestFile = Utils.IO.GetLatestCreatedFile(Properties.Settings.Default.JavaCameraSummaryXMLPath);
+			if (latestFile.StartsWith("Summary_"))
+			{
+				return Properties.Settings.Default.JavaCameraSummaryXMLPath + "\\" + latestFile;
+			}
+			return null;
 		}
 
 	}

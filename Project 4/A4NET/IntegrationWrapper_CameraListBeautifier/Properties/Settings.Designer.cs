@@ -40,5 +40,23 @@ namespace EAI.A4.IntegrationWrapper_CameraListBeautifier.Properties {
                 return ((string)(this["iwCameraListBeautifierOutboxQueue"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\TEMP\\CameraListBeautifier")]
+        public string JavaCameraListBeautifierPath {
+            get {
+                return ((string)(this["JavaCameraListBeautifierPath"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Temp\\CameraListBeautifier\\msxsl.exe")]
+        public string MsxslPath {
+            get {
+                return ((string)(this["MsxslPath"]));
+            }
+        }
     }
 }

@@ -8,5 +8,11 @@
     <Setting Name="iwCameraListBeautifierOutboxQueue" Type="System.String" Scope="Application">
       <Value Profile="(Default)">.\Private$\EAICameraListBeautifierOutbox</Value>
     </Setting>
+    <Setting Name="JavaCameraListBeautifierPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">D:\TEMP\CameraListBeautifier</Value>
+    </Setting>
+    <Setting Name="MsxslPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">D:\Temp\CameraListBeautifier\msxsl.exe</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

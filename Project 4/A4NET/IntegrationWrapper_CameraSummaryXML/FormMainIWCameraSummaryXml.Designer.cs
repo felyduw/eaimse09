@@ -29,35 +29,15 @@
 		private void InitializeComponent()
 		{
 			System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+			this.labelCorrelationId1 = new System.Windows.Forms.Label();
 			this.labelLastMsg1 = new System.Windows.Forms.Label();
 			this.labelNrProcessedMsgs1 = new System.Windows.Forms.Label();
-			this.labelCorrelationId1 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			tableLayoutPanel1.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// labelLastMsg1
-			// 
-			this.labelLastMsg1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-			this.labelLastMsg1.AutoSize = true;
-			this.labelLastMsg1.Location = new System.Drawing.Point(135, 37);
-			this.labelLastMsg1.Name = "labelLastMsg1";
-			this.labelLastMsg1.Size = new System.Drawing.Size(146, 13);
-			this.labelLastMsg1.TabIndex = 11;
-			this.labelLastMsg1.Text = "waiting for the first message...";
-			// 
-			// labelNrProcessedMsgs1
-			// 
-			this.labelNrProcessedMsgs1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-			this.labelNrProcessedMsgs1.AutoSize = true;
-			this.labelNrProcessedMsgs1.Location = new System.Drawing.Point(135, 8);
-			this.labelNrProcessedMsgs1.Name = "labelNrProcessedMsgs1";
-			this.labelNrProcessedMsgs1.Size = new System.Drawing.Size(13, 13);
-			this.labelNrProcessedMsgs1.TabIndex = 9;
-			this.labelNrProcessedMsgs1.Text = "0";
 			// 
 			// tableLayoutPanel1
 			// 
@@ -88,6 +68,26 @@
 			this.labelCorrelationId1.Size = new System.Drawing.Size(146, 13);
 			this.labelCorrelationId1.TabIndex = 8;
 			this.labelCorrelationId1.Text = "waiting for the first message...";
+			// 
+			// labelLastMsg1
+			// 
+			this.labelLastMsg1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+			this.labelLastMsg1.AutoSize = true;
+			this.labelLastMsg1.Location = new System.Drawing.Point(135, 37);
+			this.labelLastMsg1.Name = "labelLastMsg1";
+			this.labelLastMsg1.Size = new System.Drawing.Size(146, 13);
+			this.labelLastMsg1.TabIndex = 11;
+			this.labelLastMsg1.Text = "waiting for the first message...";
+			// 
+			// labelNrProcessedMsgs1
+			// 
+			this.labelNrProcessedMsgs1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+			this.labelNrProcessedMsgs1.AutoSize = true;
+			this.labelNrProcessedMsgs1.Location = new System.Drawing.Point(135, 8);
+			this.labelNrProcessedMsgs1.Name = "labelNrProcessedMsgs1";
+			this.labelNrProcessedMsgs1.Size = new System.Drawing.Size(13, 13);
+			this.labelNrProcessedMsgs1.TabIndex = 9;
+			this.labelNrProcessedMsgs1.Text = "0";
 			// 
 			// label3
 			// 
@@ -126,7 +126,7 @@
 			this.ClientSize = new System.Drawing.Size(402, 111);
 			this.Controls.Add(tableLayoutPanel1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-			this.Location = new System.Drawing.Point(500, 290);
+			this.Location = new System.Drawing.Point(500, 310);
 			this.Name = "FormMainIWCameraSummaryXml";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
 			this.Text = "Integration Wrapper - Camera Summary XML";
