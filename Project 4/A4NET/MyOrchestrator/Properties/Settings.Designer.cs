@@ -8,23 +8,91 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyOrchestrator.Properties
-{
-
-
-	[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "9.0.0.0")]
-	internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
-	{
-
-		private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-
-		public static Settings Default
-		{
-			get
-			{
-				return defaultInstance;
-			}
-		}
-	}
+namespace EAI.A4.MyOrchestrator.Properties {
+    
+    
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "9.0.0.0")]
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\Private$\\EAIUserInterfaceInbox")]
+        public string EAIUserInterfaceInbox {
+            get {
+                return ((string)(this["EAIUserInterfaceInbox"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\Private$\\EAIUserInterfaceOutbox")]
+        public string EAIUserInterfaceOutbox {
+            get {
+                return ((string)(this["EAIUserInterfaceOutbox"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\Private$\\EAICameraSearchXMLInbox")]
+        public string iwCameraSearchXmlInboxQueue {
+            get {
+                return ((string)(this["iwCameraSearchXmlInboxQueue"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\Private$\\EAICameraSearchXMLOutbox")]
+        public string iwCameraSearchXmlOutboxQueue {
+            get {
+                return ((string)(this["iwCameraSearchXmlOutboxQueue"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\Private$\\EAICameraSummaryXMLInbox")]
+        public string iwCameraSummaryXmlInboxQueue {
+            get {
+                return ((string)(this["iwCameraSummaryXmlInboxQueue"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\Private$\\EAICameraSummaryXMLOutbox")]
+        public string iwCameraSummaryXmlOutboxQueue {
+            get {
+                return ((string)(this["iwCameraSummaryXmlOutboxQueue"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\Private$\\EAICameraListBeautifierInbox")]
+        public string iwCameraListBeautifierInboxQueue {
+            get {
+                return ((string)(this["iwCameraListBeautifierInboxQueue"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\Private$\\EAICameraListBeautifierOutbox")]
+        public string iwCameraListBeautifierOutboxQueue {
+            get {
+                return ((string)(this["iwCameraListBeautifierOutboxQueue"]));
+            }
+        }
+    }
 }

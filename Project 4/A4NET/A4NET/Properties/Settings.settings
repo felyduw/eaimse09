@@ -1,7 +1,12 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="EAI.A4.UserInterface.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="userInterfaceInboxQueue" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">.\Private$\EAIUserInterfaceInbox</Value>
+    </Setting>
+    <Setting Name="userInterfaceOutboxQueue" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">.\Private$\EAIUserInterfaceOutbox</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

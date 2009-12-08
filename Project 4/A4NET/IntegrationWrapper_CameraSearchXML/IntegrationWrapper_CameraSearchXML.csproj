@@ -8,7 +8,7 @@
     <ProjectGuid>{ED27E967-5A5F-4F64-9975-0D2D62CC2DD1}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IntegrationWrapper_CameraSearchXML</RootNamespace>
+    <RootNamespace>EAI.A4.IntegrationWrapper_CameraSearchXML</RootNamespace>
     <AssemblyName>IntegrationWrapper_CameraSearchXML</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -88,6 +88,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
     <None Include="Properties\app.manifest" />

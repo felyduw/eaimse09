@@ -8,7 +8,7 @@
     <ProjectGuid>{6C6F5ED5-A0B1-456A-9A87-F6B492EA1727}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IntegrationWrapper_CameraSummaryXML</RootNamespace>
+    <RootNamespace>EAI.A4.IntegrationWrapper_CameraSummaryXML</RootNamespace>
     <AssemblyName>IntegrationWrapper_CameraSummaryXML</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -69,7 +69,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -7,8 +7,8 @@ namespace EAI.A4.UserInterface
 {
 	public partial class FormMain : Form
 	{
-		MessageQueue inboxQueue = null;
-		MessageQueue outboxQueue = null;
+		MessageQueue userInterfaceInboxQueue = null;
+		MessageQueue userInterfaceOutboxQueue = null;
 
 		public FormMain()
 		{
@@ -18,9 +18,10 @@ namespace EAI.A4.UserInterface
 
 		private void InitializeMessageQueues()
 		{
-			inboxQueue = MessageQueues.CreateOrUseQueue(@".\Private$\EAIUserInterfaceInbox");
-			outboxQueue = MessageQueues.CreateOrUseQueue(@".\Private$\EAIUserInterfaceOutbox");
-			outboxQueue.Formatter = new XmlMessageFormatter((new System.Type[] { typeof(string) }));
+			userInterfaceInboxQueue = MessageQueues.CreateOrUseQueue(Properties.Settings.Default.userInterfaceInboxQueue);
+			userInterfaceInboxQueue.Formatter = new XmlMessageFormatter((new System.Type[] { typeof(string) }));
+			userInterfaceOutboxQueue = MessageQueues.CreateOrUseQueue(Properties.Settings.Default.userInterfaceOutboxQueue);
+			userInterfaceOutboxQueue.Formatter = new XmlMessageFormatter((new System.Type[] { typeof(string) }));
 		}
 
 		#region Handlers
@@ -29,8 +30,7 @@ namespace EAI.A4.UserInterface
 		{
 			toolStripStatusLabelResults.Visible = true;
 			toolStripStatusLabelResults.Text = "processing \"" + textBoxQuery.Text + "\"...";
-			toolStripProgressBarWork.Visible = true;
-			outboxQueue.Send(textBoxQuery.Text);
+			userInterfaceOutboxQueue.Send(textBoxQuery.Text);
 			textBoxQuery.Text = String.Empty;
 		}
 

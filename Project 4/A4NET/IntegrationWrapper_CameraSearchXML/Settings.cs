@@ -1,4 +1,5 @@
-﻿namespace IntegrationWrapper_CameraSearchXML.Properties {
+﻿namespace EAI.A4.IntegrationWrapper_CameraSearchXML.Properties
+{
     
     
     // This class allows you to handle specific events on the settings class:

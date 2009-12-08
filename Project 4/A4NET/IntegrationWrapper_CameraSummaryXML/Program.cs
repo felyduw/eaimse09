@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using EAI.A4.Utils;
 
-namespace IntegrationWrapper_CameraSummaryXML
+namespace EAI.A4.IntegrationWrapper_CameraSummaryXML
 {
 	static class Program
 	{

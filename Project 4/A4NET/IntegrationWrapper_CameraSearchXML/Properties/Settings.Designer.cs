@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace IntegrationWrapper_CameraSearchXML.Properties {
+namespace EAI.A4.IntegrationWrapper_CameraSearchXML.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -25,35 +25,46 @@ namespace IntegrationWrapper_CameraSearchXML.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-jar \"D:\\MSE\\Enterprise Integration Application\\Project 1\\CameraSearchXML\\dist\\Ca" +
-            "meraSearchXML.jar\"")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-jar \"D:\\TEMP\\CameraSearchXML\\dist\\CameraSearchXML.jar\"")]
         public string JavaCameraSearchXMLArguments {
             get {
                 return ((string)(this["JavaCameraSearchXMLArguments"]));
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("\"C:\\Program Files\\Java\\jdk1.6.0_14\\bin\\java.exe\"")]
         public string JavaPath {
             get {
                 return ((string)(this["JavaPath"]));
             }
-            set {
-                this["JavaPath"] = value;
-            }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:\\MSE\\Enterprise Integration Application\\Project 1\\CameraSearchXML\\dist")]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\TEMP\\CameraSearchXML\\dist")]
         public string JavaCameraSearchXMLPath {
             get {
                 return ((string)(this["JavaCameraSearchXMLPath"]));
             }
-            set {
-                this["JavaCameraSearchXMLPath"] = value;
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\Private$\\EAICameraSearchXMLInbox")]
+        public string iwCameraSearchXmlInboxQueue {
+            get {
+                return ((string)(this["iwCameraSearchXmlInboxQueue"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\Private$\\EAICameraSearchXMLOutbox")]
+        public string iwCameraSearchXmlOutboxQueue {
+            get {
+                return ((string)(this["iwCameraSearchXmlOutboxQueue"]));
             }
         }
     }

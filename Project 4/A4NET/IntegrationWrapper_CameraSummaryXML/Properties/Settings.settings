@@ -1,7 +1,21 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="EAI.A4.IntegrationWrapper_CameraSummaryXML.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="iwCameraSummaryXmlInboxQueue" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">.\Private$\EAICameraSummaryXMLInbox</Value>
+    </Setting>
+    <Setting Name="iwCameraSummaryXmlOutboxQueue" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">.\Private$\EAICameraSummaryXMLOutbox</Value>
+    </Setting>
+    <Setting Name="JavaPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">"C:\Program Files\Java\jdk1.6.0_14\bin\java.exe"</Value>
+    </Setting>
+    <Setting Name="JavaCameraSummaryXMLPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">D:\Temp\CameraSummaryXML\dist</Value>
+    </Setting>
+    <Setting Name="JavaCameraSummaryXMLArguments" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">-jar "D:\Temp\CameraSummaryXML\dist\CameraSummaryXML.jar"</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

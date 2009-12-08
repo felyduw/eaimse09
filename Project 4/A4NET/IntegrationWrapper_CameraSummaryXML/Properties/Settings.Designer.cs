@@ -8,23 +8,64 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace IntegrationWrapper_CameraSummaryXML.Properties
-{
-
-
-	[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "9.0.0.0")]
-	internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
-	{
-
-		private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-
-		public static Settings Default
-		{
-			get
-			{
-				return defaultInstance;
-			}
-		}
-	}
+namespace EAI.A4.IntegrationWrapper_CameraSummaryXML.Properties {
+    
+    
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "9.0.0.0")]
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\Private$\\EAICameraSummaryXMLInbox")]
+        public string iwCameraSummaryXmlInboxQueue {
+            get {
+                return ((string)(this["iwCameraSummaryXmlInboxQueue"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\Private$\\EAICameraSummaryXMLOutbox")]
+        public string iwCameraSummaryXmlOutboxQueue {
+            get {
+                return ((string)(this["iwCameraSummaryXmlOutboxQueue"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\"C:\\Program Files\\Java\\jdk1.6.0_14\\bin\\java.exe\"")]
+        public string JavaPath {
+            get {
+                return ((string)(this["JavaPath"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Temp\\CameraSummaryXML\\dist")]
+        public string JavaCameraSummaryXMLPath {
+            get {
+                return ((string)(this["JavaCameraSummaryXMLPath"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-jar \"D:\\Temp\\CameraSummaryXML\\dist\\CameraSummaryXML.jar\"")]
+        public string JavaCameraSummaryXMLArguments {
+            get {
+                return ((string)(this["JavaCameraSummaryXMLArguments"]));
+            }
+        }
+    }
 }
