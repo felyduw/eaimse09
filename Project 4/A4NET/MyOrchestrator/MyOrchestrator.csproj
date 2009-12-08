@@ -55,6 +55,7 @@
     <Compile Include="FormMainMyOrchestrator.Designer.cs">
       <DependentUpon>FormMainMyOrchestrator.cs</DependentUpon>
     </Compile>
+    <Compile Include="JoinMessage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormMainMyOrchestrator.resx">
